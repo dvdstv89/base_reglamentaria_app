@@ -1,0 +1,42 @@
+﻿<Weavers xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FodyWeavers.xsd">
+	<Costura>
+		<IncludeAssemblies>
+			<!-- Lista de ensamblados que deseas incluir -->
+			FontAwesome.Sharp
+			Microsoft.Bcl.AsyncInterfaces
+			Microsoft.Data.Sqlite
+			Microsoft.Extensions.Configuration.Abstractions
+			Microsoft.Extensions.Configuration
+			Microsoft.Extensions.Configuration.Json
+			Microsoft.Extensions.Configuration.FileExtensions
+			Microsoft.Extensions.FileProviders.Physical
+			Microsoft.Extensions.FileProviders.Abstractions
+			Microsoft.Extensions.FileSystemGlobbing
+			Microsoft.Extensions.Primitives
+			System.Buffers
+			System.Diagnostics.DiagnosticSource
+			System.Memory
+			System.Numerics.Vectors
+			System.Runtime.CompilerServices.Unsafe		
+			System.Threading.Tasks.Extensions
+			System.ValueTuple
+			System.Text.Encodings.Web
+			SQLitePCLRaw.batteries_v2
+			SQLitePCLRaw.core
+			SQLitePCLRaw.provider.dynamic_cdecl
+			Patagames.Pdf
+			Patagames.Pdf.WinForms
+			Patagames.Pdf.Wpf
+			RichTextBoxEx
+			PrintRichTextBox
+			NetSpell.SpellChecker
+			System.Text.Json			
+		</IncludeAssemblies>
+		<Unmanaged32Assemblies>
+			<!-- Lista de ensamblados no administrados (32 bits) -->
+		</Unmanaged32Assemblies>
+		<Unmanaged64Assemblies>
+			<!-- Lista de ensamblados no administrados (64 bits) -->
+		</Unmanaged64Assemblies>
+	</Costura>
+</Weavers>

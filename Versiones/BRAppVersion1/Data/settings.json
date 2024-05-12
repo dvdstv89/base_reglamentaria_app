@@ -1,0 +1,5 @@
+﻿{
+    "AppId": "1",
+    "DefaultConnectionSQLite": "Data Source=Data/BR.db",
+    "ConsultorWeb": "consultor_oficial\\mi_index.htm"
+}
