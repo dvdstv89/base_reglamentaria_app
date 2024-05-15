@@ -12,6 +12,7 @@
         INDICO,
         OTRO_DOCUMENTO,
         CONTRATO,
-        DG
+        DG,
+        DOCUMENTACION_BASICA
     }
 }

@@ -44,8 +44,8 @@ namespace BRapp.UI.Cards
             this.iconPrincipal = new FontAwesome.Sharp.IconPictureBox();
             this.btnPdf = new FontAwesome.Sharp.IconButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.panelDerrogadoPor = new System.Windows.Forms.Panel();
             this.btnDerrogadaPor = new FontAwesome.Sharp.IconButton();
+            this.panelDerrogadoPor = new System.Windows.Forms.Panel();
             this.tbDerrogadoPor = new System.Windows.Forms.TextBox();
             this.labelDescripcion = new System.Windows.Forms.RichTextBox();
             this.panel4.SuspendLayout();
@@ -211,17 +211,6 @@ namespace BRapp.UI.Cards
             this.toolTip1.SetToolTip(this.btnPdf, "Ver resolución");
             this.btnPdf.UseVisualStyleBackColor = true;
             // 
-            // panelDerrogadoPor
-            // 
-            this.panelDerrogadoPor.BackColor = System.Drawing.Color.White;
-            this.panelDerrogadoPor.Controls.Add(this.btnDerrogadaPor);
-            this.panelDerrogadoPor.Controls.Add(this.tbDerrogadoPor);
-            this.panelDerrogadoPor.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelDerrogadoPor.Location = new System.Drawing.Point(120, 120);
-            this.panelDerrogadoPor.Name = "panelDerrogadoPor";
-            this.panelDerrogadoPor.Size = new System.Drawing.Size(363, 25);
-            this.panelDerrogadoPor.TabIndex = 37;
-            // 
             // btnDerrogadaPor
             // 
             this.btnDerrogadaPor.Dock = System.Windows.Forms.DockStyle.Left;
@@ -238,7 +227,18 @@ namespace BRapp.UI.Cards
             this.toolTip1.SetToolTip(this.btnDerrogadaPor, "Derrogada por");
             this.btnDerrogadaPor.UseVisualStyleBackColor = true;
             // 
-            // tbContratoPadre
+            // panelDerrogadoPor
+            // 
+            this.panelDerrogadoPor.BackColor = System.Drawing.Color.White;
+            this.panelDerrogadoPor.Controls.Add(this.btnDerrogadaPor);
+            this.panelDerrogadoPor.Controls.Add(this.tbDerrogadoPor);
+            this.panelDerrogadoPor.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelDerrogadoPor.Location = new System.Drawing.Point(120, 120);
+            this.panelDerrogadoPor.Name = "panelDerrogadoPor";
+            this.panelDerrogadoPor.Size = new System.Drawing.Size(363, 25);
+            this.panelDerrogadoPor.TabIndex = 37;
+            // 
+            // tbDerrogadoPor
             // 
             this.tbDerrogadoPor.BackColor = System.Drawing.Color.White;
             this.tbDerrogadoPor.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -246,7 +246,7 @@ namespace BRapp.UI.Cards
             this.tbDerrogadoPor.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbDerrogadoPor.Location = new System.Drawing.Point(38, 0);
             this.tbDerrogadoPor.Multiline = true;
-            this.tbDerrogadoPor.Name = "tbContratoPadre";
+            this.tbDerrogadoPor.Name = "tbDerrogadoPor";
             this.tbDerrogadoPor.ReadOnly = true;
             this.tbDerrogadoPor.Size = new System.Drawing.Size(322, 22);
             this.tbDerrogadoPor.TabIndex = 8;
@@ -261,7 +261,6 @@ namespace BRapp.UI.Cards
             this.labelDescripcion.Dock = System.Windows.Forms.DockStyle.Left;
             this.labelDescripcion.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDescripcion.Location = new System.Drawing.Point(120, 145);
-            this.labelDescripcion.Multiline = false;
             this.labelDescripcion.Name = "labelDescripcion";
             this.labelDescripcion.ReadOnly = true;
             this.labelDescripcion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;

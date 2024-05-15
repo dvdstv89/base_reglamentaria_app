@@ -227,25 +227,68 @@
   <ItemGroup>
     <Compile Include="Messages\DialogUtil.cs" />
     <Compile Include="Messages\Mensajes.cs" />
+    <Compile Include="Services\Interfaces\ITiendaServiceAdmin.cs" />
+    <Compile Include="Services\Interfaces\IGrupoDocumentacionServiceAdmin.cs" />
+    <Compile Include="Services\Interfaces\IDepartamentoServiceAdmin.cs" />
+    <Compile Include="Services\Interfaces\ITipoGrupoDocumentacionServiceAdmin.cs" />
     <Compile Include="Services\Interfaces\IDocumentosServiceAdmin.cs" />
-    <Compile Include="Services\Interfaces\ITiendasServiceAdmin.cs" />
+    <Compile Include="Services\Interfaces\IComplejoServiceAdmin.cs" />
     <Compile Include="Services\Interfaces\IContactosServiceAdmin.cs" />
-    <Compile Include="Services\Services\TiendasServiceAdmin.cs" />
+    <Compile Include="Services\Services\TiendaServiceAdmin.cs" />
+    <Compile Include="Services\Services\GrupoDocumentacionServiceAdmin.cs" />
+    <Compile Include="Services\Services\DepartamentoServiceAdmin.cs" />
+    <Compile Include="Services\Services\TipoGrupoDocumentacionServiceAdmin.cs" />
+    <Compile Include="Services\Services\ComplejoServiceAdmin.cs" />
     <Compile Include="Services\Services\DocumentosServiceAdmin.cs" />
     <Compile Include="Services\Services\ContactoServiceAdmin.cs" />
-    <Compile Include="UIController\SeleccionarObjetoUIController.cs" />
+    <Compile Include="UIController\NewGrupoDocumentacionUIController.cs" />
+    <Compile Include="UIController\NewDepartamentoUIController.cs" />
+    <Compile Include="UIController\NewTipoGrupoDocumentacionUIController.cs" />
+    <Compile Include="UIController\TipoGrupoDocumentacionUIController.cs" />
+    <Compile Include="UIController\ComplejoUIController.cs" />
+    <Compile Include="UIController\NewComplejoUIController.cs" />
     <Compile Include="UIController\ListViewColumnSorter.cs" />
     <Compile Include="UIController\PapelUIController.cs" />
     <Compile Include="UIController\PersonaUIController.cs" />
-    <Compile Include="UIController\TiendasUIController.cs" />
+    <Compile Include="UIController\NewTiendasUIController.cs" />
     <Compile Include="UIController\DocumentosUIController.cs" />
     <Compile Include="UIController\ContactosUIController.cs" />
     <Compile Include="UIController\IndexAdminUIController.cs" />
-    <Compile Include="UI\SeleccionarObjetoUI.cs">
+    <Compile Include="UI\NewGrupoDocumentacionUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\SeleccionarObjetoUI.Designer.cs">
-      <DependentUpon>SeleccionarObjetoUI.cs</DependentUpon>
+    <Compile Include="UI\NewGrupoDocumentacionUI.Designer.cs">
+      <DependentUpon>NewGrupoDocumentacionUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\NewDepartamentoUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\NewDepartamentoUI.Designer.cs">
+      <DependentUpon>NewDepartamentoUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\NewTipoGrupoDocumentacionUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\NewTipoGrupoDocumentacionUI.Designer.cs">
+      <DependentUpon>NewTipoGrupoDocumentacionUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\NewComplejoUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\NewComplejoUI.Designer.cs">
+      <DependentUpon>NewComplejoUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\TipoGrupoDocumentacionUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\TipoGrupoDocumentacionUI.Designer.cs">
+      <DependentUpon>TipoGrupoDocumentacionUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ComplejoUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ComplejoUI.Designer.cs">
+      <DependentUpon>ComplejoUI.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\PapelUI.cs">
       <SubType>Form</SubType>
@@ -259,11 +302,11 @@
     <Compile Include="UI\PersonaUI.Designer.cs">
       <DependentUpon>PersonaUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\TiendasUI.cs">
+    <Compile Include="UI\NewTiendasUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\TiendasUI.Designer.cs">
-      <DependentUpon>TiendasUI.cs</DependentUpon>
+    <Compile Include="UI\NewTiendasUI.Designer.cs">
+      <DependentUpon>NewTiendasUI.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\ContactosUI.cs">
       <SubType>Form</SubType>
@@ -288,8 +331,23 @@
     <Compile Include="UI\AppUI.Designer.cs">
       <DependentUpon>AppUI.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="UI\SeleccionarObjetoUI.resx">
-      <DependentUpon>SeleccionarObjetoUI.cs</DependentUpon>
+    <EmbeddedResource Include="UI\NewGrupoDocumentacionUI.resx">
+      <DependentUpon>NewGrupoDocumentacionUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\NewDepartamentoUI.resx">
+      <DependentUpon>NewDepartamentoUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\NewTipoGrupoDocumentacionUI.resx">
+      <DependentUpon>NewTipoGrupoDocumentacionUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\NewComplejoUI.resx">
+      <DependentUpon>NewComplejoUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\TipoGrupoDocumentacionUI.resx">
+      <DependentUpon>TipoGrupoDocumentacionUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ComplejoUI.resx">
+      <DependentUpon>ComplejoUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\PapelUI.resx">
       <DependentUpon>PapelUI.cs</DependentUpon>
@@ -297,8 +355,8 @@
     <EmbeddedResource Include="UI\PersonaUI.resx">
       <DependentUpon>PersonaUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\TiendasUI.resx">
-      <DependentUpon>TiendasUI.cs</DependentUpon>
+    <EmbeddedResource Include="UI\NewTiendasUI.resx">
+      <DependentUpon>NewTiendasUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ContactosUI.resx">
       <DependentUpon>ContactosUI.cs</DependentUpon>

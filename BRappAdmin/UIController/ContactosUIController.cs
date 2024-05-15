@@ -135,6 +135,7 @@ namespace BRappAdmin.UIControlers
             {
                 DialogUtil.INFORMATION(Mensajes.CONTACTO_SAVED_OK);
                 forma.tbBuscar.Text = "";
+                updateList();
             }
         }
 

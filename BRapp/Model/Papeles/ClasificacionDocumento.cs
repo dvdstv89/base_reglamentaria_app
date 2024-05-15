@@ -28,6 +28,7 @@ namespace BRapp.Model.Papeles
                 case TipoDocumento.OTRO_DOCUMENTO: return IconChar.NoteSticky;
                 case TipoDocumento.CONTRATO: return IconChar.Handshake;
                 case TipoDocumento.DG: return IconChar.HandPointUp;
+                case TipoDocumento.DOCUMENTACION_BASICA: return IconChar.NoteSticky;
                 default: return IconChar.NoteSticky;
             }           
         }

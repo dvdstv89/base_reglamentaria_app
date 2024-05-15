@@ -8,22 +8,17 @@ namespace BRapp.Services.Services
     public class IndexService: IIndexService
     {
         private static IndexService instance;
-        protected readonly IAppRepository iAppRepository;
+        protected readonly IAppService appService;
 
-        protected IndexService(IAppRepository iAppRepository)
+        protected IndexService()
         {
-            this.iAppRepository = iAppRepository;            
+            this.appService = AppService.Instance;            
         }
 
         public string getFooter()
         {
-           return buildFooter(iAppRepository.getApp());
-        }
-
-        public App getApp()
-        {
-            return iAppRepository.getApp();
-        }
+           return buildFooter(appService.getApp());
+        }       
 
         protected string buildFooter(App app)
         {
@@ -39,7 +34,7 @@ namespace BRapp.Services.Services
         {
             get
             {               
-                instance = (instance == null) ? new IndexService(AppRepository.Instance) : instance;
+                instance = (instance == null) ? new IndexService() : instance;
                 return instance;
             }
         }

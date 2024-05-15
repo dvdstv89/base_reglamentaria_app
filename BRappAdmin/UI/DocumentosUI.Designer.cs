@@ -51,6 +51,9 @@
             this.activarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.desactivarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.tbBuscar = new System.Windows.Forms.TextBox();
+            this.btnSear = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lwPapeles = new System.Windows.Forms.ListView();
@@ -58,14 +61,12 @@
             this.columnTipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnPDF = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnActivo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tbBuscar = new System.Windows.Forms.TextBox();
-            this.btnSear = new FontAwesome.Sharp.IconButton();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.documentaciónBásicaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -97,7 +98,8 @@
             this.procedimientoToolStripMenuItem,
             this.programaToolStripMenuItem,
             this.reglamentoToolStripMenuItem,
-            this.otrosDocumentosToolStripMenuItem});
+            this.otrosDocumentosToolStripMenuItem,
+            this.documentaciónBásicaToolStripMenuItem});
             this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
             this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(54, 30);
             this.nuevoToolStripMenuItem.Text = "Nuevo";
@@ -242,6 +244,41 @@
             this.panel1.Size = new System.Drawing.Size(697, 34);
             this.panel1.TabIndex = 4;
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.tbBuscar);
+            this.panel4.Controls.Add(this.btnSear);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel4.Location = new System.Drawing.Point(497, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(200, 34);
+            this.panel4.TabIndex = 1;
+            // 
+            // tbBuscar
+            // 
+            this.tbBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbBuscar.Location = new System.Drawing.Point(3, 5);
+            this.tbBuscar.Name = "tbBuscar";
+            this.tbBuscar.Size = new System.Drawing.Size(156, 23);
+            this.tbBuscar.TabIndex = 24;
+            // 
+            // btnSear
+            // 
+            this.btnSear.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnSear.Enabled = false;
+            this.btnSear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSear.ForeColor = System.Drawing.Color.White;
+            this.btnSear.IconChar = FontAwesome.Sharp.IconChar.Sistrix;
+            this.btnSear.IconColor = System.Drawing.Color.Black;
+            this.btnSear.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSear.IconSize = 25;
+            this.btnSear.Location = new System.Drawing.Point(162, 0);
+            this.btnSear.Name = "btnSear";
+            this.btnSear.Size = new System.Drawing.Size(38, 34);
+            this.btnSear.TabIndex = 23;
+            this.btnSear.UseVisualStyleBackColor = true;
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
@@ -299,40 +336,11 @@
             this.columnActivo.Text = "Activo";
             this.columnActivo.Width = 72;
             // 
-            // tbBuscar
+            // documentaciónBásicaToolStripMenuItem
             // 
-            this.tbBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbBuscar.Location = new System.Drawing.Point(3, 5);
-            this.tbBuscar.Name = "tbBuscar";
-            this.tbBuscar.Size = new System.Drawing.Size(156, 23);
-            this.tbBuscar.TabIndex = 24;
-            // 
-            // btnSear
-            // 
-            this.btnSear.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnSear.Enabled = false;
-            this.btnSear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSear.ForeColor = System.Drawing.Color.White;
-            this.btnSear.IconChar = FontAwesome.Sharp.IconChar.Sistrix;
-            this.btnSear.IconColor = System.Drawing.Color.Black;
-            this.btnSear.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSear.IconSize = 25;
-            this.btnSear.Location = new System.Drawing.Point(162, 0);
-            this.btnSear.Name = "btnSear";
-            this.btnSear.Size = new System.Drawing.Size(38, 34);
-            this.btnSear.TabIndex = 23;
-            this.btnSear.UseVisualStyleBackColor = true;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.tbBuscar);
-            this.panel4.Controls.Add(this.btnSear);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(497, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(200, 34);
-            this.panel4.TabIndex = 1;
+            this.documentaciónBásicaToolStripMenuItem.Name = "documentaciónBásicaToolStripMenuItem";
+            this.documentaciónBásicaToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.documentaciónBásicaToolStripMenuItem.Text = "Documentación Básica";
             // 
             // DocumentosUI
             // 
@@ -349,11 +357,11 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -392,5 +400,6 @@
         private System.Windows.Forms.Panel panel4;
         public System.Windows.Forms.TextBox tbBuscar;
         private FontAwesome.Sharp.IconButton btnSear;
+        public System.Windows.Forms.ToolStripMenuItem documentaciónBásicaToolStripMenuItem;
     }
 }

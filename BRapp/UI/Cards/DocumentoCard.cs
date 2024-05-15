@@ -5,7 +5,7 @@ namespace BRapp.UI.Cards
     internal partial class DocumentoCard : UserControl
     {
         public RichTextBox labelDescripcion;
-        private Panel panel4;
+        public Panel panelFecha;
         public TextBox lbFecha;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
         private Panel panel1;
@@ -29,7 +29,7 @@ namespace BRapp.UI.Cards
         {
             this.components = new System.ComponentModel.Container();
             this.labelDescripcion = new System.Windows.Forms.RichTextBox();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.panelFecha = new System.Windows.Forms.Panel();
             this.lbFecha = new System.Windows.Forms.TextBox();
             this.iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -42,7 +42,7 @@ namespace BRapp.UI.Cards
             this.iconPrincipal = new FontAwesome.Sharp.IconPictureBox();
             this.btnPdf = new FontAwesome.Sharp.IconButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.panel4.SuspendLayout();
+            this.panelFecha.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
             this.panelTitle.SuspendLayout();
@@ -57,7 +57,6 @@ namespace BRapp.UI.Cards
             this.labelDescripcion.Dock = System.Windows.Forms.DockStyle.Left;
             this.labelDescripcion.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDescripcion.Location = new System.Drawing.Point(120, 120);
-            this.labelDescripcion.Multiline = false;
             this.labelDescripcion.Name = "labelDescripcion";
             this.labelDescripcion.ReadOnly = true;
             this.labelDescripcion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
@@ -65,16 +64,16 @@ namespace BRapp.UI.Cards
             this.labelDescripcion.TabIndex = 25;
             this.labelDescripcion.Text = "Descripcion";
             // 
-            // panel4
+            // panelFecha
             // 
-            this.panel4.BackColor = System.Drawing.Color.White;
-            this.panel4.Controls.Add(this.lbFecha);
-            this.panel4.Controls.Add(this.iconPictureBox2);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(120, 95);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(363, 25);
-            this.panel4.TabIndex = 24;
+            this.panelFecha.BackColor = System.Drawing.Color.White;
+            this.panelFecha.Controls.Add(this.lbFecha);
+            this.panelFecha.Controls.Add(this.iconPictureBox2);
+            this.panelFecha.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelFecha.Location = new System.Drawing.Point(120, 95);
+            this.panelFecha.Name = "panelFecha";
+            this.panelFecha.Size = new System.Drawing.Size(363, 25);
+            this.panelFecha.TabIndex = 24;
             // 
             // lbFecha
             // 
@@ -82,11 +81,11 @@ namespace BRapp.UI.Cards
             this.lbFecha.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lbFecha.Cursor = System.Windows.Forms.Cursors.Default;
             this.lbFecha.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFecha.Location = new System.Drawing.Point(40, 1);
+            this.lbFecha.Location = new System.Drawing.Point(40, 0);
             this.lbFecha.Multiline = true;
             this.lbFecha.Name = "lbFecha";
             this.lbFecha.ReadOnly = true;
-            this.lbFecha.Size = new System.Drawing.Size(320, 25);
+            this.lbFecha.Size = new System.Drawing.Size(306, 25);
             this.lbFecha.TabIndex = 9;
             this.lbFecha.TabStop = false;
             this.lbFecha.Text = "Informatico sdf sdf sdfg sdfg sdfg sdfg sdfs";
@@ -226,7 +225,7 @@ namespace BRapp.UI.Cards
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.btnPdf);
             this.Controls.Add(this.labelDescripcion);
-            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panelFecha);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelImagen);
             this.Controls.Add(this.panel2);
@@ -234,8 +233,8 @@ namespace BRapp.UI.Cards
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Name = "DocumentoCard";
             this.Size = new System.Drawing.Size(483, 208);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.panelFecha.ResumeLayout(false);
+            this.panelFecha.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

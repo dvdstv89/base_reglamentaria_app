@@ -27,7 +27,16 @@ namespace BRapp.Repositorios.Repos
 
         protected void updateListApp()
         {
-            aplications = getAll();
+            try
+            {
+                aplications = getAll();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
         }
 
         protected List<App> getAll()
@@ -35,9 +44,12 @@ namespace BRapp.Repositorios.Repos
             List<App> apps = new List<App>();
             using (var reader = EjecutarConsulta(QUERY_SELECT_ALL))
             {
-                while (reader.Read())
-                { 
-                    apps.Add((App)mapperApp.Map(reader));
+                if (reader != null)
+                {
+                    while (reader.Read())
+                    {
+                        apps.Add((App)mapperApp.Map(reader));
+                    }
                 }
             }
             return apps;

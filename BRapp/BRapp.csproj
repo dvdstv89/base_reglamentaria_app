@@ -277,13 +277,28 @@
   <ItemGroup>
     <Compile Include="Data\AplicationConfig.cs" />
     <Compile Include="Data\ClasificacionDocumentoData.cs" />
+    <Compile Include="Dto\GrupoDocumentacionDto.cs" />
+    <Compile Include="Dto\DepartamentoDto.cs" />
+    <Compile Include="Dto\TiendaDto.cs" />
     <Compile Include="Dto\PapelDto.cs" />
     <Compile Include="Dto\DocumentoDto.cs" />
     <Compile Include="Dto\ResolucionDto.cs" />
     <Compile Include="Dto\ContratoDto.cs" />
     <Compile Include="Dto\DGDto.cs" />
     <Compile Include="Dto\SistemaDto.cs" />
+    <Compile Include="Dto\DepartamentoGrupoDocumentacionDto.cs" />
+    <Compile Include="Dto\TiendaGrupoDocumentacionDto.cs" />
     <Compile Include="Enums\TipoClasificacionDocumento.cs" />
+    <Compile Include="Enums\TipoMoneda.cs" />
+    <Compile Include="Enums\TipoDepartamento.cs" />
+    <Compile Include="Enums\TipoTienda.cs" />
+    <Compile Include="Mapper\ComplejoMapper.cs" />
+    <Compile Include="Mapper\DepartamentoGrupoDocumentacionMapper.cs" />
+    <Compile Include="Mapper\TiendaGrupoDocumentacionMapper.cs" />
+    <Compile Include="Mapper\TiendaMapper.cs" />
+    <Compile Include="Mapper\DepartamentoMapper.cs" />
+    <Compile Include="Mapper\GrupoDocumentacionMapper.cs" />
+    <Compile Include="Mapper\TipoGrupoDocumentacionMapper.cs" />
     <Compile Include="Mapper\DocumentoPdfBlobMapper.cs" />
     <Compile Include="Mapper\ResolucionMapper.cs" />
     <Compile Include="Mapper\DocumentoPdfMapper.cs" />
@@ -300,13 +315,31 @@
     <Compile Include="Model\ISeleccionable.cs" />
     <Compile Include="Model\Papeles\ClasificacionDocumento.cs" />
     <Compile Include="Model\Papeles\DG.cs" />
+    <Compile Include="Model\Tiendas\Complejo.cs" />
+    <Compile Include="Model\Tiendas\Departamento.cs" />
+    <Compile Include="Model\Tiendas\TipoGrupoDocumentacion.cs" />
+    <Compile Include="Model\Tiendas\GrupoDocumentacion.cs" />
+    <Compile Include="Repositorios\Interfaces\Dto\IDepartamentoGrupoDocumentacionDtoRepository.cs" />
+    <Compile Include="Repositorios\Interfaces\Dto\ITiendaGrupoDocumentacionDtoRepository.cs" />
+    <Compile Include="Repositorios\Interfaces\Dto\ITiendaDtoRepository.cs" />
     <Compile Include="Repositorios\Interfaces\Dto\IDocumentoDtoRepository.cs" />
+    <Compile Include="Repositorios\Interfaces\Dto\IDepartamentoDtoRepository.cs" />
     <Compile Include="Repositorios\Interfaces\Dto\IPapelDtoRepository.cs" />
     <Compile Include="Repositorios\Interfaces\Dto\IResolucionDtoRepository.cs" />
     <Compile Include="Repositorios\Interfaces\Dto\IContratoDtoRepository.cs" />
     <Compile Include="Repositorios\Interfaces\Dto\IDGDtoRepository.cs" />
     <Compile Include="Repositorios\Interfaces\Dto\ISistemaDtoRepository.cs" />
+    <Compile Include="Repositorios\Interfaces\Dto\IGrupoDocumentacionDtoRepository.cs" />
+    <Compile Include="Repositorios\Interfaces\ITipoGrupoDocumentacionRepository.cs" />
+    <Compile Include="Repositorios\Interfaces\IComplejoRepository.cs" />
     <Compile Include="Repositorios\Interfaces\IDocumentoPdfRepository.cs" />
+    <Compile Include="Repositorios\Repos\ReposDto\DepartamentoGrupoDocumentacionDtoRepository.cs" />
+    <Compile Include="Repositorios\Repos\ReposDto\TiendaGrupoDocumentacionDtoRepository.cs" />
+    <Compile Include="Repositorios\Repos\ReposDto\TiendaDtoRepository.cs" />
+    <Compile Include="Repositorios\Repos\ReposDto\DepartamentoDtoRepository.cs" />
+    <Compile Include="Repositorios\Repos\ReposDto\GrupoDocumentacionDtoRepository.cs" />
+    <Compile Include="Repositorios\Repos\TipoGrupoDocumentacionRepository.cs" />
+    <Compile Include="Repositorios\Repos\ComplejoRepository.cs" />
     <Compile Include="Repositorios\Repos\BaseRepository.cs" />
     <Compile Include="Enums\EnumFiltroBusqueda\FiltroPaginaContactos.cs" />
     <Compile Include="Enums\EnumFiltroBusqueda\TipoContactoBusqueda.cs" />
@@ -322,7 +355,6 @@
     <Compile Include="Model\Papeles\Papel.cs" />
     <Compile Include="Repositorios\Interfaces\IDirectorioRepository.cs" />
     <Compile Include="Repositorios\Interfaces\IAppRepository.cs" />
-    <Compile Include="Repositorios\Interfaces\ITiendaRepository.cs" />
     <Compile Include="Repositorios\Repos\AppRepository.cs" />
     <Compile Include="Repositorios\Repos\DocumentoPdfRepository.cs" />
     <Compile Include="Repositorios\Repos\ReposDto\DocumentoDtoRepository.cs" />
@@ -331,10 +363,14 @@
     <Compile Include="Repositorios\Repos\ReposDto\ContratoDtoRepository.cs" />
     <Compile Include="Repositorios\Repos\ReposDto\DgDtoRepository.cs" />
     <Compile Include="Repositorios\Repos\ReposDto\SistemaDtoRepository.cs" />
-    <Compile Include="Repositorios\Repos\TiendaRepository.cs" />
     <Compile Include="Repositorios\Repos\DirectorioRepository.cs" />
+    <Compile Include="Services\Interfaces\IGrupoDocumentacionService.cs" />
+    <Compile Include="Services\Interfaces\IDepartamentoService.cs" />
+    <Compile Include="Services\Interfaces\ITipoGrupoDocumentacionService.cs" />
+    <Compile Include="Services\Interfaces\IComplejoService.cs" />
     <Compile Include="Services\Interfaces\IDocumentoService.cs" />
     <Compile Include="Services\Interfaces\IContratoService.cs" />
+    <Compile Include="Services\Interfaces\IAppService.cs" />
     <Compile Include="Services\Interfaces\IResolucionService.cs" />
     <Compile Include="Services\Interfaces\IDGService.cs" />
     <Compile Include="Services\Interfaces\ISistemaService.cs" />
@@ -347,7 +383,12 @@
     <Compile Include="Services\Interfaces\IConsultorService.cs" />
     <Compile Include="Services\Interfaces\IBienvenidaService.cs" />
     <Compile Include="Services\Interfaces\IPapelService.cs" />
+    <Compile Include="Services\Services\GrupoDocumentacionService.cs" />
+    <Compile Include="Services\Services\DepartamentoService.cs" />
+    <Compile Include="Services\Services\TipoGrupoDocumentacionService.cs" />
+    <Compile Include="Services\Services\ComplejoService.cs" />
     <Compile Include="Services\Services\DocumentoService.cs" />
+    <Compile Include="Services\Services\AppService.cs" />
     <Compile Include="Services\Services\ResolucionService.cs" />
     <Compile Include="Services\Services\ContratoService.cs" />
     <Compile Include="Services\Services\DGService.cs" />
@@ -364,6 +405,7 @@
     <Compile Include="UIControlers\CardUCController\PersonaNaturalUCController.cs" />
     <Compile Include="UIControlers\CardUCController\BaseUCController.cs" />
     <Compile Include="UIControlers\Components\VisorDocumentosUIController.cs" />
+    <Compile Include="UIControlers\SeleccionarObjetoUIController.cs" />
     <Compile Include="UI\Cards\CardDialogUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -401,14 +443,20 @@
     <Compile Include="UI\Component\VisorDocumentosUI.Designer.cs">
       <DependentUpon>VisorDocumentosUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\SeleccionarObjetoUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SeleccionarObjetoUI.Designer.cs">
+      <DependentUpon>SeleccionarObjetoUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utiles\ActionResult.cs" />
     <Compile Include="Utiles\ButtonSeleccionado.cs" />
     <Compile Include="Enums\EnumsInstances\TipoDocumentoMenu.cs" />
-    <Compile Include="Enums\EnumsInstances\TipoTiendaInstance.cs" />
     <Compile Include="Services\Services\ConsultorService.cs" />
     <Compile Include="Services\Services\PapelService.cs" />
     <Compile Include="Services\Services\TiendasService.cs" />
     <Compile Include="Services\Services\SucursalService.cs" />
-    <Compile Include="UIControlers\TiendaUIController.cs" />
+    <Compile Include="UIControlers\ComplejoUIController.cs" />
     <Compile Include="UIControlers\SucursalUIController.cs" />
     <Compile Include="UIControlers\DocumentoUIController.cs" />
     <Compile Include="UIControlers\ConsultorUIController.cs" />
@@ -430,11 +478,11 @@
     <Compile Include="UI\SucursalUI.Designer.cs">
       <DependentUpon>SucursalUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\TiendaUI.cs">
+    <Compile Include="UI\ComplejoUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\TiendaUI.Designer.cs">
-      <DependentUpon>TiendaUI.cs</DependentUpon>
+    <Compile Include="UI\ComplejoUI.Designer.cs">
+      <DependentUpon>ComplejoUI.cs</DependentUpon>
     </Compile>
     <Compile Include="Messages\ButtonName.cs" />
     <Compile Include="Services\Services\BienvenidaService.cs" />
@@ -448,7 +496,7 @@
     <Compile Include="Model\Papeles\Documento.cs" />
     <Compile Include="Model\Papeles\Resolucion.cs" />
     <Compile Include="Model\Papeles\Sistema.cs" />
-    <Compile Include="Model\Tienda.cs" />
+    <Compile Include="Model\Tiendas\Tienda.cs" />
     <Compile Include="Services\Services\DirectorioService.cs" />
     <Compile Include="Services\Services\IndexService.cs" />
     <Compile Include="UI\BienvenidaUI.cs">
@@ -510,6 +558,9 @@
     <EmbeddedResource Include="UI\Cards\PersonaNaturalCard.resx">
       <DependentUpon>PersonaNaturalCard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\ComplejoUI.resx">
+      <DependentUpon>ComplejoUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Component\VisorDocumentosUI.resx">
       <DependentUpon>VisorDocumentosUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -535,6 +586,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UI\SeleccionarObjetoUI.resx">
+      <DependentUpon>SeleccionarObjetoUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\SucursalUI.resx">
       <DependentUpon>SucursalUI.cs</DependentUpon>
     </EmbeddedResource>

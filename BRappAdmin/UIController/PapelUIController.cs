@@ -8,10 +8,7 @@ using BRappAdmin.Services.Interfaces;
 using BRappAdmin.Services.Services;
 using BRappAdmin.UI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace BRappAdmin.UIControlers
 {
@@ -48,7 +45,6 @@ namespace BRappAdmin.UIControlers
             forma.cbResolucionEsDerrogada.CheckedChanged += new EventHandler(cbResolucionEsDerrogada_CheckedChanged);
             return base.ejecutar();
         }       
-
         protected override void initDataForm()
         {
             base.initDataForm();
@@ -58,7 +54,7 @@ namespace BRappAdmin.UIControlers
             {
                 case TipoClasificacionDocumento.SISTEMA:
                     {
-                        ConfigComboPersona(forma.cbResponsable, contactosService.getAllPersonaNaturalInterno().Cast<Persona>().ToList());  
+                        ConfigCombo(forma.cbResponsable, contactosService.getAllPersonaNaturalInterno());  
                         forma.cbTipoSistema.DataSource = Enum.GetValues(typeof(TipoSistema));
                         forma.tabControTiposPapeles.TabPages.Remove(forma.tabContrato);                      
                         forma.tabControTiposPapeles.TabPages.Remove(forma.tabResolucion);
@@ -71,9 +67,9 @@ namespace BRappAdmin.UIControlers
                     }
                 case TipoClasificacionDocumento.CONTRATO:
                     {
-                        ConfigComboPersona(forma.cbResponsable, contactosService.getAllPersonaJuridicaInterno().Cast<Persona>().ToList());
-                        ConfigComboPersona(forma.cbClienteContrato, contactosService.getAllPersonaJuridicaExterno().Cast<Persona>().ToList());
-                        ConfigComboContratoPadre(forma.cbContratoPadre, documentosService.getAllContratoDistint(papel).Cast<Contrato>().ToList());
+                        ConfigCombo(forma.cbResponsable, contactosService.getAllPersonaJuridicaInterno());
+                        ConfigCombo(forma.cbClienteContrato, contactosService.getAllPersonaJuridicaExterno());
+                        ConfigCombo(forma.cbContratoPadre, documentosService.getAllContratoDistint(papel));
                         forma.cbTipoContrato.DataSource = Enum.GetValues(typeof(TipoContrato));
                         forma.tabControTiposPapeles.TabPages.Remove(forma.tabSistema);                       
                         forma.tabControTiposPapeles.TabPages.Remove(forma.tabResolucion);
@@ -86,7 +82,7 @@ namespace BRappAdmin.UIControlers
                     }
                 case TipoClasificacionDocumento.DG:
                     {
-                        ConfigComboPersona(forma.cbResponsable, contactosService.getAllPersonaNaturalExterno().Cast<Persona>().ToList());
+                        ConfigCombo(forma.cbResponsable, contactosService.getAllPersonaNaturalExterno());
                         forma.tabControTiposPapeles.TabPages.Remove(forma.tabSistema);
                         forma.tabControTiposPapeles.TabPages.Remove(forma.tabResolucion);
                         forma.tabControTiposPapeles.TabPages.Remove(forma.tabContrato);
@@ -98,8 +94,8 @@ namespace BRappAdmin.UIControlers
                     }
                 case TipoClasificacionDocumento.RESOLUCION_EMPRESARIAL:
                     {
-                        ConfigComboPersona(forma.cbResponsable, contactosService.getAllPersonaNaturalExterno().Cast<Persona>().ToList());
-                        ConfigComboDerrogado(forma.cbResolucionDerrogada, documentosService.getAllResolucionesDistint(papel, tipoClasificacionDocumento).Cast<Resolucion>().ToList());
+                        ConfigCombo(forma.cbResponsable, contactosService.getAllPersonaNaturalExterno());
+                        ConfigCombo(forma.cbResolucionDerrogada, documentosService.getAllResolucionesDistint(papel, tipoClasificacionDocumento));
                         forma.tabControTiposPapeles.TabPages.Remove(forma.tabContrato);
                         forma.tabControTiposPapeles.TabPages.Remove(forma.tabSistema);
                         forma.tabControTiposPapeles.TabPages.Remove(forma.tabPageDG);
@@ -111,8 +107,8 @@ namespace BRappAdmin.UIControlers
                     }
                 case TipoClasificacionDocumento.RESOLUCION_INTERNA:
                     {
-                        ConfigComboPersona(forma.cbResponsable, contactosService.getAllPersonaNaturalInterno().Cast<Persona>().ToList());
-                        ConfigComboDerrogado(forma.cbResolucionDerrogada, documentosService.getAllResolucionesDistint(papel, tipoClasificacionDocumento).Cast<Resolucion>().ToList());
+                        ConfigCombo(forma.cbResponsable, contactosService.getAllPersonaNaturalInterno());
+                        ConfigCombo(forma.cbResolucionDerrogada, documentosService.getAllResolucionesDistint(papel, tipoClasificacionDocumento));
                         forma.tabControTiposPapeles.TabPages.Remove(forma.tabContrato);                       
                         forma.tabControTiposPapeles.TabPages.Remove(forma.tabSistema);
                         forma.tabControTiposPapeles.TabPages.Remove(forma.tabPageDG);
@@ -128,7 +124,7 @@ namespace BRappAdmin.UIControlers
                 case TipoClasificacionDocumento.PLAN_EMPRESARIAL:
                 case TipoClasificacionDocumento.PROGRAMA_EMPRESARIAL:
                     {
-                        ConfigComboPersona(forma.cbResponsable, contactosService.getAllPersonaNaturalExterno().Cast<Persona>().ToList());                      
+                        ConfigCombo(forma.cbResponsable, contactosService.getAllPersonaNaturalExterno());                      
                         forma.tabControTiposPapeles.Visible = false;
                         forma.btnGuardar.Location = new System.Drawing.Point(327, 320);
                         forma.Size = new System.Drawing.Size(434, 391);
@@ -140,7 +136,7 @@ namespace BRappAdmin.UIControlers
                     }
                 default:
                     {
-                        ConfigComboPersona(forma.cbResponsable, contactosService.getAllPersonaNaturalInterno().Cast<Persona>().ToList());
+                        ConfigCombo(forma.cbResponsable, contactosService.getAllPersonaNaturalInterno());
                         forma.tabControTiposPapeles.Visible = false;
                         forma.btnGuardar.Location = new System.Drawing.Point(327, 320);
                         forma.Size = new System.Drawing.Size(434, 391);
@@ -164,28 +160,24 @@ namespace BRappAdmin.UIControlers
                 forma.tbPdf.Text = (papel.DocumentoPDF.PDF != null) ? papel.DocumentoPDF.PDF.Name : "";
             }
         }
-
         private void initUpdateDocumento()
         {
             initUpdateComun();
             Documento documento = (Documento)papel;
             forma.cbResponsable.Text = documento.Responsable.Name;
         }
-
         private void initUpdateSistema()
         {
             initUpdateDocumento();
             Sistema sistema = (Sistema)papel;
             forma.cbTipoSistema.Text = sistema.TipoSistema.ToString();
         }
-
         private void initUpdateDG()
         {
             initUpdateDocumento();
             DG dg = (DG)papel;
             forma.tbDGNumero.Text = dg.Numero;
         }
-
         private void initUpdateResolucion()
         {
             initUpdateDocumento();
@@ -198,7 +190,6 @@ namespace BRappAdmin.UIControlers
                 forma.btnResolucionDerrogadaPor.Enabled = true;
             }
         }
-
         private void initUpdateContrato()
         {
             initUpdateComun();
@@ -216,13 +207,11 @@ namespace BRappAdmin.UIControlers
                 forma.btnBuscarContratoPadre.Enabled = true;
             }
         }
-
         private void cbTieneContratoPadre_CheckedChanged(object sender, EventArgs e)
         {
             forma.cbContratoPadre.Enabled = forma.cbTieneContratoPadre.Checked;
             forma.btnBuscarContratoPadre.Enabled = forma.cbTieneContratoPadre.Checked;
         }
-
         private void cbResolucionEsDerrogada_CheckedChanged(object sender, EventArgs e)
         {
             forma.cbResolucionDerrogada.Enabled = forma.cbResolucionEsDerrogada.Checked;
@@ -276,7 +265,6 @@ namespace BRappAdmin.UIControlers
             papelDto.tipoClasificacionDocumento = tipoClasificacionDocumento;
             return papelDto;
         }
-
         private SistemaDto CapturarSistemaDto()
         {
             SistemaDto sistemaDto = new SistemaDto();
@@ -285,14 +273,12 @@ namespace BRappAdmin.UIControlers
             sistemaDto.tipoSistema = tipoSistema;
             return sistemaDto;
         }
-
         private DGDto CapturarDGDto()
         {
             DGDto dGDto = new DGDto();          
             dGDto.numero = forma.tbDGNumero.Text;
             return dGDto;
         }
-
         private ContratoDto CapturarContratoDto()
         {
             ContratoDto contratoDto = new ContratoDto();          
@@ -305,7 +291,6 @@ namespace BRappAdmin.UIControlers
             contratoDto.acuerdo = (int)forma.tbAcuerdoContrato.Value;
             return contratoDto;
         }
-
         private void CapturarDatosDocumentos()
         {
             PapelDto papelDto = CapturarPapelDto();           
@@ -333,13 +318,13 @@ namespace BRappAdmin.UIControlers
                     case TipoClasificacionDocumento.PROGRAMA_EMPRESARIAL:
                     case TipoClasificacionDocumento.PROGRAMA_INTERNO:
                     case TipoClasificacionDocumento.REGLAMENTO:
-                    case TipoClasificacionDocumento.OTRO_DOCUMENTO: 
+                    case TipoClasificacionDocumento.OTRO_DOCUMENTO:
+                    case TipoClasificacionDocumento.DOCUMENTACION_BASICA:
                         papel = new Documento(papelDto, documentoPDF, responsable); 
                         break;
                 }
             }
         }
-
         private void CapturarDatosSistema()
         {
             PapelDto papelDto = CapturarPapelDto();
@@ -361,7 +346,6 @@ namespace BRappAdmin.UIControlers
                 papel = new Sistema(papelDto, documentoPDF,responsable, sistemaDto);
             }
         }
-
         private void CapturarDatosDG()
         {
             PapelDto papelDto = CapturarPapelDto();
@@ -383,7 +367,6 @@ namespace BRappAdmin.UIControlers
                 papel = new DG(papelDto, documentoPDF, responsable, dGDto);
             }
         }
-
         private void CapturarDatosResoluciones()
         {
             PapelDto papelDto = CapturarPapelDto();
@@ -412,7 +395,6 @@ namespace BRappAdmin.UIControlers
                 }
             }
         }
-
         private void CapturarDatosContratos()
         {
             PapelDto papelDto = CapturarPapelDto();
@@ -442,7 +424,6 @@ namespace BRappAdmin.UIControlers
                 papel = new Contrato(papelDto, documentoPDF, contratoDto, cliente, responsable, contratoPadre);
             }
         }
-
         private DocumentoPDF createOrUpdateDocumentoPdf()
         {
             Fichero imagen = (Fichero)forma.tbImagen.Tag;
@@ -458,7 +439,6 @@ namespace BRappAdmin.UIControlers
                 return new DocumentoPDF(pdf, imagen);
             }
         }
-
         private void btnBuscarLogo_Click(object sender, EventArgs e)
         { 
             if (forma.openLogo.ShowDialog() == DialogResult.OK)
@@ -468,7 +448,6 @@ namespace BRappAdmin.UIControlers
                 forma.tbImagen.Tag = fichero;
             }
         }
-
         private void btnBuscarPdf_Click(object sender, EventArgs e)
         {
             if (forma.openPdf.ShowDialog() == DialogResult.OK)
@@ -477,29 +456,7 @@ namespace BRappAdmin.UIControlers
                 forma.tbPdf.Text = fichero.Name;
                 forma.tbPdf.Tag = fichero;
             }
-        }
-
-        private void ConfigComboPersona(ComboBox comboBox, List<Persona> personaList)
-        {
-            comboBox.DataSource = personaList;
-            comboBox.DisplayMember = "COMBO";
-            comboBox.ValueMember = "Id";
-        }
-
-        private void ConfigComboDerrogado(ComboBox comboBox, List<Resolucion> resolucionList)
-        {
-            comboBox.DataSource = resolucionList;
-            comboBox.DisplayMember = "COMBO";
-            comboBox.ValueMember = "Id";
-        }
-
-        private void ConfigComboContratoPadre(ComboBox comboBox, List<Contrato> contratoList)
-        {
-            comboBox.DataSource = contratoList;
-            comboBox.DisplayMember = "COMBO";
-            comboBox.ValueMember = "Id";
-        }
-
+        }    
         private void btnBuscarResponsable_Click(object sender, EventArgs e)
         {           
             seleccionarCombo<Persona>(forma.cbResponsable);            
@@ -516,25 +473,6 @@ namespace BRappAdmin.UIControlers
         {    
             seleccionarCombo<Resolucion>(forma.cbResolucionDerrogada);
             
-        }      
-
-        private void seleccionarCombo<T>(ComboBox comboBox) where T : ISeleccionable
-        {
-            IEnumerable<T> datos = comboBox.DataSource as IEnumerable<T>;
-            List<ISeleccionable> seleccionables = new List<ISeleccionable>();
-            foreach (T elemento in datos)
-            {
-                seleccionables.Add(elemento);
-            }
-            var selectionDialog = new SeleccionarObjetoUIController(seleccionables);
-            DialogResult dialogResult = selectionDialog.showDialog();
-            ISeleccionable objetoSeleccionado = (dialogResult == DialogResult.OK)
-                ? (ISeleccionable)selectionDialog.getForm().Tag
-                : null;
-            if (objetoSeleccionado != null)
-            {
-                comboBox.SelectedItem = objetoSeleccionado;
-            }
-        }
+        }   
     }
 }

@@ -7,6 +7,10 @@ using System.Windows.Forms;
 using BRapp.Services.Interfaces;
 using BRapp.Services.Services;
 using BRapp.Data;
+using BRapp.Model.Tiendas;
+using System.Collections.Generic;
+using BRapp.Enums.EnumFiltroBusqueda;
+using System.Windows.Controls;
 
 namespace BRapp.UIControlers
 {
@@ -14,12 +18,17 @@ namespace BRapp.UIControlers
     {
         private static IndexUIController instance;
         protected readonly IIndexService iIndexService;
+        private readonly IComplejoService complejoService;
+
+        Dictionary<ToolStripMenuItem, Complejo> complejosItemMappings;
 
         IForm activeForm = null;
         ButtonSeleccionado botonActivo = null;
         protected IndexUIController(IIndexService iIndexService) : base(new IndexUI())
         {
             this.iIndexService = iIndexService;
+            complejoService = ComplejoService.Instance;
+            complejosItemMappings = new Dictionary<ToolStripMenuItem, Complejo>();
         }
 
         public override IndexUI ejecutar()
@@ -28,12 +37,7 @@ namespace BRapp.UIControlers
             forma.Layout += centrarFormulario;
             forma.Resize += Forma_Resize;
             forma.bienvenidaToolStripMenuItem.Click += new EventHandler(bienvenidaToolStripMenuItem_Click);
-            forma.sucursalToolStripMenuItem1.Click += new EventHandler(sucursalToolStripMenuItem1_Click);
-            forma.dTHoteleroHabanaLibreToolStripMenuItem.Click += new EventHandler(dTHoteleroHabanaLibreToolStripMenuItem_Click);
-            forma.dTHoteleroVedadoEsteToolStripMenuItem.Click += new EventHandler(dTHoteleroVedadoEsteToolStripMenuItem_Click);
-            forma.dTHoteleroVedadoOesteToolStripMenuItem.Click += new EventHandler(dTHoteleroVedadoOesteToolStripMenuItem_Click);
-            forma.dTExtrahoteleroLegendarioToolStripMenuItem.Click += new EventHandler(dTExtrahoteleroLegendarioToolStripMenuItem_Click);
-            forma.dTExtrahoteleroAmazonaToolStripMenuItem.Click += new EventHandler(dTExtrahoteleroAmazonaToolStripMenuItem_Click);
+            forma.sucursalToolStripMenuItem1.Click += new EventHandler(sucursalToolStripMenuItem1_Click);           
             forma.sistemasToolStripMenuItem.Click += new EventHandler(sistemasToolStripMenuItem_Click);
            
             forma.manualesToolStripMenuItem.Click += new EventHandler(manualesToolStripMenuItem_Click);
@@ -50,17 +54,51 @@ namespace BRapp.UIControlers
 
             forma.contrataciónToolStripMenuItem.Click += new EventHandler(contrataciónToolStripMenuItem_Click);
             forma.consultorToolStripMenuItem.Click += new EventHandler(consultorToolStripMenuItem_Click);
-            forma.directorioToolStripMenuItem.Click += new EventHandler(directorioToolStripMenuItem_Click);
+            forma.directorioToolStripMenuItem.Click += new EventHandler(directorioToolStripMenuItem_Click);           
+
             return base.ejecutar();
         }
 
         protected override void aplicarTema()
         {
+            cargarComplejos();
             forma.adminToolStripMenuItem.Visible= false;
             forma.menuStrip1.Renderer = new MyRenderer();
             updateFooter();
             forma.richTextBox1.SelectionAlignment = HorizontalAlignment.Center;
             forma.richTextBox1.TabStop = false;
+        }
+
+
+        private void cargarComplejos()
+        {
+            List<Complejo> complejos = complejoService.getAll();
+            foreach (Complejo complejo in complejos)
+            {
+                ToolStripMenuItem buttonMenu = new ToolStripMenuItem();
+                buttonMenu.Text= complejo.ToString();
+                buttonMenu.Click += ButtonToolStripMenuItem_Click;
+                forma.sucursalToolStripMenuItem.DropDownItems.Add(buttonMenu);
+                complejosItemMappings.Add(buttonMenu, complejo);
+            }
+        }
+
+
+
+        private void ButtonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (sender is ToolStripMenuItem menuItem && complejosItemMappings.ContainsKey(menuItem))
+            {
+                complejoSeccion(menuItem, complejosItemMappings[menuItem]);
+            }
+        }
+
+        private void complejoSeccion(ToolStripMenuItem buttonMenu, Complejo complejo)
+        {
+            forma.panelBusqueda.Visible = false;
+            var formulario = ComplejoUIController.GetInstance(complejo);
+            formatearFormulario(buttonMenu, forma.sucursalToolStripMenuItem, formulario, complejo.ToString());
+            formulario.ejecutar().Show();
         }
 
         public void updateFooter()
@@ -89,47 +127,7 @@ namespace BRapp.UIControlers
             var formulario = SucursalUIController.Instance;
             formatearFormulario(forma.sucursalToolStripMenuItem1, forma.sucursalToolStripMenuItem, formulario, ButtonName.Sucursal_SucursalButton);
             formulario.ejecutar().Show();
-        }
-
-        private void dTHoteleroHabanaLibreToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            forma.panelBusqueda.Visible = false;
-            var formulario = TiendaUIController.GetInstance(TipoTiendaInstance.HLIBRE);
-            formatearFormulario(forma.dTHoteleroHabanaLibreToolStripMenuItem, forma.sucursalToolStripMenuItem, formulario, ButtonName.Sucursal_HLibreButton);
-            formulario.ejecutar().Show();
-        }
-
-        private void dTHoteleroVedadoEsteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            forma.panelBusqueda.Visible = false;
-            var formulario = TiendaUIController.GetInstance(TipoTiendaInstance.NACIONAL);
-            formatearFormulario(forma.dTHoteleroVedadoEsteToolStripMenuItem, forma.sucursalToolStripMenuItem, formulario, ButtonName.Sucursal_NacionalButton);
-            formulario.ejecutar().Show();
-        }
-
-        private void dTHoteleroVedadoOesteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            forma.panelBusqueda.Visible = false;
-            var formulario = TiendaUIController.GetInstance(TipoTiendaInstance.COHIBA);
-            formatearFormulario(forma.dTHoteleroVedadoOesteToolStripMenuItem, forma.sucursalToolStripMenuItem, formulario, ButtonName.Sucursal_CohibaButton);
-            formulario.ejecutar().Show();
-        }
-
-        private void dTExtrahoteleroLegendarioToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            forma.panelBusqueda.Visible = false;
-            var formulario = TiendaUIController.GetInstance(TipoTiendaInstance.LEGENDARIO);
-            formatearFormulario(forma.dTExtrahoteleroLegendarioToolStripMenuItem, forma.sucursalToolStripMenuItem, formulario, ButtonName.Sucursal_LegendarioButton);
-            formulario.ejecutar().Show();
-        }
-
-        private void dTExtrahoteleroAmazonaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            forma.panelBusqueda.Visible = false;
-            var formulario = TiendaUIController.GetInstance(TipoTiendaInstance.AMAZONA);
-            formatearFormulario(forma.dTExtrahoteleroAmazonaToolStripMenuItem, forma.sucursalToolStripMenuItem, formulario, ButtonName.Sucursal_AmazonaButton);
-            formulario.ejecutar().Show();
-        }
+        }      
 
         private void sistemasToolStripMenuItem_Click(object sender, EventArgs e)
         {           

@@ -47,6 +47,11 @@ namespace BRapp.UIControlers.CardUCController
                 }
             }
             card.btnPdf.Visible = visorDocumentosUIController.hasPdf();
+
+            if(objeto.TipoClasificacionDocumento == Enums.TipoClasificacionDocumento.DOCUMENTACION_BASICA)
+            {
+                card.panelFecha.Visible = false;
+            }
         }        
 
         private void btnPdf_Click(object sender, EventArgs e)

@@ -163,7 +163,8 @@ namespace BRapp.UIControlers
         {
             get
             {
-                return (instance == null) ? new DirectorioUIController() : instance;              
+                instance = (instance == null) ? new DirectorioUIController() : instance;      
+                return instance;
             }
         }       
     }

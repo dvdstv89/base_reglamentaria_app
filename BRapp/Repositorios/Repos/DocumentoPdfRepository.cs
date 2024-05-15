@@ -49,20 +49,29 @@ namespace BRapp.Repositorios.Repos
 
         public DocumentoPDF getDocumentoApliado(Guid id)
         {
-            Dictionary<string, object> parametros = new Dictionary<string, object>
-            { 
-                { "@documentoId", id.ToString() }
-            };
-
-            DocumentoPDF documentoPDF= null;
-            using (var reader = EjecutarConsulta(QUERY_SELECT_DOCUMENTO_PDF_BLOBS, parametros))
+            try
             {
-                while (reader.Read())
+                Dictionary<string, object> parametros = new Dictionary<string, object>
                 {
-                    documentoPDF = (DocumentoPDF)mapperDocumentoPDFBlob.Map(reader);
+                    { "@documentoId", id.ToString() }
+                };
+
+                DocumentoPDF documentoPDF = null;
+                using (var reader = EjecutarConsulta(QUERY_SELECT_DOCUMENTO_PDF_BLOBS, parametros))
+                {
+                    while (reader.Read())
+                    {
+                        documentoPDF = (DocumentoPDF)mapperDocumentoPDFBlob.Map(reader);
+                    }
                 }
+                return documentoPDF;
             }
-            return documentoPDF;
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
 
         public DocumentoPDF getById(Guid id)

@@ -22,14 +22,15 @@ namespace BRappAdmin.UIControlers
             forma.appToolStripMenuItem.Click += new EventHandler(appToolStripMenuItem_Click);
             forma.contactosToolStripMenuItem.Click += new EventHandler(contactosToolStripMenuItem_Click);
             forma.documentosToolStripMenuItem.Click += new EventHandler(documentosToolStripMenuItem_Click);
-            forma.tiendasToolStripMenuItem.Click += new EventHandler(tiendasToolStripMenuItem_Click);
+            forma.complejosToolStripMenuItem.Click += new EventHandler(complejosToolStripMenuItem_Click);
+            forma.tipoDeGruposDeDocumentacionToolStripMenuItem.Click += new EventHandler(tipoDeGruposDeDocumentacionToolStripMenuItem_Click);
             return base.ejecutar();
         }
 
         protected override void forma_Load(object sender, EventArgs e)
         {
             base.forma_Load(sender, e);
-            documentosToolStripMenuItem_Click(sender, e);           
+            complejosToolStripMenuItem_Click(sender, e);           
         }
 
         protected override void aplicarTema()
@@ -64,11 +65,19 @@ namespace BRappAdmin.UIControlers
             formulario.ejecutar().Show();
         }
 
-        private void tiendasToolStripMenuItem_Click(object sender, EventArgs e)
+        private void complejosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             forma.panelBusqueda.Visible = false;
-            var formulario = TiendasUIController.Instance;
-            formatearFormulario(forma.tiendasToolStripMenuItem, forma.adminToolStripMenuItem, formulario, ButtonName.Tiendas_App);
+            var formulario = ComplejoUIController.Instance;
+            formatearFormulario(forma.complejosToolStripMenuItem, forma.adminToolStripMenuItem, formulario, ButtonName.Complejos_App);
+            formulario.ejecutar().Show();
+        }
+
+        private void tipoDeGruposDeDocumentacionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            forma.panelBusqueda.Visible = false;
+            var formulario = TipoGrupoDocumentacionUIController.Instance;
+            formatearFormulario(forma.tipoDeGruposDeDocumentacionToolStripMenuItem, forma.adminToolStripMenuItem, formulario, ButtonName.GrupoDocumentacion_App);
             formulario.ejecutar().Show();
         }
 

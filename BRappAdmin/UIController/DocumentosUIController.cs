@@ -62,6 +62,7 @@ namespace BRappAdmin.UIControlers
             menuItemMappings.Add(forma.programaInternoToolStripMenuItem, TipoClasificacionDocumento.PROGRAMA_INTERNO);
             menuItemMappings.Add(forma.reglamentoToolStripMenuItem, TipoClasificacionDocumento.REGLAMENTO);
             menuItemMappings.Add(forma.otrosDocumentosToolStripMenuItem, TipoClasificacionDocumento.OTRO_DOCUMENTO);
+            menuItemMappings.Add(forma.documentaciónBásicaToolStripMenuItem, TipoClasificacionDocumento.DOCUMENTACION_BASICA);
             foreach (var menuItem in menuItemMappings.Keys)
             {
                 menuItem.Click += ButtonToolStripMenuItem_Click;
@@ -154,6 +155,7 @@ namespace BRappAdmin.UIControlers
             {
                 DialogUtil.INFORMATION(Mensajes.PAPEL_SAVED_OK);
                 forma.tbBuscar.Text = "";
+                updateList();
             }
         }
         private void marcarPapel()

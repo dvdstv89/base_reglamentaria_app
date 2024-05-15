@@ -1,5 +1,6 @@
 ﻿using BRapp.Data;
-using BRappAdmin.UI;
+using BRapp.Services.Services;
+using BRappAdmin.Messages;
 using BRappAdmin.UIControlers;
 using System;
 using System.Windows.Forms;
@@ -16,8 +17,17 @@ namespace BRappAdmin
         {
             AplicationConfig.APP_MODE_UPDATE = true;
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);           
-            Application.Run(IndexAdminUIController.Instance.ejecutar());
+            Application.SetCompatibleTextRenderingDefault(false);    
+            var appService = AppService.Instance;
+            var app = appService.getApp();
+            if (app != null)
+            {
+                Application.Run(IndexAdminUIController.Instance.ejecutar());
+            }
+            else
+            {
+                DialogUtil.EXCEPTION("No se encuentra la base de datos. La aplicacion no puede ser ejecutada");
+            }
         }
     }
 }

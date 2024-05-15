@@ -49,7 +49,6 @@ namespace BRapp.UI.Cards
             this.labelDescripcion.Dock = System.Windows.Forms.DockStyle.Left;
             this.labelDescripcion.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDescripcion.Location = new System.Drawing.Point(120, 101);
-            this.labelDescripcion.Multiline = false;
             this.labelDescripcion.Name = "labelDescripcion";
             this.labelDescripcion.ReadOnly = true;
             this.labelDescripcion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;

@@ -183,8 +183,10 @@ D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.U
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.csproj.GenerateResource.cache
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.exe.licenses
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.csproj.CoreCompileInputs.cache
-D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.csproj.Fody.CopyLocal.cache
-D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.csproj.Fody.RuntimeCopyLocal.cache
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.csproj.CopyComplete
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.exe
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.pdb
+D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.UI.ComplejoUI.resources
+D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.UI.SeleccionarObjetoUI.resources
+D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.csproj.Fody.CopyLocal.cache
+D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.csproj.Fody.RuntimeCopyLocal.cache

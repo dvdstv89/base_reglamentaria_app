@@ -27,7 +27,8 @@ namespace BRapp.UIControlers
         {
             get
             {
-                return (instance == null) ? new BienvenidaUIController() : instance;                
+                instance = (instance == null) ? new BienvenidaUIController() : instance;    
+                return instance;
             }
         }       
     }

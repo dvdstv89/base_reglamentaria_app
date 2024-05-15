@@ -33,6 +33,7 @@
         public static readonly string Administracion_App = "Aplicación";
         public static readonly string Contactos_App = "Contactos";
         public static readonly string Documentos_App = "Documentos";
-        public static readonly string Tiendas_App = "Tiendas";
+        public static readonly string Complejos_App = "Complejos";
+        public static readonly string GrupoDocumentacion_App = "Tipos de Grupos de Documentación";
     }
 }

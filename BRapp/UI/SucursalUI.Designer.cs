@@ -45,7 +45,6 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.richTextBoxValoresCompartidos = new System.Windows.Forms.RichTextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.panelOrganigrama = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOrganigramaEmpresa)).BeginInit();
@@ -78,7 +77,6 @@
             // panel2
             // 
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel2.Controls.Add(this.panelOrganigrama);
             this.panel2.Controls.Add(this.pictureBoxOrganigramaEmpresa);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 38);
@@ -243,13 +241,6 @@
             this.label4.Text = "Valores Compartidos";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panelOrganigrama
-            // 
-            this.panelOrganigrama.Location = new System.Drawing.Point(1162, 131);
-            this.panelOrganigrama.Name = "panelOrganigrama";
-            this.panelOrganigrama.Size = new System.Drawing.Size(232, 169);
-            this.panelOrganigrama.TabIndex = 1;
-            // 
             // SucursalUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -293,6 +284,5 @@
         public System.Windows.Forms.RichTextBox richTextBoxValoresCompartidos;
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.PictureBox pictureBoxOrganigramaEmpresa;
-        public System.Windows.Forms.Panel panelOrganigrama;
     }
 }

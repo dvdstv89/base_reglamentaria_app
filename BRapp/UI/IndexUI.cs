@@ -15,6 +15,7 @@ namespace BRapp.UI
         public IndexUI()
         {
             InitializeComponent();
-        }        
+        }
+        
     }
 }

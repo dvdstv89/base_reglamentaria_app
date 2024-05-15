@@ -34,6 +34,8 @@
             this.cbTipoSistema = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.tabContrato = new System.Windows.Forms.TabPage();
+            this.btnBuscarContratoPadre = new FontAwesome.Sharp.IconButton();
+            this.btnBuscarCliente = new FontAwesome.Sharp.IconButton();
             this.cbTieneContratoPadre = new System.Windows.Forms.CheckBox();
             this.cbContratoPadre = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -50,6 +52,7 @@
             this.tbNumeroContrato = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tabResolucion = new System.Windows.Forms.TabPage();
+            this.btnResolucionDerrogadaPor = new FontAwesome.Sharp.IconButton();
             this.tbResolucionNumero = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.cbResolucionEsDerrogada = new System.Windows.Forms.CheckBox();
@@ -75,9 +78,6 @@
             this.lbFechaDocumento = new System.Windows.Forms.Label();
             this.tbDescripcion = new RichTextBoxEx.RichTextBoxEx();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnResolucionDerrogadaPor = new FontAwesome.Sharp.IconButton();
-            this.btnBuscarCliente = new FontAwesome.Sharp.IconButton();
-            this.btnBuscarContratoPadre = new FontAwesome.Sharp.IconButton();
             this.btnBuscarResponsable = new FontAwesome.Sharp.IconButton();
             this.tabControTiposPapeles.SuspendLayout();
             this.tabSistema.SuspendLayout();
@@ -167,6 +167,35 @@
             this.tabContrato.TabIndex = 1;
             this.tabContrato.Text = "Contrato";
             this.tabContrato.UseVisualStyleBackColor = true;
+            // 
+            // btnBuscarContratoPadre
+            // 
+            this.btnBuscarContratoPadre.Enabled = false;
+            this.btnBuscarContratoPadre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscarContratoPadre.ForeColor = System.Drawing.Color.White;
+            this.btnBuscarContratoPadre.IconChar = FontAwesome.Sharp.IconChar.Sistrix;
+            this.btnBuscarContratoPadre.IconColor = System.Drawing.Color.Black;
+            this.btnBuscarContratoPadre.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnBuscarContratoPadre.IconSize = 24;
+            this.btnBuscarContratoPadre.Location = new System.Drawing.Point(85, 169);
+            this.btnBuscarContratoPadre.Name = "btnBuscarContratoPadre";
+            this.btnBuscarContratoPadre.Size = new System.Drawing.Size(36, 30);
+            this.btnBuscarContratoPadre.TabIndex = 39;
+            this.btnBuscarContratoPadre.UseVisualStyleBackColor = true;
+            // 
+            // btnBuscarCliente
+            // 
+            this.btnBuscarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscarCliente.ForeColor = System.Drawing.Color.White;
+            this.btnBuscarCliente.IconChar = FontAwesome.Sharp.IconChar.Sistrix;
+            this.btnBuscarCliente.IconColor = System.Drawing.Color.Black;
+            this.btnBuscarCliente.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnBuscarCliente.IconSize = 24;
+            this.btnBuscarCliente.Location = new System.Drawing.Point(85, 140);
+            this.btnBuscarCliente.Name = "btnBuscarCliente";
+            this.btnBuscarCliente.Size = new System.Drawing.Size(36, 30);
+            this.btnBuscarCliente.TabIndex = 38;
+            this.btnBuscarCliente.UseVisualStyleBackColor = true;
             // 
             // cbTieneContratoPadre
             // 
@@ -310,6 +339,21 @@
             this.tabResolucion.TabIndex = 2;
             this.tabResolucion.Text = "Resolución";
             this.tabResolucion.UseVisualStyleBackColor = true;
+            // 
+            // btnResolucionDerrogadaPor
+            // 
+            this.btnResolucionDerrogadaPor.Enabled = false;
+            this.btnResolucionDerrogadaPor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResolucionDerrogadaPor.ForeColor = System.Drawing.Color.White;
+            this.btnResolucionDerrogadaPor.IconChar = FontAwesome.Sharp.IconChar.Sistrix;
+            this.btnResolucionDerrogadaPor.IconColor = System.Drawing.Color.Black;
+            this.btnResolucionDerrogadaPor.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnResolucionDerrogadaPor.IconSize = 24;
+            this.btnResolucionDerrogadaPor.Location = new System.Drawing.Point(92, 7);
+            this.btnResolucionDerrogadaPor.Name = "btnResolucionDerrogadaPor";
+            this.btnResolucionDerrogadaPor.Size = new System.Drawing.Size(36, 30);
+            this.btnResolucionDerrogadaPor.TabIndex = 37;
+            this.btnResolucionDerrogadaPor.UseVisualStyleBackColor = true;
             // 
             // tbResolucionNumero
             // 
@@ -533,9 +577,9 @@
             this.tbDescripcion.FilePath = "";
             this.tbDescripcion.Location = new System.Drawing.Point(6, 19);
             this.tbDescripcion.Name = "tbDescripcion";
-            this.tbDescripcion.Rtf = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}\r\n{\\" +
-    "*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 \r\n\\pard\\fs20\\lang2057 richTextBox" +
-    "Ex1\\par\r\n}\r\n";
+            this.tbDescripcion.Rtf = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang2057{\\fonttbl{\\f0\\fnil\\fcharset0 " +
+    "Arial;}}\r\n{\\*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 \r\n\\pard\\fs20\\par\r\n}\r\n" +
+    "";
             this.tbDescripcion.SetColorWithFont = true;
             this.tbDescripcion.ShowToolStrip = true;
             this.tbDescripcion.Size = new System.Drawing.Size(369, 94);
@@ -550,50 +594,6 @@
             this.groupBox2.TabIndex = 26;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Descripción";
-            // 
-            // btnResolucionDerrogadaPor
-            // 
-            this.btnResolucionDerrogadaPor.Enabled = false;
-            this.btnResolucionDerrogadaPor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResolucionDerrogadaPor.ForeColor = System.Drawing.Color.White;
-            this.btnResolucionDerrogadaPor.IconChar = FontAwesome.Sharp.IconChar.Sistrix;
-            this.btnResolucionDerrogadaPor.IconColor = System.Drawing.Color.Black;
-            this.btnResolucionDerrogadaPor.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnResolucionDerrogadaPor.IconSize = 24;
-            this.btnResolucionDerrogadaPor.Location = new System.Drawing.Point(92, 7);
-            this.btnResolucionDerrogadaPor.Name = "btnResolucionDerrogadaPor";
-            this.btnResolucionDerrogadaPor.Size = new System.Drawing.Size(36, 30);
-            this.btnResolucionDerrogadaPor.TabIndex = 37;
-            this.btnResolucionDerrogadaPor.UseVisualStyleBackColor = true;
-            // 
-            // btnBuscarCliente
-            // 
-            this.btnBuscarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscarCliente.ForeColor = System.Drawing.Color.White;
-            this.btnBuscarCliente.IconChar = FontAwesome.Sharp.IconChar.Sistrix;
-            this.btnBuscarCliente.IconColor = System.Drawing.Color.Black;
-            this.btnBuscarCliente.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnBuscarCliente.IconSize = 24;
-            this.btnBuscarCliente.Location = new System.Drawing.Point(85, 140);
-            this.btnBuscarCliente.Name = "btnBuscarCliente";
-            this.btnBuscarCliente.Size = new System.Drawing.Size(36, 30);
-            this.btnBuscarCliente.TabIndex = 38;
-            this.btnBuscarCliente.UseVisualStyleBackColor = true;
-            // 
-            // btnBuscarContratoPadre
-            // 
-            this.btnBuscarContratoPadre.Enabled = false;
-            this.btnBuscarContratoPadre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscarContratoPadre.ForeColor = System.Drawing.Color.White;
-            this.btnBuscarContratoPadre.IconChar = FontAwesome.Sharp.IconChar.Sistrix;
-            this.btnBuscarContratoPadre.IconColor = System.Drawing.Color.Black;
-            this.btnBuscarContratoPadre.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnBuscarContratoPadre.IconSize = 24;
-            this.btnBuscarContratoPadre.Location = new System.Drawing.Point(85, 169);
-            this.btnBuscarContratoPadre.Name = "btnBuscarContratoPadre";
-            this.btnBuscarContratoPadre.Size = new System.Drawing.Size(36, 30);
-            this.btnBuscarContratoPadre.TabIndex = 39;
-            this.btnBuscarContratoPadre.UseVisualStyleBackColor = true;
             // 
             // btnBuscarResponsable
             // 

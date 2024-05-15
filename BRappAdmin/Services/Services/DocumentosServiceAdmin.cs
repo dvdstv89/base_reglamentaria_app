@@ -24,6 +24,17 @@ namespace BRappAdmin.Services.Services
             return geAllPapeles();
         }
 
+        public List<Documento> getAllByTipo(TipoDocumento tipoDocumento)
+        {
+            List<Documento> papelesFiltrados = new List<Documento>();
+            papeles.ForEach(papel =>
+            {
+                if (papel.getClasificacionDocumento().TipoDocumento == tipoDocumento && papel.IsActivo)
+                    papelesFiltrados.Add((Documento)papel);
+            });
+            return papelesFiltrados;
+        }
+
         public List<Contrato> getAllContratoDistint(Papel papelActual)
         {
             List<Contrato> papelesFiltrados = new List<Contrato>();

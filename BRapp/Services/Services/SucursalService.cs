@@ -6,16 +6,16 @@ namespace BRapp.Services.Services
     internal class SucursalService: ISucursalService
     {
         private static SucursalService instance;
-        private readonly IIndexService indexService;       
+        private readonly IAppService appService;       
 
         public SucursalService()
         {
-            indexService = IndexService.Instance;           
+            appService = AppService.Instance;           
         }
 
         public App GetApp()
         {
-            return indexService.getApp();
+            return appService.getApp();
         }       
 
         public static SucursalService Instance

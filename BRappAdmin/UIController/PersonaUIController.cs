@@ -34,8 +34,6 @@ namespace BRappAdmin.UIControlers
 
         protected override void initDataForm()
         {
-
-
             if (tipoPersona == TipoPersona.NATURAL)
             {
                 forma.tabControlPersonas.TabPages.Remove(forma.tabPersonaJuridica);
@@ -54,7 +52,6 @@ namespace BRappAdmin.UIControlers
                 }
             }
         }         
-
         private void initUpdatePersonaNatural()
         {
             PersonaNatural personaNatural = (PersonaNatural)persona;
@@ -67,7 +64,6 @@ namespace BRappAdmin.UIControlers
             forma.cbInterno.Checked = personaNatural.IsInterno;
             forma.cbPNTitulo.Text = personaNatural.TipoTituloPersonal.ToString();
         }    
-
         private void initUpdatePersonaJuridica()
         {
             PersonaJuridica personaJuridica = (PersonaJuridica)persona;
@@ -124,7 +120,6 @@ namespace BRappAdmin.UIControlers
                 persona = new PersonaNatural(name, email, phone, address, isInterno, cargo,cell,tipoTituloPersonal);
             }
         }
-
         private void CapturarDatosPersonaJuridica()
         {           
             string name = forma.tbPJName.Text;

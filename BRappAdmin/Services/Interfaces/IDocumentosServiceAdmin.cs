@@ -9,7 +9,8 @@ namespace BRappAdmin.Services.Interfaces
     {
         List<Papel> getAll();
         List<Resolucion> getAllResolucionesDistint(Papel papel,TipoClasificacionDocumento tipoClasificacionDocumento);
-        List<Contrato> getAllContratoDistint(Papel papel);        
+        List<Contrato> getAllContratoDistint(Papel papel);
+        List<Documento> getAllByTipo(TipoDocumento tipoDocumento);
         bool saveOrUpdate(Papel papel);
     }
 }

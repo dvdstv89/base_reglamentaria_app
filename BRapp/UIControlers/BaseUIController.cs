@@ -1,5 +1,7 @@
-﻿using BRapp.Utiles;
+﻿using BRapp.Model;
+using BRapp.Utiles;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace BRapp.UIControlers
@@ -111,6 +113,32 @@ namespace BRapp.UIControlers
         protected int RoundNumber(double number)
         {
             return (int)Math.Round(number, MidpointRounding.ToEven);
+        }
+
+        protected void ConfigCombo<T>(ComboBox comboBox, List<T> datasourse)
+        {
+            comboBox.DataSource = datasourse;
+            comboBox.DisplayMember = "COMBO";
+            comboBox.ValueMember = "Id";
+        }
+
+        protected void seleccionarCombo<T>(ComboBox comboBox) where T : ISeleccionable
+        {
+            IEnumerable<T> datos = comboBox.DataSource as IEnumerable<T>;
+            List<ISeleccionable> seleccionables = new List<ISeleccionable>();
+            foreach (T elemento in datos)
+            {
+                seleccionables.Add(elemento);
+            }
+            var selectionDialog = new SeleccionarObjetoUIController(seleccionables);
+            DialogResult dialogResult = selectionDialog.showDialog();
+            ISeleccionable objetoSeleccionado = (dialogResult == DialogResult.OK)
+                ? (ISeleccionable)selectionDialog.getForm().Tag
+                : null;
+            if (objetoSeleccionado != null)
+            {
+                comboBox.SelectedItem = objetoSeleccionado;
+            }
         }
     }
 }

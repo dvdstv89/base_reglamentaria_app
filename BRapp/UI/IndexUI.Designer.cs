@@ -44,15 +44,12 @@
             this.appToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contactosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.documentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tiendasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nomencladoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.complejosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tipoDeGruposDeDocumentacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bienvenidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sucursalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sucursalToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.dTHoteleroHabanaLibreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dTHoteleroVedadoEsteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dTHoteleroVedadoOesteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dTExtrahoteleroLegendarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dTExtrahoteleroAmazonaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sistemasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.procedimientosYReglamentosEmpresarialesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manualesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -91,16 +88,16 @@
             this.panelIzquierdo.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelIzquierdo.Location = new System.Drawing.Point(0, 0);
             this.panelIzquierdo.Name = "panelIzquierdo";
-            this.panelIzquierdo.Size = new System.Drawing.Size(14, 681);
+            this.panelIzquierdo.Size = new System.Drawing.Size(14, 861);
             this.panelIzquierdo.TabIndex = 0;
             // 
             // panelDerecha
             // 
             this.panelDerecha.BackColor = System.Drawing.Color.White;
             this.panelDerecha.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelDerecha.Location = new System.Drawing.Point(1469, 0);
+            this.panelDerecha.Location = new System.Drawing.Point(1489, 0);
             this.panelDerecha.Name = "panelDerecha";
-            this.panelDerecha.Size = new System.Drawing.Size(15, 681);
+            this.panelDerecha.Size = new System.Drawing.Size(15, 861);
             this.panelDerecha.TabIndex = 1;
             // 
             // panelFooter
@@ -108,9 +105,9 @@
             this.panelFooter.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.panelFooter.Controls.Add(this.richTextBox1);
             this.panelFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelFooter.Location = new System.Drawing.Point(14, 664);
+            this.panelFooter.Location = new System.Drawing.Point(14, 844);
             this.panelFooter.Name = "panelFooter";
-            this.panelFooter.Size = new System.Drawing.Size(1455, 17);
+            this.panelFooter.Size = new System.Drawing.Size(1475, 17);
             this.panelFooter.TabIndex = 2;
             // 
             // richTextBox1
@@ -125,7 +122,7 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.richTextBox1.Size = new System.Drawing.Size(1455, 17);
+            this.richTextBox1.Size = new System.Drawing.Size(1475, 17);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "© Copyright 2024 Todos los Derechos Reservados Sucursal Comercial Caracol Este Ve" +
     "dado. Actualización: 26 de febrero de 2024 -Beta";
@@ -140,7 +137,7 @@
             this.panelBanner.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelBanner.Location = new System.Drawing.Point(14, 0);
             this.panelBanner.Name = "panelBanner";
-            this.panelBanner.Size = new System.Drawing.Size(1455, 107);
+            this.panelBanner.Size = new System.Drawing.Size(1475, 107);
             this.panelBanner.TabIndex = 3;
             // 
             // labelSlogan
@@ -149,7 +146,7 @@
             this.labelSlogan.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelSlogan.Location = new System.Drawing.Point(286, 67);
             this.labelSlogan.Name = "labelSlogan";
-            this.labelSlogan.Size = new System.Drawing.Size(989, 40);
+            this.labelSlogan.Size = new System.Drawing.Size(1009, 40);
             this.labelSlogan.TabIndex = 7;
             this.labelSlogan.Text = "Base Reglamentaria";
             this.labelSlogan.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -160,7 +157,7 @@
             this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTitulo.Location = new System.Drawing.Point(286, 0);
             this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(989, 56);
+            this.labelTitulo.Size = new System.Drawing.Size(1009, 56);
             this.labelTitulo.TabIndex = 6;
             this.labelTitulo.Text = "Sucursal Comercial Caracol Este Vedado";
             this.labelTitulo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -171,7 +168,7 @@
             this.panel4.BackgroundImage = global::BRapp.Properties.Resources.LOGO_MINTUR;
             this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(1275, 0);
+            this.panel4.Location = new System.Drawing.Point(1295, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(180, 107);
             this.panel4.TabIndex = 5;
@@ -194,7 +191,7 @@
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelMenu.Location = new System.Drawing.Point(14, 107);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(1455, 42);
+            this.panelMenu.Size = new System.Drawing.Size(1475, 42);
             this.panelMenu.TabIndex = 4;
             // 
             // menuStrip1
@@ -217,7 +214,7 @@
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1455, 42);
+            this.menuStrip1.Size = new System.Drawing.Size(1475, 42);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -227,7 +224,7 @@
             this.appToolStripMenuItem,
             this.contactosToolStripMenuItem,
             this.documentosToolStripMenuItem,
-            this.tiendasToolStripMenuItem});
+            this.nomencladoresToolStripMenuItem});
             this.adminToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
             this.adminToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded;
@@ -237,26 +234,41 @@
             // appToolStripMenuItem
             // 
             this.appToolStripMenuItem.Name = "appToolStripMenuItem";
-            this.appToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.appToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
             this.appToolStripMenuItem.Text = "Empresa";
             // 
             // contactosToolStripMenuItem
             // 
             this.contactosToolStripMenuItem.Name = "contactosToolStripMenuItem";
-            this.contactosToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.contactosToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
             this.contactosToolStripMenuItem.Text = "Contactos";
             // 
             // documentosToolStripMenuItem
             // 
             this.documentosToolStripMenuItem.Name = "documentosToolStripMenuItem";
-            this.documentosToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.documentosToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
             this.documentosToolStripMenuItem.Text = "Documentos";
             // 
-            // tiendasToolStripMenuItem
+            // nomencladoresToolStripMenuItem
             // 
-            this.tiendasToolStripMenuItem.Name = "tiendasToolStripMenuItem";
-            this.tiendasToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
-            this.tiendasToolStripMenuItem.Text = "Tiendas";
+            this.nomencladoresToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.complejosToolStripMenuItem,
+            this.tipoDeGruposDeDocumentacionToolStripMenuItem});
+            this.nomencladoresToolStripMenuItem.Name = "nomencladoresToolStripMenuItem";
+            this.nomencladoresToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
+            this.nomencladoresToolStripMenuItem.Text = "Nomencladores";
+            // 
+            // complejosToolStripMenuItem
+            // 
+            this.complejosToolStripMenuItem.Name = "complejosToolStripMenuItem";
+            this.complejosToolStripMenuItem.Size = new System.Drawing.Size(320, 26);
+            this.complejosToolStripMenuItem.Text = "Complejos";
+            // 
+            // tipoDeGruposDeDocumentacionToolStripMenuItem
+            // 
+            this.tipoDeGruposDeDocumentacionToolStripMenuItem.Name = "tipoDeGruposDeDocumentacionToolStripMenuItem";
+            this.tipoDeGruposDeDocumentacionToolStripMenuItem.Size = new System.Drawing.Size(320, 26);
+            this.tipoDeGruposDeDocumentacionToolStripMenuItem.Text = "Tipo de Grupos de Documentación";
             // 
             // bienvenidaToolStripMenuItem
             // 
@@ -269,12 +281,7 @@
             // sucursalToolStripMenuItem
             // 
             this.sucursalToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sucursalToolStripMenuItem1,
-            this.dTHoteleroHabanaLibreToolStripMenuItem,
-            this.dTHoteleroVedadoEsteToolStripMenuItem,
-            this.dTHoteleroVedadoOesteToolStripMenuItem,
-            this.dTExtrahoteleroLegendarioToolStripMenuItem,
-            this.dTExtrahoteleroAmazonaToolStripMenuItem});
+            this.sucursalToolStripMenuItem1});
             this.sucursalToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.sucursalToolStripMenuItem.Name = "sucursalToolStripMenuItem";
             this.sucursalToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded;
@@ -284,38 +291,8 @@
             // sucursalToolStripMenuItem1
             // 
             this.sucursalToolStripMenuItem1.Name = "sucursalToolStripMenuItem1";
-            this.sucursalToolStripMenuItem1.Size = new System.Drawing.Size(276, 26);
+            this.sucursalToolStripMenuItem1.Size = new System.Drawing.Size(139, 26);
             this.sucursalToolStripMenuItem1.Text = "Sucursal";
-            // 
-            // dTHoteleroHabanaLibreToolStripMenuItem
-            // 
-            this.dTHoteleroHabanaLibreToolStripMenuItem.Name = "dTHoteleroHabanaLibreToolStripMenuItem";
-            this.dTHoteleroHabanaLibreToolStripMenuItem.Size = new System.Drawing.Size(276, 26);
-            this.dTHoteleroHabanaLibreToolStripMenuItem.Text = "DT Hotelero Habana Libre";
-            // 
-            // dTHoteleroVedadoEsteToolStripMenuItem
-            // 
-            this.dTHoteleroVedadoEsteToolStripMenuItem.Name = "dTHoteleroVedadoEsteToolStripMenuItem";
-            this.dTHoteleroVedadoEsteToolStripMenuItem.Size = new System.Drawing.Size(276, 26);
-            this.dTHoteleroVedadoEsteToolStripMenuItem.Text = "DT Hotelero Vedado Este";
-            // 
-            // dTHoteleroVedadoOesteToolStripMenuItem
-            // 
-            this.dTHoteleroVedadoOesteToolStripMenuItem.Name = "dTHoteleroVedadoOesteToolStripMenuItem";
-            this.dTHoteleroVedadoOesteToolStripMenuItem.Size = new System.Drawing.Size(276, 26);
-            this.dTHoteleroVedadoOesteToolStripMenuItem.Text = "DT Hotelero Vedado Oeste";
-            // 
-            // dTExtrahoteleroLegendarioToolStripMenuItem
-            // 
-            this.dTExtrahoteleroLegendarioToolStripMenuItem.Name = "dTExtrahoteleroLegendarioToolStripMenuItem";
-            this.dTExtrahoteleroLegendarioToolStripMenuItem.Size = new System.Drawing.Size(276, 26);
-            this.dTExtrahoteleroLegendarioToolStripMenuItem.Text = "DT Extrahotelero Legendario";
-            // 
-            // dTExtrahoteleroAmazonaToolStripMenuItem
-            // 
-            this.dTExtrahoteleroAmazonaToolStripMenuItem.Name = "dTExtrahoteleroAmazonaToolStripMenuItem";
-            this.dTExtrahoteleroAmazonaToolStripMenuItem.Size = new System.Drawing.Size(276, 26);
-            this.dTExtrahoteleroAmazonaToolStripMenuItem.Text = "DT Extrahotelero Amazona";
             // 
             // sistemasToolStripMenuItem
             // 
@@ -444,7 +421,7 @@
             this.panelPaginaActiva.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelPaginaActiva.Location = new System.Drawing.Point(14, 149);
             this.panelPaginaActiva.Name = "panelPaginaActiva";
-            this.panelPaginaActiva.Size = new System.Drawing.Size(1455, 32);
+            this.panelPaginaActiva.Size = new System.Drawing.Size(1475, 32);
             this.panelPaginaActiva.TabIndex = 5;
             // 
             // panelBusqueda
@@ -453,7 +430,7 @@
             this.panelBusqueda.Controls.Add(this.tbBuscar);
             this.panelBusqueda.Controls.Add(this.btnSear);
             this.panelBusqueda.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelBusqueda.Location = new System.Drawing.Point(1192, 0);
+            this.panelBusqueda.Location = new System.Drawing.Point(1212, 0);
             this.panelBusqueda.Name = "panelBusqueda";
             this.panelBusqueda.Size = new System.Drawing.Size(263, 32);
             this.panelBusqueda.TabIndex = 3;
@@ -499,7 +476,7 @@
             this.labelMenuSeleccionado.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelMenuSeleccionado.Location = new System.Drawing.Point(0, 0);
             this.labelMenuSeleccionado.Name = "labelMenuSeleccionado";
-            this.labelMenuSeleccionado.Size = new System.Drawing.Size(1455, 32);
+            this.labelMenuSeleccionado.Size = new System.Drawing.Size(1475, 32);
             this.labelMenuSeleccionado.TabIndex = 2;
             this.labelMenuSeleccionado.Text = "Bienvenida";
             this.labelMenuSeleccionado.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -511,23 +488,23 @@
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(14, 181);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(1455, 483);
+            this.panelMain.Size = new System.Drawing.Size(1475, 663);
             this.panelMain.TabIndex = 6;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(14, 654);
+            this.panel1.Location = new System.Drawing.Point(14, 834);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1455, 10);
+            this.panel1.Size = new System.Drawing.Size(1475, 10);
             this.panel1.TabIndex = 7;
             // 
             // IndexUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1484, 681);
+            this.ClientSize = new System.Drawing.Size(1504, 861);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.panelPaginaActiva);
@@ -537,7 +514,7 @@
             this.Controls.Add(this.panelDerecha);
             this.Controls.Add(this.panelIzquierdo);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(1500, 720);
+            this.MinimumSize = new System.Drawing.Size(1520, 900);
             this.Name = "IndexUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Base Reglamentaria";
@@ -571,11 +548,6 @@
         public System.Windows.Forms.ToolStripMenuItem bienvenidaToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.ToolStripMenuItem sucursalToolStripMenuItem1;
-        public System.Windows.Forms.ToolStripMenuItem dTHoteleroHabanaLibreToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem dTHoteleroVedadoEsteToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem dTHoteleroVedadoOesteToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem dTExtrahoteleroLegendarioToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem dTExtrahoteleroAmazonaToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem sistemasToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem procedimientosYReglamentosEmpresarialesToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem planesToolStripMenuItem;
@@ -597,11 +569,13 @@
         public System.Windows.Forms.ToolStripMenuItem appToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem contactosToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem documentosToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem tiendasToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem dGToolStripMenuItem;
         public System.Windows.Forms.TextBox tbBuscar;
         private FontAwesome.Sharp.IconButton btnSear;
         public System.Windows.Forms.Panel panelBusqueda;
         public System.Windows.Forms.CheckBox cbArchivados;
+        public System.Windows.Forms.ToolStripMenuItem nomencladoresToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem complejosToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem tipoDeGruposDeDocumentacionToolStripMenuItem;
     }
 }

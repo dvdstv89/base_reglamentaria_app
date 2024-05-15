@@ -15,6 +15,7 @@
         PROGRAMA_INTERNO,
         REGLAMENTO,      
         OTRO_DOCUMENTO,
-        DG
+        DG,
+        DOCUMENTACION_BASICA
     }
 }

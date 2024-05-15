@@ -133,7 +133,7 @@
             // menuStrip1
             // 
             this.menuStrip1.AutoSize = false;
-            this.menuStrip1.BackColor = System.Drawing.Color.Orange;
+            this.menuStrip1.BackColor = System.Drawing.Color.LightGoldenrodYellow;
             this.menuStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

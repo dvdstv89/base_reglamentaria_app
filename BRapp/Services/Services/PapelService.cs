@@ -10,6 +10,7 @@ using BRapp.Repositorios.Repos.ReposDto;
 using BRapp.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BRapp.Services.Services
 {
@@ -85,6 +86,7 @@ namespace BRapp.Services.Services
                 case TipoClasificacionDocumento.PROGRAMA_INTERNO: 
                 case TipoClasificacionDocumento.REGLAMENTO: 
                 case TipoClasificacionDocumento.OTRO_DOCUMENTO:
+                case TipoClasificacionDocumento.DOCUMENTACION_BASICA:
                     return new Documento(papel, documentoPDF, responsable);
                 default: return null;
             }
@@ -164,6 +166,11 @@ namespace BRapp.Services.Services
                 case TipoDocumento.DG: return dGService.saveOrUpdate((DG)papel);
                 default: return documentoService.saveOrUpdate((Documento)papel);
             }
+        }
+
+        public Papel getById(Guid id)
+        {
+           return papeles.FirstOrDefault(papel => papel.Id == id);
         }
     }
 }
