@@ -43,6 +43,7 @@ namespace BRappAdmin.UIControlers
             {
                 checkListTipoGrupoDocumentacion();
                 forma.tbName.Text = departamento.Name;
+                forma.tbDescripcion.Rtf= departamento.Descripcion;
                 forma.cbTipo.Text = departamento.DepartamentoTipo.ToString();
             }
         }
@@ -81,7 +82,7 @@ namespace BRappAdmin.UIControlers
             string name = forma.tbName.Text;
             TipoDepartamento tipoDepartamento;
             Enum.TryParse(forma.cbTipo.Text, out tipoDepartamento);
-
+            string descripcion = forma.tbDescripcion.Rtf;
             List<TipoGrupoDocumentacion> tipoGrupoDocumentacions = GetTipoGrupoDocumentacionsSelected();
 
             if (departamento != null)
@@ -89,10 +90,11 @@ namespace BRappAdmin.UIControlers
                 departamento.Name = name;
                 departamento.DepartamentoTipo = tipoDepartamento;
                 departamento.TipoGrupoDocumentacion = tipoGrupoDocumentacions;
+                departamento.Descripcion= descripcion;
             }
             else
             {
-                departamento = new Departamento(name, complejo, tipoDepartamento, tipoGrupoDocumentacions);
+                departamento = new Departamento(name, complejo, tipoDepartamento, descripcion, tipoGrupoDocumentacions);
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using BRapp.Dto;
+using BRapp.Model;
 using BRapp.Model.Tiendas;
 using BRapp.Repositorios.Interfaces.Dto;
 using BRapp.Repositorios.Repos.ReposDto;
@@ -23,6 +24,7 @@ namespace BRappAdmin.Services.Services
 
         public bool saveOrUpdate(Tienda tienda)
         {
+            documentoPdfRepository.saveOrUpdate(tienda.CertificadoComercial);
             ActionResult actionResult = tiendaDtoRepository.saveOrUpdate(tienda);
             if(actionResult == ActionResult.CREATED)
             {

@@ -14,15 +14,15 @@ namespace BRapp.UIControlers.CardUCController
     internal class DocumentoUCController : BaseUCController<DocumentoCard, Documento>, ICard
     {      
         private readonly IPapelService papelService;
-        private readonly VisorDocumentosUIController visorDocumentosUIController;
+        private readonly VisorPDFUIController visorDocumentosUIController;
         private readonly IDocumentoService documentoService;
         private readonly DocumentoPDF documentoApliado;
-        public DocumentoUCController(Documento documento, IPapelService papelService) : base(new DocumentoCard(), documento)
+        public DocumentoUCController(Documento documento) : base(new DocumentoCard(), documento)
         {           
-            this.papelService = papelService;
+            this.papelService = PapelService.Instance;
             this.documentoService = DocumentoService.Instance;
             this.documentoApliado = documentoService.getDocumentoPDFApliado(documento);
-            this.visorDocumentosUIController = new VisorDocumentosUIController(documentoApliado);
+            this.visorDocumentosUIController = new VisorPDFUIController(documentoApliado);
         }
 
         public override UserControl get()

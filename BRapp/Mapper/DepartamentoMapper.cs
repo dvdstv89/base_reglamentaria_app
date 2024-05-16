@@ -17,7 +17,8 @@ namespace BRapp.Mapper
                 id = departamento.Id,
                 name = departamento.Name,
                 idComplejo = (departamento.Complejo != null) ? departamento.Complejo.Id : Guid.Empty,                
-                tipoDepartamento = departamento.DepartamentoTipo
+                tipoDepartamento = departamento.DepartamentoTipo,
+                descripcion = departamento.Descripcion
             };
         }
 
@@ -27,6 +28,7 @@ namespace BRapp.Mapper
             {
                 id = Guid.Parse(reader["id"].ToString()),
                 name = reader["name"].ToString(),
+                descripcion = reader["descripcion"].ToString(),
                 idComplejo = Guid.Parse(reader["id_complejo"].ToString()),
                 tipoDepartamento = (TipoDepartamento)Enum.Parse(typeof(TipoDepartamento), reader["tipo_departamento"].ToString())               
             };

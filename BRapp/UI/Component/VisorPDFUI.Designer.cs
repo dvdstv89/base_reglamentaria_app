@@ -1,6 +1,6 @@
 ﻿namespace BRapp.UI.Component
 {
-    partial class VisorDocumentosUI
+    partial class VisorPDFUI
     {
         /// <summary>
         /// Required designer variable.

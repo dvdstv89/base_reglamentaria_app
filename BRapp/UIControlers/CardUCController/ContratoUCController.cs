@@ -14,7 +14,7 @@ namespace BRapp.UIControlers.CardUCController
     internal class ContratoUCController : BaseUCController<ContratoCard, Contrato>, ICard
     {      
         private readonly IPapelService papelService;
-        private readonly VisorDocumentosUIController visorDocumentosUIController;
+        private readonly VisorPDFUIController visorDocumentosUIController;
         private readonly IContratoService contratoService;
         private readonly DocumentoPDF documentoApliado;
         public ContratoUCController(Contrato documento, IPapelService papelService) : base(new ContratoCard(), documento)
@@ -22,7 +22,7 @@ namespace BRapp.UIControlers.CardUCController
             this.papelService = papelService;          
             this.contratoService = ContratoService.Instance;
             this.documentoApliado = contratoService.getDocumentoPDFApliado(documento);
-            this.visorDocumentosUIController = new VisorDocumentosUIController(documentoApliado);
+            this.visorDocumentosUIController = new VisorPDFUIController(documentoApliado);
         }
 
         public override UserControl get()

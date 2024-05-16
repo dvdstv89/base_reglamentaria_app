@@ -14,7 +14,7 @@ namespace BRapp.UIControlers.CardUCController
     internal class DgUCController : BaseUCController<DGCard, DG>, ICard
     {      
         private readonly IPapelService papelService;
-        private readonly VisorDocumentosUIController visorDocumentosUIController;
+        private readonly VisorPDFUIController visorDocumentosUIController;
         private readonly IDGService dGService;
         private readonly DocumentoPDF documentoApliado;
 
@@ -23,7 +23,7 @@ namespace BRapp.UIControlers.CardUCController
             this.papelService = papelService;
             this.dGService = DGService.Instance;
             this.documentoApliado = dGService.getDocumentoPDFApliado(documento);
-            this.visorDocumentosUIController = new VisorDocumentosUIController(documentoApliado);           
+            this.visorDocumentosUIController = new VisorPDFUIController(documentoApliado);           
         }
 
         public override UserControl get()

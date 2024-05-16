@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BRapp.UI.Component
 {
-    public partial class VisorDocumentosUI : Form
+    public partial class VisorPDFUI : Form
     {
-        public VisorDocumentosUI()
+        public VisorPDFUI()
         {
             InitializeComponent();
         }

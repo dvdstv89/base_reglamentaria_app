@@ -11,7 +11,7 @@ namespace BRapp.UIControlers.CardUCController
     internal class SistemaUCController : BaseUCController<SistemaCard, Sistema>, ICard
     {      
         private readonly IPapelService papelService;
-        private readonly VisorDocumentosUIController visorDocumentosUIController;
+        private readonly VisorPDFUIController visorDocumentosUIController;
         private readonly ISistemaService sistemaService;
         private readonly DocumentoPDF documentoApliado;
         public SistemaUCController(Sistema documento, IPapelService papelService) : base(new SistemaCard(), documento)
@@ -19,7 +19,7 @@ namespace BRapp.UIControlers.CardUCController
             this.papelService = papelService;
             this.sistemaService = SistemaService.Instance;
             this.documentoApliado = sistemaService.getDocumentoPDFApliado(documento);
-            this.visorDocumentosUIController = new VisorDocumentosUIController(documentoApliado);
+            this.visorDocumentosUIController = new VisorPDFUIController(documentoApliado);
         }
 
         public override UserControl get()

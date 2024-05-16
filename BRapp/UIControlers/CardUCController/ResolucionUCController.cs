@@ -14,23 +14,29 @@ namespace BRapp.UIControlers.CardUCController
     internal class ResolucionUCController : BaseUCController<ResolucionCard, Resolucion>, ICard
     {      
         private readonly IPapelService papelService;
-        private readonly VisorDocumentosUIController visorDocumentosUIController;
+        private readonly VisorPDFUIController visorPDFUIController;
         private readonly IResolucionService resolucionService;
         private readonly DocumentoPDF documentoApliado;
-        public ResolucionUCController(Resolucion documento, IPapelService papelService) 
+        private bool eventsSubscribed = false;
+        public ResolucionUCController(Resolucion documento) 
             : base(new ResolucionCard(), documento) 
         { 
-            this.papelService = papelService;
+            this.papelService = PapelService.Instance;
             this.resolucionService = ResolucionService.Instance;
             this.documentoApliado = resolucionService.getDocumentoPDFApliado(documento);
-            this.visorDocumentosUIController = new VisorDocumentosUIController(documentoApliado);
+            this.visorPDFUIController = new VisorPDFUIController(documentoApliado);
         }
 
         public override UserControl get()
         {
-            card.btnPdf.Click += new EventHandler(btnPdf_Click);
-            card.btnResponsable.Click += new EventHandler(btnResponsable_Click);
-            card.btnDerrogadaPor.Click += new EventHandler(btnDerrogadaPor_Click);
+            if (!eventsSubscribed)
+            {
+                card.btnPdf.Click += new EventHandler(btnPdf_Click);
+                card.btnResponsable.Click += new EventHandler(btnResponsable_Click);
+                card.btnDerrogadaPor.Click += new EventHandler(btnDerrogadaPor_Click);
+                eventsSubscribed = true;
+            }
+
             return base.get();
         }
 
@@ -48,7 +54,7 @@ namespace BRapp.UIControlers.CardUCController
                     card.panelImagen.BackgroundImage = Image.FromStream(ms);
                 }
             }
-            card.btnPdf.Visible = visorDocumentosUIController.hasPdf();
+            card.btnPdf.Visible = visorPDFUIController.hasPdf();
             if (objeto.DerrogadaPor != null)
             {
                 card.panelDerrogadoPor.Visible = true;
@@ -62,7 +68,7 @@ namespace BRapp.UIControlers.CardUCController
 
         private void btnPdf_Click(object sender, EventArgs e)
         {
-            visorDocumentosUIController.showDialog();
+            visorPDFUIController.showDialog();
         }
         private void btnResponsable_Click(object sender, EventArgs e)
         {
@@ -73,7 +79,7 @@ namespace BRapp.UIControlers.CardUCController
         }
         private void btnDerrogadaPor_Click(object sender, EventArgs e)
         {
-            ResolucionUCController resolucionUCController = new ResolucionUCController(objeto.DerrogadaPor, papelService);
+            ResolucionUCController resolucionUCController = new ResolucionUCController(objeto.DerrogadaPor);
             resolucionUCController.setInfo();
             var CardDialogUIController = new CardDialogUIController(resolucionUCController);
             CardDialogUIController.showDialog();

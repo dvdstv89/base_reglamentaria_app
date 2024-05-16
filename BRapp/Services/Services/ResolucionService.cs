@@ -1,5 +1,4 @@
 ﻿using BRapp.Dto;
-using BRapp.Mapper;
 using BRapp.Model;
 using BRapp.Repositorios.Interfaces;
 using BRapp.Repositorios.Interfaces.Dto;

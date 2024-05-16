@@ -67,10 +67,10 @@ namespace BRapp.UIControlers
         private ICard getICardPapel(Papel papel)
         {
             if (papel is Sistema) return new SistemaUCController(papel as Sistema, papelService);           
-            else if (papel is Resolucion) return new ResolucionUCController(papel as Resolucion, papelService);
+            else if (papel is Resolucion) return new ResolucionUCController(papel as Resolucion);
             else if (papel is Contrato) return new ContratoUCController(papel as Contrato, papelService);
             else if (papel is DG) return new DgUCController(papel as DG, papelService);
-            else if (papel is Documento) return new DocumentoUCController(papel as Documento, papelService);
+            else if (papel is Documento) return new DocumentoUCController(papel as Documento);
             return null;
         }
 

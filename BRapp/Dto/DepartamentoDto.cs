@@ -8,6 +8,7 @@ namespace BRapp.Dto
         public Guid id { get; set; }
         public string name { get; set; }
         public TipoDepartamento tipoDepartamento { get; set; }       
-        public Guid idComplejo { get; set; }       
+        public Guid idComplejo { get; set; }   
+        public string descripcion { get; set; }
     }
 }

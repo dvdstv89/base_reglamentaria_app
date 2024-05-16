@@ -56,7 +56,7 @@ namespace BRappAdmin.UIControlers
         {
             string name = forma.tbPJName.Text;
             bool esOpcional = forma.cbOpcional.Checked;
-            Documento documento = (Documento)forma.cbResolucionDerrogada.Tag;
+            Documento documento = (Documento)forma.cbResolucionDerrogada.SelectedItem;
             if (grupoDocumentacion != null)
             {
                 grupoDocumentacion.Name = name;

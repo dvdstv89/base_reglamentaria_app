@@ -6,7 +6,7 @@ namespace BRapp.Enums
         DIRECCION,
         ECONOMIA,
         CAJA_CENTRAL,
-        SEGURIRDAD,
+        SEGURIDAD,
         PANTRY,
         ALMACEN,
         GRUPO_TIENDA      

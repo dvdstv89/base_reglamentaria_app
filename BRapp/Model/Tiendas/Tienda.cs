@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace BRapp.Model.Tiendas
 {
-    public class Tienda : ISeleccionable
+    public class Tienda : ISeleccionable, IRes61
     {
         public Guid Id { get; set; }
         public Complejo Complejo { get; set; } 
@@ -90,12 +90,22 @@ namespace BRapp.Model.Tiendas
 
         public override string ToString()
         {
-            return Name;
+            return Name + " ("+TipoMoneda.ToString()+")";
         }
 
         public string getNameSeleccionable()
         {
             return ToString();
+        }
+
+        public List<TipoGrupoDocumentacion> GetTipoGrupoDocumentacion()
+        {
+            return TipoGrupoDocumentacion;
+        }
+
+        public string GetDescripcionRft()
+        {
+            return string.Empty;
         }
     }
 }

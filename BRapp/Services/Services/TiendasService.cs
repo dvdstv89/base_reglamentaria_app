@@ -18,7 +18,7 @@ namespace BRapp.Services.Services
         protected readonly ITiendaDtoRepository tiendaDtoRepository;
         private readonly ITiendaGrupoDocumentacionDtoRepository tiendaGrupoDocumentacion;
         private readonly ITipoGrupoDocumentacionService tipoGrupoDocumentacionService;
-        private readonly IDocumentoPdfRepository documentoPdfRepository;
+        protected readonly IDocumentoPdfRepository documentoPdfRepository;
         private readonly IComplejoService complejoService;
         protected List<Tienda> tiendas;
 
@@ -69,6 +69,13 @@ namespace BRapp.Services.Services
                 grupoDocumentacions.Add(tipoGrupoDocumentacionService.getById(tiendaGrupoDocumentacion.idTipoGrupoDocumentacion));
             }
             return grupoDocumentacions;
+        }
+
+        public DocumentoPDF getDocumentoPDFApliado(Tienda tienda)
+        {
+            return (tienda.CertificadoComercial != null) 
+                ? documentoPdfRepository.getDocumentoApliado(tienda.CertificadoComercial.Id)
+                : null;
         }
 
         public static TiendasService Instance

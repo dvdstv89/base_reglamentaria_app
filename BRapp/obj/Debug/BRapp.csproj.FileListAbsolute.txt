@@ -173,7 +173,6 @@ D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.U
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.UI.Cards.DocumentoCard.resources
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.UI.Cards.SistemaCard.resources
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.UI.Cards.PersonaNaturalCard.resources
-D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.UI.Component.VisorDocumentosUI.resources
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.UI.ConsultorUI.resources
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.UI.DirectorioUI.resources
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.UI.DocumentoUI.resources
@@ -188,5 +187,11 @@ D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.e
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.pdb
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.UI.ComplejoUI.resources
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.UI.SeleccionarObjetoUI.resources
-D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.csproj.Fody.CopyLocal.cache
-D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.csproj.Fody.RuntimeCopyLocal.cache
+D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.UI.Cards.DepartamentoCard.resources
+D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.UI.Cards.TiendaCard.resources
+D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.UI.Component.VisorDocumentacionUI.resources
+D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.UI.Component.VisorPDFUI.resources
+D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.UI.Cards.DocumentacionCard.resources
+D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\bin\Debug\Costura.dll
+D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\bin\Debug\Costura.pdb
+D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\bin\Debug\Costura.xml

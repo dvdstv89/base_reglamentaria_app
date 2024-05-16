@@ -108,22 +108,34 @@ namespace BRappAdmin.UIControlers
         private void lwComplejo_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
-            {              
-                modificarComplejo(getComplejoSeleccionado());
+            {
+                Complejo complejo = getComplejoSeleccionado();
+                if (complejo != null)
+                {
+                    modificarComplejo(complejo);
+                }
             }
         }
         private void lwDepartamento_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                modificarDepartamento(getDepartamentoSeleccionado());
+                Departamento departamento = getDepartamentoSeleccionado();
+                if (departamento != null)
+                {
+                    modificarDepartamento(departamento);
+                }
             }
         }
         private void lwTiendas_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                modificarTienda(getTiendaSeleccionado());
+                Tienda tienda = getTiendaSeleccionado();
+                if(tienda != null)
+                {
+                    modificarTienda(getTiendaSeleccionado());
+                }                
             }
         }
 

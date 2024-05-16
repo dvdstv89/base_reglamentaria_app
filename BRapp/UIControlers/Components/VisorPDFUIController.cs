@@ -8,29 +8,28 @@ using System.Windows.Forms;
 namespace BRapp.UIControlers.Components
 {
 
-    internal class VisorDocumentosUIController : BaseUIController<VisorDocumentosUI>
+    internal class VisorPDFUIController : BaseUIController<VisorPDFUI>
     {
         private readonly DocumentoPDF DocumentoPDF;     
-        private readonly IVisorDocumentoService visorDocumentosService;     
+        private readonly IVisorPDFService visorDocumentosService;     
 
-        public VisorDocumentosUIController(DocumentoPDF DocumentoPDF) : base(new VisorDocumentosUI())
+        public VisorPDFUIController(DocumentoPDF DocumentoPDF) : base(new VisorPDFUI())
         {
             this.DocumentoPDF = DocumentoPDF;
-            visorDocumentosService = VisorDocumentosService.Instance;           
+            visorDocumentosService = VisorPDFService.Instance;           
         }
 
-        public override VisorDocumentosUI ejecutar()
-        {            
-            forma.Load += Form_Load;
+        public override VisorPDFUI ejecutar()
+        {
+            forma.Load += new EventHandler(forma_Load);
             forma.imprimirToolStripMenuItem.Click += new EventHandler(imprimirToolStripMenuItem_Click);
-            forma.descargarToolStripMenuItem.Click += new EventHandler(descargarToolStripMenuItem_Click);
+            forma.descargarToolStripMenuItem.Click += new EventHandler(descargarToolStripMenuItem_Click);            
             return forma;
-        }      
+        }    
 
-
-        private void Form_Load(object sender, EventArgs e)
-        {           
-            forma.Text = DocumentoPDF.PDF.Name;           
+        protected override void initDataForm()
+        {
+            forma.Text = DocumentoPDF.PDF.Name;
             forma.pdfViewer1.LoadDocument(DocumentoPDF.PDF.Data);
         }
 
@@ -77,7 +76,7 @@ namespace BRapp.UIControlers.Components
         public bool hasPdf()
         {
             return this.DocumentoPDF != null && DocumentoPDF.PDF != null && DocumentoPDF.PDF.Data.Length > 0;
-        }
+        }       
     }
 }
 

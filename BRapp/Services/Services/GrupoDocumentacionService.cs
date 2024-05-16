@@ -49,5 +49,10 @@ namespace BRapp.Services.Services
         {
             return getAll().FirstOrDefault(g => g.Id == id);
         }
+
+        public List<GrupoDocumentacion> getByIdTipoGrupoDocumentacion(Guid id)
+        {
+            return getAll().FindAll(tipo => tipo.TipoGrupoDocumentacion.Id == id).ToList();
+        }
     }
 }

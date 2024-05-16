@@ -65,7 +65,9 @@ namespace BRappAdmin.UIControlers
                 if (tienda.CertificadoComercial != null)
                 {
                     forma.tbImagen.Text = (tienda.CertificadoComercial.Imagen != null) ? tienda.CertificadoComercial.Imagen.Name : "";
+                    forma.tbImagen.Tag = (tienda.CertificadoComercial.Imagen != null) ? tienda.CertificadoComercial.Imagen : null;
                     forma.tbPdf.Text = (tienda.CertificadoComercial.PDF != null) ? tienda.CertificadoComercial.PDF.Name : "";
+                    forma.tbPdf.Tag = (tienda.CertificadoComercial.PDF != null) ? tienda.CertificadoComercial.PDF : null;
                 }
                 forma.cbSCG.Checked= tienda.CertificadoSCG;
                 forma.cbTMHS.Checked = tienda.CertificadoTMHS;

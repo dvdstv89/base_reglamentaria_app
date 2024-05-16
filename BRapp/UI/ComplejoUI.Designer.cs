@@ -30,24 +30,25 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ComplejoUI));
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBoxOrganigramaEmpresa = new System.Windows.Forms.PictureBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panelDepartamentos = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.labelMenuSeleccionado = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panelDepartamentos = new System.Windows.Forms.Panel();
+            this.pictureBoxOrganigramaEmpresa = new System.Windows.Forms.PictureBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.panelTiendas = new System.Windows.Forms.Panel();
+            this.panelTiendas = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOrganigramaEmpresa)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOrganigramaEmpresa)).BeginInit();
             this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,16 +63,63 @@
             this.panel2.Size = new System.Drawing.Size(1407, 441);
             this.panel2.TabIndex = 2;
             // 
-            // pictureBoxOrganigramaEmpresa
+            // panel4
             // 
-            this.pictureBoxOrganigramaEmpresa.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxOrganigramaEmpresa.BackgroundImage")));
-            this.pictureBoxOrganigramaEmpresa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBoxOrganigramaEmpresa.Location = new System.Drawing.Point(12, 43);
-            this.pictureBoxOrganigramaEmpresa.Name = "pictureBoxOrganigramaEmpresa";
-            this.pictureBoxOrganigramaEmpresa.Size = new System.Drawing.Size(933, 393);
-            this.pictureBoxOrganigramaEmpresa.TabIndex = 0;
-            this.pictureBoxOrganigramaEmpresa.TabStop = false;
-            this.pictureBoxOrganigramaEmpresa.Click += new System.EventHandler(this.pictureBoxOrganigramaEmpresa_Click);
+            this.panel4.Controls.Add(this.panelDepartamentos);
+            this.panel4.Controls.Add(this.panel8);
+            this.panel4.Controls.Add(this.panel6);
+            this.panel4.Controls.Add(this.panel5);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(972, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(435, 441);
+            this.panel4.TabIndex = 2;
+            // 
+            // panelDepartamentos
+            // 
+            this.panelDepartamentos.AutoScroll = true;
+            this.panelDepartamentos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDepartamentos.Location = new System.Drawing.Point(16, 43);
+            this.panelDepartamentos.Name = "panelDepartamentos";
+            this.panelDepartamentos.Size = new System.Drawing.Size(419, 398);
+            this.panelDepartamentos.TabIndex = 8;
+            // 
+            // panel8
+            // 
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel8.Location = new System.Drawing.Point(1, 43);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(15, 398);
+            this.panel8.TabIndex = 3;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.label1);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(1, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(434, 43);
+            this.panel6.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(434, 43);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Departamentos";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(1, 441);
+            this.panel5.TabIndex = 0;
             // 
             // panel1
             // 
@@ -104,53 +152,16 @@
             this.labelMenuSeleccionado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelMenuSeleccionado.Click += new System.EventHandler(this.labelMenuSeleccionado_Click);
             // 
-            // panel4
+            // pictureBoxOrganigramaEmpresa
             // 
-            this.panel4.Controls.Add(this.panelDepartamentos);
-            this.panel4.Controls.Add(this.panel6);
-            this.panel4.Controls.Add(this.panel5);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(972, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(435, 441);
-            this.panel4.TabIndex = 2;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1, 441);
-            this.panel5.TabIndex = 0;
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.label1);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(1, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(434, 43);
-            this.panel6.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(434, 43);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Departamentos";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panelDepartamentos
-            // 
-            this.panelDepartamentos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDepartamentos.Location = new System.Drawing.Point(1, 43);
-            this.panelDepartamentos.Name = "panelDepartamentos";
-            this.panelDepartamentos.Size = new System.Drawing.Size(434, 398);
-            this.panelDepartamentos.TabIndex = 3;
+            this.pictureBoxOrganigramaEmpresa.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxOrganigramaEmpresa.BackgroundImage")));
+            this.pictureBoxOrganigramaEmpresa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxOrganigramaEmpresa.Location = new System.Drawing.Point(12, 43);
+            this.pictureBoxOrganigramaEmpresa.Name = "pictureBoxOrganigramaEmpresa";
+            this.pictureBoxOrganigramaEmpresa.Size = new System.Drawing.Size(933, 393);
+            this.pictureBoxOrganigramaEmpresa.TabIndex = 0;
+            this.pictureBoxOrganigramaEmpresa.TabStop = false;
+            this.pictureBoxOrganigramaEmpresa.Click += new System.EventHandler(this.pictureBoxOrganigramaEmpresa_Click);
             // 
             // panel7
             // 
@@ -174,11 +185,12 @@
             // 
             // panelTiendas
             // 
+            this.panelTiendas.AutoScroll = true;
             this.panelTiendas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTiendas.Location = new System.Drawing.Point(0, 484);
             this.panelTiendas.Name = "panelTiendas";
             this.panelTiendas.Size = new System.Drawing.Size(1407, 328);
-            this.panelTiendas.TabIndex = 4;
+            this.panelTiendas.TabIndex = 9;
             // 
             // ComplejoUI
             // 
@@ -192,11 +204,11 @@
             this.Name = "ComplejoUI";
             this.Text = "ComplejoUI";
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOrganigramaEmpresa)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOrganigramaEmpresa)).EndInit();
             this.panel7.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -213,9 +225,10 @@
         public System.Windows.Forms.Label labelMenuSeleccionado;
         private System.Windows.Forms.Panel panel6;
         public System.Windows.Forms.Label label1;
-        public System.Windows.Forms.Panel panelDepartamentos;
         private System.Windows.Forms.Panel panel7;
         public System.Windows.Forms.Label label2;
-        public System.Windows.Forms.Panel panelTiendas;
+        private System.Windows.Forms.Panel panel8;
+        public System.Windows.Forms.FlowLayoutPanel panelDepartamentos;
+        public System.Windows.Forms.FlowLayoutPanel panelTiendas;
     }
 }

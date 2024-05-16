@@ -1,6 +1,7 @@
 ﻿using BRapp.Dto;
 using BRapp.Enums;
 using BRapp.Model;
+using BRapp.Model.Tiendas;
 using BRapp.Services.Interfaces;
 using BRapp.UI;
 using BRapp.UIControlers;
@@ -157,7 +158,9 @@ namespace BRappAdmin.UIControlers
             if (papel.DocumentoPDF != null)
             {
                 forma.tbImagen.Text = (papel.DocumentoPDF.Imagen != null) ? papel.DocumentoPDF.Imagen.Name: "";
+                forma.tbImagen.Tag = (papel.DocumentoPDF.Imagen != null) ? papel.DocumentoPDF.Imagen : null;
                 forma.tbPdf.Text = (papel.DocumentoPDF.PDF != null) ? papel.DocumentoPDF.PDF.Name : "";
+                forma.tbPdf.Tag = (papel.DocumentoPDF.PDF != null) ? papel.DocumentoPDF.PDF : null;
             }
         }
         private void initUpdateDocumento()

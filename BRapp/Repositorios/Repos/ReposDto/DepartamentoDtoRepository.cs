@@ -15,8 +15,8 @@ namespace BRapp.Repositorios.Repos.ReposDto
         private static DepartamentoDtoRepository instance; 
 
         private readonly string QUERY_SELECT_ALL = "SELECT * FROM Departamento";
-        private readonly string QUERY_UPDATE = "UPDATE Departamento SET name = @name, id_complejo = @id_complejo, tipo_departamento = @tipo_departamento WHERE id = @Id";
-        private readonly string QUERY_INSERT = "INSERT INTO Departamento (id, name, id_complejo, tipo_departamento) VALUES ( @Id, @name, @id_complejo, @tipo_departamento)"; 
+        private readonly string QUERY_UPDATE = "UPDATE Departamento SET name = @name, id_complejo = @id_complejo, tipo_departamento = @tipo_departamento, descripcion = @descripcion WHERE id = @Id";
+        private readonly string QUERY_INSERT = "INSERT INTO Departamento (id, name, id_complejo, tipo_departamento, descripcion) VALUES ( @Id, @name, @id_complejo, @tipo_departamento, @descripcion)"; 
         private List<DepartamentoDto> departamentoDtos;      
         private readonly IMapper mapperDepartamento;
 
@@ -85,7 +85,8 @@ namespace BRapp.Repositorios.Repos.ReposDto
             {
                 { "@name", departamentoDto.name },
                 { "@id_complejo", departamentoDto.idComplejo },
-                { "@tipo_departamento", departamentoDto.tipoDepartamento.ToString() },              
+                { "@tipo_departamento", departamentoDto.tipoDepartamento.ToString() },
+                 { "@descripcion", departamentoDto.descripcion },
                 { "@Id", departamentoDto.id.ToString() }
             };          
             return parametros;

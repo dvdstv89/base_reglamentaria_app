@@ -41,6 +41,7 @@
             this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel6 = new System.Windows.Forms.Panel();
             this.labelMenuSeleccionado = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panelDocumentos = new System.Windows.Forms.Panel();
             this.listViewDocumentos = new System.Windows.Forms.ListView();
             this.columnDocumentoName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -52,8 +53,6 @@
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.nuevoDocumentoStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarDocumentoStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -65,7 +64,6 @@
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
             this.menuStrip2.SuspendLayout();
-            this.panel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel5
@@ -193,25 +191,35 @@
             // 
             // labelMenuSeleccionado
             // 
-            this.labelMenuSeleccionado.Dock = System.Windows.Forms.DockStyle.Left;
+            this.labelMenuSeleccionado.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelMenuSeleccionado.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelMenuSeleccionado.Location = new System.Drawing.Point(0, 0);
             this.labelMenuSeleccionado.Name = "labelMenuSeleccionado";
-            this.labelMenuSeleccionado.Size = new System.Drawing.Size(928, 42);
+            this.labelMenuSeleccionado.Size = new System.Drawing.Size(1100, 42);
             this.labelMenuSeleccionado.TabIndex = 3;
             this.labelMenuSeleccionado.Text = "Tipos";
             this.labelMenuSeleccionado.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(0, 244);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(1100, 41);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Documentos";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // panelDocumentos
             // 
             this.panelDocumentos.Controls.Add(this.listViewDocumentos);
             this.panelDocumentos.Controls.Add(this.panel7);
-            this.panelDocumentos.Controls.Add(this.panel10);
-            this.panelDocumentos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelDocumentos.Location = new System.Drawing.Point(0, 244);
+            this.panelDocumentos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDocumentos.Location = new System.Drawing.Point(0, 285);
             this.panelDocumentos.Name = "panelDocumentos";
-            this.panelDocumentos.Size = new System.Drawing.Size(1100, 395);
-            this.panelDocumentos.TabIndex = 10;
+            this.panelDocumentos.Size = new System.Drawing.Size(1100, 447);
+            this.panelDocumentos.TabIndex = 12;
             // 
             // listViewDocumentos
             // 
@@ -221,10 +229,10 @@
             this.listViewDocumentos.FullRowSelect = true;
             this.listViewDocumentos.GridLines = true;
             this.listViewDocumentos.HideSelection = false;
-            this.listViewDocumentos.Location = new System.Drawing.Point(0, 75);
+            this.listViewDocumentos.Location = new System.Drawing.Point(0, 34);
             this.listViewDocumentos.MultiSelect = false;
             this.listViewDocumentos.Name = "listViewDocumentos";
-            this.listViewDocumentos.Size = new System.Drawing.Size(1100, 320);
+            this.listViewDocumentos.Size = new System.Drawing.Size(1100, 413);
             this.listViewDocumentos.TabIndex = 9;
             this.listViewDocumentos.UseCompatibleStateImageBehavior = false;
             this.listViewDocumentos.View = System.Windows.Forms.View.Details;
@@ -240,7 +248,7 @@
             this.panel7.Controls.Add(this.panel8);
             this.panel7.Controls.Add(this.panel9);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(0, 41);
+            this.panel7.Location = new System.Drawing.Point(0, 0);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1100, 34);
             this.panel7.TabIndex = 8;
@@ -316,33 +324,14 @@
             this.modificarDocumentoStripMenuItem2.Size = new System.Drawing.Size(70, 30);
             this.modificarDocumentoStripMenuItem2.Text = "Modificar";
             // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.label1);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel10.Location = new System.Drawing.Point(0, 0);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1100, 41);
-            this.panel10.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1100, 41);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Documentos";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
             // TipoGrupoDocumentacionUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1100, 821);
+            this.ClientSize = new System.Drawing.Size(1100, 732);
             this.Controls.Add(this.panelDocumentos);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.panel5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "TipoGrupoDocumentacionUI";
@@ -365,7 +354,6 @@
             this.panel9.PerformLayout();
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
-            this.panel10.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -384,6 +372,9 @@
         public System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem modificarToolStripMenuItem;
         private System.Windows.Forms.Panel panel6;
+        public System.Windows.Forms.Label labelMenuSeleccionado;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Panel panelDocumentos;
         public System.Windows.Forms.ListView listViewDocumentos;
         public System.Windows.Forms.ColumnHeader columnDocumentoName;
         private System.Windows.Forms.Panel panel7;
@@ -394,9 +385,5 @@
         private System.Windows.Forms.MenuStrip menuStrip2;
         public System.Windows.Forms.ToolStripMenuItem nuevoDocumentoStripMenuItem1;
         public System.Windows.Forms.ToolStripMenuItem modificarDocumentoStripMenuItem2;
-        private System.Windows.Forms.Panel panel10;
-        public System.Windows.Forms.Label labelMenuSeleccionado;
-        public System.Windows.Forms.Label label1;
-        public System.Windows.Forms.Panel panelDocumentos;
     }
 }

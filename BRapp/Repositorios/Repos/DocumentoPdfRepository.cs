@@ -90,8 +90,8 @@ namespace BRapp.Repositorios.Repos
             {               
                 DocumentoPDF documentoAmpliado = getDocumentoApliado(documentoPDF.Id);
                 DocumentoPDF documentoPDFClonado = documentoPDF.clone();
-                documentoPDFClonado.PDF = (documentoPDFClonado.PDF == null && documentoAmpliado.PDF != null) ? documentoAmpliado.PDF : null;
-                documentoPDFClonado.Imagen = (documentoPDFClonado.Imagen == null && documentoAmpliado.Imagen != null) ? documentoAmpliado.Imagen : null;
+                documentoPDFClonado.PDF = (documentoPDFClonado.PDF.Data == null && documentoAmpliado.PDF.Data != null) ? documentoAmpliado.PDF : documentoPDFClonado.PDF;
+                documentoPDFClonado.Imagen = (documentoPDFClonado.Imagen.Data == null && documentoAmpliado.Imagen.Data != null) ? documentoAmpliado.Imagen : documentoPDFClonado.Imagen;
                                 
                 Dictionary<string, object> parametros = buildParametros(documentoPDFClonado);
                 documentoPDFClonado.limpiarFicheros();

@@ -312,6 +312,7 @@
     <Compile Include="Mapper\AppMapper.cs" />
     <Compile Include="Mapper\IMapper.cs" />
     <Compile Include="Model\Fichero.cs" />
+    <Compile Include="Model\IRes61.cs" />
     <Compile Include="Model\ISeleccionable.cs" />
     <Compile Include="Model\Papeles\ClasificacionDocumento.cs" />
     <Compile Include="Model\Papeles\DG.cs" />
@@ -375,7 +376,8 @@
     <Compile Include="Services\Interfaces\IDGService.cs" />
     <Compile Include="Services\Interfaces\ISistemaService.cs" />
     <Compile Include="Services\Interfaces\IFileService.cs" />
-    <Compile Include="Services\Interfaces\IVisorDocumentoService.cs" />
+    <Compile Include="Services\Interfaces\IVisorDocumentacionService.cs" />
+    <Compile Include="Services\Interfaces\IVisorPDFService.cs" />
     <Compile Include="Services\Interfaces\ITiendaService.cs" />
     <Compile Include="Services\Interfaces\ISucursalService.cs" />
     <Compile Include="Services\Interfaces\IIndexService.cs" />
@@ -394,23 +396,34 @@
     <Compile Include="Services\Services\DGService.cs" />
     <Compile Include="Services\Services\SistemaService.cs" />
     <Compile Include="Services\Services\FileService.cs" />
-    <Compile Include="Services\Services\VisorDocumentosService.cs" />
+    <Compile Include="Services\Services\VisorDocumentacionService.cs" />
+    <Compile Include="Services\Services\VisorPDFService.cs" />
+    <Compile Include="UIControlers\CardUCController\DocumentacionUCController.cs" />
+    <Compile Include="UIControlers\CardUCController\TiendaUCController.cs" />
     <Compile Include="UIControlers\CardUCController\ContratoUCController.cs" />
     <Compile Include="UIControlers\CardUCController\DgUCController.cs" />
     <Compile Include="UIControlers\CardUCController\CardDialogUIController.cs" />
     <Compile Include="UIControlers\CardUCController\ResolucionUCController.cs" />
     <Compile Include="UIControlers\CardUCController\PersonaJuridicaUCController.cs" />
     <Compile Include="UIControlers\CardUCController\DocumentoUCController.cs" />
+    <Compile Include="UIControlers\CardUCController\DepartamentoUCController.cs" />
     <Compile Include="UIControlers\CardUCController\SistemaUCController.cs" />
     <Compile Include="UIControlers\CardUCController\PersonaNaturalUCController.cs" />
     <Compile Include="UIControlers\CardUCController\BaseUCController.cs" />
-    <Compile Include="UIControlers\Components\VisorDocumentosUIController.cs" />
+    <Compile Include="UIControlers\Components\VisorDocumentacionUIController.cs" />
+    <Compile Include="UIControlers\Components\VisorPDFUIController.cs" />
     <Compile Include="UIControlers\SeleccionarObjetoUIController.cs" />
     <Compile Include="UI\Cards\CardDialogUI.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\Cards\CardDialogUI.Designer.cs">
       <DependentUpon>CardDialogUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Cards\DocumentacionCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Cards\TiendaCard.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UI\Cards\ContratoCard.cs">
       <SubType>UserControl</SubType>
@@ -430,6 +443,9 @@
     <Compile Include="UI\Cards\DocumentoCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UI\Cards\DepartamentoCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UI\Cards\SistemaCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -437,11 +453,17 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UIControlers\CardUCController\ICard.cs" />
-    <Compile Include="UI\Component\VisorDocumentosUI.cs">
+    <Compile Include="UI\Component\VisorDocumentacionUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Component\VisorDocumentosUI.Designer.cs">
-      <DependentUpon>VisorDocumentosUI.cs</DependentUpon>
+    <Compile Include="UI\Component\VisorDocumentacionUI.Designer.cs">
+      <DependentUpon>VisorDocumentacionUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Component\VisorPDFUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Component\VisorPDFUI.Designer.cs">
+      <DependentUpon>VisorPDFUI.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\SeleccionarObjetoUI.cs">
       <SubType>Form</SubType>
@@ -534,6 +556,12 @@
     <EmbeddedResource Include="UI\Cards\CardDialogUI.resx">
       <DependentUpon>CardDialogUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Cards\DocumentacionCard.resx">
+      <DependentUpon>DocumentacionCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Cards\TiendaCard.resx">
+      <DependentUpon>TiendaCard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Cards\ContratoCard.resx">
       <DependentUpon>ContratoCard.cs</DependentUpon>
     </EmbeddedResource>
@@ -552,6 +580,9 @@
     <EmbeddedResource Include="UI\Cards\DocumentoCard.resx">
       <DependentUpon>DocumentoCard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Cards\DepartamentoCard.resx">
+      <DependentUpon>DepartamentoCard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Cards\SistemaCard.resx">
       <DependentUpon>SistemaCard.cs</DependentUpon>
     </EmbeddedResource>
@@ -561,8 +592,11 @@
     <EmbeddedResource Include="UI\ComplejoUI.resx">
       <DependentUpon>ComplejoUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Component\VisorDocumentosUI.resx">
-      <DependentUpon>VisorDocumentosUI.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Component\VisorDocumentacionUI.resx">
+      <DependentUpon>VisorDocumentacionUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Component\VisorPDFUI.resx">
+      <DependentUpon>VisorPDFUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ConsultorUI.resx">
       <DependentUpon>ConsultorUI.cs</DependentUpon>

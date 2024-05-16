@@ -1,6 +1,6 @@
 ﻿namespace BRapp.Services.Interfaces
 {
-    internal interface IVisorDocumentoService
+    internal interface IVisorPDFService
     {
        
     }
