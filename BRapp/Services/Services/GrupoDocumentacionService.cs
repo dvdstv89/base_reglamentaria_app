@@ -15,20 +15,20 @@ namespace BRapp.Services.Services
         private static GrupoDocumentacionService instance;
         protected readonly ITipoGrupoDocumentacionService tipoGrupoDocumentacionService;
         protected readonly IGrupoDocumentacionDtoRepository grupoDocumentacionDtoRepository;
-        protected readonly IPapelService papelService;
+        protected readonly IPapelService papelService;       
 
-        public GrupoDocumentacionService()
+        public GrupoDocumentacionService(IPapelService papelService)
         {
             tipoGrupoDocumentacionService = TipoGrupoDocumentacionService.Instance;
             grupoDocumentacionDtoRepository = GrupoDocumentacionDtoRepository.Instance;
-            papelService = PapelService.Instance;
+            this.papelService = papelService;
         }
 
         public static GrupoDocumentacionService Instance
         {
             get
             {              
-                instance = (instance == null) ? new GrupoDocumentacionService() : instance;
+                instance = (instance == null) ? new GrupoDocumentacionService(PapelService.Instance) : instance;
                 return instance;
             }
         }
@@ -53,6 +53,15 @@ namespace BRapp.Services.Services
         public List<GrupoDocumentacion> getByIdTipoGrupoDocumentacion(Guid id)
         {
             return getAll().FindAll(tipo => tipo.TipoGrupoDocumentacion.Id == id).ToList();
+        }
+        public List<GrupoDocumentacion> getAllByTipoGrupoDocumentacion(TipoGrupoDocumentacion tipoGrupoDocumentacion)
+        {
+            return getAll().FindAll(grupo => grupo.TipoGrupoDocumentacion.Id == tipoGrupoDocumentacion.Id);
+        }
+
+        public bool saveOrUpdate(GrupoDocumentacion grupoDocumentacion)
+        {
+            return grupoDocumentacionDtoRepository.saveOrUpdate(grupoDocumentacion);
         }
     }
 }

@@ -1,12 +1,13 @@
 ﻿using BRapp.Dto;
 using BRapp.Model;
+using BRapp.Utiles;
 
 namespace BRapp.Services.Interfaces
 {
-    internal interface IResolucionService
+    public interface IResolucionService
     {
         DocumentoPDF getDocumentoPDFApliado(Resolucion resolucion);
         ResolucionDto getByPapel(PapelDto papel);
-        bool saveOrUpdate(Resolucion papel);
+        ActionResult saveOrUpdate(Resolucion papel);
     }
 }

@@ -21,5 +21,10 @@ namespace BRapp.UI.Component
         {
 
         }
+
+        private void VisorDocumentacionUI_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

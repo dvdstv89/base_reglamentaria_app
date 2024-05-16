@@ -42,29 +42,29 @@ namespace BRapp.UI.Cards
             this.btnContratoPadre = new FontAwesome.Sharp.IconButton();
             this.btnCertificadoComercial = new FontAwesome.Sharp.IconButton();
             this.btnList = new FontAwesome.Sharp.IconButton();
+            this.btnResponsable = new FontAwesome.Sharp.IconButton();
+            this.btnTipoContrato = new FontAwesome.Sharp.IconButton();
+            this.panelSanitaria = new System.Windows.Forms.Panel();
+            this.panelTMHS = new System.Windows.Forms.Panel();
+            this.panelSGC = new System.Windows.Forms.Panel();
             this.tbUbicacion = new System.Windows.Forms.TextBox();
             this.panelContratoPadre = new System.Windows.Forms.Panel();
             this.tbTelefono = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.tbTrabajadores = new System.Windows.Forms.TextBox();
+            this.tbCajas = new System.Windows.Forms.TextBox();
             this.tbRegistroComercial = new System.Windows.Forms.TextBox();
             this.panelImagen = new System.Windows.Forms.Panel();
             this.panelTitle = new System.Windows.Forms.Panel();
             this.labelName = new System.Windows.Forms.Label();
             this.iconPrincipal = new FontAwesome.Sharp.IconPictureBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.tbTrabajadores = new System.Windows.Forms.TextBox();
-            this.btnResponsable = new FontAwesome.Sharp.IconButton();
-            this.tbCajas = new System.Windows.Forms.TextBox();
-            this.btnTipoContrato = new FontAwesome.Sharp.IconButton();
-            this.panelSanitaria = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.panelTMHS = new System.Windows.Forms.Panel();
-            this.panelSGC = new System.Windows.Forms.Panel();
             this.panelContratoPadre.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.panelTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPrincipal)).BeginInit();
-            this.panel4.SuspendLayout();
             this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,7 +101,7 @@ namespace BRapp.UI.Cards
             // 
             // btnCertificadoComercial
             // 
-            this.btnCertificadoComercial.BackColor = System.Drawing.Color.Orange;
+            this.btnCertificadoComercial.BackColor = System.Drawing.SystemColors.Control;
             this.btnCertificadoComercial.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnCertificadoComercial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCertificadoComercial.ForeColor = System.Drawing.Color.White;
@@ -131,6 +131,70 @@ namespace BRapp.UI.Cards
             this.btnList.TabIndex = 36;
             this.toolTip1.SetToolTip(this.btnList, "Ver documentación del sistema");
             this.btnList.UseVisualStyleBackColor = true;
+            // 
+            // btnResponsable
+            // 
+            this.btnResponsable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResponsable.ForeColor = System.Drawing.Color.White;
+            this.btnResponsable.IconChar = FontAwesome.Sharp.IconChar.UserGroup;
+            this.btnResponsable.IconColor = System.Drawing.Color.Black;
+            this.btnResponsable.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnResponsable.IconSize = 25;
+            this.btnResponsable.Location = new System.Drawing.Point(78, 2);
+            this.btnResponsable.Name = "btnResponsable";
+            this.btnResponsable.Size = new System.Drawing.Size(38, 25);
+            this.btnResponsable.TabIndex = 22;
+            this.toolTip1.SetToolTip(this.btnResponsable, "Trabajadores");
+            this.btnResponsable.UseVisualStyleBackColor = true;
+            // 
+            // btnTipoContrato
+            // 
+            this.btnTipoContrato.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnTipoContrato.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTipoContrato.ForeColor = System.Drawing.Color.White;
+            this.btnTipoContrato.IconChar = FontAwesome.Sharp.IconChar.CashRegister;
+            this.btnTipoContrato.IconColor = System.Drawing.Color.Black;
+            this.btnTipoContrato.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnTipoContrato.IconSize = 25;
+            this.btnTipoContrato.Location = new System.Drawing.Point(0, 0);
+            this.btnTipoContrato.Name = "btnTipoContrato";
+            this.btnTipoContrato.Size = new System.Drawing.Size(38, 30);
+            this.btnTipoContrato.TabIndex = 20;
+            this.toolTip1.SetToolTip(this.btnTipoContrato, "Cajas Registradoras");
+            this.btnTipoContrato.UseVisualStyleBackColor = true;
+            // 
+            // panelSanitaria
+            // 
+            this.panelSanitaria.BackgroundImage = global::BRapp.Properties.Resources.SANITARIA;
+            this.panelSanitaria.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelSanitaria.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelSanitaria.Location = new System.Drawing.Point(193, 0);
+            this.panelSanitaria.Name = "panelSanitaria";
+            this.panelSanitaria.Size = new System.Drawing.Size(88, 91);
+            this.panelSanitaria.TabIndex = 52;
+            this.toolTip1.SetToolTip(this.panelSanitaria, "Licencia sanitaria");
+            // 
+            // panelTMHS
+            // 
+            this.panelTMHS.BackgroundImage = global::BRapp.Properties.Resources.TMHS;
+            this.panelTMHS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelTMHS.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelTMHS.Location = new System.Drawing.Point(105, 0);
+            this.panelTMHS.Name = "panelTMHS";
+            this.panelTMHS.Size = new System.Drawing.Size(88, 91);
+            this.panelTMHS.TabIndex = 49;
+            this.toolTip1.SetToolTip(this.panelTMHS, "Certificado Turísmo mas higienico y seguro");
+            // 
+            // panelSGC
+            // 
+            this.panelSGC.BackgroundImage = global::BRapp.Properties.Resources.SCG;
+            this.panelSGC.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelSGC.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelSGC.Location = new System.Drawing.Point(17, 0);
+            this.panelSGC.Name = "panelSGC";
+            this.panelSGC.Size = new System.Drawing.Size(88, 91);
+            this.panelSGC.TabIndex = 53;
+            this.toolTip1.SetToolTip(this.panelSGC, "Certificación de calidad");
             // 
             // tbUbicacion
             // 
@@ -184,6 +248,49 @@ namespace BRapp.UI.Cards
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(296, 30);
             this.panel3.TabIndex = 49;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.Controls.Add(this.tbTrabajadores);
+            this.panel4.Controls.Add(this.btnResponsable);
+            this.panel4.Controls.Add(this.tbCajas);
+            this.panel4.Controls.Add(this.btnTipoContrato);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel4.Location = new System.Drawing.Point(119, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(177, 30);
+            this.panel4.TabIndex = 51;
+            // 
+            // tbTrabajadores
+            // 
+            this.tbTrabajadores.BackColor = System.Drawing.Color.White;
+            this.tbTrabajadores.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbTrabajadores.Cursor = System.Windows.Forms.Cursors.Default;
+            this.tbTrabajadores.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbTrabajadores.Location = new System.Drawing.Point(117, 5);
+            this.tbTrabajadores.Multiline = true;
+            this.tbTrabajadores.Name = "tbTrabajadores";
+            this.tbTrabajadores.ReadOnly = true;
+            this.tbTrabajadores.Size = new System.Drawing.Size(36, 22);
+            this.tbTrabajadores.TabIndex = 23;
+            this.tbTrabajadores.TabStop = false;
+            this.tbTrabajadores.Text = "4";
+            // 
+            // tbCajas
+            // 
+            this.tbCajas.BackColor = System.Drawing.Color.White;
+            this.tbCajas.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbCajas.Cursor = System.Windows.Forms.Cursors.Default;
+            this.tbCajas.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCajas.Location = new System.Drawing.Point(44, 5);
+            this.tbCajas.Multiline = true;
+            this.tbCajas.Name = "tbCajas";
+            this.tbCajas.ReadOnly = true;
+            this.tbCajas.Size = new System.Drawing.Size(28, 19);
+            this.tbCajas.TabIndex = 21;
+            this.tbCajas.TabStop = false;
+            this.tbCajas.Text = "1";
             // 
             // tbRegistroComercial
             // 
@@ -249,91 +356,6 @@ namespace BRapp.UI.Cards
             this.iconPrincipal.TabIndex = 8;
             this.iconPrincipal.TabStop = false;
             // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.White;
-            this.panel4.Controls.Add(this.tbTrabajadores);
-            this.panel4.Controls.Add(this.btnResponsable);
-            this.panel4.Controls.Add(this.tbCajas);
-            this.panel4.Controls.Add(this.btnTipoContrato);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(119, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(177, 30);
-            this.panel4.TabIndex = 51;
-            // 
-            // tbTrabajadores
-            // 
-            this.tbTrabajadores.BackColor = System.Drawing.Color.White;
-            this.tbTrabajadores.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbTrabajadores.Cursor = System.Windows.Forms.Cursors.Default;
-            this.tbTrabajadores.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbTrabajadores.Location = new System.Drawing.Point(117, 5);
-            this.tbTrabajadores.Multiline = true;
-            this.tbTrabajadores.Name = "tbTrabajadores";
-            this.tbTrabajadores.ReadOnly = true;
-            this.tbTrabajadores.Size = new System.Drawing.Size(36, 22);
-            this.tbTrabajadores.TabIndex = 23;
-            this.tbTrabajadores.TabStop = false;
-            this.tbTrabajadores.Text = "4";
-            // 
-            // btnResponsable
-            // 
-            this.btnResponsable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResponsable.ForeColor = System.Drawing.Color.White;
-            this.btnResponsable.IconChar = FontAwesome.Sharp.IconChar.UserGroup;
-            this.btnResponsable.IconColor = System.Drawing.Color.Black;
-            this.btnResponsable.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnResponsable.IconSize = 25;
-            this.btnResponsable.Location = new System.Drawing.Point(78, 2);
-            this.btnResponsable.Name = "btnResponsable";
-            this.btnResponsable.Size = new System.Drawing.Size(38, 25);
-            this.btnResponsable.TabIndex = 22;
-            this.toolTip1.SetToolTip(this.btnResponsable, "Trabajadores");
-            this.btnResponsable.UseVisualStyleBackColor = true;
-            // 
-            // tbCajas
-            // 
-            this.tbCajas.BackColor = System.Drawing.Color.White;
-            this.tbCajas.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbCajas.Cursor = System.Windows.Forms.Cursors.Default;
-            this.tbCajas.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCajas.Location = new System.Drawing.Point(44, 5);
-            this.tbCajas.Multiline = true;
-            this.tbCajas.Name = "tbCajas";
-            this.tbCajas.ReadOnly = true;
-            this.tbCajas.Size = new System.Drawing.Size(28, 19);
-            this.tbCajas.TabIndex = 21;
-            this.tbCajas.TabStop = false;
-            this.tbCajas.Text = "1";
-            // 
-            // btnTipoContrato
-            // 
-            this.btnTipoContrato.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnTipoContrato.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTipoContrato.ForeColor = System.Drawing.Color.White;
-            this.btnTipoContrato.IconChar = FontAwesome.Sharp.IconChar.CashRegister;
-            this.btnTipoContrato.IconColor = System.Drawing.Color.Black;
-            this.btnTipoContrato.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnTipoContrato.IconSize = 25;
-            this.btnTipoContrato.Location = new System.Drawing.Point(0, 0);
-            this.btnTipoContrato.Name = "btnTipoContrato";
-            this.btnTipoContrato.Size = new System.Drawing.Size(38, 30);
-            this.btnTipoContrato.TabIndex = 20;
-            this.toolTip1.SetToolTip(this.btnTipoContrato, "Cajas Registradoras");
-            this.btnTipoContrato.UseVisualStyleBackColor = true;
-            // 
-            // panelSanitaria
-            // 
-            this.panelSanitaria.BackgroundImage = global::BRapp.Properties.Resources.SANITARIA;
-            this.panelSanitaria.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panelSanitaria.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelSanitaria.Location = new System.Drawing.Point(193, 0);
-            this.panelSanitaria.Name = "panelSanitaria";
-            this.panelSanitaria.Size = new System.Drawing.Size(88, 91);
-            this.panelSanitaria.TabIndex = 52;
-            this.toolTip1.SetToolTip(this.panelSanitaria, "Licencia sanitaria");
-            // 
             // panel6
             // 
             this.panel6.Controls.Add(this.panelSGC);
@@ -343,28 +365,6 @@ namespace BRapp.UI.Cards
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(281, 91);
             this.panel6.TabIndex = 53;
-            // 
-            // panelTMHS
-            // 
-            this.panelTMHS.BackgroundImage = global::BRapp.Properties.Resources.TMHS;
-            this.panelTMHS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panelTMHS.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelTMHS.Location = new System.Drawing.Point(105, 0);
-            this.panelTMHS.Name = "panelTMHS";
-            this.panelTMHS.Size = new System.Drawing.Size(88, 91);
-            this.panelTMHS.TabIndex = 49;
-            this.toolTip1.SetToolTip(this.panelTMHS, "Certificado Turísmo mas higienico y seguro");
-            // 
-            // panelSGC
-            // 
-            this.panelSGC.BackgroundImage = global::BRapp.Properties.Resources.SCG;
-            this.panelSGC.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panelSGC.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelSGC.Location = new System.Drawing.Point(17, 0);
-            this.panelSGC.Name = "panelSGC";
-            this.panelSGC.Size = new System.Drawing.Size(88, 91);
-            this.panelSGC.TabIndex = 53;
-            this.toolTip1.SetToolTip(this.panelSGC, "Certificación de calidad");
             // 
             // TiendaCard
             // 
@@ -379,15 +379,15 @@ namespace BRapp.UI.Cards
             this.Controls.Add(this.panelTitle);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Name = "TiendaCard";
-            this.Size = new System.Drawing.Size(486, 225);           
+            this.Size = new System.Drawing.Size(486, 225);
             this.panelContratoPadre.ResumeLayout(false);
             this.panelContratoPadre.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.panelTitle.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.iconPrincipal)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panelTitle.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.iconPrincipal)).EndInit();
             this.panel6.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

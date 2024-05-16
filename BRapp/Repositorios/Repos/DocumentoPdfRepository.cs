@@ -90,8 +90,8 @@ namespace BRapp.Repositorios.Repos
             {               
                 DocumentoPDF documentoAmpliado = getDocumentoApliado(documentoPDF.Id);
                 DocumentoPDF documentoPDFClonado = documentoPDF.clone();
-                documentoPDFClonado.PDF = (documentoPDFClonado.PDF.Data == null && documentoAmpliado.PDF.Data != null) ? documentoAmpliado.PDF : documentoPDFClonado.PDF;
-                documentoPDFClonado.Imagen = (documentoPDFClonado.Imagen.Data == null && documentoAmpliado.Imagen.Data != null) ? documentoAmpliado.Imagen : documentoPDFClonado.Imagen;
+                documentoPDFClonado.PDF = (!documentoPDFClonado.hasDocumento() && documentoAmpliado.hasDocumento()) ? documentoAmpliado.PDF : documentoPDFClonado.PDF;
+                documentoPDFClonado.Imagen = (!documentoPDFClonado.hasImagen() && documentoAmpliado.hasImagen()) ? documentoAmpliado.Imagen : documentoPDFClonado.Imagen;
                                 
                 Dictionary<string, object> parametros = buildParametros(documentoPDFClonado);
                 documentoPDFClonado.limpiarFicheros();
@@ -114,8 +114,8 @@ namespace BRapp.Repositorios.Repos
             {
                 { "@pdf",  (documentoPDF.PDF != null) ? documentoPDF.PDF.Name:"" },
                 { "@image", (documentoPDF.Imagen != null) ? documentoPDF.Imagen.Name:"" },
-                { "@blob_pdf", (documentoPDF.PDF != null && documentoPDF.PDF.Data.Length > 0) ? Convert.ToBase64String(documentoPDF.PDF.Data):"" },             
-                { "@blob_imagen", (documentoPDF.Imagen != null && documentoPDF.Imagen.Data.Length > 0) ? ImageManager.GetBase64Image(documentoPDF.Imagen.Data , 120, 138, 90) : ""},
+                { "@blob_pdf", (documentoPDF.PDF != null && documentoPDF.PDF.Data != null && documentoPDF.PDF.Data.Length > 0) ? Convert.ToBase64String(documentoPDF.PDF.Data):"" },             
+                { "@blob_imagen", (documentoPDF.Imagen != null && documentoPDF.Imagen.Data != null && documentoPDF.Imagen.Data.Length > 0) ? ImageManager.GetBase64Image(documentoPDF.Imagen.Data , 120, 138, 90) : ""},
                 { "@documentoId", documentoPDF.Id.ToString() }
             };           
             return parametros;

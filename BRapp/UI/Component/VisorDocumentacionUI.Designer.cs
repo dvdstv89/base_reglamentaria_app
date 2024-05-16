@@ -29,24 +29,29 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.panelFecha = new System.Windows.Forms.Panel();
+            this.panelHeader = new System.Windows.Forms.Panel();
             this.btnResolucion61 = new FontAwesome.Sharp.IconButton();
             this.lbResolucion61 = new System.Windows.Forms.TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panelDepartamentos = new System.Windows.Forms.FlowLayoutPanel();
-            this.panelFecha.SuspendLayout();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.panelText = new System.Windows.Forms.Panel();
+            this.panelCard = new System.Windows.Forms.Panel();
+            this.panelHeader.SuspendLayout();
+            this.panelText.SuspendLayout();
+            this.panelCard.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panelFecha
+            // panelHeader
             // 
-            this.panelFecha.BackColor = System.Drawing.Color.White;
-            this.panelFecha.Controls.Add(this.btnResolucion61);
-            this.panelFecha.Controls.Add(this.lbResolucion61);
-            this.panelFecha.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelFecha.Location = new System.Drawing.Point(0, 0);
-            this.panelFecha.Name = "panelFecha";
-            this.panelFecha.Size = new System.Drawing.Size(608, 25);
-            this.panelFecha.TabIndex = 25;
+            this.panelHeader.BackColor = System.Drawing.Color.White;
+            this.panelHeader.Controls.Add(this.btnResolucion61);
+            this.panelHeader.Controls.Add(this.lbResolucion61);
+            this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelHeader.Location = new System.Drawing.Point(0, 0);
+            this.panelHeader.Name = "panelHeader";
+            this.panelHeader.Size = new System.Drawing.Size(629, 25);
+            this.panelHeader.TabIndex = 25;
             // 
             // btnResolucion61
             // 
@@ -84,34 +89,69 @@
             // 
             this.panelDepartamentos.AutoScroll = true;
             this.panelDepartamentos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDepartamentos.Location = new System.Drawing.Point(0, 25);
+            this.panelDepartamentos.Location = new System.Drawing.Point(5, 5);
             this.panelDepartamentos.Name = "panelDepartamentos";
-            this.panelDepartamentos.Size = new System.Drawing.Size(608, 656);
+            this.panelDepartamentos.Size = new System.Drawing.Size(612, 90);
             this.panelDepartamentos.TabIndex = 26;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.Location = new System.Drawing.Point(10, 10);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(180, 80);
+            this.richTextBox1.TabIndex = 27;
+            this.richTextBox1.Text = "";
+            // 
+            // panelText
+            // 
+            this.panelText.Controls.Add(this.richTextBox1);
+            this.panelText.Location = new System.Drawing.Point(55, 369);
+            this.panelText.Name = "panelText";
+            this.panelText.Padding = new System.Windows.Forms.Padding(10);
+            this.panelText.Size = new System.Drawing.Size(200, 100);
+            this.panelText.TabIndex = 28;
+            // 
+            // panelCard
+            // 
+            this.panelCard.Controls.Add(this.panelDepartamentos);
+            this.panelCard.Location = new System.Drawing.Point(1, 31);
+            this.panelCard.Name = "panelCard";
+            this.panelCard.Padding = new System.Windows.Forms.Padding(5);
+            this.panelCard.Size = new System.Drawing.Size(622, 100);
+            this.panelCard.TabIndex = 29;
             // 
             // VisorDocumentacionUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(608, 681);
-            this.Controls.Add(this.panelDepartamentos);
-            this.Controls.Add(this.panelFecha);
+            this.ClientSize = new System.Drawing.Size(629, 518);
+            this.Controls.Add(this.panelCard);
+            this.Controls.Add(this.panelText);
+            this.Controls.Add(this.panelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "VisorDocumentacionUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Documentación";
-            this.panelFecha.ResumeLayout(false);
-            this.panelFecha.PerformLayout();
+            this.Load += new System.EventHandler(this.VisorDocumentacionUI_Load);
+            this.panelHeader.ResumeLayout(false);
+            this.panelHeader.PerformLayout();
+            this.panelText.ResumeLayout(false);
+            this.panelCard.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        public System.Windows.Forms.Panel panelFecha;
+        public System.Windows.Forms.Panel panelHeader;
         public System.Windows.Forms.TextBox lbResolucion61;
         public FontAwesome.Sharp.IconButton btnResolucion61;
         public System.Windows.Forms.ToolTip toolTip1;
         public System.Windows.Forms.FlowLayoutPanel panelDepartamentos;
+        public System.Windows.Forms.RichTextBox richTextBox1;
+        public System.Windows.Forms.Panel panelText;
+        public System.Windows.Forms.Panel panelCard;
     }
 }

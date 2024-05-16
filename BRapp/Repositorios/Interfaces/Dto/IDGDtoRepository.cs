@@ -1,12 +1,13 @@
 ﻿using BRapp.Dto;
 using BRapp.Model;
+using BRapp.Utiles;
 using System;
 
 namespace BRapp.Repositorios.Interfaces.Dto
 {
     internal interface IDGDtoRepository
     {
-        bool saveOrUpdate(DG papel);
+        ActionResult saveOrUpdate(DG papel);
         DGDto getById(Guid id);
     }
 }

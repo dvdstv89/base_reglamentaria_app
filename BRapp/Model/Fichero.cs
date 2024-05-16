@@ -14,5 +14,10 @@
         {
             return new Fichero(this.Name, this.Data);
         }
+
+        public bool hasDataValid()
+        {
+            return Data != null && Data.Length > 0;
+        }
     }
 }

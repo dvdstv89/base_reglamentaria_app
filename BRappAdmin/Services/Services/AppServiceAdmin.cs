@@ -8,20 +8,20 @@ namespace BRappAdmin.Services.Services
     internal class AppServiceAdmin: IAppServiceAdmin
     {
         private static AppServiceAdmin instance;
-        private readonly IAppRepository appRepositoryAdmin;
+        private readonly IAppRepository appRepository;
 
         public AppServiceAdmin()
         {
-            appRepositoryAdmin = AppRepository.Instance;
+            appRepository = AppRepository.Instance;
         }    
 
         public App getApp()
         {
-            return appRepositoryAdmin.getApp();
+            return appRepository.getApp();
         }
         public bool updateApp(App app)
         {
-           return appRepositoryAdmin.updateApp(app);
+           return appRepository.updateApp(app);
         }
 
         public static AppServiceAdmin Instance

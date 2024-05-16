@@ -311,6 +311,7 @@
     <Compile Include="Mapper\PersonaNaturalMapper.cs" />
     <Compile Include="Mapper\AppMapper.cs" />
     <Compile Include="Mapper\IMapper.cs" />
+    <Compile Include="Messages\Mensajes.cs" />
     <Compile Include="Model\Fichero.cs" />
     <Compile Include="Model\IRes61.cs" />
     <Compile Include="Model\ISeleccionable.cs" />
@@ -529,7 +530,7 @@
     </Compile>
     <Compile Include="UI\IForm.cs" />
     <Compile Include="Utiles\FechaUtil.cs" />
-    <Compile Include="Utiles\DialogUtil.cs" />
+    <Compile Include="Messages\DialogUtil.cs" />
     <Compile Include="Utiles\ImageManager.cs" />
     <Compile Include="Utiles\Styles\Colors.cs" />
     <Compile Include="Utiles\Styles\MyFontStyle.cs" />

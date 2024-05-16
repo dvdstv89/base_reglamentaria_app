@@ -1,10 +1,9 @@
 ﻿using BRapp.Model;
 using BRapp.Model.Tiendas;
 using BRapp.Services.Interfaces;
+using BRapp.Services.Services;
 using BRapp.UI;
 using BRapp.UIControlers;
-using BRappAdmin.Services.Interfaces;
-using BRappAdmin.Services.Services;
 using BRappAdmin.UI;
 using System;
 using System.Windows.Forms;
@@ -13,14 +12,14 @@ namespace BRappAdmin.UIControlers
 {
     internal class NewComplejoUIController : BaseUIController<NewComplejoUI>, IForm
     {       
-        private readonly IComplejoServiceAdmin complejoService;
+        private readonly IComplejoService complejoService;
         private readonly IFileService fileLogoService;
         private Complejo complejo;         
-        public NewComplejoUIController(Complejo complejo, IFileService fileLogoService) : base(new NewComplejoUI())
+        public NewComplejoUIController(Complejo complejo) : base(new NewComplejoUI())
         {
             this.complejo = complejo;
-            complejoService = ComplejoServiceAdmin.Instance;
-            this.fileLogoService = fileLogoService;                      
+            complejoService = ComplejoService.Instance;
+            this.fileLogoService = new FileService();
         }
 
         public override NewComplejoUI ejecutar()

@@ -225,22 +225,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Messages\DialogUtil.cs" />
-    <Compile Include="Messages\Mensajes.cs" />
-    <Compile Include="Services\Interfaces\ITiendaServiceAdmin.cs" />
-    <Compile Include="Services\Interfaces\IGrupoDocumentacionServiceAdmin.cs" />
-    <Compile Include="Services\Interfaces\IDepartamentoServiceAdmin.cs" />
-    <Compile Include="Services\Interfaces\ITipoGrupoDocumentacionServiceAdmin.cs" />
-    <Compile Include="Services\Interfaces\IDocumentosServiceAdmin.cs" />
-    <Compile Include="Services\Interfaces\IComplejoServiceAdmin.cs" />
-    <Compile Include="Services\Interfaces\IContactosServiceAdmin.cs" />
-    <Compile Include="Services\Services\TiendaServiceAdmin.cs" />
-    <Compile Include="Services\Services\GrupoDocumentacionServiceAdmin.cs" />
-    <Compile Include="Services\Services\DepartamentoServiceAdmin.cs" />
-    <Compile Include="Services\Services\TipoGrupoDocumentacionServiceAdmin.cs" />
-    <Compile Include="Services\Services\ComplejoServiceAdmin.cs" />
-    <Compile Include="Services\Services\DocumentosServiceAdmin.cs" />
-    <Compile Include="Services\Services\ContactoServiceAdmin.cs" />
     <Compile Include="UIController\NewGrupoDocumentacionUIController.cs" />
     <Compile Include="UIController\NewDepartamentoUIController.cs" />
     <Compile Include="UIController\NewTipoGrupoDocumentacionUIController.cs" />

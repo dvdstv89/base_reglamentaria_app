@@ -1,9 +1,10 @@
-﻿using BRapp.Model.Tiendas;
+﻿using BRapp.Enums;
+using BRapp.Messages;
+using BRapp.Model.Tiendas;
+using BRapp.Services.Interfaces;
+using BRapp.Services.Services;
 using BRapp.UI;
 using BRapp.UIControlers;
-using BRappAdmin.Messages;
-using BRappAdmin.Services.Interfaces;
-using BRappAdmin.Services.Services;
 using BRappAdmin.UI;
 using System;
 using System.Collections.Generic;
@@ -15,8 +16,8 @@ namespace BRappAdmin.UIControlers
     internal class TipoGrupoDocumentacionUIController : BaseUIController<TipoGrupoDocumentacionUI>, IForm
     {
         private static TipoGrupoDocumentacionUIController instance;
-        private readonly ITipoGrupoDocumentacionServiceAdmin tipoGrupoDocumentacionServiceAdmin;
-        private readonly IGrupoDocumentacionServiceAdmin grupoDocumentacionServiceAdmin;
+        private readonly ITipoGrupoDocumentacionService tipoGrupoDocumentacionServiceAdmin;
+        private readonly IGrupoDocumentacionService grupoDocumentacionServiceAdmin;
         ListViewItem itemTipoSeleccionado;
         ListViewItem itemDocumentoSeleccionado;
 
@@ -26,8 +27,8 @@ namespace BRappAdmin.UIControlers
 
         private TipoGrupoDocumentacionUIController() : base(new TipoGrupoDocumentacionUI())
         {
-            tipoGrupoDocumentacionServiceAdmin = TipoGrupoDocumentacionServiceAdmin.Instance;
-            grupoDocumentacionServiceAdmin = GrupoDocumentacionServiceAdmin.Instance;
+            tipoGrupoDocumentacionServiceAdmin = TipoGrupoDocumentacionService.Instance;
+            grupoDocumentacionServiceAdmin = GrupoDocumentacionService.Instance;
         }
 
         public override TipoGrupoDocumentacionUI ejecutar()
@@ -51,7 +52,9 @@ namespace BRappAdmin.UIControlers
             forma.nuevoDocumentoStripMenuItem1.Click += new EventHandler(nuevoDocumentoStripMenuItem1_Click);
             forma.modificarDocumentoStripMenuItem2.Click += new EventHandler(modificarDocumentacionToolStripMenuItem_Click);
 
-           
+            forma.obligatorioToolStripMenuItem.Click += new EventHandler(obligatorioToolStripMenuItem_Click);
+            forma.opcionalToolStripMenuItem.Click += new EventHandler(opcionalToolStripMenuItem_Click);
+
             return base.ejecutar();
         }
 
@@ -62,7 +65,14 @@ namespace BRappAdmin.UIControlers
 
         private void nuevoDocumentoStripMenuItem1_Click(object sender, EventArgs e)
         {
-            modificarDocumento(null);
+            var papelUiController = new NewGrupoDocumentacionUIController(getTipoSeleccionado());
+            DialogResult dialogResult = papelUiController.ejecutar().ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                DialogUtil.INFORMATION(Mensajes.PAPEL_SAVED_OK);
+                forma.tbBuscarDocumentos.Text = "";
+                updateDocumentosList();
+            }
         }
 
         protected override void initDataForm()
@@ -162,7 +172,7 @@ namespace BRappAdmin.UIControlers
         }
         private void modificarDocumento(GrupoDocumentacion grupoDocumentacion)
         {
-            var papelUiController = new NewGrupoDocumentacionUIController(grupoDocumentacion, getTipoSeleccionado());
+            var papelUiController = new PapelUIController(grupoDocumentacion.Documento, TipoClasificacionDocumento.DOCUMENTACION_BASICA);
             DialogResult dialogResult = papelUiController.ejecutar().ShowDialog();
             if (dialogResult == DialogResult.OK)
             {
@@ -180,8 +190,10 @@ namespace BRappAdmin.UIControlers
         private void marcarDocumentacion()
         {
             itemDocumentoSeleccionado = forma.listViewDocumentos.SelectedItems[0];
-            forma.modificarToolStripMenuItem.Enabled = true;
-           
+            forma.modificarDocumentoStripMenuItem2.Enabled = true;
+            forma.obligatorioToolStripMenuItem.Visible = !getDocumentacionSeleccionado().IsOpcional;
+            forma.opcionalToolStripMenuItem.Visible = getDocumentacionSeleccionado().IsOpcional;
+
         }
         private void desmarcarTipos()
         {
@@ -189,80 +201,37 @@ namespace BRappAdmin.UIControlers
             itemTipoSeleccionado = null;
             forma.lwTipos.SelectedItems.Clear();          
             forma.panelDocumentos.Enabled = false;
+            desmarcarDocumentacion();
         }
         private void desmarcarDocumentacion()
         {
             forma.modificarDocumentoStripMenuItem2.Enabled = false;
+            forma.obligatorioToolStripMenuItem.Visible = false;
+            forma.opcionalToolStripMenuItem.Visible = false;
             itemDocumentoSeleccionado = null;
             forma.listViewDocumentos.SelectedItems.Clear();
         }
     
         private TipoGrupoDocumentacion getTipoSeleccionado()
         {
-            try
-            {
-                return (TipoGrupoDocumentacion)itemTipoSeleccionado.Tag;
-            }
-            catch
-            {
-                return null;
-            }
+            return getListViewItemSeleccionado<TipoGrupoDocumentacion>(itemTipoSeleccionado);           
         }
         private GrupoDocumentacion getDocumentacionSeleccionado()
         {
-            try
-            {
-                return (GrupoDocumentacion)itemDocumentoSeleccionado.Tag;
-            }
-            catch
-            {
-                return null;
-            }
+            return getListViewItemSeleccionado<GrupoDocumentacion>(itemDocumentoSeleccionado);
         }
       
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             updateTipoList();
-            string searchText = forma.tbBuscar.Text.ToLower();
-            foreach (ListViewItem item in forma.lwTipos.Items)
-            {
-                bool containsSearchTerm = false;
-                foreach (ListViewItem.ListViewSubItem subItem in item.SubItems)
-                {
-                    if (subItem.Text.ToLower().Contains(searchText))
-                    {
-                        containsSearchTerm = true;
-                        break;
-                    }
-                }
-                if (!containsSearchTerm)
-                {
-                    forma.lwTipos.Items.Remove(item);
-                }
-            }
+            txtSearch_TextChanged(forma.tbBuscar.Text, forma.lwTipos);
         }
 
         private void txtDocumentoSearch_TextChanged(object sender, EventArgs e)
         {
             updateDocumentosList();
-            string searchText = forma.tbBuscarDocumentos.Text.ToLower();
-            foreach (ListViewItem item in forma.listViewDocumentos.Items)
-            {
-                bool containsSearchTerm = false;
-                foreach (ListViewItem.ListViewSubItem subItem in item.SubItems)
-                {
-                    if (subItem.Text.ToLower().Contains(searchText))
-                    {
-                        containsSearchTerm = true;
-                        break;
-                    }
-                }
-                if (!containsSearchTerm)
-                {
-                    forma.listViewDocumentos.Items.Remove(item);
-                }
-            }
+            txtSearch_TextChanged(forma.tbBuscarDocumentos.Text, forma.listViewDocumentos);
         }
 
         private void resizeTiposList(object sender, LayoutEventArgs e)
@@ -274,6 +243,28 @@ namespace BRappAdmin.UIControlers
         {
             int totalWidth = forma.lwTipos.Width - 25;          
             forma.columnDocumentoName.Width = RoundNumber((totalWidth * 1));
+        }
+
+        private void obligatorioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            cambiarOpcional(true);
+        }
+
+        private void opcionalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cambiarOpcional(false);
+        }
+
+        private void cambiarOpcional(bool value)
+        {
+            var grupoDocumentoSeleccionado = getDocumentacionSeleccionado();
+            if (grupoDocumentoSeleccionado != null)
+            {
+                grupoDocumentoSeleccionado.IsOpcional= value;
+                grupoDocumentacionServiceAdmin.saveOrUpdate(grupoDocumentoSeleccionado);
+                updateDocumentosList();
+            }           
         }
 
         public static TipoGrupoDocumentacionUIController Instance

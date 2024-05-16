@@ -1,12 +1,13 @@
 ﻿using BRapp.Dto;
 using BRapp.Model;
+using BRapp.Utiles;
 
 namespace BRapp.Services.Interfaces
 {
-    internal interface IDocumentoService
+    public interface IDocumentoService
     {
         DocumentoPDF getDocumentoPDFApliado(Documento documento);
         DocumentoDto getByPapel(PapelDto papel);
-        bool saveOrUpdate(Documento papel);
+        ActionResult saveOrUpdate(Documento papel);
     }
 }

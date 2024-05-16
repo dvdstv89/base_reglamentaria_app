@@ -23,11 +23,11 @@ namespace BRapp.Model
 
         public bool hasDocumento()
         {
-            return PDF != null && !PDF.Name.Equals("");
+            return PDF != null && PDF.hasDataValid();
         }
         public bool hasImagen()
         {
-            return Imagen != null && !Imagen.Name.Equals("");
+            return Imagen != null && Imagen.hasDataValid();
         }
 
         public DocumentoPDF clone() {

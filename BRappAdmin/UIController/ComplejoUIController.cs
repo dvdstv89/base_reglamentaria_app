@@ -1,11 +1,9 @@
-﻿using BRapp.Model.Tiendas;
+﻿using BRapp.Messages;
+using BRapp.Model.Tiendas;
 using BRapp.Services.Interfaces;
 using BRapp.Services.Services;
 using BRapp.UI;
 using BRapp.UIControlers;
-using BRappAdmin.Messages;
-using BRappAdmin.Services.Interfaces;
-using BRappAdmin.Services.Services;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -17,28 +15,22 @@ namespace BRappAdmin.UIControlers
     internal class ComplejoUIController : BaseUIController<ComplejoUI>, IForm
     {
         private static ComplejoUIController instance;
-        private readonly IComplejoServiceAdmin complejoService;
-        private readonly ITiendaServiceAdmin tiendaService;
-        private readonly IDepartamentoServiceAdmin departamentoService;
-
+        private readonly IComplejoService complejoService;
+        private readonly ITiendaService tiendaService;
+        private readonly IDepartamentoService departamentoService;
 
         ListViewItem itemComplejoSeleccionado;
         ListViewItem itemDepartamentoSeleccionado;
-        ListViewItem itemTiendaSeleccionado;
-
-        private readonly IFileService fileLogoService;
-        private readonly IFileService filePdfService;
+        ListViewItem itemTiendaSeleccionado;      
         private List<Complejo> complejos;
         private List<Departamento> departamentos;
         private List<Tienda> tiendas;
 
         private ComplejoUIController() : base(new ComplejoUI())
         {
-            complejoService = ComplejoServiceAdmin.Instance;
-            tiendaService = TiendaServiceAdmin.Instance;
-            departamentoService = DepartamentoServiceAdmin.Instance;
-            fileLogoService = new FileService();
-            filePdfService = new FileService();
+            complejoService = ComplejoService.Instance;
+            tiendaService = TiendasService.Instance;
+            departamentoService = DepartamentoService.Instance;          
     }
 
     public override ComplejoUI ejecutar()
@@ -220,7 +212,7 @@ namespace BRappAdmin.UIControlers
        
         private void modificarComplejo(Complejo complejo)
         {
-            var papelUiController = new NewComplejoUIController(complejo, fileLogoService);
+            var papelUiController = new NewComplejoUIController(complejo);
             DialogResult dialogResult = papelUiController.ejecutar().ShowDialog();
             if (dialogResult == DialogResult.OK)
             {
@@ -242,7 +234,7 @@ namespace BRappAdmin.UIControlers
         }
         private void modificarTienda(Tienda tienda)
         {
-            var papelUiController = new NewTiendasUIController(tienda, fileLogoService, filePdfService, getComplejoSeleccionado());
+            var papelUiController = new NewTiendasUIController(tienda, getComplejoSeleccionado());
             DialogResult dialogResult = papelUiController.ejecutar().ShowDialog();
             if (dialogResult == DialogResult.OK)
             {
@@ -293,36 +285,15 @@ namespace BRappAdmin.UIControlers
        
         private Complejo getComplejoSeleccionado()
         {
-            try
-            {
-                return (Complejo)itemComplejoSeleccionado.Tag;
-            }
-            catch
-            {
-                return null;
-            }
+            return getListViewItemSeleccionado<Complejo>(itemComplejoSeleccionado);            
         }
         private Departamento getDepartamentoSeleccionado()
         {
-            try
-            {
-                return (Departamento)itemDepartamentoSeleccionado.Tag;
-            }
-            catch
-            {
-                return null;
-            }
+            return getListViewItemSeleccionado<Departamento>(itemDepartamentoSeleccionado);            
         }
         private Tienda getTiendaSeleccionado()
         {
-            try
-            {
-                return (Tienda)itemTiendaSeleccionado.Tag;
-            }
-            catch
-            {
-                return null;
-            }
+            return getListViewItemSeleccionado<Tienda>(itemTiendaSeleccionado);
         }
 
         private void resizeListComplejo(object sender, LayoutEventArgs e)
@@ -344,65 +315,17 @@ namespace BRappAdmin.UIControlers
         private void txtSearchComplejo_TextChanged(object sender, EventArgs e)
         {
             updateListComplejos();
-            string searchText = forma.tbBuscarComplejo.Text.ToLower();          
-            foreach (ListViewItem item in forma.lwComplejos.Items)
-            {               
-                bool containsSearchTerm = false;
-                foreach (ListViewItem.ListViewSubItem subItem in item.SubItems)
-                {
-                    if (subItem.Text.ToLower().Contains(searchText))
-                    {
-                        containsSearchTerm = true;
-                        break;
-                    }
-                }             
-                if (!containsSearchTerm)
-                {                 
-                    forma.lwComplejos.Items.Remove(item);
-                }
-            }
+            txtSearch_TextChanged(forma.tbBuscarComplejo.Text, forma.lwComplejos);
         }
         private void txtSearchDepartamento_TextChanged(object sender, EventArgs e)
         {
             updateListDepartamentos();
-            string searchText = forma.tbBuscarDepartamento.Text.ToLower();
-            foreach (ListViewItem item in forma.lwDepartamentos.Items)
-            {
-                bool containsSearchTerm = false;
-                foreach (ListViewItem.ListViewSubItem subItem in item.SubItems)
-                {
-                    if (subItem.Text.ToLower().Contains(searchText))
-                    {
-                        containsSearchTerm = true;
-                        break;
-                    }
-                }
-                if (!containsSearchTerm)
-                {
-                    forma.lwDepartamentos.Items.Remove(item);
-                }
-            }
+            txtSearch_TextChanged(forma.tbBuscarDepartamento.Text, forma.lwDepartamentos);
         }
         private void txtSearchTienda_TextChanged(object sender, EventArgs e)
         {
             updateListTiendas();
-            string searchText = forma.tbBuscarTienda.Text.ToLower();
-            foreach (ListViewItem item in forma.lwTiendas.Items)
-            {
-                bool containsSearchTerm = false;
-                foreach (ListViewItem.ListViewSubItem subItem in item.SubItems)
-                {
-                    if (subItem.Text.ToLower().Contains(searchText))
-                    {
-                        containsSearchTerm = true;
-                        break;
-                    }
-                }
-                if (!containsSearchTerm)
-                {
-                    forma.lwTiendas.Items.Remove(item);
-                }
-            }
+            txtSearch_TextChanged(forma.tbBuscarTienda.Text, forma.lwTiendas);
         }
 
         private void Forma_Resize(object sender, EventArgs e)

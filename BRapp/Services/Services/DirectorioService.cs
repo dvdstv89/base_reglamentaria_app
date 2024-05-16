@@ -1,10 +1,12 @@
-﻿using BRapp.Enums.EnumFiltroBusqueda;
+﻿using BRapp.Enums;
+using BRapp.Enums.EnumFiltroBusqueda;
 using BRapp.Model;
 using BRapp.Repositorios.Interfaces;
 using BRapp.Repositorios.Repos;
 using BRapp.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BRapp.Services.Services
 {
@@ -32,10 +34,60 @@ namespace BRapp.Services.Services
             return (PersonaJuridica)iDirectorioRepository.getById(id);
         }       
 
-        public void saveOrUpdate(Persona persona)
+        public bool saveOrUpdate(Persona persona)
         {
-            iDirectorioRepository.saveOrUpdate(persona);
+            return iDirectorioRepository.saveOrUpdate(persona);
         }
+
+        public List<Persona> getAll()
+        {
+            return iDirectorioRepository.getAllPersonas();
+        }
+
+        public List<PersonaNatural> getAllPersonaNatural()
+        {
+            return iDirectorioRepository.getAllPersonas()
+                .Where(contacto => contacto.TipoPersona == TipoPersona.NATURAL && contacto.IsActivo)
+                .Cast<PersonaNatural>()
+                .ToList();
+        }
+        public List<PersonaNatural> getAllPersonaNaturalInterno()
+        {
+            return iDirectorioRepository.getAllPersonas()
+                  .Where(contacto => contacto.TipoPersona == TipoPersona.NATURAL && contacto.IsActivo && contacto.IsInterno)
+                  .Cast<PersonaNatural>()
+                  .ToList();
+        }
+        public List<PersonaNatural> getAllPersonaNaturalExterno()
+        {
+            return iDirectorioRepository.getAllPersonas()
+                 .Where(contacto => contacto.TipoPersona == TipoPersona.NATURAL && contacto.IsActivo && !contacto.IsInterno)
+                 .Cast<PersonaNatural>()
+                 .ToList();
+        }
+        public List<PersonaJuridica> getAllPersonaJuridica()
+        {
+            return iDirectorioRepository.getAllPersonas()
+                 .Where(contacto => contacto.TipoPersona == TipoPersona.JURIDICA && contacto.IsActivo && contacto.IsInterno)
+                 .Cast<PersonaJuridica>()
+                 .ToList();
+        }
+        public List<PersonaJuridica> getAllPersonaJuridicaInterno()
+        {
+            return iDirectorioRepository.getAllPersonas()
+                 .Where(contacto => contacto.TipoPersona == TipoPersona.JURIDICA && contacto.IsActivo && contacto.IsInterno)
+                 .Cast<PersonaJuridica>()
+                 .ToList();
+        }
+        public List<PersonaJuridica> getAllPersonaJuridicaExterno()
+        {
+            return iDirectorioRepository.getAllPersonas()
+                 .Where(contacto => contacto.TipoPersona == TipoPersona.JURIDICA && contacto.IsActivo && !contacto.IsInterno)
+                 .Cast<PersonaJuridica>()
+                 .ToList();
+        }
+
+
 
         public static DirectorioService Instance
         {

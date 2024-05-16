@@ -9,7 +9,14 @@ namespace BRapp.Services.Interfaces
     {
         PersonaNatural GetPersonaNatural(Guid id);
         PersonaJuridica GetPersonaJuridica(Guid id);      
-        List<Persona> filtrarContactos(TipoContactoBusqueda tipoContactoBusqueda, FiltroPaginaContactos filtroPaginaContactos);      
-        void saveOrUpdate(Persona persona);
+        List<Persona> filtrarContactos(TipoContactoBusqueda tipoContactoBusqueda, FiltroPaginaContactos filtroPaginaContactos);
+        List<Persona> getAll();
+        List<PersonaNatural> getAllPersonaNatural();
+        List<PersonaNatural> getAllPersonaNaturalInterno();
+        List<PersonaNatural> getAllPersonaNaturalExterno();
+        List<PersonaJuridica> getAllPersonaJuridica();
+        List<PersonaJuridica> getAllPersonaJuridicaInterno();
+        List<PersonaJuridica> getAllPersonaJuridicaExterno();
+        bool saveOrUpdate(Persona persona);
     }
 }

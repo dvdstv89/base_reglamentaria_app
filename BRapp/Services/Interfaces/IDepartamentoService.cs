@@ -4,9 +4,10 @@ using BRapp.Model.Tiendas;
 
 namespace BRapp.Services.Interfaces
 {
-    internal interface IDepartamentoService
+    public interface IDepartamentoService
     {
         List<Departamento> getDepartamentosByComplejo(Complejo complejo);
-        Departamento getById(Guid id);
+        Departamento getById(Guid id);  
+        bool saveOrUpdate(Departamento departamento);
     }
 }

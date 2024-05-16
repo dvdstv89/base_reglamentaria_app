@@ -35,29 +35,56 @@ namespace BRapp.UIControlers.Components
 
         protected override void initDataForm()
         {
-            forma.lbResolucion61.Text = resolucion61.ToString();
-            forma.btnResolucion61.IconChar = resolucion61.getIcono();
-            llenarListaDocumentos();
+            if(res61.GetTipoGrupoDocumentacion().Count == 0)
+            {
+                llenarListaGrupoTiendas();
+            }
+            else
+            {
+                llenarListaDocumentos();
+            }           
+        }
+
+        private void llenarListaGrupoTiendas()
+        {
+            forma.panelHeader.Visible = false;
+            forma.panelCard.Visible = false;
+            forma.panelText.Visible = true;          
+            forma.panelText.Dock = DockStyle.Fill;
+            forma.richTextBox1.Rtf = res61.GetDescripcionRft();            
         }
 
         private void llenarListaDocumentos()
         {
-            foreach (TipoGrupoDocumentacion tipo in res61.GetTipoGrupoDocumentacion())
-            {
-                // Agregar label
-                Label encabezadoLabel = new Label();
-                encabezadoLabel.Text = tipo.Name;
-                encabezadoLabel.AutoSize = false;
-                encabezadoLabel.Dock = DockStyle.Top;
-                encabezadoLabel.TextAlign = ContentAlignment.MiddleLeft;
-                encabezadoLabel.BackColor = Color.LightGray;
-                encabezadoLabel.Height = 30;
-                encabezadoLabel.Width = forma.panelDepartamentos.ClientSize.Width;
-                encabezadoLabel.Font = Utiles.Styles.MyFontStyle.MAIN_MENU_FONT_BUTTON_SELECTED;
-                forma.panelDepartamentos.Controls.Add(encabezadoLabel);              
+            forma.panelText.Visible = false;
+            forma.panelHeader.Visible = true;
+            forma.panelCard.Visible = true;
+            forma.panelCard.Dock = DockStyle.Fill;
 
+            forma.lbResolucion61.Text = resolucion61.ToString();
+            forma.btnResolucion61.IconChar = resolucion61.getIcono();
+          
+
+            foreach (TipoGrupoDocumentacion tipo in res61.GetTipoGrupoDocumentacion())
+            {              
+                Label encabezadoLabel = createLabel(tipo);
+                forma.panelDepartamentos.Controls.Add(encabezadoLabel); 
                 ProcesarTipoGrupoDocumentacion(tipo);
             }
+        }
+
+        private Label createLabel(TipoGrupoDocumentacion tipo)
+        {
+            Label encabezadoLabel = new Label();
+            encabezadoLabel.Text = tipo.Name;
+            encabezadoLabel.AutoSize = false;
+            encabezadoLabel.Dock = DockStyle.Top;
+            encabezadoLabel.TextAlign = ContentAlignment.MiddleLeft;
+            encabezadoLabel.BackColor = Color.LightGray;
+            encabezadoLabel.Height = 30;
+            encabezadoLabel.Width = 590;
+            encabezadoLabel.Font = Utiles.Styles.MyFontStyle.MAIN_MENU_FONT_BUTTON_SELECTED;
+            return encabezadoLabel;
         }
 
 

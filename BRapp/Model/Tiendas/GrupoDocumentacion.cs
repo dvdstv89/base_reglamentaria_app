@@ -5,16 +5,14 @@ namespace BRapp.Model.Tiendas
 {
     public class GrupoDocumentacion
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
+        public Guid Id { get; set; }      
         public TipoGrupoDocumentacion TipoGrupoDocumentacion { get; set; }
         public Documento Documento { get; set; }
         public bool IsOpcional { get; set; }
 
-        public GrupoDocumentacion(string Name, TipoGrupoDocumentacion TipoGrupoDocumentacion, Documento Documento, bool IsOpcional)
+        public GrupoDocumentacion(TipoGrupoDocumentacion TipoGrupoDocumentacion, Documento Documento, bool IsOpcional)
         {
-            Id = Guid.NewGuid();
-            this.Name = Name;
+            Id = Guid.NewGuid();           
             this.Documento = Documento;
             this.IsOpcional = IsOpcional;
             this.TipoGrupoDocumentacion = TipoGrupoDocumentacion;
@@ -22,15 +20,14 @@ namespace BRapp.Model.Tiendas
 
         public GrupoDocumentacion(GrupoDocumentacionDto grupoDocumentacionDto, TipoGrupoDocumentacion TipoGrupoDocumentacion, Documento Documento)
         {
-            this.Id = grupoDocumentacionDto.id;
-            this.Name = grupoDocumentacionDto.name;
+            this.Id = grupoDocumentacionDto.id;           
             this.TipoGrupoDocumentacion = TipoGrupoDocumentacion;
             this.IsOpcional = grupoDocumentacionDto.IsOpcional;
             this.Documento = Documento;
         }
         public override string ToString()
         {
-            return IsOpcional ? Name +" (segun proceda)" : Name ;
+            return IsOpcional ? Documento.Name + " (según proceda)" : Documento.Name;
         }
     }
 }

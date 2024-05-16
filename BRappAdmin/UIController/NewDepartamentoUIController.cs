@@ -1,10 +1,9 @@
 ﻿using BRapp.Enums;
 using BRapp.Model.Tiendas;
 using BRapp.Services.Interfaces;
+using BRapp.Services.Services;
 using BRapp.UI;
 using BRapp.UIControlers;
-using BRappAdmin.Services.Interfaces;
-using BRappAdmin.Services.Services;
 using BRappAdmin.UI;
 using System;
 using System.Collections.Generic;
@@ -15,7 +14,7 @@ namespace BRappAdmin.UIControlers
 {
     internal class NewDepartamentoUIController : BaseUIController<NewDepartamentoUI>, IForm
     {        
-        private readonly IDepartamentoServiceAdmin departamentoService;
+        private readonly IDepartamentoService departamentoService;
         private readonly ITipoGrupoDocumentacionService tipoGrupoDocumentacionService;
         private Departamento departamento;
         private Complejo complejo;
@@ -24,8 +23,8 @@ namespace BRappAdmin.UIControlers
         {
             this.complejo= complejo;
             this.departamento = departamento;
-            departamentoService = DepartamentoServiceAdmin.Instance;
-            tipoGrupoDocumentacionService = TipoGrupoDocumentacionServiceAdmin.Instance;
+            departamentoService = DepartamentoService.Instance;
+            tipoGrupoDocumentacionService = TipoGrupoDocumentacionService.Instance;
         }
 
         public override NewDepartamentoUI ejecutar()

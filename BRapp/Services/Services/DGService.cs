@@ -5,6 +5,7 @@ using BRapp.Repositorios.Interfaces.Dto;
 using BRapp.Repositorios.Repos;
 using BRapp.Repositorios.Repos.ReposDto;
 using BRapp.Services.Interfaces;
+using BRapp.Utiles;
 using System;
 
 namespace BRapp.Services.Services
@@ -26,7 +27,7 @@ namespace BRapp.Services.Services
             return dGDtoRepository.getById(papel.idPapel);
         }
 
-        public bool saveOrUpdate(DG papel)
+        public ActionResult saveOrUpdate(DG papel)
         {           
             return dGDtoRepository.saveOrUpdate(papel);
         }

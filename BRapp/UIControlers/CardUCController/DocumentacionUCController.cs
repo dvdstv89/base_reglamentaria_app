@@ -24,7 +24,7 @@ namespace BRapp.UIControlers.CardUCController
         public override void setInfo()
         {
             card.lbNumero.Text = orden.ToString();
-            card.labelName.Text = objeto.Name;          
+            card.labelName.Text = objeto.ToString();          
         }
 
         private void btnDocumento_Click(object sender, EventArgs e)

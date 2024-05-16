@@ -3,7 +3,7 @@ using BRapp.Services.Interfaces;
 using BRapp.Services.Services;
 using BRapp.UI;
 using BRapp.UIControlers;
-using BRappAdmin.Messages;
+using BRapp.Messages;
 using BRappAdmin.Services.Interfaces;
 using BRappAdmin.Services.Services;
 using BRappAdmin.UI;
@@ -24,7 +24,7 @@ namespace BRappAdmin.UIControlers
             appServiceAdmin = AppServiceAdmin.Instance;    
             this.indexAdminUIController = indexAdminUIController;
             fileLogoService = new FileService();
-        }
+        }       
 
         public override AppUI ejecutar()
         {
@@ -76,7 +76,6 @@ namespace BRappAdmin.UIControlers
                 forma.tbPJLogo.Text = fichero.Name;
                 forma.tbPJLogo.Tag = fichero;
             }
-        }
-
+        }        
     }
 }

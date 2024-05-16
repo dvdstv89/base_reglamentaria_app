@@ -36,5 +36,9 @@ namespace BRapp.Services.Services
         {
             return complejoRepository.getById(idComplejo);
         }
+        public bool saveOrUpdate(Complejo complejo)
+        {
+            return complejoRepository.saveOrUpdate(complejo);
+        }
     }
 }

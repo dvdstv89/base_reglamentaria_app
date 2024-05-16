@@ -5,6 +5,7 @@ using BRapp.Repositorios.Interfaces.Dto;
 using BRapp.Repositorios.Repos;
 using BRapp.Repositorios.Repos.ReposDto;
 using BRapp.Services.Interfaces;
+using BRapp.Utiles;
 
 namespace BRapp.Services.Services
 {
@@ -25,7 +26,7 @@ namespace BRapp.Services.Services
             return resolucionDtoRepository.getById(papel.idPapel);
         }
 
-        public bool saveOrUpdate(Resolucion papel)
+        public ActionResult saveOrUpdate(Resolucion papel)
         {           
             return resolucionDtoRepository.saveOrUpdate(papel);
         }

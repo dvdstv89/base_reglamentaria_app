@@ -1,13 +1,10 @@
-﻿using BRapp.Data;
-using BRapp.Enums;
+﻿using BRapp.Enums;
 using BRapp.Model;
 using BRapp.Services.Interfaces;
 using BRapp.Services.Services;
 using BRapp.UI;
 using BRapp.UIControlers;
-using BRappAdmin.Messages;
-using BRappAdmin.Services.Interfaces;
-using BRappAdmin.Services.Services;
+using BRapp.Messages;
 using BRappAdmin.UI;
 using BRappAdmin.UIController;
 using System;
@@ -19,16 +16,14 @@ namespace BRappAdmin.UIControlers
     internal class ContactosUIController : BaseUIController<ContactosUI>, IForm
     {
         private static ContactosUIController instance;
-        private readonly IContactosServiceAdmin contactosService;
-        private readonly IFileService fileLogoService;
+        private readonly IDirectorioService contactosService;
         ListViewItem itemSeleccionado;
         private List<Persona> personas;
         private ListViewColumnSorter columnSorter;
 
         private ContactosUIController() : base(new ContactosUI())
         {
-            contactosService = ContactoServiceAdmin.Instance;
-            fileLogoService = new FileService();
+            contactosService = DirectorioService.Instance;            
             columnSorter = new ListViewColumnSorter();
         }
 
@@ -129,7 +124,7 @@ namespace BRappAdmin.UIControlers
 
         private void modificarPersona(Persona persona, TipoPersona tipoPersona)
         {
-            var personaUiController = new PersonaUIController(persona, tipoPersona, fileLogoService);
+            var personaUiController = new PersonaUIController(persona, tipoPersona);
             DialogResult dialogResult = personaUiController.ejecutar().ShowDialog();
             if(dialogResult == DialogResult.OK)
             {

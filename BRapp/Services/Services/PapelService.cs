@@ -8,6 +8,7 @@ using BRapp.Repositorios.Interfaces.Dto;
 using BRapp.Repositorios.Repos;
 using BRapp.Repositorios.Repos.ReposDto;
 using BRapp.Services.Interfaces;
+using BRapp.Utiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,14 +18,14 @@ namespace BRapp.Services.Services
     public class PapelService : IPapelService
     {
         private static PapelService instance; 
-        private readonly ISistemaService sistemaService;
-        private readonly IDGService dGService;
-        private readonly IResolucionService resolucionService;
-        private readonly IContratoService contratoService;
-        private readonly IDocumentoService documentoService;
-        private readonly IDirectorioService directorioService;
-        private readonly IPapelDtoRepository papelDtoRepository;
-        private readonly IDocumentoPdfRepository documentoPdfRepository;      
+        protected readonly ISistemaService sistemaService;
+        protected readonly IDGService dGService;
+        protected readonly IResolucionService resolucionService;
+        protected readonly IContratoService contratoService;
+        protected readonly IDocumentoService documentoService;
+        protected readonly IDirectorioService directorioService;
+        protected readonly IPapelDtoRepository papelDtoRepository;
+        protected readonly IDocumentoPdfRepository documentoPdfRepository;      
 
         protected List<Papel> papeles;       
         protected PapelService()
@@ -37,12 +38,12 @@ namespace BRapp.Services.Services
             documentoService = DocumentoService.Instance;
             papelDtoRepository = PapelDtoRepository.Instance;
             documentoPdfRepository = DocumentoPdfRepository.Instance;
-            papeles = geAllPapeles();
+            geAllPapeles();
         }
 
         protected List<Papel> geAllPapeles()
         {
-            List<Papel> papeles = new List<Papel>();
+            papeles = new List<Papel>();
             List<PapelDto> papelDtos = papelDtoRepository.getAll();
             foreach (PapelDto papel in papelDtos)
             {               
@@ -153,24 +154,82 @@ namespace BRapp.Services.Services
             }
         }
 
-        public virtual bool saveOrUpdate(Papel papel)
+        protected int getIndexById(Guid id)
         {
-            documentoPdfRepository.saveOrUpdate(papel.DocumentoPDF);          
-            papelDtoRepository.saveOrUpdate(papel);
-
-            switch (papel.getClasificacionDocumento().TipoDocumento)
-            {
-                case TipoDocumento.SISTEMA:return sistemaService.saveOrUpdate((Sistema)papel);                   
-                case TipoDocumento.RESOLUCION: return resolucionService.saveOrUpdate((Resolucion)papel);
-                case TipoDocumento.CONTRATO: return contratoService.saveOrUpdate((Contrato)papel);
-                case TipoDocumento.DG: return dGService.saveOrUpdate((DG)papel);
-                default: return documentoService.saveOrUpdate((Documento)papel);
-            }
+            return papeles.FindIndex(doc => doc.Id == id);
         }
-
         public Papel getById(Guid id)
         {
            return papeles.FirstOrDefault(papel => papel.Id == id);
+        }
+        public List<Papel> getAll()
+        {
+            return geAllPapeles();
+        }
+
+        public List<Documento> getAllByTipo(TipoDocumento tipoDocumento)
+        {
+            List<Documento> papelesFiltrados = new List<Documento>();
+            papeles.ForEach(papel =>
+            {
+                if (papel.getClasificacionDocumento().TipoDocumento == tipoDocumento && papel.IsActivo)
+                    papelesFiltrados.Add((Documento)papel);
+            });
+            return papelesFiltrados;
+        }
+
+        public List<Contrato> getAllContratoDistint(Papel papelActual)
+        {
+            List<Contrato> papelesFiltrados = new List<Contrato>();
+            papeles.ForEach(papel =>
+            {
+                if (papel.getClasificacionDocumento().TipoDocumento == TipoDocumento.CONTRATO && papel.IsActivo && (papelActual == null || !papelActual.Id.Equals(papel.Id)))
+                    papelesFiltrados.Add((Contrato)papel);
+            });
+            return papelesFiltrados;
+        }
+
+        public List<Resolucion> getAllResolucionesDistint(Papel papelActual, TipoClasificacionDocumento tipoClasificacionDocumento)
+        {
+            List<Resolucion> papelesFiltrados = new List<Resolucion>();
+            papeles.ForEach(papel =>
+            {
+                if (papel.TipoClasificacionDocumento == tipoClasificacionDocumento && papel.IsActivo && (papelActual == null || !papelActual.Id.Equals(papel.Id)))
+                    papelesFiltrados.Add((Resolucion)papel);
+            });
+            return papelesFiltrados;
+        }
+
+        public ActionResult saveOrUpdate(Papel papel)
+        {
+            documentoPdfRepository.saveOrUpdate(papel.DocumentoPDF);
+            papelDtoRepository.saveOrUpdate(papel);
+
+            ActionResult actionResult = ActionResult.FAILED;
+
+            switch (papel.getClasificacionDocumento().TipoDocumento)
+            {
+                case TipoDocumento.SISTEMA: actionResult = sistemaService.saveOrUpdate((Sistema)papel); break;
+                case TipoDocumento.RESOLUCION: actionResult = resolucionService.saveOrUpdate((Resolucion)papel); break;
+                case TipoDocumento.CONTRATO: actionResult = contratoService.saveOrUpdate((Contrato)papel); break;
+                case TipoDocumento.DG: actionResult = dGService.saveOrUpdate((DG)papel); break;
+                default: actionResult = documentoService.saveOrUpdate((Documento)papel); break;
+            }
+
+
+            if (actionResult == ActionResult.CREATED)
+            {
+                papeles.Add(papel);
+            }
+            else if (actionResult == ActionResult.UPDATED)
+            {
+                int index = getIndexById(papel.Id);
+                if (index != -1)
+                {
+                    papeles[index] = papel;
+                }
+            }
+            return actionResult;
         }
     }
 }

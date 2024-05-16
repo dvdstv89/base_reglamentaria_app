@@ -1,4 +1,7 @@
-﻿using BRapp.Model;
+﻿using BRapp.Messages;
+using BRapp.Model;
+using BRapp.Model.Tiendas;
+using BRapp.UI;
 using BRapp.Utiles;
 using System;
 using System.Collections.Generic;
@@ -140,5 +143,32 @@ namespace BRapp.UIControlers
                 comboBox.SelectedItem = objetoSeleccionado;
             }
         }
+
+        protected T getListViewItemSeleccionado<T>(ListViewItem itemDocumentoSeleccionado)
+        {
+            object objeto = itemDocumentoSeleccionado !=null ? itemDocumentoSeleccionado.Tag: null;
+            return objeto != null ? (T)objeto : default;
+        }
+
+        protected void txtSearch_TextChanged(string texto, ListView listView)
+        {           
+            string searchText = texto.ToLower();
+            foreach (ListViewItem item in listView.Items)
+            {
+                bool containsSearchTerm = false;
+                foreach (ListViewItem.ListViewSubItem subItem in item.SubItems)
+                {
+                    if (subItem.Text.ToLower().Contains(searchText))
+                    {
+                        containsSearchTerm = true;
+                        break;
+                    }
+                }
+                if (!containsSearchTerm)
+                {
+                    listView.Items.Remove(item);
+                }
+            }
+        }       
     }
 }

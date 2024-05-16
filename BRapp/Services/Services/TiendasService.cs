@@ -6,6 +6,7 @@ using BRapp.Repositorios.Interfaces.Dto;
 using BRapp.Repositorios.Repos;
 using BRapp.Repositorios.Repos.ReposDto;
 using BRapp.Services.Interfaces;
+using BRapp.Utiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace BRapp.Services.Services
     {
         private static TiendasService instance;
         protected readonly ITiendaDtoRepository tiendaDtoRepository;
-        private readonly ITiendaGrupoDocumentacionDtoRepository tiendaGrupoDocumentacion;
+        private readonly ITiendaGrupoDocumentacionDtoRepository tiendaGrupoDocumentacion;     
         private readonly ITipoGrupoDocumentacionService tipoGrupoDocumentacionService;
         protected readonly IDocumentoPdfRepository documentoPdfRepository;
         private readonly IComplejoService complejoService;
@@ -25,7 +26,7 @@ namespace BRapp.Services.Services
         protected TiendasService()
         {
             tiendaDtoRepository = TiendaDtoRepository.Instance;
-            tiendaGrupoDocumentacion = TiendaGrupoDocumentacionDtoRepository.Instance;
+            tiendaGrupoDocumentacion = TiendaGrupoDocumentacionDtoRepository.Instance;          
             documentoPdfRepository = DocumentoPdfRepository.Instance;
             tipoGrupoDocumentacionService = TipoGrupoDocumentacionService.Instance;
             complejoService = ComplejoService.Instance;
@@ -76,6 +77,53 @@ namespace BRapp.Services.Services
             return (tienda.CertificadoComercial != null) 
                 ? documentoPdfRepository.getDocumentoApliado(tienda.CertificadoComercial.Id)
                 : null;
+        }
+
+        public bool saveOrUpdate(Tienda tienda)
+        {
+            documentoPdfRepository.saveOrUpdate(tienda.CertificadoComercial);
+            ActionResult actionResult = tiendaDtoRepository.saveOrUpdate(tienda);
+            if (actionResult == ActionResult.CREATED)
+            {
+                tiendas.Add(tienda);
+            }
+            else if (actionResult == ActionResult.UPDATED)
+            {
+                int index = getIndexById(tienda.Id);
+                if (index != -1)
+                {
+                    tiendas[index] = tienda;
+                }
+            }
+
+
+            List<TiendaGrupoDocumentacionDto> gruposAntiguos = tiendaGrupoDocumentacion.getAllByIdTienda(tienda.Id);
+            List<TipoGrupoDocumentacion> gruposNuevos = tienda.TipoGrupoDocumentacion;
+
+
+            List<TiendaGrupoDocumentacionDto> gruposParaEliminar = gruposAntiguos
+                 .Where(antiguo => !gruposNuevos.Any(nuevo => nuevo.Id == antiguo.idTipoGrupoDocumentacion))
+                 .ToList();
+
+            List<TipoGrupoDocumentacion> gruposParaGuardar = gruposNuevos
+                .Where(nuevo => !gruposAntiguos.Any(antiguo => antiguo.idTipoGrupoDocumentacion == nuevo.Id))
+                .ToList();
+
+            foreach (var grupoEliminar in gruposParaEliminar)
+            {
+                tiendaGrupoDocumentacion.delete(grupoEliminar);
+            }
+
+            foreach (var grupoGuardar in gruposParaGuardar)
+            {
+                var grupoNuevo = new TiendaGrupoDocumentacionDto()
+                {
+                    idTienda = tienda.Id,
+                    idTipoGrupoDocumentacion = grupoGuardar.Id
+                };
+                tiendaGrupoDocumentacion.save(grupoNuevo);
+            }
+            return true;
         }
 
         public static TiendasService Instance

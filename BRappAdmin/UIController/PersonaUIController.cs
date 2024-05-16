@@ -1,6 +1,7 @@
 ﻿using BRapp.Enums;
 using BRapp.Model;
 using BRapp.Services.Interfaces;
+using BRapp.Services.Services;
 using BRapp.UI;
 using BRapp.UIControlers;
 using BRappAdmin.Services.Interfaces;
@@ -13,16 +14,16 @@ namespace BRappAdmin.UIControlers
 {
     internal class PersonaUIController : BaseUIController<PersonaUI>, IForm
     {       
-        private readonly IContactosServiceAdmin contactosService;
+        private readonly IDirectorioService contactosService;
         private readonly IFileService fileLogoService;
         private Persona persona;
         private readonly TipoPersona tipoPersona;       
-        public PersonaUIController(Persona persona, TipoPersona tipoPersona, IFileService fileLogoService) : base(new PersonaUI())
+        public PersonaUIController(Persona persona, TipoPersona tipoPersona) : base(new PersonaUI())
         {
             this.tipoPersona = tipoPersona;
             this.persona = persona;
-            contactosService = ContactoServiceAdmin.Instance;
-            this.fileLogoService = fileLogoService;                      
+            contactosService = DirectorioService.Instance;
+            this.fileLogoService = new FileService();
         }
 
         public override PersonaUI ejecutar()

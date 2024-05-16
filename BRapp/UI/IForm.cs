@@ -7,6 +7,6 @@ namespace BRapp.UI
         void configurarFormularioComoPanel();
         Form getForm();
         bool viewHasScrolls();
-        void hide();
+        void hide();       
     }
 }

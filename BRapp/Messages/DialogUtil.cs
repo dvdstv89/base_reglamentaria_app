@@ -1,13 +1,13 @@
 ﻿using System.Windows.Forms;
 
-namespace BRappAdmin.Messages
+namespace BRapp.Messages
 {
-    internal static class DialogUtil
+    public static class DialogUtil
     {
         public static void EXCEPTION(string message)
         {
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+        }     
 
         public static void INFORMATION(string message)
         {

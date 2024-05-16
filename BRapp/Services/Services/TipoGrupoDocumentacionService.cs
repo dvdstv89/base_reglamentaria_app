@@ -36,5 +36,9 @@ namespace BRapp.Services.Services
         {
             return tipoGrupoDocumentacionRepository.getById(id);
         }
+        public bool saveOrUpdate(TipoGrupoDocumentacion tipoGrupoDocumentacion)
+        {
+            return tipoGrupoDocumentacionRepository.saveOrUpdate(tipoGrupoDocumentacion);
+        }
     }
 }

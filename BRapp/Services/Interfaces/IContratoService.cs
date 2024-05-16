@@ -1,12 +1,13 @@
 ﻿using BRapp.Dto;
 using BRapp.Model;
+using BRapp.Utiles;
 
 namespace BRapp.Services.Interfaces
 {
-    internal interface IContratoService
+    public interface IContratoService
     {
         DocumentoPDF getDocumentoPDFApliado(Contrato contrato);
         ContratoDto getByPapel(PapelDto papel);
-        bool saveOrUpdate(Contrato papel);
+        ActionResult saveOrUpdate(Contrato papel);
     }
 }

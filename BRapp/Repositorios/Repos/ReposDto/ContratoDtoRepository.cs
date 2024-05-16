@@ -5,6 +5,7 @@ using BRapp.Mapper;
 using BRapp.Model;
 using BRapp.Repositorios.Interfaces.Dto;
 using BRapp.UI;
+using BRapp.Utiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,7 +53,7 @@ namespace BRapp.Repositorios.Repos.ReposDto
             return contratoDtos.FindIndex(doc => doc.idPapel == id);
         }
 
-        public bool saveOrUpdate(Contrato papel)
+        public ActionResult saveOrUpdate(Contrato papel)
         {
             ContratoDto contratoDto = (ContratoDto)mapperContrato.Map(papel);          
             Dictionary<string, object> parametros = buildParametros(contratoDto);
@@ -60,13 +61,14 @@ namespace BRapp.Repositorios.Repos.ReposDto
             if (index != -1)
             {
                 contratoDtos[index] = contratoDto;
-                return ExecuteWriteOperation(QUERY_UPDATE, parametros);
+                ExecuteWriteOperation(QUERY_UPDATE, parametros);
+                return ActionResult.UPDATED;
             }
             else
             {
-                bool result = ExecuteWriteOperation(QUERY_INSERT, parametros);
+                ExecuteWriteOperation(QUERY_INSERT, parametros);
                 contratoDtos.Add(contratoDto);
-                return result;
+                return ActionResult.CREATED;
             }
         }
 

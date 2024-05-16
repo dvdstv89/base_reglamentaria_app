@@ -1,12 +1,10 @@
 ﻿using BRapp.Dto;
 using BRapp.Enums;
 using BRapp.Model;
-using BRapp.Model.Tiendas;
 using BRapp.Services.Interfaces;
+using BRapp.Services.Services;
 using BRapp.UI;
 using BRapp.UIControlers;
-using BRappAdmin.Services.Interfaces;
-using BRappAdmin.Services.Services;
 using BRappAdmin.UI;
 using System;
 using System.Windows.Forms;
@@ -15,22 +13,21 @@ namespace BRappAdmin.UIControlers
 {
     internal class PapelUIController : BaseUIController<PapelUI>, IForm
     {       
-        private readonly IDocumentosServiceAdmin documentosService;
+        private readonly IPapelService documentosService;
         private readonly IFileService filePdfLogoService;
         private readonly IFileService filePdfDocumentService;
         private Papel papel;
         private readonly TipoClasificacionDocumento tipoClasificacionDocumento;
-        private readonly IContactosServiceAdmin contactosService;
+        private readonly IDirectorioService contactosService;
         
-        public PapelUIController(Papel papel, TipoClasificacionDocumento tipoClasificacionDocumento,
-            IFileService filePdfLogoService, IFileService filePdfDocumentService) : base(new PapelUI())
+        public PapelUIController(Papel papel, TipoClasificacionDocumento tipoClasificacionDocumento) : base(new PapelUI())
         {            
             this.tipoClasificacionDocumento = tipoClasificacionDocumento;
             this.papel = papel;
-            documentosService = DocumentosServiceAdmin.Instance; ;
-            this.filePdfLogoService = filePdfLogoService;
-            this.filePdfDocumentService = filePdfDocumentService;
-            this.contactosService = ContactoServiceAdmin.Instance;
+            documentosService = PapelService.Instance; ;
+            filePdfLogoService = new FileService();
+            filePdfDocumentService = new FileService();
+            this.contactosService = DirectorioService.Instance;
         }
 
         public override PapelUI ejecutar()
@@ -477,5 +474,7 @@ namespace BRappAdmin.UIControlers
             seleccionarCombo<Resolucion>(forma.cbResolucionDerrogada);
             
         }   
+
+        public Papel GetPapel() { return papel; }
     }
 }

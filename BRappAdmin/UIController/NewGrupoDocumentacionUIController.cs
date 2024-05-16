@@ -3,78 +3,76 @@ using BRapp.Model;
 using BRapp.Model.Tiendas;
 using BRapp.UI;
 using BRapp.UIControlers;
-using BRappAdmin.Services.Interfaces;
-using BRappAdmin.Services.Services;
+using BRapp.Messages;
 using BRappAdmin.UI;
+using FontAwesome.Sharp;
 using System;
 using System.Windows.Forms;
+using BRapp.Services.Interfaces;
+using BRapp.Services.Services;
 
 namespace BRappAdmin.UIControlers
 {
     internal class NewGrupoDocumentacionUIController : BaseUIController<NewGrupoDocumentacionUI>, IForm
     {       
-        private readonly IGrupoDocumentacionServiceAdmin grupoDocumentacionServiceAdmin;
-        private readonly IDocumentosServiceAdmin documentosServiceAdmin;
-        private GrupoDocumentacion grupoDocumentacion;
+        private readonly IGrupoDocumentacionService grupoDocumentacionServiceAdmin;
+        private readonly IPapelService documentosServiceAdmin;       
         private TipoGrupoDocumentacion tipoGrupoDocumentacion;
-        public NewGrupoDocumentacionUIController(GrupoDocumentacion grupoDocumentacion, TipoGrupoDocumentacion tipoGrupoDocumentacion) : base(new NewGrupoDocumentacionUI())
+        public NewGrupoDocumentacionUIController(TipoGrupoDocumentacion tipoGrupoDocumentacion) : base(new NewGrupoDocumentacionUI())
         {
-            this.tipoGrupoDocumentacion= tipoGrupoDocumentacion;
-            this.grupoDocumentacion = grupoDocumentacion;
-            grupoDocumentacionServiceAdmin = GrupoDocumentacionServiceAdmin.Instance;
-            documentosServiceAdmin = DocumentosServiceAdmin.Instance;
+            this.tipoGrupoDocumentacion= tipoGrupoDocumentacion;            
+            grupoDocumentacionServiceAdmin = GrupoDocumentacionService.Instance;
+            documentosServiceAdmin = PapelService.Instance;
         }
 
         public override NewGrupoDocumentacionUI ejecutar()
         {
             forma.btnGuardar.Click += new EventHandler(btnGuardar_Click);
-            forma.btnResolucionDerrogadaPor.Click += new EventHandler(btnResolucionDerrogadaPor_Click);
+            forma.btnBuscarDocumento.Click += new EventHandler(btnBuscarDocumento_Click);
+            forma.btnNuevo.Click += new EventHandler(btnNuevo_Click);
+            forma.btnGuardar.IconChar= IconChar.Save;
             return base.ejecutar();
         }       
 
         protected override void initDataForm()
         {
-            ConfigCombo(forma.cbResolucionDerrogada, documentosServiceAdmin.getAllByTipo(TipoDocumento.DOCUMENTACION_BASICA));
-            forma.tbTipoGrupo.Text = tipoGrupoDocumentacion.ToString();
-            if (grupoDocumentacion != null)
-            {
-                forma.cbResolucionDerrogada.Text = (grupoDocumentacion.Documento != null)? grupoDocumentacion.Documento.ToString():"";
-                forma.tbPJName.Text = grupoDocumentacion.Name;
-                forma.cbOpcional.Checked = grupoDocumentacion.IsOpcional;
-            }          
+            updateList();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
-        {
-            CapturarDatos();
-            grupoDocumentacionServiceAdmin.saveOrUpdate(grupoDocumentacion);
+        {            
+            grupoDocumentacionServiceAdmin.saveOrUpdate(CapturarDatos());
             forma.DialogResult= DialogResult.OK;
             forma.Close();
         }
        
-        private void CapturarDatos()
-        {
-            string name = forma.tbPJName.Text;
-            bool esOpcional = forma.cbOpcional.Checked;
+        private GrupoDocumentacion CapturarDatos()
+        {          
             Documento documento = (Documento)forma.cbResolucionDerrogada.SelectedItem;
-            if (grupoDocumentacion != null)
-            {
-                grupoDocumentacion.Name = name;
-                grupoDocumentacion.IsOpcional = esOpcional;
-                grupoDocumentacion.Documento = documento;
-                grupoDocumentacion.TipoGrupoDocumentacion = tipoGrupoDocumentacion;
-            }
-            else
-            {
-                grupoDocumentacion = new GrupoDocumentacion(name, tipoGrupoDocumentacion, documento, esOpcional);
-            }
+            return new GrupoDocumentacion(tipoGrupoDocumentacion, documento, false);
         }       
 
-        private void btnResolucionDerrogadaPor_Click(object sender, EventArgs e)
+        private void btnBuscarDocumento_Click(object sender, EventArgs e)
         {
             seleccionarCombo<Documento>(forma.cbResolucionDerrogada);
 
         }
-        
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            var papelUiController = new PapelUIController(null, TipoClasificacionDocumento.DOCUMENTACION_BASICA);
+            DialogResult dialogResult = papelUiController.ejecutar().ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                DialogUtil.INFORMATION(Mensajes.PAPEL_SAVED_OK);              
+                updateList();
+                forma.cbResolucionDerrogada.SelectedItem = papelUiController.GetPapel();
+            }
+        }
+
+        private void updateList()
+        {
+            ConfigCombo(forma.cbResolucionDerrogada, documentosServiceAdmin.getAllByTipo(TipoDocumento.DOCUMENTACION_BASICA));
+        }
     }
 }

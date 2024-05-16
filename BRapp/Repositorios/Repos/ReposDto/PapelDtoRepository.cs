@@ -3,6 +3,7 @@ using BRapp.Dto;
 using BRapp.Mapper;
 using BRapp.Model;
 using BRapp.Repositorios.Interfaces.Dto;
+using BRapp.Utiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +48,7 @@ namespace BRapp.Repositorios.Repos.ReposDto
         {
             return papelDtos.ToList();
         }
-        public bool saveOrUpdate(Papel papel)
+        public ActionResult saveOrUpdate(Papel papel)
         {
             PapelDto papelDto = (PapelDto)mapperPapel.Map(papel);
             Dictionary<string, object> parametros = buildParametros(papelDto);
@@ -55,13 +56,14 @@ namespace BRapp.Repositorios.Repos.ReposDto
             if (index != -1)
             {
                 papelDtos[index] = papelDto;
-                return ExecuteWriteOperation(QUERY_UPDATE, parametros);
+                ExecuteWriteOperation(QUERY_UPDATE, parametros);
+                return ActionResult.UPDATED;
             }
             else
             {
-                bool result = ExecuteWriteOperation(QUERY_INSERT, parametros);
+                ExecuteWriteOperation(QUERY_INSERT, parametros);
                 papelDtos.Add(papelDto);
-                return result;
+                return ActionResult.CREATED;
             }
         }
         private Dictionary<string, object> buildParametros(PapelDto papelDto)

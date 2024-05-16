@@ -8,6 +8,7 @@ namespace BRapp.Services.Interfaces
     public interface ITipoGrupoDocumentacionService
     {
         TipoGrupoDocumentacion getById(Guid id);
-        List<TipoGrupoDocumentacion> getAll();       
+        List<TipoGrupoDocumentacion> getAll();      
+        bool saveOrUpdate(TipoGrupoDocumentacion tipoGrupoDocumentacion);
     }
 }

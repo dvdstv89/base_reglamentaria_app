@@ -192,6 +192,5 @@ D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.U
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.UI.Component.VisorDocumentacionUI.resources
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.UI.Component.VisorPDFUI.resources
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.UI.Cards.DocumentacionCard.resources
-D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\bin\Debug\Costura.dll
-D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\bin\Debug\Costura.pdb
-D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\bin\Debug\Costura.xml
+D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.csproj.Fody.CopyLocal.cache
+D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRapp\obj\Debug\BRapp.csproj.Fody.RuntimeCopyLocal.cache

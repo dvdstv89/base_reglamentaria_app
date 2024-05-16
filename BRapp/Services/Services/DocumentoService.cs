@@ -5,6 +5,7 @@ using BRapp.Repositorios.Interfaces.Dto;
 using BRapp.Repositorios.Repos;
 using BRapp.Repositorios.Repos.ReposDto;
 using BRapp.Services.Interfaces;
+using BRapp.Utiles;
 
 namespace BRapp.Services.Services
 {
@@ -30,7 +31,7 @@ namespace BRapp.Services.Services
             return documentoPdfRepository.getDocumentoApliado(documento.DocumentoPDF.Id);
         }
 
-        public bool saveOrUpdate(Documento papel)
+        public ActionResult saveOrUpdate(Documento papel)
         {
             return documentoDtoRepository.saveOrUpdate(papel);
         }

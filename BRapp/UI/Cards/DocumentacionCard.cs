@@ -36,7 +36,7 @@ namespace BRapp.UI.Cards
             this.btnList.IconColor = System.Drawing.Color.Black;
             this.btnList.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnList.IconSize = 36;
-            this.btnList.Location = new System.Drawing.Point(544, 0);
+            this.btnList.Location = new System.Drawing.Point(554, 0);
             this.btnList.Name = "btnList";
             this.btnList.Size = new System.Drawing.Size(36, 33);
             this.btnList.TabIndex = 38;
@@ -51,7 +51,7 @@ namespace BRapp.UI.Cards
             this.panelContainer.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelContainer.Location = new System.Drawing.Point(0, 0);
             this.panelContainer.Name = "panelContainer";
-            this.panelContainer.Size = new System.Drawing.Size(580, 33);
+            this.panelContainer.Size = new System.Drawing.Size(590, 33);
             this.panelContainer.TabIndex = 35;
             this.panelContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -62,7 +62,7 @@ namespace BRapp.UI.Cards
             this.labelName.ForeColor = System.Drawing.Color.Black;
             this.labelName.Location = new System.Drawing.Point(35, 0);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(509, 33);
+            this.labelName.Size = new System.Drawing.Size(519, 33);
             this.labelName.TabIndex = 39;
             this.labelName.Text = "David Estevez Diaz";
             this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -85,7 +85,7 @@ namespace BRapp.UI.Cards
             this.Controls.Add(this.panelContainer);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Name = "DocumentacionCard";
-            this.Size = new System.Drawing.Size(580, 30);
+            this.Size = new System.Drawing.Size(590, 30);
             this.Load += new System.EventHandler(this.DepartamentoCard_Load);
             this.panelContainer.ResumeLayout(false);
             this.ResumeLayout(false);

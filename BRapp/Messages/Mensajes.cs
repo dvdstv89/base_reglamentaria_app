@@ -1,7 +1,7 @@
 ﻿
-namespace BRappAdmin.Messages
+namespace BRapp.Messages
 {
-    internal static class Mensajes
+    public static class Mensajes
     {
         public readonly static string APP_UPDATED_OK = "La información de la App fue actualizada excitosamente";
         public readonly static string CONTACTO_UPDATED_OK = "El contacto fue actualizado excitosamente";

@@ -2,7 +2,7 @@
 
 namespace BRapp.Dto
 {
-    internal class ResolucionDto
+    public class ResolucionDto
     {
         public Guid idPapel { get; set; }
         public Guid idResponsable { get; set; }

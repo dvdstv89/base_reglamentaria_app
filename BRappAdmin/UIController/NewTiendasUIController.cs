@@ -6,8 +6,6 @@ using BRapp.Services.Interfaces;
 using BRapp.Services.Services;
 using BRapp.UI;
 using BRapp.UIControlers;
-using BRappAdmin.Services.Interfaces;
-using BRappAdmin.Services.Services;
 using BRappAdmin.UI;
 using System;
 using System.Collections.Generic;
@@ -17,7 +15,7 @@ namespace BRappAdmin.UIControlers
 {
     internal class NewTiendasUIController : BaseUIController<NewTiendasUI>, IForm
     {     
-        private readonly ITiendaServiceAdmin tiendasService;
+        private readonly ITiendaService tiendasService;
         private readonly IFileService fileLogoService;
         private readonly IFileService filePdfService;
         private readonly ITipoGrupoDocumentacionService tipoGrupoDocumentacionService;
@@ -25,13 +23,13 @@ namespace BRappAdmin.UIControlers
         private Complejo complejo;     
 
 
-        public NewTiendasUIController(Tienda tienda, IFileService fileLogoService, IFileService filePdfService, Complejo complejo) : base(new NewTiendasUI())
+        public NewTiendasUIController(Tienda tienda, Complejo complejo) : base(new NewTiendasUI())
         {
-            this.tienda = tienda;
-            this.fileLogoService = fileLogoService;
-            tiendasService = TiendaServiceAdmin.Instance;
-            tipoGrupoDocumentacionService = TipoGrupoDocumentacionServiceAdmin.Instance;
-            this.filePdfService = filePdfService;
+            this.tienda = tienda;            
+            tiendasService = TiendasService.Instance;
+            tipoGrupoDocumentacionService = TipoGrupoDocumentacionService.Instance;
+            fileLogoService = new FileService();
+            filePdfService = new FileService();
             this.complejo = complejo;
         }
 

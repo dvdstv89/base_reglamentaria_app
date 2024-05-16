@@ -1,4 +1,6 @@
 ﻿using BRapp.Model.Tiendas;
+using BRapp.Services.Interfaces;
+using BRapp.Services.Services;
 using BRapp.UI;
 using BRapp.UIControlers;
 using BRappAdmin.Services.Interfaces;
@@ -11,12 +13,12 @@ namespace BRappAdmin.UIControlers
 {
     internal class NewTipoGrupoDocumentacionUIController : BaseUIController<NewTipoGrupoDocumentacionUI>, IForm
     {       
-        private readonly ITipoGrupoDocumentacionServiceAdmin tipoGrupoDocumentacionServiceAdmin;      
+        private readonly ITipoGrupoDocumentacionService tipoGrupoDocumentacionServiceAdmin;      
         private TipoGrupoDocumentacion tipoGrupoDocumentacion;         
         public NewTipoGrupoDocumentacionUIController(TipoGrupoDocumentacion tipoGrupoDocumentacion) : base(new NewTipoGrupoDocumentacionUI())
         {
             this.tipoGrupoDocumentacion = tipoGrupoDocumentacion;
-            tipoGrupoDocumentacionServiceAdmin = TipoGrupoDocumentacionServiceAdmin.Instance;                        
+            tipoGrupoDocumentacionServiceAdmin = TipoGrupoDocumentacionService.Instance;                        
         }
 
         public override NewTipoGrupoDocumentacionUI ejecutar()

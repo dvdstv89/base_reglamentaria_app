@@ -60,18 +60,18 @@ namespace BRapp.UIControlers.CardUCController
                 card.btnList.ForeColor = Color.Blue;
             }
 
-            if (objeto.CertificadoComercial.hasImagen())
+            if (documentoApliado.hasImagen())
             {
                 using (MemoryStream ms = new MemoryStream(documentoApliado.Imagen.Data))
-                {
+                {                   
                     card.panelImagen.BackgroundImage = Image.FromStream(ms);
                 }
-            }
+            }           
         }
 
         private void btnCertificado_Click(object sender, EventArgs e)
         {
-            if (objeto.CertificadoComercial.hasDocumento())
+            if (documentoApliado.hasDocumento())
             {
                 visorPDFUIController.showDialog();
             }

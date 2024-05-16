@@ -53,6 +53,8 @@
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.nuevoDocumentoStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarDocumentoStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.opcionalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.obligatorioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -304,7 +306,9 @@
             this.menuStrip2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nuevoDocumentoStripMenuItem1,
-            this.modificarDocumentoStripMenuItem2});
+            this.modificarDocumentoStripMenuItem2,
+            this.opcionalToolStripMenuItem,
+            this.obligatorioToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -323,6 +327,18 @@
             this.modificarDocumentoStripMenuItem2.Name = "modificarDocumentoStripMenuItem2";
             this.modificarDocumentoStripMenuItem2.Size = new System.Drawing.Size(70, 30);
             this.modificarDocumentoStripMenuItem2.Text = "Modificar";
+            // 
+            // opcionalToolStripMenuItem
+            // 
+            this.opcionalToolStripMenuItem.Name = "opcionalToolStripMenuItem";
+            this.opcionalToolStripMenuItem.Size = new System.Drawing.Size(67, 30);
+            this.opcionalToolStripMenuItem.Text = "Opcional";
+            // 
+            // obligatorioToolStripMenuItem
+            // 
+            this.obligatorioToolStripMenuItem.Name = "obligatorioToolStripMenuItem";
+            this.obligatorioToolStripMenuItem.Size = new System.Drawing.Size(79, 30);
+            this.obligatorioToolStripMenuItem.Text = "Obligatorio";
             // 
             // TipoGrupoDocumentacionUI
             // 
@@ -385,5 +401,7 @@
         private System.Windows.Forms.MenuStrip menuStrip2;
         public System.Windows.Forms.ToolStripMenuItem nuevoDocumentoStripMenuItem1;
         public System.Windows.Forms.ToolStripMenuItem modificarDocumentoStripMenuItem2;
+        public System.Windows.Forms.ToolStripMenuItem opcionalToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem obligatorioToolStripMenuItem;
     }
 }

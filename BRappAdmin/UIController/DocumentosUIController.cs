@@ -1,30 +1,23 @@
-﻿using BRapp.Data;
-using BRapp.Enums;
+﻿using BRapp.Enums;
 using BRapp.Model;
-using BRapp.Services.Interfaces;
-using BRapp.Services.Services;
 using BRapp.UI;
 using BRapp.UIControlers;
-using BRappAdmin.Messages;
-using BRappAdmin.Services.Interfaces;
-using BRappAdmin.Services.Services;
+using BRapp.Messages;
 using BRappAdmin.UI;
 using BRappAdmin.UIController;
 using System;
 using System.Collections.Generic;
-using System.Windows.Controls;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using ListViewItem = System.Windows.Forms.ListViewItem;
+using BRapp.Services.Interfaces;
+using BRapp.Services.Services;
 
 namespace BRappAdmin.UIControlers
 {
     internal class DocumentosUIController : BaseUIController<DocumentosUI>, IForm
     {
         private static DocumentosUIController instance;
-        private readonly IDocumentosServiceAdmin documentosService;
-        private readonly IFileService filePdfLogoService;
-        private readonly IFileService filePdfDocumentService;
+        private readonly IPapelService documentosService;       
         private ListViewColumnSorter columnSorter;
         ListViewItem itemSeleccionado;
         private List<Papel> papeles;      
@@ -32,9 +25,7 @@ namespace BRappAdmin.UIControlers
 
         private DocumentosUIController() : base(new DocumentosUI())
         {
-            documentosService = DocumentosServiceAdmin.Instance;
-            filePdfLogoService = new FileService();
-            filePdfDocumentService = new FileService();
+            documentosService = PapelService.Instance;          
             columnSorter = new ListViewColumnSorter();
         }
 
@@ -75,7 +66,7 @@ namespace BRappAdmin.UIControlers
         {
             if (sender is ToolStripMenuItem menuItem && menuItemMappings.ContainsKey(menuItem))
             {               
-                modificarPapel(null, menuItemMappings[menuItem]); ;
+                modificarPapel(null, menuItemMappings[menuItem]);
             }
         }
 
@@ -149,7 +140,7 @@ namespace BRappAdmin.UIControlers
 
         private void modificarPapel(Papel papel, TipoClasificacionDocumento tipoClasificacionDocumento)
         {
-            var papelUiController = new PapelUIController(papel, tipoClasificacionDocumento, filePdfLogoService, filePdfDocumentService);
+            var papelUiController = new PapelUIController(papel, tipoClasificacionDocumento);
             DialogResult dialogResult = papelUiController.ejecutar().ShowDialog();
             if (dialogResult == DialogResult.OK)
             {

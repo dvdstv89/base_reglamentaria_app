@@ -14,8 +14,8 @@ namespace BRapp.Repositorios.Repos.ReposDto
         private static GrupoDocumentacionDtoRepository instance; 
 
         private readonly string QUERY_SELECT_ALL = "SELECT * FROM GrupoDocumentacion";
-        private readonly string QUERY_UPDATE = "UPDATE GrupoDocumentacion SET name = @name, id_tipo_grupo_documentacion = @id_tipo_grupo_documentacion, id_papel = @id_papel, is_opcional = @is_opcional WHERE id = @Id";
-        private readonly string QUERY_INSERT = "INSERT INTO GrupoDocumentacion (id, name, id_tipo_grupo_documentacion, id_papel, is_opcional) VALUES ( @Id, @name, @id_tipo_grupo_documentacion, @id_papel, @is_opcional)"; 
+        private readonly string QUERY_UPDATE = "UPDATE GrupoDocumentacion SET id_tipo_grupo_documentacion = @id_tipo_grupo_documentacion, id_papel = @id_papel, is_opcional = @is_opcional WHERE id = @Id";
+        private readonly string QUERY_INSERT = "INSERT INTO GrupoDocumentacion (id, id_tipo_grupo_documentacion, id_papel, is_opcional) VALUES ( @Id, @id_tipo_grupo_documentacion, @id_papel, @is_opcional)"; 
         private List<GrupoDocumentacionDto> grupoDocumentacions;      
         private readonly IMapper mapperGrupoDocumentacion;
 
@@ -79,8 +79,7 @@ namespace BRapp.Repositorios.Repos.ReposDto
         private Dictionary<string, object> buildParametros(GrupoDocumentacionDto grupoDocumentacionDto)
         {
             Dictionary<string, object> parametros = new Dictionary<string, object>
-            {
-                { "@name", grupoDocumentacionDto.name },
+            {              
                 { "@id_tipo_grupo_documentacion", grupoDocumentacionDto.idTipoGrupoDocumentacion },
                 { "@id_papel", grupoDocumentacionDto.idDocumento },
                 { "@is_opcional", grupoDocumentacionDto.IsOpcional },

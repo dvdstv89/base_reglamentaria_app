@@ -3,6 +3,7 @@ using BRapp.Dto;
 using BRapp.Mapper;
 using BRapp.Model;
 using BRapp.Repositorios.Interfaces.Dto;
+using BRapp.Utiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +48,7 @@ namespace BRapp.Repositorios.Repos.ReposDto
             return dgsDto.FindIndex(doc => doc.idPapel == id);
         }
 
-        public bool saveOrUpdate(DG papel)
+        public ActionResult saveOrUpdate(DG papel)
         {
             DGDto dgDto = (DGDto)mapperDG.Map(papel);
             Dictionary<string, object> parametros = buildParametros(dgDto);
@@ -55,13 +56,14 @@ namespace BRapp.Repositorios.Repos.ReposDto
             if (index != -1)
             {
                 dgsDto[index] = dgDto;
-                return ExecuteWriteOperation(QUERY_UPDATE, parametros);
+                ExecuteWriteOperation(QUERY_UPDATE, parametros);
+                return ActionResult.UPDATED;
             }
             else
             {
-                bool result = ExecuteWriteOperation(QUERY_INSERT, parametros);
+                ExecuteWriteOperation(QUERY_INSERT, parametros);
                 dgsDto.Add(dgDto);
-                return result;
+                return ActionResult.CREATED;
             }
         }
 

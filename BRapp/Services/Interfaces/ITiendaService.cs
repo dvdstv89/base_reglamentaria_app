@@ -6,10 +6,11 @@ using BRapp.Model.Tiendas;
 
 namespace BRapp.Services.Interfaces
 {
-    internal interface ITiendaService
+    public interface ITiendaService
     {
         DocumentoPDF getDocumentoPDFApliado(Tienda tienda);
         List<Tienda> getTiendasByComplejo(Complejo complejo);
         Tienda getById(Guid id);
+        bool saveOrUpdate(Tienda tienda);
     }
 }
