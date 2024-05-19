@@ -9,10 +9,9 @@
         public string Mision { get; set; }
         public string Vision { get; set; }
         public string ObjetoSocial { get; set; }
-        public string ValoresCompartidos { get; set; }
-        public Fichero Organigrama { get; set; }
+        public string ValoresCompartidos { get; set; }       
 
-        public App(int ID, string FechaActualizacion, string CopyRight, string Empresa, string Mision, string Vision, string ObjetoSocial, string ValoresCompartidos, Fichero Organigrama) 
+        public App(int ID, string FechaActualizacion, string CopyRight, string Empresa, string Mision, string Vision, string ObjetoSocial, string ValoresCompartidos) 
         {
             this.Id = ID;
             this.Empresa = Empresa;
@@ -21,13 +20,7 @@
             this.Mision = Mision; 
             this.Vision = Vision;
             this.ObjetoSocial = ObjetoSocial;
-            this.ValoresCompartidos= ValoresCompartidos;
-            this.Organigrama= Organigrama;
-        }
-
-        public bool hasImagen()
-        {
-            return Organigrama != null && Organigrama.Data.Length > 0;
-        }
+            this.ValoresCompartidos= ValoresCompartidos;           
+        }      
     }
 }

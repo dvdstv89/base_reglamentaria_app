@@ -13,8 +13,8 @@ namespace BRapp.Repositorios.Repos
         private static TipoGrupoDocumentacionRepository instance; 
 
         private readonly string QUERY_SELECT_ALL = "SELECT * FROM TipoGrupoDocumentacion";
-        private readonly string QUERY_UPDATE = "UPDATE TipoGrupoDocumentacion SET name = @name, descripcion = @descripcion WHERE id = @Id";
-        private readonly string QUERY_INSERT = "INSERT INTO TipoGrupoDocumentacion (id, name, descripcion) VALUES ( @Id, @name, @descripcion)"; 
+        private readonly string QUERY_UPDATE = "UPDATE TipoGrupoDocumentacion SET name = @name, descripcion = @descripcion, tipo_indicacion = @tipo_indicacion WHERE id = @Id";
+        private readonly string QUERY_INSERT = "INSERT INTO TipoGrupoDocumentacion (id, name, descripcion, tipo_indicacion) VALUES ( @Id, @name, @descripcion, @tipo_indicacion)"; 
         private List<TipoGrupoDocumentacion> tipoGrupoDocumentacions;      
         private readonly IMapper mapperTipoGrupoDocumentacion;
 
@@ -79,6 +79,7 @@ namespace BRapp.Repositorios.Repos
             {
                 { "@name", tipoGrupoDocumentacion.Name },
                 { "@descripcion", tipoGrupoDocumentacion.Descripcion },
+                { "@tipo_indicacion", tipoGrupoDocumentacion.TipoIndicacion },
                 { "@Id", tipoGrupoDocumentacion.Id.ToString() }
             };          
             return parametros;

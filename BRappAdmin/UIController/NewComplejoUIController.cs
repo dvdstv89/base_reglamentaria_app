@@ -1,4 +1,5 @@
-﻿using BRapp.Model;
+﻿using BRapp.Enums;
+using BRapp.Model;
 using BRapp.Model.Tiendas;
 using BRapp.Services.Interfaces;
 using BRapp.Services.Services;
@@ -14,12 +15,14 @@ namespace BRappAdmin.UIControlers
     {       
         private readonly IComplejoService complejoService;
         private readonly IFileService fileLogoService;
-        private Complejo complejo;         
-        public NewComplejoUIController(Complejo complejo) : base(new NewComplejoUI())
+        private Complejo complejo;
+        private readonly int posicion;
+        public NewComplejoUIController(Complejo complejo, int posicion) : base(new NewComplejoUI())
         {
             this.complejo = complejo;
             complejoService = ComplejoService.Instance;
             this.fileLogoService = new FileService();
+            this.posicion = posicion;
         }
 
         public override NewComplejoUI ejecutar()
@@ -31,10 +34,12 @@ namespace BRappAdmin.UIControlers
 
         protected override void initDataForm()
         {
+            forma.comboTipoIndicacion.DataSource = Enum.GetValues(typeof(TipoComplejo));
             if (complejo != null)
             {
                 forma.tbPJLogo.Text = complejo.Organigrama.Name;
                 forma.tbPJName.Text = complejo.Name;
+                forma.comboTipoIndicacion.Text = complejo.TipoComplejo.ToString();
             }          
         }
 
@@ -48,16 +53,19 @@ namespace BRappAdmin.UIControlers
        
         private void CapturarDatos()
         {
+            TipoComplejo tipoComplejo;
+            Enum.TryParse(forma.comboTipoIndicacion.Text, out tipoComplejo);
             string name = forma.tbPJName.Text;
             Fichero logo = (Fichero)forma.tbPJLogo.Tag;
             if (complejo != null)
             {
-                complejo.Name = name;              
+                complejo.Name = name;  
+                complejo.TipoComplejo= tipoComplejo;
                 if (logo != null) complejo.Organigrama = logo;
             }
             else
             {
-                complejo = new Complejo(name, logo);
+                complejo = new Complejo(name, logo, tipoComplejo, posicion);
             }
         }       
 

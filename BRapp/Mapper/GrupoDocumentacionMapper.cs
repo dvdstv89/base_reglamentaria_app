@@ -15,7 +15,8 @@ namespace BRapp.Mapper
                 id = grupoDocumentacion.Id,              
                 IsOpcional = grupoDocumentacion.IsOpcional,
                 idDocumento = (grupoDocumentacion.Documento != null) ? grupoDocumentacion.Documento.Id : Guid.Empty,
-                idTipoGrupoDocumentacion = (grupoDocumentacion.TipoGrupoDocumentacion != null) ? grupoDocumentacion.TipoGrupoDocumentacion.Id : Guid.Empty
+                idTipoGrupoDocumentacion = (grupoDocumentacion.TipoGrupoDocumentacion != null) ? grupoDocumentacion.TipoGrupoDocumentacion.Id : Guid.Empty,
+                Orden = grupoDocumentacion.Orden
             };
         }
 
@@ -26,7 +27,8 @@ namespace BRapp.Mapper
                 id = Guid.Parse(reader["id"].ToString()),                         
                 IsOpcional = Convert.ToBoolean(reader["is_opcional"]),
                 idDocumento = Guid.Parse(reader["id_papel"].ToString()),
-                idTipoGrupoDocumentacion = Guid.Parse(reader["id_tipo_grupo_documentacion"].ToString())
+                idTipoGrupoDocumentacion = Guid.Parse(reader["id_tipo_grupo_documentacion"].ToString()),
+                Orden = Convert.ToInt32(reader["orden"].ToString())
             };
         }
     }

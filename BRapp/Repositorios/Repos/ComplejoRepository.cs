@@ -14,9 +14,9 @@ namespace BRapp.Repositorios.Repos
     {
         private static ComplejoRepository instance; 
 
-        private readonly string QUERY_SELECT_ALL = "SELECT * FROM Complejo";
-        private readonly string QUERY_UPDATE = "UPDATE Complejo SET name = @name, organigrama = @organigrama WHERE id = @Id";
-        private readonly string QUERY_INSERT = "INSERT INTO Complejo (id, name, organigrama) VALUES ( @Id, @name, @organigrama)"; 
+        private readonly string QUERY_SELECT_ALL = "SELECT * FROM Complejo order by orden";
+        private readonly string QUERY_UPDATE = "UPDATE Complejo SET name = @name, organigrama = @organigrama, orden = @orden, tipo_complejo = @tipo_complejo WHERE id = @Id";
+        private readonly string QUERY_INSERT = "INSERT INTO Complejo (id, name, organigrama, orden, tipo_complejo) VALUES ( @Id, @name, @organigrama, @orden, @tipo_complejo)"; 
         private List<Complejo> complejos;      
         private readonly IMapper mapperComplejo;
 
@@ -81,6 +81,8 @@ namespace BRapp.Repositorios.Repos
             {
                 { "@name", complejo.Name },
                 { "@organigrama", (complejo.Organigrama != null && complejo.Organigrama.Data.Length > 0) ? ImageManager.GetBase64Image(complejo.Organigrama.Data, 776, 393, 90) : "" },
+                { "@orden", complejo.Orden },
+                { "@tipo_complejo", complejo.TipoComplejo.ToString() },
                 { "@Id", complejo.Id.ToString() }
             };          
             return parametros;

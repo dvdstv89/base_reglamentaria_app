@@ -3,6 +3,7 @@ using BRapp.Enums;
 using BRapp.Enums.EnumsInstances;
 using BRapp.Model;
 using BRapp.Model.Papeles;
+using BRapp.Model.Tiendas;
 using BRapp.Repositorios.Interfaces;
 using BRapp.Repositorios.Interfaces.Dto;
 using BRapp.Repositorios.Repos;
@@ -231,5 +232,38 @@ namespace BRapp.Services.Services
             }
             return actionResult;
         }
+
+        public void Delete(Papel papel)
+        {
+            documentoPdfRepository.Delete(papel.DocumentoPDF);
+            papelDtoRepository.Delete(papel);
+           
+            switch (papel.getClasificacionDocumento().TipoDocumento)
+            {
+                case TipoDocumento.SISTEMA: sistemaService.Delete((Sistema)papel); break;
+                case TipoDocumento.RESOLUCION: resolucionService.Delete((Resolucion)papel); break;
+                case TipoDocumento.CONTRATO: contratoService.Delete((Contrato)papel); break;
+                case TipoDocumento.DG: dGService.Delete((DG)papel); break;
+                default: documentoService.Delete((Documento)papel); break;
+            }
+
+            int index = getIndexById(papel.Id);
+            if (index != -1)
+            {
+                papeles.RemoveAt(index);
+            }
+        }
+
+        public List<Papel> getAllDistintDocumentacion_Basica()
+        {
+
+            List<Papel> papelesFiltrados = new List<Papel>();
+            papeles.ForEach(papel =>
+            {
+                if (papel.TipoClasificacionDocumento != TipoClasificacionDocumento.DOCUMENTACION_BASICA)
+                    papelesFiltrados.Add(papel);
+            });
+            return papelesFiltrados;
+        }      
     }
 }

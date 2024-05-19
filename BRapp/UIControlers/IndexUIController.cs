@@ -36,8 +36,7 @@ namespace BRapp.UIControlers
             forma.menuStrip1.Layout += centrarMenu;
             forma.Layout += centrarFormulario;
             forma.Resize += Forma_Resize;
-            forma.bienvenidaToolStripMenuItem.Click += new EventHandler(bienvenidaToolStripMenuItem_Click);
-            forma.sucursalToolStripMenuItem1.Click += new EventHandler(sucursalToolStripMenuItem1_Click);           
+            forma.bienvenidaToolStripMenuItem.Click += new EventHandler(bienvenidaToolStripMenuItem_Click);                     
             forma.sistemasToolStripMenuItem.Click += new EventHandler(sistemasToolStripMenuItem_Click);
            
             forma.manualesToolStripMenuItem.Click += new EventHandler(manualesToolStripMenuItem_Click);
@@ -118,14 +117,6 @@ namespace BRapp.UIControlers
             forma.panelBusqueda.Visible = false;
             var formulario = BienvenidaUIController.Instance;
             formatearFormulario(forma.bienvenidaToolStripMenuItem, null, formulario, ButtonName.BienvenidaButton);
-            formulario.ejecutar().Show();
-        }
-
-        private void sucursalToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            forma.panelBusqueda.Visible = false;
-            var formulario = SucursalUIController.Instance;
-            formatearFormulario(forma.sucursalToolStripMenuItem1, forma.sucursalToolStripMenuItem, formulario, ButtonName.Sucursal_SucursalButton);
             formulario.ejecutar().Show();
         }      
 

@@ -27,6 +27,7 @@ namespace BRapp.UI.Cards
         private Panel panel6;
         public Panel panelTMHS;
         public Panel panelSGC;
+        public FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         public FontAwesome.Sharp.IconPictureBox iconPrincipal;
 
         public TiendaCard()
@@ -60,12 +61,15 @@ namespace BRapp.UI.Cards
             this.labelName = new System.Windows.Forms.Label();
             this.iconPrincipal = new FontAwesome.Sharp.IconPictureBox();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.panelContratoPadre.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panelImagen.SuspendLayout();
             this.panelTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPrincipal)).BeginInit();
             this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnFechaInicio
@@ -310,8 +314,8 @@ namespace BRapp.UI.Cards
             // panelImagen
             // 
             this.panelImagen.BackColor = System.Drawing.Color.White;
-            this.panelImagen.BackgroundImage = global::BRapp.Properties.Resources.logoCaracol;
             this.panelImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelImagen.Controls.Add(this.iconPictureBox1);
             this.panelImagen.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelImagen.Location = new System.Drawing.Point(0, 48);
             this.panelImagen.Name = "panelImagen";
@@ -366,6 +370,20 @@ namespace BRapp.UI.Cards
             this.panel6.Size = new System.Drawing.Size(281, 91);
             this.panel6.TabIndex = 53;
             // 
+            // iconPictureBox1
+            // 
+            this.iconPictureBox1.BackColor = System.Drawing.Color.White;
+            this.iconPictureBox1.ForeColor = System.Drawing.Color.Orange;
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Image;
+            this.iconPictureBox1.IconColor = System.Drawing.Color.Orange;
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox1.IconSize = 116;
+            this.iconPictureBox1.Location = new System.Drawing.Point(37, 30);
+            this.iconPictureBox1.Name = "iconPictureBox1";
+            this.iconPictureBox1.Size = new System.Drawing.Size(117, 116);
+            this.iconPictureBox1.TabIndex = 1;
+            this.iconPictureBox1.TabStop = false;
+            // 
             // TiendaCard
             // 
             this.BackColor = System.Drawing.Color.White;
@@ -386,9 +404,11 @@ namespace BRapp.UI.Cards
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panelImagen.ResumeLayout(false);
             this.panelTitle.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconPrincipal)).EndInit();
             this.panel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

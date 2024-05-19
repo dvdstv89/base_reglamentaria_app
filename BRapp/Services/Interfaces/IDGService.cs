@@ -9,5 +9,6 @@ namespace BRapp.Services.Interfaces
         DGDto getByPapel(PapelDto papel);
         ActionResult saveOrUpdate(DG papel);
         DocumentoPDF getDocumentoPDFApliado(DG dg);
+        void Delete(DG papel);
     }
 }

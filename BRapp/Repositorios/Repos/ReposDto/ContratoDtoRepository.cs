@@ -14,7 +14,8 @@ namespace BRapp.Repositorios.Repos.ReposDto
 {
     internal class ContratoDtoRepository : BaseRepository, IContratoDtoRepository
     {
-        private static ContratoDtoRepository instance;       
+        private static ContratoDtoRepository instance;
+        private readonly string QUERY_DELETE = "Delete FROM Contrato where id_papel = @documentoId";
         private readonly string QUERY_SELECT_ALL = "SELECT * FROM Contrato";
         private readonly string QUERY_UPDATE = "UPDATE Contrato SET id_contrato_padre = @idContratoPadre, id_cliente = @idCliente , id_responsable = @idResponsable, " +
             " fecha_vencimiento = @fechaVencimiento, numero = @numero , acta = @acta, acuerdo = @acuerdo, tipo_contrato = @tipoContrato WHERE id_papel = @documentoId";
@@ -28,6 +29,19 @@ namespace BRapp.Repositorios.Repos.ReposDto
             mapperContrato = new ContratoMapper();
             contratoDtos = getAll_ContratosDto();
         }
+
+        public void Delete(Contrato papel)
+        {
+            ContratoDto contratoDto = (ContratoDto)mapperContrato.Map(papel);
+            Dictionary<string, object> parametros = buildParametros(contratoDto);
+            int index = getIndexById(contratoDto.idPapel);
+            if (index != -1)
+            {
+                contratoDtos.RemoveAt(index);
+                ExecuteWriteOperation(QUERY_DELETE, parametros);
+            }
+        }
+
 
         private List<ContratoDto> getAll_ContratosDto()
         {

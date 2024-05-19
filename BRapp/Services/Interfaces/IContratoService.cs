@@ -9,5 +9,6 @@ namespace BRapp.Services.Interfaces
         DocumentoPDF getDocumentoPDFApliado(Contrato contrato);
         ContratoDto getByPapel(PapelDto papel);
         ActionResult saveOrUpdate(Contrato papel);
+        void Delete(Contrato papel);
     }
 }

@@ -11,5 +11,6 @@ namespace BRapp.Services.Interfaces
         GrupoDocumentacion getById(Guid id);
         List<GrupoDocumentacion> getAllByTipoGrupoDocumentacion(TipoGrupoDocumentacion tipoGrupoDocumentacion);
         bool saveOrUpdate(GrupoDocumentacion grupoDocumentacion);
+        void Delete(GrupoDocumentacion grupoDocumentacion);       
     }
 }

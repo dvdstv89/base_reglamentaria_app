@@ -8,7 +8,7 @@ namespace BRapp.UI.Cards
         public Panel panelFecha;
         public TextBox lbFecha;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
-        private Panel panel1;
+        public Panel panelResponsable;
         public FontAwesome.Sharp.IconButton btnResponsable;
         public TextBox labelCargoResponsable;
         public Panel panelImagen;
@@ -18,6 +18,7 @@ namespace BRapp.UI.Cards
         public FontAwesome.Sharp.IconButton btnPdf;
         public ToolTip toolTip1;
         private System.ComponentModel.IContainer components;
+        public FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         public FontAwesome.Sharp.IconPictureBox iconPrincipal;
 
         public DocumentoCard()
@@ -32,10 +33,11 @@ namespace BRapp.UI.Cards
             this.panelFecha = new System.Windows.Forms.Panel();
             this.lbFecha = new System.Windows.Forms.TextBox();
             this.iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelResponsable = new System.Windows.Forms.Panel();
             this.btnResponsable = new FontAwesome.Sharp.IconButton();
             this.labelCargoResponsable = new System.Windows.Forms.TextBox();
             this.panelImagen = new System.Windows.Forms.Panel();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelTitle = new System.Windows.Forms.Panel();
             this.labelName = new System.Windows.Forms.Label();
@@ -44,7 +46,9 @@ namespace BRapp.UI.Cards
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panelFecha.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.panelResponsable.SuspendLayout();
+            this.panelImagen.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.panelTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPrincipal)).BeginInit();
             this.SuspendLayout();
@@ -60,7 +64,7 @@ namespace BRapp.UI.Cards
             this.labelDescripcion.Name = "labelDescripcion";
             this.labelDescripcion.ReadOnly = true;
             this.labelDescripcion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.labelDescripcion.Size = new System.Drawing.Size(308, 88);
+            this.labelDescripcion.Size = new System.Drawing.Size(324, 88);
             this.labelDescripcion.TabIndex = 25;
             this.labelDescripcion.Text = "Descripcion";
             // 
@@ -107,16 +111,16 @@ namespace BRapp.UI.Cards
             this.iconPictureBox2.TabStop = false;
             this.toolTip1.SetToolTip(this.iconPictureBox2, "Fecha de redacción");
             // 
-            // panel1
+            // panelResponsable
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.btnResponsable);
-            this.panel1.Controls.Add(this.labelCargoResponsable);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(120, 70);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(363, 25);
-            this.panel1.TabIndex = 23;
+            this.panelResponsable.BackColor = System.Drawing.Color.White;
+            this.panelResponsable.Controls.Add(this.btnResponsable);
+            this.panelResponsable.Controls.Add(this.labelCargoResponsable);
+            this.panelResponsable.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelResponsable.Location = new System.Drawing.Point(120, 70);
+            this.panelResponsable.Name = "panelResponsable";
+            this.panelResponsable.Size = new System.Drawing.Size(363, 25);
+            this.panelResponsable.TabIndex = 23;
             // 
             // btnResponsable
             // 
@@ -144,7 +148,7 @@ namespace BRapp.UI.Cards
             this.labelCargoResponsable.Multiline = true;
             this.labelCargoResponsable.Name = "labelCargoResponsable";
             this.labelCargoResponsable.ReadOnly = true;
-            this.labelCargoResponsable.Size = new System.Drawing.Size(323, 25);
+            this.labelCargoResponsable.Size = new System.Drawing.Size(306, 25);
             this.labelCargoResponsable.TabIndex = 8;
             this.labelCargoResponsable.TabStop = false;
             this.labelCargoResponsable.Text = "Informatico sdf sdf sdfg sdfg sdfg sdfg sdfs";
@@ -152,13 +156,28 @@ namespace BRapp.UI.Cards
             // panelImagen
             // 
             this.panelImagen.BackColor = System.Drawing.Color.White;
-            this.panelImagen.BackgroundImage = global::BRapp.Properties.Resources.PDF;
-            this.panelImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelImagen.Controls.Add(this.iconPictureBox1);
             this.panelImagen.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelImagen.Location = new System.Drawing.Point(0, 70);
             this.panelImagen.Name = "panelImagen";
             this.panelImagen.Size = new System.Drawing.Size(120, 138);
             this.panelImagen.TabIndex = 22;
+            this.panelImagen.Paint += new System.Windows.Forms.PaintEventHandler(this.panelImagen_Paint);
+            // 
+            // iconPictureBox1
+            // 
+            this.iconPictureBox1.BackColor = System.Drawing.Color.White;
+            this.iconPictureBox1.ForeColor = System.Drawing.Color.Orange;
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Image;
+            this.iconPictureBox1.IconColor = System.Drawing.Color.Orange;
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox1.IconSize = 116;
+            this.iconPictureBox1.Location = new System.Drawing.Point(3, 10);
+            this.iconPictureBox1.Name = "iconPictureBox1";
+            this.iconPictureBox1.Size = new System.Drawing.Size(117, 116);
+            this.iconPictureBox1.TabIndex = 0;
+            this.iconPictureBox1.TabStop = false;
+            this.iconPictureBox1.Click += new System.EventHandler(this.iconPictureBox1_Click);
             // 
             // panel2
             // 
@@ -226,7 +245,7 @@ namespace BRapp.UI.Cards
             this.Controls.Add(this.btnPdf);
             this.Controls.Add(this.labelDescripcion);
             this.Controls.Add(this.panelFecha);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelResponsable);
             this.Controls.Add(this.panelImagen);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelTitle);
@@ -236,12 +255,24 @@ namespace BRapp.UI.Cards
             this.panelFecha.ResumeLayout(false);
             this.panelFecha.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelResponsable.ResumeLayout(false);
+            this.panelResponsable.PerformLayout();
+            this.panelImagen.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.panelTitle.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconPrincipal)).EndInit();
             this.ResumeLayout(false);
 
-        }                     
+        }
+
+        private void iconPictureBox1_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void panelImagen_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

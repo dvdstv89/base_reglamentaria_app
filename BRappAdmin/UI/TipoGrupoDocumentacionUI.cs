@@ -15,6 +15,6 @@ namespace BRappAdmin.UI
         public TipoGrupoDocumentacionUI()
         {
             InitializeComponent();
-        }        
+        }       
     }
 }

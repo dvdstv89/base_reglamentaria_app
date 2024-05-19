@@ -10,5 +10,6 @@ namespace BRapp.Repositorios.Interfaces.Dto
         List<GrupoDocumentacionDto> getAll();
         GrupoDocumentacionDto getById(Guid id);
         bool saveOrUpdate(GrupoDocumentacion GrupoDocumentacion);
+        void Delete(GrupoDocumentacion grupoDocumentacion);
     }
 }

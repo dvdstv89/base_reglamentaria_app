@@ -39,9 +39,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbName = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cbSCG = new System.Windows.Forms.CheckBox();
-            this.cbTMHS = new System.Windows.Forms.CheckBox();
             this.cbSANITARIA = new System.Windows.Forms.CheckBox();
+            this.cbTMHS = new System.Windows.Forms.CheckBox();
+            this.cbSCG = new System.Windows.Forms.CheckBox();
             this.cbActiva = new System.Windows.Forms.CheckBox();
             this.comboMoneda = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -172,15 +172,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Certificados";
             // 
-            // cbSCG
+            // cbSANITARIA
             // 
-            this.cbSCG.AutoSize = true;
-            this.cbSCG.Location = new System.Drawing.Point(16, 19);
-            this.cbSCG.Name = "cbSCG";
-            this.cbSCG.Size = new System.Drawing.Size(48, 17);
-            this.cbSCG.TabIndex = 0;
-            this.cbSCG.Text = "SCG";
-            this.cbSCG.UseVisualStyleBackColor = true;
+            this.cbSANITARIA.AutoSize = true;
+            this.cbSANITARIA.Location = new System.Drawing.Point(16, 63);
+            this.cbSANITARIA.Name = "cbSANITARIA";
+            this.cbSANITARIA.Size = new System.Drawing.Size(83, 17);
+            this.cbSANITARIA.TabIndex = 2;
+            this.cbSANITARIA.Text = "SANITARIA";
+            this.cbSANITARIA.UseVisualStyleBackColor = true;
             // 
             // cbTMHS
             // 
@@ -192,15 +192,15 @@
             this.cbTMHS.Text = "TMHS";
             this.cbTMHS.UseVisualStyleBackColor = true;
             // 
-            // cbSANITARIA
+            // cbSCG
             // 
-            this.cbSANITARIA.AutoSize = true;
-            this.cbSANITARIA.Location = new System.Drawing.Point(16, 63);
-            this.cbSANITARIA.Name = "cbSANITARIA";
-            this.cbSANITARIA.Size = new System.Drawing.Size(83, 17);
-            this.cbSANITARIA.TabIndex = 2;
-            this.cbSANITARIA.Text = "SANITARIA";
-            this.cbSANITARIA.UseVisualStyleBackColor = true;
+            this.cbSCG.AutoSize = true;
+            this.cbSCG.Location = new System.Drawing.Point(16, 19);
+            this.cbSCG.Name = "cbSCG";
+            this.cbSCG.Size = new System.Drawing.Size(48, 17);
+            this.cbSCG.TabIndex = 0;
+            this.cbSCG.Text = "SCG";
+            this.cbSCG.UseVisualStyleBackColor = true;
             // 
             // cbActiva
             // 

@@ -1,4 +1,5 @@
-﻿using BRapp.Model.Tiendas;
+﻿using BRapp.Enums;
+using BRapp.Model.Tiendas;
 using Microsoft.Data.Sqlite;
 using System;
 
@@ -12,7 +13,8 @@ namespace BRapp.Mapper
                    (
                        Guid.Parse(reader["id"].ToString()),
                        reader["name"].ToString(),
-                       reader["descripcion"].ToString()
+                       reader["descripcion"].ToString(),
+                       (TipoIndicacion)Enum.Parse(typeof(TipoIndicacion), reader["tipo_indicacion"].ToString())
                    );
         }
 

@@ -37,6 +37,11 @@ namespace BRapp.Services.Services
             return documentoPdfRepository.getDocumentoApliado(dg.DocumentoPDF.Id);
         }
 
+        public void Delete(DG papel)
+        {
+            dGDtoRepository.Delete(papel);
+        }
+
         public static DGService Instance
         {
             get

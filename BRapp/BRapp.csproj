@@ -36,7 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Logo.ico</ApplicationIcon>
+    <ApplicationIcon>BRLogo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Costura, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -289,8 +289,10 @@
     <Compile Include="Dto\DepartamentoGrupoDocumentacionDto.cs" />
     <Compile Include="Dto\TiendaGrupoDocumentacionDto.cs" />
     <Compile Include="Enums\TipoClasificacionDocumento.cs" />
+    <Compile Include="Enums\TipoComplejo.cs" />
     <Compile Include="Enums\TipoMoneda.cs" />
     <Compile Include="Enums\TipoDepartamento.cs" />
+    <Compile Include="Enums\TipoIndicacion.cs" />
     <Compile Include="Enums\TipoTienda.cs" />
     <Compile Include="Mapper\ComplejoMapper.cs" />
     <Compile Include="Mapper\DepartamentoGrupoDocumentacionMapper.cs" />
@@ -480,7 +482,6 @@
     <Compile Include="Services\Services\TiendasService.cs" />
     <Compile Include="Services\Services\SucursalService.cs" />
     <Compile Include="UIControlers\ComplejoUIController.cs" />
-    <Compile Include="UIControlers\SucursalUIController.cs" />
     <Compile Include="UIControlers\DocumentoUIController.cs" />
     <Compile Include="UIControlers\ConsultorUIController.cs" />
     <Compile Include="UI\ConsultorUI.cs">
@@ -494,12 +495,6 @@
     </Compile>
     <Compile Include="UI\DocumentoUI.Designer.cs">
       <DependentUpon>DocumentoUI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\SucursalUI.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\SucursalUI.Designer.cs">
-      <DependentUpon>SucursalUI.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\ComplejoUI.cs">
       <SubType>Form</SubType>
@@ -624,9 +619,6 @@
     <EmbeddedResource Include="UI\SeleccionarObjetoUI.resx">
       <DependentUpon>SeleccionarObjetoUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\SucursalUI.resx">
-      <DependentUpon>SucursalUI.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Data\BR.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -660,6 +652,7 @@
     <None Include="Resources\LOGO-MINTUR.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BRLogo.ico" />
     <Content Include="e_sqlite3.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

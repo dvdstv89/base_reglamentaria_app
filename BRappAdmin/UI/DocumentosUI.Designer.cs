@@ -61,7 +61,6 @@
             this.columnTipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnPDF = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnActivo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.documentaciónBásicaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -98,8 +97,7 @@
             this.procedimientoToolStripMenuItem,
             this.programaToolStripMenuItem,
             this.reglamentoToolStripMenuItem,
-            this.otrosDocumentosToolStripMenuItem,
-            this.documentaciónBásicaToolStripMenuItem});
+            this.otrosDocumentosToolStripMenuItem});
             this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
             this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(54, 30);
             this.nuevoToolStripMenuItem.Text = "Nuevo";
@@ -336,12 +334,6 @@
             this.columnActivo.Text = "Activo";
             this.columnActivo.Width = 72;
             // 
-            // documentaciónBásicaToolStripMenuItem
-            // 
-            this.documentaciónBásicaToolStripMenuItem.Name = "documentaciónBásicaToolStripMenuItem";
-            this.documentaciónBásicaToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.documentaciónBásicaToolStripMenuItem.Text = "Documentación Básica";
-            // 
             // DocumentosUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -400,6 +392,5 @@
         private System.Windows.Forms.Panel panel4;
         public System.Windows.Forms.TextBox tbBuscar;
         private FontAwesome.Sharp.IconButton btnSear;
-        public System.Windows.Forms.ToolStripMenuItem documentaciónBásicaToolStripMenuItem;
     }
 }

@@ -27,7 +27,8 @@ namespace BRapp.Mapper
                 tiendaTipo = tienda.TiendaTipo,
                 tipoMoneda= tienda.TipoMoneda,
                 idComplejo = (tienda.Complejo != null) ? tienda.Complejo.Id : Guid.Empty,
-                idCertificadoComercial = (tienda.CertificadoComercial != null) ? tienda.CertificadoComercial.Id : Guid.Empty                
+                idCertificadoComercial = (tienda.CertificadoComercial != null) ? tienda.CertificadoComercial.Id : Guid.Empty   ,
+                Orden = tienda.Orden
             };
         }
 
@@ -49,7 +50,8 @@ namespace BRapp.Mapper
                 tiendaTipo = (TipoTienda)Enum.Parse(typeof(TipoTienda), reader["tipo_tienda"].ToString()),
                 tipoMoneda = (TipoMoneda)Enum.Parse(typeof(TipoMoneda), reader["tipo_moneda"].ToString()),
                 idComplejo = Guid.Parse(reader["id_complejo"].ToString()),
-                idCertificadoComercial = Guid.Parse(reader["id_certificado_comercial"].ToString()) 
+                idCertificadoComercial = Guid.Parse(reader["id_certificado_comercial"].ToString()) ,
+                Orden = Convert.ToInt32(reader["orden"].ToString())
             };
         }
     }

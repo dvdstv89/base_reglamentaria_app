@@ -9,5 +9,6 @@ namespace BRapp.Repositorios.Interfaces.Dto
     {
         ActionResult saveOrUpdate(DG papel);
         DGDto getById(Guid id);
+        void Delete(DG papel);
     }
 }

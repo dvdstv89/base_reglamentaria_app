@@ -52,8 +52,7 @@ namespace BRappAdmin.UIControlers
             menuItemMappings.Add(forma.programaEmpresarialToolStripMenuItem, TipoClasificacionDocumento.PROGRAMA_EMPRESARIAL);
             menuItemMappings.Add(forma.programaInternoToolStripMenuItem, TipoClasificacionDocumento.PROGRAMA_INTERNO);
             menuItemMappings.Add(forma.reglamentoToolStripMenuItem, TipoClasificacionDocumento.REGLAMENTO);
-            menuItemMappings.Add(forma.otrosDocumentosToolStripMenuItem, TipoClasificacionDocumento.OTRO_DOCUMENTO);
-            menuItemMappings.Add(forma.documentaciónBásicaToolStripMenuItem, TipoClasificacionDocumento.DOCUMENTACION_BASICA);
+            menuItemMappings.Add(forma.otrosDocumentosToolStripMenuItem, TipoClasificacionDocumento.OTRO_DOCUMENTO);           
             foreach (var menuItem in menuItemMappings.Keys)
             {
                 menuItem.Click += ButtonToolStripMenuItem_Click;
@@ -77,7 +76,7 @@ namespace BRappAdmin.UIControlers
 
         private void updateList()
         {
-            papeles = documentosService.getAll();
+            papeles = documentosService.getAllDistintDocumentacion_Basica();
             forma.lwPapeles.Items.Clear();
             foreach (Papel papel in papeles)
             {

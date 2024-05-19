@@ -8,11 +8,7 @@ namespace BRapp.Mapper
     {
         public object Map(SqliteDataReader reader)
         {
-            byte[] imagenData = Convert.FromBase64String(reader["organigrama"].ToString());
-            string logo = "";
-            if (imagenData.Length != 0) logo = "organigrama.jpg";
-            Fichero fichero = new Fichero(logo, imagenData);
-
+          
             return new App
                    (
                        Convert.ToInt32(reader["Id"].ToString()),
@@ -22,8 +18,7 @@ namespace BRapp.Mapper
                        reader["mision"].ToString(),
                        reader["vision"].ToString(),
                        reader["objeto_social"].ToString(),
-                       reader["valores_compartidos"].ToString(),
-                       fichero
+                       reader["valores_compartidos"].ToString()                      
                    );
         }
 

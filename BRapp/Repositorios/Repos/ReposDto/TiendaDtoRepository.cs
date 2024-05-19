@@ -14,14 +14,14 @@ namespace BRapp.Repositorios.Repos.ReposDto
     {
         private static TiendaDtoRepository instance; 
 
-        private readonly string QUERY_SELECT_ALL = "SELECT * FROM Tienda";
+        private readonly string QUERY_SELECT_ALL = "SELECT * FROM Tienda order by orden";
         private readonly string QUERY_UPDATE = @"UPDATE Tienda SET  name = @name, ubicacion = @ubicacion, telefono = @telefono, cantidad_trabajadores = @cantidad_trabajadores, 
                                                 cantidad_cajas_registradoras = @cantidad_cajas_registradoras, numero_registro_comercial = @numero_registro_comercial, certificado_scg = @certificado_scg, certificado_tmhs = @certificado_tmhs,
                                                 certificado_sanitaria = @certificado_sanitaria, is_activo = @is_activo, tipo_tienda = @tipo_tienda, tipo_moneda = @tipo_moneda,
-                                                id_complejo = @id_complejo, id_certificado_comercial = @id_certificado_comercial WHERE id = @Id";
+                                                id_complejo = @id_complejo, id_certificado_comercial = @id_certificado_comercial, orden = @orden WHERE id = @Id";
         private readonly string QUERY_INSERT = @"INSERT INTO Tienda 
-                                                (id,   name, ubicacion,  telefono,  cantidad_trabajadores,  cantidad_cajas_registradoras,  numero_registro_comercial, certificado_scg, certificado_tmhs, certificado_sanitaria, is_activo, tipo_tienda, tipo_moneda, id_complejo, id_certificado_comercial) 
-                                         VALUES (@Id, @name, @ubicacion, @telefono, @cantidad_trabajadores, @cantidad_cajas_registradoras, @numero_registro_comercial, @certificado_scg, @certificado_tmhs, @certificado_sanitaria, @is_activo, @tipo_tienda, @tipo_moneda, @id_complejo, @id_certificado_comercial)"; 
+                                                (id,   name, ubicacion,  telefono,  cantidad_trabajadores,  cantidad_cajas_registradoras,  numero_registro_comercial, certificado_scg, certificado_tmhs, certificado_sanitaria, is_activo, tipo_tienda, tipo_moneda, id_complejo, id_certificado_comercial, orden) 
+                                         VALUES (@Id, @name, @ubicacion, @telefono, @cantidad_trabajadores, @cantidad_cajas_registradoras, @numero_registro_comercial, @certificado_scg, @certificado_tmhs, @certificado_sanitaria, @is_activo, @tipo_tienda, @tipo_moneda, @id_complejo, @id_certificado_comercial, @orden)"; 
         private List<TiendaDto> tiendaDtos;      
         private readonly IMapper mapperTienda;
 
@@ -99,7 +99,8 @@ namespace BRapp.Repositorios.Repos.ReposDto
                 { "@tipo_tienda", tiendaDto.tiendaTipo },
                 { "@tipo_moneda", tiendaDto.tipoMoneda },
                 { "@id_complejo", tiendaDto.idComplejo },
-                { "@id_certificado_comercial", tiendaDto.idCertificadoComercial },              
+                { "@id_certificado_comercial", tiendaDto.idCertificadoComercial },
+                { "@orden", tiendaDto.Orden },
                 { "@Id", tiendaDto.id.ToString() }
             };          
             return parametros;

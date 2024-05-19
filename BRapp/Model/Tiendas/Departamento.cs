@@ -14,6 +14,7 @@ namespace BRapp.Model.Tiendas
         public string Descripcion { get; set; }
         public TipoDepartamento DepartamentoTipo { get; set; }
         public List<TipoGrupoDocumentacion> TipoGrupoDocumentacion { get; set; }
+        public int Orden { get; set; }
 
         public IconChar getIcono()
         {
@@ -30,7 +31,7 @@ namespace BRapp.Model.Tiendas
             }
         }
 
-        public Departamento(string Name, Complejo Complejo, TipoDepartamento DepartamentoTipo, string Descripcion, List<TipoGrupoDocumentacion> TipoGrupoDocumentacion)
+        public Departamento(string Name, Complejo Complejo, TipoDepartamento DepartamentoTipo, string Descripcion, List<TipoGrupoDocumentacion> TipoGrupoDocumentacion, int Orden)
         {
             Id = Guid.NewGuid();          
             this.Name = Name;
@@ -38,6 +39,7 @@ namespace BRapp.Model.Tiendas
             this.DepartamentoTipo = DepartamentoTipo;
             this.TipoGrupoDocumentacion = TipoGrupoDocumentacion;         
             this.Descripcion = Descripcion;
+            this.Orden = Orden;
         }
 
         public Departamento(DepartamentoDto departamento, Complejo Complejo, List<TipoGrupoDocumentacion> TipoGrupoDocumentacion)
@@ -48,6 +50,7 @@ namespace BRapp.Model.Tiendas
             this.Complejo = Complejo;           
             this.TipoGrupoDocumentacion = TipoGrupoDocumentacion;
             this.Descripcion = departamento.descripcion;
+            this.Orden = departamento.Orden;
         }
 
         public override string ToString()

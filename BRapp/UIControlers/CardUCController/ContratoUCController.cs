@@ -46,12 +46,16 @@ namespace BRapp.UIControlers.CardUCController
             card.tbFechaInicio.Text = FechaUtil.getShortText(objeto.FechaFirma);
             card.tbFechaFin.Text = FechaUtil.getShortText(objeto.FechaFirma);
             int diasRestantes = (int)objeto.getDiasRestantes();
-            card.tbDiasRestantes.Text = (diasRestantes > -999) ? diasRestantes.ToString() : "???";
+            card.tbDiasRestantes.Text = (diasRestantes > -999) ? diasRestantes.ToString() : "???";          
             if (documentoApliado.hasImagen())
             {
+                card.iconPictureBox1.Visible = false;
                 using (MemoryStream ms = new MemoryStream(documentoApliado.Imagen.Data))
                 {
-                    card.panelImagen.BackgroundImage = Image.FromStream(ms);
+                    using (Image originalImage = Image.FromStream(ms))
+                    {
+                        ResizeImage(card.panelImagen, originalImage);
+                    }
                 }
             }
             card.btnPdf.Visible = visorDocumentosUIController.hasPdf();

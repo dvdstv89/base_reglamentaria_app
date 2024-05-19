@@ -33,12 +33,14 @@
             this.tbPJName = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tbDescripcion = new RichTextBoxEx.RichTextBoxEx();
+            this.comboTipoIndicacion = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(488, 171);
+            this.btnGuardar.Location = new System.Drawing.Point(488, 198);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 29);
             this.btnGuardar.TabIndex = 15;
@@ -64,7 +66,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tbDescripcion);
-            this.groupBox1.Location = new System.Drawing.Point(12, 32);
+            this.groupBox1.Location = new System.Drawing.Point(12, 59);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(548, 133);
             this.groupBox1.TabIndex = 16;
@@ -91,12 +93,32 @@
             this.tbDescripcion.Size = new System.Drawing.Size(536, 104);
             this.tbDescripcion.TabIndex = 15;
             // 
+            // comboTipoIndicacion
+            // 
+            this.comboTipoIndicacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboTipoIndicacion.FormattingEnabled = true;
+            this.comboTipoIndicacion.Location = new System.Drawing.Point(92, 32);
+            this.comboTipoIndicacion.Name = "comboTipoIndicacion";
+            this.comboTipoIndicacion.Size = new System.Drawing.Size(468, 21);
+            this.comboTipoIndicacion.TabIndex = 65;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(8, 35);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 13);
+            this.label3.TabIndex = 64;
+            this.label3.Text = "Tipo indicación";
+            // 
             // NewTipoGrupoDocumentacionUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(575, 211);
+            this.ClientSize = new System.Drawing.Size(575, 238);
+            this.Controls.Add(this.comboTipoIndicacion);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label1);
@@ -118,5 +140,7 @@
         public System.Windows.Forms.TextBox tbPJName;
         private System.Windows.Forms.GroupBox groupBox1;
         public RichTextBoxEx.RichTextBoxEx tbDescripcion;
+        public System.Windows.Forms.ComboBox comboTipoIndicacion;
+        private System.Windows.Forms.Label label3;
     }
 }

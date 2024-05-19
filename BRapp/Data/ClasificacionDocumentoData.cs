@@ -26,7 +26,7 @@ namespace BRapp.Data
             clasificacionesDocumentos.Add(TipoClasificacionDocumento.REGLAMENTO, new ClasificacionDocumento(TipoDocumento.REGLAMENTO, TipoDocumentoMenu.PRE_REGLAMENTOS));
             clasificacionesDocumentos.Add(TipoClasificacionDocumento.OTRO_DOCUMENTO, new ClasificacionDocumento(TipoDocumento.OTRO_DOCUMENTO, TipoDocumentoMenu.DOC_OTROS_DOCUMENTOS));
             clasificacionesDocumentos.Add(TipoClasificacionDocumento.DG, new ClasificacionDocumento(TipoDocumento.DG, TipoDocumentoMenu.PRE_DG));
-            clasificacionesDocumentos.Add(TipoClasificacionDocumento.DOCUMENTACION_BASICA, new ClasificacionDocumento(TipoDocumento.DOCUMENTACION_BASICA, TipoDocumentoMenu.DOC_OTROS_DOCUMENTOS));
+            clasificacionesDocumentos.Add(TipoClasificacionDocumento.DOCUMENTACION_BASICA, new ClasificacionDocumento(TipoDocumento.DOCUMENTACION_BASICA, TipoDocumentoMenu.NO_MENU));
         }
 
         public static ClasificacionDocumento getClasificacionDocumento(TipoClasificacionDocumento tipoClasificacion)

@@ -18,7 +18,8 @@ namespace BRapp.Mapper
                 name = departamento.Name,
                 idComplejo = (departamento.Complejo != null) ? departamento.Complejo.Id : Guid.Empty,                
                 tipoDepartamento = departamento.DepartamentoTipo,
-                descripcion = departamento.Descripcion
+                descripcion = departamento.Descripcion,
+                Orden = departamento.Orden
             };
         }
 
@@ -30,7 +31,8 @@ namespace BRapp.Mapper
                 name = reader["name"].ToString(),
                 descripcion = reader["descripcion"].ToString(),
                 idComplejo = Guid.Parse(reader["id_complejo"].ToString()),
-                tipoDepartamento = (TipoDepartamento)Enum.Parse(typeof(TipoDepartamento), reader["tipo_departamento"].ToString())               
+                tipoDepartamento = (TipoDepartamento)Enum.Parse(typeof(TipoDepartamento), reader["tipo_departamento"].ToString()),
+                Orden =  Convert.ToInt32(reader["orden"].ToString())
             };
         }
     }

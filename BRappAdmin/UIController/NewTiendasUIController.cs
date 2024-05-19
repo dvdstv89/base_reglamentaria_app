@@ -20,10 +20,11 @@ namespace BRappAdmin.UIControlers
         private readonly IFileService filePdfService;
         private readonly ITipoGrupoDocumentacionService tipoGrupoDocumentacionService;
         private Tienda tienda;
-        private Complejo complejo;     
+        private Complejo complejo;
+        private readonly int posicion;
 
 
-        public NewTiendasUIController(Tienda tienda, Complejo complejo) : base(new NewTiendasUI())
+        public NewTiendasUIController(Tienda tienda, Complejo complejo, int posicion) : base(new NewTiendasUI())
         {
             this.tienda = tienda;            
             tiendasService = TiendasService.Instance;
@@ -31,6 +32,7 @@ namespace BRappAdmin.UIControlers
             fileLogoService = new FileService();
             filePdfService = new FileService();
             this.complejo = complejo;
+            this.posicion = posicion;
         }
 
         public override NewTiendasUI ejecutar()
@@ -131,6 +133,7 @@ namespace BRappAdmin.UIControlers
                 tienda.IsActivo = tiendaDto.IsActivo;
                 tienda.CertificadoComercial = certificadoComercial;
                 tienda.TipoGrupoDocumentacion = tipoGrupoDocumentacions;
+                tienda.Orden = tiendaDto.Orden;
             }
             else
             {
@@ -176,7 +179,8 @@ namespace BRappAdmin.UIControlers
                 CertificadoSCG = forma.cbSCG.Checked,
                 CertificadoTMHS = forma.cbTMHS.Checked,
                 CertificadoSANITARIA = forma.cbSANITARIA.Checked,
-                IsActivo = forma.cbActiva.Checked
+                IsActivo = forma.cbActiva.Checked,
+                Orden = posicion
             };
         }
 

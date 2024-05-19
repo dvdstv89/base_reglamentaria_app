@@ -55,6 +55,9 @@
             this.modificarDocumentoStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.opcionalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.obligatorioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eliminarDocumentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.subirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bajarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -297,7 +300,7 @@
             this.panel9.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel9.Location = new System.Drawing.Point(0, 0);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(423, 34);
+            this.panel9.Size = new System.Drawing.Size(728, 34);
             this.panel9.TabIndex = 0;
             // 
             // menuStrip2
@@ -308,11 +311,14 @@
             this.nuevoDocumentoStripMenuItem1,
             this.modificarDocumentoStripMenuItem2,
             this.opcionalToolStripMenuItem,
-            this.obligatorioToolStripMenuItem});
+            this.obligatorioToolStripMenuItem,
+            this.subirToolStripMenuItem,
+            this.bajarToolStripMenuItem,
+            this.eliminarDocumentoToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.menuStrip2.Size = new System.Drawing.Size(423, 34);
+            this.menuStrip2.Size = new System.Drawing.Size(728, 34);
             this.menuStrip2.TabIndex = 3;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -339,6 +345,24 @@
             this.obligatorioToolStripMenuItem.Name = "obligatorioToolStripMenuItem";
             this.obligatorioToolStripMenuItem.Size = new System.Drawing.Size(79, 30);
             this.obligatorioToolStripMenuItem.Text = "Obligatorio";
+            // 
+            // eliminarDocumentoToolStripMenuItem
+            // 
+            this.eliminarDocumentoToolStripMenuItem.Name = "eliminarDocumentoToolStripMenuItem";
+            this.eliminarDocumentoToolStripMenuItem.Size = new System.Drawing.Size(62, 30);
+            this.eliminarDocumentoToolStripMenuItem.Text = "Eliminar";
+            // 
+            // subirToolStripMenuItem
+            // 
+            this.subirToolStripMenuItem.Name = "subirToolStripMenuItem";
+            this.subirToolStripMenuItem.Size = new System.Drawing.Size(46, 30);
+            this.subirToolStripMenuItem.Text = "Subir";
+            // 
+            // bajarToolStripMenuItem
+            // 
+            this.bajarToolStripMenuItem.Name = "bajarToolStripMenuItem";
+            this.bajarToolStripMenuItem.Size = new System.Drawing.Size(45, 30);
+            this.bajarToolStripMenuItem.Text = "Bajar";
             // 
             // TipoGrupoDocumentacionUI
             // 
@@ -403,5 +427,8 @@
         public System.Windows.Forms.ToolStripMenuItem modificarDocumentoStripMenuItem2;
         public System.Windows.Forms.ToolStripMenuItem opcionalToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem obligatorioToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem eliminarDocumentoToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem subirToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem bajarToolStripMenuItem;
     }
 }

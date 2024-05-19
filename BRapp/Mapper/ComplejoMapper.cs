@@ -1,4 +1,5 @@
-﻿using BRapp.Model;
+﻿using BRapp.Enums;
+using BRapp.Model;
 using BRapp.Model.Tiendas;
 using Microsoft.Data.Sqlite;
 using System;
@@ -17,8 +18,10 @@ namespace BRapp.Mapper
             return new Complejo
                    (
                        Guid.Parse(reader["id"].ToString()),
-                       reader["name"].ToString(),                      
-                       fichero
+                       reader["name"].ToString(),
+                       fichero,
+                       (TipoComplejo)Enum.Parse(typeof(TipoComplejo), reader["tipo_complejo"].ToString()),
+                       Convert.ToInt32(reader["orden"].ToString())
                    );
         }
 

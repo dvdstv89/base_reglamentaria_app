@@ -9,5 +9,6 @@ namespace BRapp.Services.Interfaces
         DocumentoPDF getDocumentoPDFApliado(Resolucion resolucion);
         ResolucionDto getByPapel(PapelDto papel);
         ActionResult saveOrUpdate(Resolucion papel);
+        void Delete(Resolucion papel);
     }
 }

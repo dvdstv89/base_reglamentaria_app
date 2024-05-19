@@ -1,7 +1,7 @@
 ﻿<Weavers xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FodyWeavers.xsd">
 	<Costura>
 		<IncludeAssemblies>
-			<!-- Lista de ensamblados que deseas incluir
+			<!-- Lista de ensamblados que deseas incluir-->
 			FontAwesome.Sharp
 			Microsoft.Data.Sqlite
 			SQLitePCLRaw.batteries_v2
@@ -29,7 +29,7 @@
 			Patagames.Pdf.Wpf
 			Microsoft.Web.WebView2.Core
 			Microsoft.Web.WebView2.WinForms
-			Microsoft.Web.WebView2.Wpf -->
+			Microsoft.Web.WebView2.Wpf
 		</IncludeAssemblies>
 		<Unmanaged32Assemblies>
 			<!-- Lista de ensamblados no administrados (32 bits) -->

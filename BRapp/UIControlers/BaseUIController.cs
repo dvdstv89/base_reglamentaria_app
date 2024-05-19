@@ -169,6 +169,6 @@ namespace BRapp.UIControlers
                     listView.Items.Remove(item);
                 }
             }
-        }       
+        }
     }
 }

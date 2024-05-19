@@ -4,6 +4,8 @@ using BRapp.Services.Services;
 using BRapp.UI.Cards;
 using BRapp.UIControlers.Components;
 using System;
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace BRapp.UIControlers.CardUCController
@@ -36,6 +38,17 @@ namespace BRapp.UIControlers.CardUCController
             card.labelCargoResponsable.Text = objeto.Responsable.Cargo;
             card.labelDescripcion.Rtf = objeto.Descripcion;
             card.btnPdf.Visible = visorDocumentosUIController.hasPdf();
+            if (documentoApliado.hasImagen())
+            {
+                card.iconPictureBox1.Visible = false;
+                using (MemoryStream ms = new MemoryStream(documentoApliado.Imagen.Data))
+                {
+                    using (Image originalImage = Image.FromStream(ms))
+                    {
+                        ResizeImage(card.panelImagen, originalImage);
+                    }
+                }
+            }
         }        
 
         private void btnPdf_Click(object sender, EventArgs e)

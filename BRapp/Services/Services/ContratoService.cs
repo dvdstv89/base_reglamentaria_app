@@ -36,6 +36,11 @@ namespace BRapp.Services.Services
             return contratoDtoRepository.saveOrUpdate(papel);
         }
 
+        public void Delete(Contrato papel)
+        {
+            contratoDtoRepository.Delete(papel);
+        }
+
         public static ContratoService Instance
         {
             get

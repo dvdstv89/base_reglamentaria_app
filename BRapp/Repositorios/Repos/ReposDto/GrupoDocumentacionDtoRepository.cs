@@ -13,9 +13,10 @@ namespace BRapp.Repositorios.Repos.ReposDto
     {
         private static GrupoDocumentacionDtoRepository instance; 
 
-        private readonly string QUERY_SELECT_ALL = "SELECT * FROM GrupoDocumentacion";
-        private readonly string QUERY_UPDATE = "UPDATE GrupoDocumentacion SET id_tipo_grupo_documentacion = @id_tipo_grupo_documentacion, id_papel = @id_papel, is_opcional = @is_opcional WHERE id = @Id";
-        private readonly string QUERY_INSERT = "INSERT INTO GrupoDocumentacion (id, id_tipo_grupo_documentacion, id_papel, is_opcional) VALUES ( @Id, @id_tipo_grupo_documentacion, @id_papel, @is_opcional)"; 
+        private readonly string QUERY_SELECT_ALL = "SELECT * FROM GrupoDocumentacion order by orden";
+        private readonly string QUERY_DELETE = "Delete FROM GrupoDocumentacion where id = @Id";
+        private readonly string QUERY_UPDATE = "UPDATE GrupoDocumentacion SET id_tipo_grupo_documentacion = @id_tipo_grupo_documentacion, id_papel = @id_papel, is_opcional = @is_opcional, orden = @orden WHERE id = @Id";
+        private readonly string QUERY_INSERT = "INSERT INTO GrupoDocumentacion (id, id_tipo_grupo_documentacion, id_papel, is_opcional,orden) VALUES ( @Id, @id_tipo_grupo_documentacion, @id_papel, @is_opcional, @orden)"; 
         private List<GrupoDocumentacionDto> grupoDocumentacions;      
         private readonly IMapper mapperGrupoDocumentacion;
 
@@ -83,9 +84,22 @@ namespace BRapp.Repositorios.Repos.ReposDto
                 { "@id_tipo_grupo_documentacion", grupoDocumentacionDto.idTipoGrupoDocumentacion },
                 { "@id_papel", grupoDocumentacionDto.idDocumento },
                 { "@is_opcional", grupoDocumentacionDto.IsOpcional },
+                { "@orden", grupoDocumentacionDto.Orden },
                 { "@Id", grupoDocumentacionDto.id.ToString() }
             };          
             return parametros;
+        }
+
+        public void Delete(GrupoDocumentacion grupoDocumentacion)
+        {
+            GrupoDocumentacionDto grupoDocumentacionDto = (GrupoDocumentacionDto)mapperGrupoDocumentacion.Map(grupoDocumentacion);
+            Dictionary<string, object> parametros = buildParametros(grupoDocumentacionDto);
+            int index = getIndexById(grupoDocumentacion.Id);
+            if (index != -1)
+            {
+                grupoDocumentacions.RemoveAt(index);
+                ExecuteWriteOperation(QUERY_DELETE, parametros);
+            }          
         }
 
         public static GrupoDocumentacionDtoRepository Instance

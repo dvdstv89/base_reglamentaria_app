@@ -13,6 +13,7 @@
         DOC_PROGRAMAS,
         DOC_RESOLUCIONES_INDICOS,
         DOC_OTROS_DOCUMENTOS,
-        DOC_CONTRATO
+        DOC_CONTRATO,
+        NO_MENU
     }
 }

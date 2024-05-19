@@ -36,6 +36,11 @@ namespace BRapp.Services.Services
             return documentoPdfRepository.getDocumentoApliado(resolucion.DocumentoPDF.Id);
         }
 
+        public void Delete(Resolucion papel)
+        {
+           resolucionDtoRepository.Delete(papel);
+        }
+
         public static ResolucionService Instance
         {
             get

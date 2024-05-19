@@ -36,7 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>logoaAdmin.ico</ApplicationIcon>
+    <ApplicationIcon>Logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Costura, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -225,7 +225,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UIController\NewGrupoDocumentacionUIController.cs" />
     <Compile Include="UIController\NewDepartamentoUIController.cs" />
     <Compile Include="UIController\NewTipoGrupoDocumentacionUIController.cs" />
     <Compile Include="UIController\TipoGrupoDocumentacionUIController.cs" />
@@ -238,12 +237,6 @@
     <Compile Include="UIController\DocumentosUIController.cs" />
     <Compile Include="UIController\ContactosUIController.cs" />
     <Compile Include="UIController\IndexAdminUIController.cs" />
-    <Compile Include="UI\NewGrupoDocumentacionUI.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\NewGrupoDocumentacionUI.Designer.cs">
-      <DependentUpon>NewGrupoDocumentacionUI.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\NewDepartamentoUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -315,9 +308,6 @@
     <Compile Include="UI\AppUI.Designer.cs">
       <DependentUpon>AppUI.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="UI\NewGrupoDocumentacionUI.resx">
-      <DependentUpon>NewGrupoDocumentacionUI.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\NewDepartamentoUI.resx">
       <DependentUpon>NewDepartamentoUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -386,6 +376,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+    <Content Include="Logo.ico" />
     <Content Include="logoaAdmin.ico" />
     <None Include="Resources\logoAdmin.ico" />
   </ItemGroup>

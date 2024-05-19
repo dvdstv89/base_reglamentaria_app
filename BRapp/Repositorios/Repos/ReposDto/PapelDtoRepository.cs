@@ -2,6 +2,7 @@
 using BRapp.Dto;
 using BRapp.Mapper;
 using BRapp.Model;
+using BRapp.Model.Tiendas;
 using BRapp.Repositorios.Interfaces.Dto;
 using BRapp.Utiles;
 using System;
@@ -12,7 +13,8 @@ namespace BRapp.Repositorios.Repos.ReposDto
 {
     internal class PapelDtoRepository : BaseRepository, IPapelDtoRepository
     {
-        private static PapelDtoRepository instance;       
+        private static PapelDtoRepository instance;
+        private readonly string QUERY_DELETE = "Delete FROM Papel where id = @documentoId";
         private readonly string QUERY_SELECT_ALL = "SELECT * FROM Papel order by fecha, tipo_clasificacion_documento, name";
         private readonly string QUERY_UPDATE = "UPDATE Papel SET tipo_clasificacion_documento = @tipo_clasificacion_documento, id_pdf = @id_pdf, name = @name, is_activo = @is_activo, fecha = @fecha, descripcion = @descripcion WHERE id = @documentoId";
         private readonly string QUERY_INSERT = "INSERT INTO Papel (id, tipo_clasificacion_documento, id_pdf, name, is_activo, fecha, descripcion) VALUES ( @documentoId, @tipo_clasificacion_documento, @id_pdf, @name, @is_activo, @fecha, @descripcion)";
@@ -36,6 +38,19 @@ namespace BRapp.Repositorios.Repos.ReposDto
             }
             return papeles;
         }
+
+        public void Delete(Papel papel)
+        {
+            PapelDto papelDto = (PapelDto)mapperPapel.Map(papel);
+            Dictionary<string, object> parametros = buildParametros(papelDto);
+            int index = getIndexById(papelDto.idPapel);
+            if (index != -1)
+            {
+                papelDtos.RemoveAt(index);
+                ExecuteWriteOperation(QUERY_DELETE, parametros);
+            }
+        }
+
         public PapelDto getById(Guid id)
         {
             return papelDtos.FirstOrDefault(doc => doc.idPapel == id);

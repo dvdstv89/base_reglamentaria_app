@@ -9,5 +9,6 @@ namespace BRapp.Dto
         public bool IsOpcional { get; set; }       
         public Guid idDocumento { get; set; }
         public Guid idTipoGrupoDocumentacion { get; set; }
+        public int Orden { get; set; }
     }
 }

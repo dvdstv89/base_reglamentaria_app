@@ -45,6 +45,7 @@ namespace BRapp.UIControlers.CardUCController
             card.panelSGC.Visible = objeto.CertificadoSCG;
             card.panelTMHS.Visible = objeto.CertificadoTMHS;
             card.panelSanitaria.Visible = objeto.CertificadoSANITARIA;
+            card.btnList.Visible = objeto.TipoGrupoDocumentacion.Count > 0;
 
 
             if (objeto.TipoMoneda == Enums.TipoMoneda.MLC)
@@ -60,13 +61,18 @@ namespace BRapp.UIControlers.CardUCController
                 card.btnList.ForeColor = Color.Blue;
             }
 
+
             if (documentoApliado.hasImagen())
             {
+                card.iconPictureBox1.Visible = false;
                 using (MemoryStream ms = new MemoryStream(documentoApliado.Imagen.Data))
-                {                   
-                    card.panelImagen.BackgroundImage = Image.FromStream(ms);
+                {
+                    using (Image originalImage = Image.FromStream(ms))
+                    {
+                        ResizeImage(card.panelImagen, originalImage);
+                    }
                 }
-            }           
+            }            
         }
 
         private void btnCertificado_Click(object sender, EventArgs e)

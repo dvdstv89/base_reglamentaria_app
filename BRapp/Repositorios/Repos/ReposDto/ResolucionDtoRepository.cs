@@ -12,7 +12,8 @@ namespace BRapp.Repositorios.Repos.ReposDto
 {
     internal class ResolucionDtoRepository : BaseRepository, IResolucionDtoRepository
     {
-        private static ResolucionDtoRepository instance;       
+        private static ResolucionDtoRepository instance;
+        private readonly string QUERY_DELETE = "Delete FROM Resolucion where id_papel = @papelId";
         private readonly string QUERY_SELECT_ALL = "SELECT * FROM Resolucion";
         private readonly string QUERY_UPDATE = "UPDATE Resolucion SET id_responsable = @responsable, id_derrogada = @derrogada, numero = @numero WHERE id_papel = @papelId";
         private readonly string QUERY_INSERT = "INSERT INTO Resolucion (id_papel, id_responsable, id_derrogada, numero) VALUES ( @papelId, @responsable, @derrogada, @numero)";
@@ -38,6 +39,17 @@ namespace BRapp.Repositorios.Repos.ReposDto
             return resoluciones;
         }
 
+        public void Delete(Resolucion papel)
+        {
+            ResolucionDto resolucionDto = (ResolucionDto)mapperResolucion.Map(papel);
+            Dictionary<string, object> parametros = buildParametros(resolucionDto);
+            int index = getIndexById(resolucionDto.idPapel);
+            if (index != -1)
+            {
+                resolucionDtos.RemoveAt(index);
+                ExecuteWriteOperation(QUERY_DELETE, parametros);
+            }
+        }
 
         public ResolucionDto getById(Guid id)
         {

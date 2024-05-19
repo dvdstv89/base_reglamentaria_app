@@ -37,6 +37,11 @@ namespace BRapp.Services.Services
             return sistemaDtoRepository.saveOrUpdate(papel);
         }
 
+        public void Delete(Sistema papel)
+        {
+           sistemaDtoRepository.Delete(papel);
+        }
+
         public static SistemaService Instance
         {
             get

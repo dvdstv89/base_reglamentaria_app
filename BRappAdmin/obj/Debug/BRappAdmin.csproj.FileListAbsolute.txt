@@ -118,7 +118,6 @@ D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRappAdmin\obj\Debug\BR
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRappAdmin\obj\Debug\BRappAdmin.UI.NewComplejoUI.resources
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRappAdmin\obj\Debug\BRappAdmin.UI.TipoGrupoDocumentacionUI.resources
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRappAdmin\obj\Debug\BRappAdmin.UI.NewTipoGrupoDocumentacionUI.resources
-D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRappAdmin\obj\Debug\BRappAdmin.UI.NewGrupoDocumentacionUI.resources
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRappAdmin\obj\Debug\BRappAdmin.UI.NewTiendasUI.resources
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRappAdmin\obj\Debug\BRappAdmin.UI.NewDepartamentoUI.resources
 D:\Caracol\Base_reglamentaria_APP\base_reglamentaria_app\BRappAdmin\obj\Debug\BRappAdmin.csproj.Fody.CopyLocal.cache

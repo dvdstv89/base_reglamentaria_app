@@ -38,13 +38,14 @@ namespace BRapp.UIControlers
             forma.VisibleChanged += new EventHandler(ActiveForm_VisibleChanged);
             indexUI.tbBuscar.TextChanged += txtSearch_TextChanged;
             indexUI.cbArchivados.CheckedChanged += cbArchivados_CheckedChanged;
+          //  forma.flowLayoutDocumentos.Visible = false;
             return forma;
         }   
 
         private void LLenarListaDocumentos()
-        {
+        {          
             List<Papel> documentosAux = papelService.filtrarDocumentos(tipoDocumentoInstance);
-            forma.flowLayoutDocumentos.Controls.Clear();
+            forma.flowLayoutDocumentos.Controls.Clear();           
             foreach (Papel papel in documentosAux)
             {
                 ICard card = getICardPapel(papel);
@@ -55,13 +56,13 @@ namespace BRapp.UIControlers
                     control.Visible = false;
                 }
                 forma.flowLayoutDocumentos.Controls.Add(control);
-                documentos.Add(card);
+                documentos.Add(card);               
             }
             for (int i = 0; i < 3; i++)
             {
                 ExtraSpaceCard card = new ExtraSpaceCard();
                 forma.flowLayoutDocumentos.Controls.Add(card);
-            }
+            }           
         }
 
         private ICard getICardPapel(Papel papel)
@@ -101,19 +102,22 @@ namespace BRapp.UIControlers
 
             Form form = sender as Form;
             if (form != null && form.Visible && ((!AplicationConfig.APP_MODE_UPDATE && countUpdates < 1) || AplicationConfig.APP_MODE_UPDATE))
-            {
+            {                
                 LLenarListaDocumentos();
-                countUpdates++;
-            }            
+                countUpdates++;              
+            }
+           // forma.flowLayoutDocumentos.Visible = true;
         }
 
         public static DocumentoUIController GetInstance(TipoDocumentoMenu parametro, IndexUIController indexUIController)
         {
-            if (!instances.ContainsKey(parametro))
-            {
-                instances[parametro] = new DocumentoUIController(parametro, indexUIController);
-            }
-            return instances[parametro];
+            //if (!instances.ContainsKey(parametro))
+            //{
+            //    instances[parametro] = new DocumentoUIController(parametro, indexUIController);
+            //}
+            //return instances[parametro];
+
+            return new DocumentoUIController(parametro, indexUIController);
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)

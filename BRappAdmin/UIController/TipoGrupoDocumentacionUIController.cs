@@ -1,5 +1,6 @@
 ﻿using BRapp.Enums;
 using BRapp.Messages;
+using BRapp.Model;
 using BRapp.Model.Tiendas;
 using BRapp.Services.Interfaces;
 using BRapp.Services.Services;
@@ -20,6 +21,7 @@ namespace BRappAdmin.UIControlers
         private readonly IGrupoDocumentacionService grupoDocumentacionServiceAdmin;
         ListViewItem itemTipoSeleccionado;
         ListViewItem itemDocumentoSeleccionado;
+        int indexItemDocumentoSeleccionado = -1;
 
 
         private List<TipoGrupoDocumentacion> tiposGruposDocumentacion;
@@ -51,6 +53,10 @@ namespace BRappAdmin.UIControlers
             
             forma.nuevoDocumentoStripMenuItem1.Click += new EventHandler(nuevoDocumentoStripMenuItem1_Click);
             forma.modificarDocumentoStripMenuItem2.Click += new EventHandler(modificarDocumentacionToolStripMenuItem_Click);
+            forma.eliminarDocumentoToolStripMenuItem.Click += new EventHandler(eliminarDocumentoToolStripMenuItem_Click);
+            forma.subirToolStripMenuItem.Click += new EventHandler(subirToolStripMenuItem_Click);
+            forma.bajarToolStripMenuItem.Click += new EventHandler(bajarToolStripMenuItem_Click);
+
 
             forma.obligatorioToolStripMenuItem.Click += new EventHandler(obligatorioToolStripMenuItem_Click);
             forma.opcionalToolStripMenuItem.Click += new EventHandler(opcionalToolStripMenuItem_Click);
@@ -65,10 +71,13 @@ namespace BRappAdmin.UIControlers
 
         private void nuevoDocumentoStripMenuItem1_Click(object sender, EventArgs e)
         {
-            var papelUiController = new NewGrupoDocumentacionUIController(getTipoSeleccionado());
+            var papelUiController = new PapelUIController(null, TipoClasificacionDocumento.DOCUMENTACION_BASICA);
             DialogResult dialogResult = papelUiController.ejecutar().ShowDialog();
             if (dialogResult == DialogResult.OK)
-            {
+            {                
+                Documento documento = (Documento)papelUiController.GetPapel();
+                GrupoDocumentacion grupo = new GrupoDocumentacion(getTipoSeleccionado(), documento, false, grupoDocumentacions.Count+1);
+                grupoDocumentacionServiceAdmin.saveOrUpdate(grupo);
                 DialogUtil.INFORMATION(Mensajes.PAPEL_SAVED_OK);
                 forma.tbBuscarDocumentos.Text = "";
                 updateDocumentosList();
@@ -143,6 +152,12 @@ namespace BRappAdmin.UIControlers
             modificarDocumento(getDocumentacionSeleccionado());
         }
 
+        private void eliminarDocumentoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            grupoDocumentacionServiceAdmin.Delete(getDocumentacionSeleccionado());
+            updateDocumentosList();
+        }
+
         private void lwTipos_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -190,10 +205,14 @@ namespace BRappAdmin.UIControlers
         private void marcarDocumentacion()
         {
             itemDocumentoSeleccionado = forma.listViewDocumentos.SelectedItems[0];
+            indexItemDocumentoSeleccionado = forma.listViewDocumentos.Items.IndexOf(itemDocumentoSeleccionado);
             forma.modificarDocumentoStripMenuItem2.Enabled = true;
+            forma.eliminarDocumentoToolStripMenuItem.Enabled = true;
             forma.obligatorioToolStripMenuItem.Visible = !getDocumentacionSeleccionado().IsOpcional;
-            forma.opcionalToolStripMenuItem.Visible = getDocumentacionSeleccionado().IsOpcional;
+            forma.opcionalToolStripMenuItem.Visible = getDocumentacionSeleccionado().IsOpcional;           
 
+            forma.subirToolStripMenuItem.Visible = indexItemDocumentoSeleccionado > 0;
+            forma.bajarToolStripMenuItem.Visible = indexItemDocumentoSeleccionado < forma.listViewDocumentos.Items.Count - 1;
         }
         private void desmarcarTipos()
         {
@@ -206,10 +225,14 @@ namespace BRappAdmin.UIControlers
         private void desmarcarDocumentacion()
         {
             forma.modificarDocumentoStripMenuItem2.Enabled = false;
+            forma.eliminarDocumentoToolStripMenuItem.Enabled = false;
             forma.obligatorioToolStripMenuItem.Visible = false;
             forma.opcionalToolStripMenuItem.Visible = false;
             itemDocumentoSeleccionado = null;
             forma.listViewDocumentos.SelectedItems.Clear();
+
+            forma.subirToolStripMenuItem.Visible = false;
+            forma.bajarToolStripMenuItem.Visible = false;
         }
     
         private TipoGrupoDocumentacion getTipoSeleccionado()
@@ -227,7 +250,6 @@ namespace BRappAdmin.UIControlers
             updateTipoList();
             txtSearch_TextChanged(forma.tbBuscar.Text, forma.lwTipos);
         }
-
         private void txtDocumentoSearch_TextChanged(object sender, EventArgs e)
         {
             updateDocumentosList();
@@ -265,6 +287,30 @@ namespace BRappAdmin.UIControlers
                 grupoDocumentacionServiceAdmin.saveOrUpdate(grupoDocumentoSeleccionado);
                 updateDocumentosList();
             }           
+        }
+
+
+        private void subirToolStripMenuItem_Click(object sender, EventArgs e)
+        {           
+            int ordenActual = getDocumentacionSeleccionado().Orden;
+            cambiarOrden(itemDocumentoSeleccionado, ordenActual - 1);
+            cambiarOrden(forma.listViewDocumentos.Items[indexItemDocumentoSeleccionado - 1], ordenActual);
+            txtDocumentoSearch_TextChanged(sender, e);
+        }
+
+        private void bajarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int ordenActual = getDocumentacionSeleccionado().Orden;
+            cambiarOrden(itemDocumentoSeleccionado, ordenActual + 1);
+            cambiarOrden(forma.listViewDocumentos.Items[indexItemDocumentoSeleccionado + 1], ordenActual);
+            txtDocumentoSearch_TextChanged(sender, e);
+        }
+
+        private void cambiarOrden(ListViewItem item, int orden)
+        {
+            GrupoDocumentacion grupo = getListViewItemSeleccionado<GrupoDocumentacion>(item);
+            grupo.Orden = orden;
+            grupoDocumentacionServiceAdmin.saveOrUpdate(grupo);
         }
 
         public static TipoGrupoDocumentacionUIController Instance

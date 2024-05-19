@@ -39,14 +39,19 @@ namespace BRapp.UIControlers.CardUCController
             card.labelName.Text = objeto.ToString();
             card.labelCargoResponsable.Text = objeto.Responsable.Name;
             card.labelDescripcion.Rtf = objeto.Descripcion;
-            card.lbFecha.Text = FechaUtil.getLargeText(objeto.FechaFirma);
+            card.lbFecha.Text = FechaUtil.getLargeText(objeto.FechaFirma);           
             if (documentoApliado.hasImagen())
             {
+                card.iconPictureBox1.Visible = false;
                 using (MemoryStream ms = new MemoryStream(documentoApliado.Imagen.Data))
                 {
-                    card.panelImagen.BackgroundImage = Image.FromStream(ms);
+                    using (Image originalImage = Image.FromStream(ms))
+                    {
+                        ResizeImage(card.panelImagen, originalImage);
+                    }
                 }
             }
+
             card.btnPdf.Visible = visorDocumentosUIController.hasPdf();
         }        
 

@@ -18,12 +18,14 @@ namespace BRapp.UIControlers
         private static Dictionary<Complejo, ComplejoUIController> instances = new Dictionary<Complejo, ComplejoUIController>();        
         private readonly ITiendaService tiendaService;
         private readonly IDepartamentoService departamentoService;
+        private readonly ISucursalService iSucursalService;
         private readonly Complejo complejo;
         private ComplejoUIController(Complejo complejo) : base(new ComplejoUI(), true)
         {
             this.complejo = complejo;
             tiendaService = TiendasService.Instance;
             departamentoService = DepartamentoService.Instance;
+            iSucursalService = SucursalService.Instance;
         }
 
         public override ComplejoUI ejecutar()
@@ -36,10 +38,27 @@ namespace BRapp.UIControlers
             if (complejo.hasImagen())
             {
                 forma.pictureBoxOrganigramaEmpresa.BackgroundImage = Image.FromStream(new MemoryStream(complejo.Organigrama.Data));
-            }
-            //lista de departamentos
+            }          
             LLenarListaDepartamentos();
-            LLenarListaTiendas();
+            if(complejo.TipoComplejo == Enums.TipoComplejo.SUCURSAL)
+            {
+
+                forma.panelTiendasHeader.Visible = false;
+                forma.panelTiendas.Visible = false;
+               
+
+                App app = app = iSucursalService.GetApp();
+                forma.richTextBoxMision.Rtf = app.Mision;
+                forma.richTextBoxVision.Rtf = app.Vision;
+                forma.richTextBoxValoresCompartidos.Rtf = app.ValoresCompartidos;
+                forma.richTextBoxObjetoSocialIzquierdo.Rtf = app.ObjetoSocial;
+            }
+            else
+            {
+                forma.panelSucursal.Visible = false;
+                forma.panelTiendas.Dock = DockStyle.Fill;
+                LLenarListaTiendas();
+            }
         }
 
         private void LLenarListaDepartamentos()
@@ -75,11 +94,12 @@ namespace BRapp.UIControlers
 
         public static ComplejoUIController GetInstance(Complejo complejo)
         {
-            if (!instances.ContainsKey(complejo))
-            {
-                instances[complejo] = new ComplejoUIController(complejo);
-            }
-            return instances[complejo];
+            //if (!instances.ContainsKey(complejo))
+            //{
+            //    instances[complejo] = new ComplejoUIController(complejo);
+            //}
+            //return instances[complejo];
+            return new ComplejoUIController(complejo);
         }       
     }
 }

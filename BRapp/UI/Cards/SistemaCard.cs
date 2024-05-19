@@ -15,6 +15,7 @@ namespace BRapp.UI.Cards
         public FontAwesome.Sharp.IconButton btnPdf;
         public ToolTip toolTip1;
         private System.ComponentModel.IContainer components;
+        public FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         public FontAwesome.Sharp.IconPictureBox iconPrincipal;
 
         public SistemaCard()
@@ -36,9 +37,12 @@ namespace BRapp.UI.Cards
             this.iconPrincipal = new FontAwesome.Sharp.IconPictureBox();
             this.btnPdf = new FontAwesome.Sharp.IconButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.panel1.SuspendLayout();
+            this.panelImagen.SuspendLayout();
             this.panelTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPrincipal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelDescripcion
@@ -100,8 +104,8 @@ namespace BRapp.UI.Cards
             // panelImagen
             // 
             this.panelImagen.BackColor = System.Drawing.Color.White;
-            this.panelImagen.BackgroundImage = global::BRapp.Properties.Resources.PDF;
             this.panelImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelImagen.Controls.Add(this.iconPictureBox1);
             this.panelImagen.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelImagen.Location = new System.Drawing.Point(0, 70);
             this.panelImagen.Name = "panelImagen";
@@ -167,6 +171,20 @@ namespace BRapp.UI.Cards
             this.toolTip1.SetToolTip(this.btnPdf, "Ver documentación del sistema");
             this.btnPdf.UseVisualStyleBackColor = true;
             // 
+            // iconPictureBox1
+            // 
+            this.iconPictureBox1.BackColor = System.Drawing.Color.White;
+            this.iconPictureBox1.ForeColor = System.Drawing.Color.Orange;
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Image;
+            this.iconPictureBox1.IconColor = System.Drawing.Color.Orange;
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox1.IconSize = 116;
+            this.iconPictureBox1.Location = new System.Drawing.Point(2, 11);
+            this.iconPictureBox1.Name = "iconPictureBox1";
+            this.iconPictureBox1.Size = new System.Drawing.Size(117, 116);
+            this.iconPictureBox1.TabIndex = 1;
+            this.iconPictureBox1.TabStop = false;
+            // 
             // SistemaCard
             // 
             this.BackColor = System.Drawing.Color.White;
@@ -182,8 +200,10 @@ namespace BRapp.UI.Cards
             this.Size = new System.Drawing.Size(483, 208);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panelImagen.ResumeLayout(false);
             this.panelTitle.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconPrincipal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }                     

@@ -9,5 +9,6 @@ namespace BRapp.Repositorios.Interfaces.Dto
     {
         ActionResult saveOrUpdate(Sistema papel);
         SistemaDto getById(Guid id);
+        void Delete(Sistema papel);
     }
 }

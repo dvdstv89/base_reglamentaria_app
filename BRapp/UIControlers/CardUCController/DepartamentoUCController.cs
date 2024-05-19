@@ -24,6 +24,7 @@ namespace BRapp.UIControlers.CardUCController
         {
             card.iconPrincipal.IconChar = objeto.getIcono();
             card.labelName.Text = objeto.Name;
+            card.btnList.Visible= objeto.TipoGrupoDocumentacion.Count > 0 || !String.IsNullOrEmpty(objeto.Descripcion);
         }        
 
         private void btnList_Click(object sender, EventArgs e)

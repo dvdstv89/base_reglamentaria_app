@@ -35,11 +35,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbPJName = new System.Windows.Forms.TextBox();
             this.openLogo = new System.Windows.Forms.OpenFileDialog();
+            this.comboTipoIndicacion = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(270, 71);
+            this.btnGuardar.Location = new System.Drawing.Point(270, 98);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 15;
@@ -62,10 +64,10 @@
             // 
             // tbPJLogo
             // 
-            this.tbPJLogo.Location = new System.Drawing.Point(62, 38);
+            this.tbPJLogo.Location = new System.Drawing.Point(85, 38);
             this.tbPJLogo.Name = "tbPJLogo";
             this.tbPJLogo.ReadOnly = true;
-            this.tbPJLogo.Size = new System.Drawing.Size(241, 20);
+            this.tbPJLogo.Size = new System.Drawing.Size(218, 20);
             this.tbPJLogo.TabIndex = 3;
             // 
             // label6
@@ -73,9 +75,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(12, 41);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(31, 13);
+            this.label6.Size = new System.Drawing.Size(67, 13);
             this.label6.TabIndex = 2;
-            this.label6.Text = "Logo";
+            this.label6.Text = "Organigrama";
             // 
             // label1
             // 
@@ -99,12 +101,32 @@
             this.openLogo.Filter = "Image Files|*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.svg";
             this.openLogo.Title = "Logo";
             // 
+            // comboTipoIndicacion
+            // 
+            this.comboTipoIndicacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboTipoIndicacion.FormattingEnabled = true;
+            this.comboTipoIndicacion.Location = new System.Drawing.Point(106, 71);
+            this.comboTipoIndicacion.Name = "comboTipoIndicacion";
+            this.comboTipoIndicacion.Size = new System.Drawing.Size(239, 21);
+            this.comboTipoIndicacion.TabIndex = 67;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 74);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(73, 13);
+            this.label3.TabIndex = 66;
+            this.label3.Text = "Tipo complejo";
+            // 
             // NewComplejoUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(363, 109);
+            this.ClientSize = new System.Drawing.Size(358, 135);
+            this.Controls.Add(this.comboTipoIndicacion);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnBuscarLogo);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.tbPJLogo);
@@ -129,5 +151,7 @@
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox tbPJName;
         public System.Windows.Forms.OpenFileDialog openLogo;
+        public System.Windows.Forms.ComboBox comboTipoIndicacion;
+        private System.Windows.Forms.Label label3;
     }
 }

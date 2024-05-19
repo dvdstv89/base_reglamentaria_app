@@ -1,6 +1,8 @@
 ﻿using BRapp.Data;
+using BRapp.Dto;
 using BRapp.Mapper;
 using BRapp.Model;
+using BRapp.Model.Tiendas;
 using BRapp.Repositorios.Interfaces;
 using BRapp.Services.Interfaces;
 using BRapp.Services.Services;
@@ -14,6 +16,7 @@ namespace BRapp.Repositorios.Repos
     internal class DocumentoPdfRepository : BaseRepository, IDocumentoPdfRepository
     {
         private static DocumentoPdfRepository instance;
+        private readonly string QUERY_DELETE = "Delete FROM DocumentoPDF where id = @documentoId";
         private readonly string QUERY_SELECT_ALL_DOCUMENTOS_PDF = "SELECT id,pdf,image FROM DocumentoPDF";
         private readonly string QUERY_SELECT_DOCUMENTO_PDF_BLOBS = "SELECT * FROM DocumentoPDF WHERE id = @documentoId";
         private readonly string QUERY_UPDATE = "UPDATE DocumentoPDF SET pdf = @pdf, image = @image, blob_pdf = @blob_pdf, blob_imagen = @blob_imagen WHERE id = @documentoId";
@@ -32,6 +35,17 @@ namespace BRapp.Repositorios.Repos
             mapperDocumentoPDF = new DocumentoPdfMapper(filePdfLogoService, filePdfDocumentService);
             mapperDocumentoPDFBlob = new DocumentoPdfBlobMapper();
             documentos = getAll();
+        }
+
+        public void Delete(DocumentoPDF documentoPDF)
+        {           
+            Dictionary<string, object> parametros = buildParametros(documentoPDF);
+            int index = getIndexById(documentoPDF.Id);
+            if (index != -1)
+            {
+                documentos.RemoveAt(index);
+                ExecuteWriteOperation(QUERY_DELETE, parametros);
+            }
         }
 
         private List<DocumentoPDF> getAll()

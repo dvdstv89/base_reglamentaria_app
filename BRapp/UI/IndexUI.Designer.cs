@@ -49,7 +49,6 @@
             this.tipoDeGruposDeDocumentacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bienvenidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sucursalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sucursalToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.sistemasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.procedimientosYReglamentosEmpresarialesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manualesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -280,19 +279,11 @@
             // 
             // sucursalToolStripMenuItem
             // 
-            this.sucursalToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sucursalToolStripMenuItem1});
             this.sucursalToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.sucursalToolStripMenuItem.Name = "sucursalToolStripMenuItem";
             this.sucursalToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded;
             this.sucursalToolStripMenuItem.Size = new System.Drawing.Size(81, 38);
             this.sucursalToolStripMenuItem.Text = "Sucursal";
-            // 
-            // sucursalToolStripMenuItem1
-            // 
-            this.sucursalToolStripMenuItem1.Name = "sucursalToolStripMenuItem1";
-            this.sucursalToolStripMenuItem1.Size = new System.Drawing.Size(139, 26);
-            this.sucursalToolStripMenuItem1.Text = "Sucursal";
             // 
             // sistemasToolStripMenuItem
             // 
@@ -547,7 +538,6 @@
         public System.Windows.Forms.ToolStripMenuItem directorioToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem bienvenidaToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
-        public System.Windows.Forms.ToolStripMenuItem sucursalToolStripMenuItem1;
         public System.Windows.Forms.ToolStripMenuItem sistemasToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem procedimientosYReglamentosEmpresarialesToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem planesToolStripMenuItem;

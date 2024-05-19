@@ -12,7 +12,8 @@ namespace BRapp.Repositorios.Repos.ReposDto
 {
     internal class DocumentoDtoRepository : BaseRepository, IDocumentoDtoRepository
     {
-        private static DocumentoDtoRepository instance;       
+        private static DocumentoDtoRepository instance;
+        private readonly string QUERY_DELETE = "Delete FROM Documento where id_papel = @papelId";
         private readonly string QUERY_SELECT_ALL = "SELECT * FROM Documento";
         private readonly string QUERY_UPDATE = "UPDATE Documento SET id_responsable = @responsable WHERE id_papel = @papelId";
         private readonly string QUERY_INSERT = "INSERT INTO Documento (id_papel, id_responsable) VALUES ( @papelId, @responsable)";
@@ -23,6 +24,18 @@ namespace BRapp.Repositorios.Repos.ReposDto
         {
             mapperDocumento = new DocumentoMapper();
             documentoDtos = getAll_DocumentosDto();
+        }
+
+        public void Delete(Documento papel)
+        {
+            DocumentoDto documentoDto = (DocumentoDto)mapperDocumento.Map(papel);
+            Dictionary<string, object> parametros = buildParametros(documentoDto);
+            int index = getIndexById(documentoDto.idPapel);
+            if (index != -1)
+            {
+                documentoDtos.RemoveAt(index);
+                ExecuteWriteOperation(QUERY_DELETE, parametros);
+            }
         }
 
         private List<DocumentoDto> getAll_DocumentosDto()

@@ -41,6 +41,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.nuevoComplejoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarComplejoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.subirComplejoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bajarComplejoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelDptoAfuera = new System.Windows.Forms.Panel();
             this.panelDepartamentos = new System.Windows.Forms.Panel();
             this.lwDepartamentos = new System.Windows.Forms.ListView();
@@ -53,6 +55,8 @@
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.nuevoDepartamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarDapartamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.subirDepartamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bajarDepartamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panelTiendaAfuera = new System.Windows.Forms.Panel();
@@ -67,6 +71,8 @@
             this.menuStrip3 = new System.Windows.Forms.MenuStrip();
             this.nuevaTiendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarTiendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.subirTiendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bajarTiendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel9 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel6.SuspendLayout();
@@ -204,7 +210,9 @@
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nuevoComplejoToolStripMenuItem,
-            this.modificarComplejoToolStripMenuItem});
+            this.modificarComplejoToolStripMenuItem,
+            this.subirComplejoToolStripMenuItem,
+            this.bajarComplejoToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -223,6 +231,18 @@
             this.modificarComplejoToolStripMenuItem.Name = "modificarComplejoToolStripMenuItem";
             this.modificarComplejoToolStripMenuItem.Size = new System.Drawing.Size(70, 30);
             this.modificarComplejoToolStripMenuItem.Text = "Modificar";
+            // 
+            // subirComplejoToolStripMenuItem
+            // 
+            this.subirComplejoToolStripMenuItem.Name = "subirComplejoToolStripMenuItem";
+            this.subirComplejoToolStripMenuItem.Size = new System.Drawing.Size(46, 30);
+            this.subirComplejoToolStripMenuItem.Text = "Subir";
+            // 
+            // bajarComplejoToolStripMenuItem
+            // 
+            this.bajarComplejoToolStripMenuItem.Name = "bajarComplejoToolStripMenuItem";
+            this.bajarComplejoToolStripMenuItem.Size = new System.Drawing.Size(45, 30);
+            this.bajarComplejoToolStripMenuItem.Text = "Bajar";
             // 
             // panelDptoAfuera
             // 
@@ -327,7 +347,9 @@
             this.menuStrip2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nuevoDepartamentoToolStripMenuItem,
-            this.modificarDapartamentoToolStripMenuItem});
+            this.modificarDapartamentoToolStripMenuItem,
+            this.subirDepartamentoToolStripMenuItem,
+            this.bajarDepartamentoToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -346,6 +368,18 @@
             this.modificarDapartamentoToolStripMenuItem.Name = "modificarDapartamentoToolStripMenuItem";
             this.modificarDapartamentoToolStripMenuItem.Size = new System.Drawing.Size(70, 30);
             this.modificarDapartamentoToolStripMenuItem.Text = "Modificar";
+            // 
+            // subirDepartamentoToolStripMenuItem1
+            // 
+            this.subirDepartamentoToolStripMenuItem.Name = "subirDepartamentoToolStripMenuItem1";
+            this.subirDepartamentoToolStripMenuItem.Size = new System.Drawing.Size(46, 30);
+            this.subirDepartamentoToolStripMenuItem.Text = "Subir";
+            // 
+            // bajarDepartamentoToolStripMenuItem1
+            // 
+            this.bajarDepartamentoToolStripMenuItem.Name = "bajarDepartamentoToolStripMenuItem1";
+            this.bajarDepartamentoToolStripMenuItem.Size = new System.Drawing.Size(45, 30);
+            this.bajarDepartamentoToolStripMenuItem.Text = "Bajar";
             // 
             // panel7
             // 
@@ -470,7 +504,9 @@
             this.menuStrip3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.nuevaTiendaToolStripMenuItem,
-            this.modificarTiendaToolStripMenuItem});
+            this.modificarTiendaToolStripMenuItem,
+            this.subirTiendaToolStripMenuItem,
+            this.bajarTiendaToolStripMenuItem});
             this.menuStrip3.Location = new System.Drawing.Point(0, 0);
             this.menuStrip3.Name = "menuStrip3";
             this.menuStrip3.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -489,6 +525,18 @@
             this.modificarTiendaToolStripMenuItem.Name = "modificarTiendaToolStripMenuItem";
             this.modificarTiendaToolStripMenuItem.Size = new System.Drawing.Size(70, 30);
             this.modificarTiendaToolStripMenuItem.Text = "Modificar";
+            // 
+            // subirTiendaToolStripMenuItem2
+            // 
+            this.subirTiendaToolStripMenuItem.Name = "subirTiendaToolStripMenuItem2";
+            this.subirTiendaToolStripMenuItem.Size = new System.Drawing.Size(46, 30);
+            this.subirTiendaToolStripMenuItem.Text = "Subir";
+            // 
+            // bajarTiendaToolStripMenuItem2
+            // 
+            this.bajarTiendaToolStripMenuItem.Name = "bajarTiendaToolStripMenuItem2";
+            this.bajarTiendaToolStripMenuItem.Size = new System.Drawing.Size(45, 30);
+            this.bajarTiendaToolStripMenuItem.Text = "Bajar";
             // 
             // panel9
             // 
@@ -600,5 +648,11 @@
         private System.Windows.Forms.MenuStrip menuStrip3;
         public System.Windows.Forms.ToolStripMenuItem nuevaTiendaToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem modificarTiendaToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem subirComplejoToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem bajarComplejoToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem subirDepartamentoToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem bajarDepartamentoToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem subirTiendaToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem bajarTiendaToolStripMenuItem;
     }
 }

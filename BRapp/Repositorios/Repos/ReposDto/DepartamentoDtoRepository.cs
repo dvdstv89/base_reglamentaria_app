@@ -14,9 +14,9 @@ namespace BRapp.Repositorios.Repos.ReposDto
     {
         private static DepartamentoDtoRepository instance; 
 
-        private readonly string QUERY_SELECT_ALL = "SELECT * FROM Departamento";
-        private readonly string QUERY_UPDATE = "UPDATE Departamento SET name = @name, id_complejo = @id_complejo, tipo_departamento = @tipo_departamento, descripcion = @descripcion WHERE id = @Id";
-        private readonly string QUERY_INSERT = "INSERT INTO Departamento (id, name, id_complejo, tipo_departamento, descripcion) VALUES ( @Id, @name, @id_complejo, @tipo_departamento, @descripcion)"; 
+        private readonly string QUERY_SELECT_ALL = "SELECT * FROM Departamento order by orden";
+        private readonly string QUERY_UPDATE = "UPDATE Departamento SET name = @name, id_complejo = @id_complejo, tipo_departamento = @tipo_departamento, descripcion = @descripcion, orden = @orden WHERE id = @Id";
+        private readonly string QUERY_INSERT = "INSERT INTO Departamento (id, name, id_complejo, tipo_departamento, descripcion, orden) VALUES ( @Id, @name, @id_complejo, @tipo_departamento, @descripcion, @orden)"; 
         private List<DepartamentoDto> departamentoDtos;      
         private readonly IMapper mapperDepartamento;
 
@@ -86,7 +86,8 @@ namespace BRapp.Repositorios.Repos.ReposDto
                 { "@name", departamentoDto.name },
                 { "@id_complejo", departamentoDto.idComplejo },
                 { "@tipo_departamento", departamentoDto.tipoDepartamento.ToString() },
-                 { "@descripcion", departamentoDto.descripcion },
+                { "@descripcion", departamentoDto.descripcion },
+                { "@orden", departamentoDto.Orden },
                 { "@Id", departamentoDto.id.ToString() }
             };          
             return parametros;

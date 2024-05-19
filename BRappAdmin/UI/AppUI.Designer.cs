@@ -35,23 +35,18 @@
             this.tbCopyRight = new System.Windows.Forms.TextBox();
             this.tbFecha = new System.Windows.Forms.TextBox();
             this.btnActualizar = new System.Windows.Forms.Button();
-            this.btnBuscarLogo = new FontAwesome.Sharp.IconButton();
-            this.tbPJLogo = new System.Windows.Forms.TextBox();
-            this.openLogo = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tbMision = new RichTextBoxEx.RichTextBoxEx();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tbVision = new RichTextBoxEx.RichTextBoxEx();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tbObjetoSocial = new RichTextBoxEx.RichTextBoxEx();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tbValoresCompartidos = new RichTextBoxEx.RichTextBoxEx();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -104,91 +99,22 @@
             // 
             // btnActualizar
             // 
-            this.btnActualizar.Location = new System.Drawing.Point(1051, 448);
+            this.btnActualizar.Location = new System.Drawing.Point(1051, 413);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(75, 23);
             this.btnActualizar.TabIndex = 6;
             this.btnActualizar.Text = "Actualizar";
             this.btnActualizar.UseVisualStyleBackColor = true;
             // 
-            // btnBuscarLogo
-            // 
-            this.btnBuscarLogo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscarLogo.ForeColor = System.Drawing.Color.White;
-            this.btnBuscarLogo.IconChar = FontAwesome.Sharp.IconChar.FileImage;
-            this.btnBuscarLogo.IconColor = System.Drawing.Color.Black;
-            this.btnBuscarLogo.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnBuscarLogo.IconSize = 24;
-            this.btnBuscarLogo.Location = new System.Drawing.Point(506, 15);
-            this.btnBuscarLogo.Name = "btnBuscarLogo";
-            this.btnBuscarLogo.Size = new System.Drawing.Size(36, 27);
-            this.btnBuscarLogo.TabIndex = 9;
-            this.btnBuscarLogo.UseVisualStyleBackColor = true;
-            // 
-            // tbPJLogo
-            // 
-            this.tbPJLogo.Location = new System.Drawing.Point(6, 19);
-            this.tbPJLogo.Name = "tbPJLogo";
-            this.tbPJLogo.ReadOnly = true;
-            this.tbPJLogo.Size = new System.Drawing.Size(502, 20);
-            this.tbPJLogo.TabIndex = 8;
-            // 
-            // openLogo
-            // 
-            this.openLogo.FileName = "openFileDialog1";
-            this.openLogo.Filter = "Image Files|*.png;*.jpg;*.jpeg;*.bmp;*.gif;*.svg";
-            this.openLogo.Title = "Logo";
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tbMision);
-            this.groupBox1.Location = new System.Drawing.Point(15, 170);
+            this.groupBox1.Location = new System.Drawing.Point(15, 124);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(548, 133);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Misión";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.tbVision);
-            this.groupBox2.Location = new System.Drawing.Point(584, 170);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(548, 133);
-            this.groupBox2.TabIndex = 12;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Visión";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.tbObjetoSocial);
-            this.groupBox3.Location = new System.Drawing.Point(15, 309);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(548, 133);
-            this.groupBox3.TabIndex = 12;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Objeto Social";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.tbValoresCompartidos);
-            this.groupBox4.Location = new System.Drawing.Point(578, 309);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(548, 133);
-            this.groupBox4.TabIndex = 13;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Valores Compartidos";
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.tbPJLogo);
-            this.groupBox5.Controls.Add(this.btnBuscarLogo);
-            this.groupBox5.Location = new System.Drawing.Point(15, 112);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(548, 52);
-            this.groupBox5.TabIndex = 14;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Organigrama";
             // 
             // tbMision
             // 
@@ -202,13 +128,23 @@
             this.tbMision.FilePath = "";
             this.tbMision.Location = new System.Drawing.Point(6, 19);
             this.tbMision.Name = "tbMision";
-            this.tbMision.Rtf = "{\\rtf1\\ansi\\deff0\\nouicompat{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}\r\n{\\*\\generator " +
-    "Riched20 10.0.22621}\\viewkind4\\uc1 \r\n\\pard\\fs20\\lang2057 richTextBoxEx1\\par\r\n}\r\n" +
-    "";
+            this.tbMision.Rtf = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}\r\n{\\" +
+    "*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 \r\n\\pard\\fs20\\lang2057 richTextBox" +
+    "Ex1\\par\r\n}\r\n";
             this.tbMision.SetColorWithFont = true;
             this.tbMision.ShowToolStrip = true;
             this.tbMision.Size = new System.Drawing.Size(536, 104);
             this.tbMision.TabIndex = 15;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.tbVision);
+            this.groupBox2.Location = new System.Drawing.Point(584, 124);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(548, 133);
+            this.groupBox2.TabIndex = 12;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Visión";
             // 
             // tbVision
             // 
@@ -230,6 +166,16 @@
             this.tbVision.Size = new System.Drawing.Size(536, 104);
             this.tbVision.TabIndex = 16;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.tbObjetoSocial);
+            this.groupBox3.Location = new System.Drawing.Point(15, 263);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(548, 133);
+            this.groupBox3.TabIndex = 12;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Objeto Social";
+            // 
             // tbObjetoSocial
             // 
             this.tbObjetoSocial.AllowBullets = true;
@@ -249,6 +195,16 @@
             this.tbObjetoSocial.ShowToolStrip = true;
             this.tbObjetoSocial.Size = new System.Drawing.Size(536, 104);
             this.tbObjetoSocial.TabIndex = 17;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.tbValoresCompartidos);
+            this.groupBox4.Location = new System.Drawing.Point(578, 263);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(548, 133);
+            this.groupBox4.TabIndex = 13;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Valores Compartidos";
             // 
             // tbValoresCompartidos
             // 
@@ -275,8 +231,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1132, 484);
-            this.Controls.Add(this.groupBox5);
+            this.ClientSize = new System.Drawing.Size(1132, 455);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -296,8 +251,6 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -312,14 +265,10 @@
         public System.Windows.Forms.TextBox tbCopyRight;
         public System.Windows.Forms.TextBox tbFecha;
         public System.Windows.Forms.Button btnActualizar;
-        public FontAwesome.Sharp.IconButton btnBuscarLogo;
-        public System.Windows.Forms.TextBox tbPJLogo;
-        public System.Windows.Forms.OpenFileDialog openLogo;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.GroupBox groupBox5;
         public RichTextBoxEx.RichTextBoxEx tbMision;
         public RichTextBoxEx.RichTextBoxEx tbVision;
         public RichTextBoxEx.RichTextBoxEx tbObjetoSocial;

@@ -6,7 +6,6 @@ namespace BRapp.UI.Cards
     {
         private Panel panel1;
         private FontAwesome.Sharp.IconButton btnNumero;
-        public Panel panelImagen;
         private Panel panel2;
         public Panel panelTitle;
         public FontAwesome.Sharp.IconButton btnPdf;
@@ -33,6 +32,8 @@ namespace BRapp.UI.Cards
         public Panel panelContratoPadre;
         public FontAwesome.Sharp.IconButton btnContratoPadre;
         public TextBox tbContratoPadre;
+        public Panel panelImagen;
+        public FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         public FontAwesome.Sharp.IconPictureBox iconPrincipal;
 
         public ContratoCard()
@@ -48,7 +49,6 @@ namespace BRapp.UI.Cards
             this.btnActaAcuerdo = new FontAwesome.Sharp.IconButton();
             this.labelNumero = new System.Windows.Forms.TextBox();
             this.btnNumero = new FontAwesome.Sharp.IconButton();
-            this.panelImagen = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelTitle = new System.Windows.Forms.Panel();
             this.labelName = new System.Windows.Forms.Label();
@@ -72,6 +72,8 @@ namespace BRapp.UI.Cards
             this.btnContratoPadre = new FontAwesome.Sharp.IconButton();
             this.panelContratoPadre = new System.Windows.Forms.Panel();
             this.tbContratoPadre = new System.Windows.Forms.TextBox();
+            this.panelImagen = new System.Windows.Forms.Panel();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.panel1.SuspendLayout();
             this.panelTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPrincipal)).BeginInit();
@@ -79,6 +81,8 @@ namespace BRapp.UI.Cards
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panelContratoPadre.SuspendLayout();
+            this.panelImagen.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -157,17 +161,6 @@ namespace BRapp.UI.Cards
             this.btnNumero.TabIndex = 20;
             this.toolTip1.SetToolTip(this.btnNumero, "Número del contrato");
             this.btnNumero.UseVisualStyleBackColor = true;
-            // 
-            // panelImagen
-            // 
-            this.panelImagen.BackColor = System.Drawing.Color.White;
-            this.panelImagen.BackgroundImage = global::BRapp.Properties.Resources.PDF;
-            this.panelImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panelImagen.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelImagen.Location = new System.Drawing.Point(0, 70);
-            this.panelImagen.Name = "panelImagen";
-            this.panelImagen.Size = new System.Drawing.Size(120, 138);
-            this.panelImagen.TabIndex = 28;
             // 
             // panel2
             // 
@@ -485,6 +478,31 @@ namespace BRapp.UI.Cards
             this.tbContratoPadre.TabStop = false;
             this.tbContratoPadre.Text = "Contrato Padre";
             // 
+            // panelImagen
+            // 
+            this.panelImagen.BackColor = System.Drawing.Color.White;
+            this.panelImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelImagen.Controls.Add(this.iconPictureBox1);
+            this.panelImagen.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelImagen.Location = new System.Drawing.Point(0, 70);
+            this.panelImagen.Name = "panelImagen";
+            this.panelImagen.Size = new System.Drawing.Size(120, 138);
+            this.panelImagen.TabIndex = 28;
+            // 
+            // iconPictureBox1
+            // 
+            this.iconPictureBox1.BackColor = System.Drawing.Color.White;
+            this.iconPictureBox1.ForeColor = System.Drawing.Color.Orange;
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Image;
+            this.iconPictureBox1.IconColor = System.Drawing.Color.Orange;
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox1.IconSize = 116;
+            this.iconPictureBox1.Location = new System.Drawing.Point(2, 11);
+            this.iconPictureBox1.Name = "iconPictureBox1";
+            this.iconPictureBox1.Size = new System.Drawing.Size(117, 116);
+            this.iconPictureBox1.TabIndex = 1;
+            this.iconPictureBox1.TabStop = false;
+            // 
             // ContratoCard
             // 
             this.BackColor = System.Drawing.Color.White;
@@ -514,6 +532,8 @@ namespace BRapp.UI.Cards
             this.panel5.PerformLayout();
             this.panelContratoPadre.ResumeLayout(false);
             this.panelContratoPadre.PerformLayout();
+            this.panelImagen.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

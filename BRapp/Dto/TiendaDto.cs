@@ -20,5 +20,6 @@ namespace BRapp.Dto
         public bool IsActivo { get; set; }
         public TipoTienda tiendaTipo { get; set; }
         public TipoMoneda tipoMoneda { get; set; }
+        public int Orden { get; set; }
     }
 }

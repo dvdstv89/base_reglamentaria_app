@@ -63,5 +63,11 @@ namespace BRapp.Services.Services
         {
             return grupoDocumentacionDtoRepository.saveOrUpdate(grupoDocumentacion);
         }
+
+        public void Delete(GrupoDocumentacion grupoDocumentacion)
+        {
+            grupoDocumentacionDtoRepository.Delete(grupoDocumentacion);
+            papelService.Delete(grupoDocumentacion.Documento);
+        }
     }
 }

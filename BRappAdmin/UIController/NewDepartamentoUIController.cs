@@ -18,13 +18,15 @@ namespace BRappAdmin.UIControlers
         private readonly ITipoGrupoDocumentacionService tipoGrupoDocumentacionService;
         private Departamento departamento;
         private Complejo complejo;
+        private readonly int posicion;
 
-        public NewDepartamentoUIController(Departamento departamento, Complejo complejo) : base(new NewDepartamentoUI())
+        public NewDepartamentoUIController(Departamento departamento, Complejo complejo, int posicion) : base(new NewDepartamentoUI())
         {
             this.complejo= complejo;
             this.departamento = departamento;
             departamentoService = DepartamentoService.Instance;
             tipoGrupoDocumentacionService = TipoGrupoDocumentacionService.Instance;
+            this.posicion = posicion;
         }
 
         public override NewDepartamentoUI ejecutar()
@@ -93,7 +95,7 @@ namespace BRappAdmin.UIControlers
             }
             else
             {
-                departamento = new Departamento(name, complejo, tipoDepartamento, descripcion, tipoGrupoDocumentacions);
+                departamento = new Departamento(name, complejo, tipoDepartamento, descripcion, tipoGrupoDocumentacions, posicion);
             }
         }
 

@@ -24,6 +24,7 @@ namespace BRapp.Model.Tiendas
         public bool CertificadoTMHS { get; set; }
         public bool CertificadoSANITARIA { get; set; }
         public bool IsActivo { get; set; }
+        public int Orden { get; set; }
 
         public IconChar getIcono()
         {
@@ -64,11 +65,12 @@ namespace BRapp.Model.Tiendas
             this.Complejo = Complejo;
             this.CertificadoComercial = CertificadoComercial;
             this.TipoGrupoDocumentacion = TipoGrupoDocumentacion;
+            this.Orden = tiendaDto.Orden;
         }
 
         public Tienda(string Name, string Ubicacion, string Telefono, int CantidadTrabajadores, int CantidadCajasRegistradoras, TipoTienda TiendaTipo,
             TipoMoneda TipoMoneda, string NumeroRegistroComercial, bool CertificadoSCG, bool CertificadoTMHS, bool CertificadoSANITARIA, bool IsActivo,
-            Complejo Complejo, DocumentoPDF CertificadoComercial, List<TipoGrupoDocumentacion> TipoGrupoDocumentacion)
+            Complejo Complejo, DocumentoPDF CertificadoComercial, List<TipoGrupoDocumentacion> TipoGrupoDocumentacion, int Orden)
         {
             Id = Guid.NewGuid();
             this.Name = Name;
@@ -86,6 +88,7 @@ namespace BRapp.Model.Tiendas
             this.Complejo = Complejo;
             this.CertificadoComercial = CertificadoComercial;
             this.TipoGrupoDocumentacion = TipoGrupoDocumentacion;
+            this.Orden = Orden;
         }
 
         public override string ToString()

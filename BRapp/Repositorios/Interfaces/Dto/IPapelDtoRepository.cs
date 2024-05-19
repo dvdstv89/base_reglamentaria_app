@@ -11,5 +11,6 @@ namespace BRapp.Repositorios.Interfaces.Dto
         List<PapelDto> getAll();
         PapelDto getById(Guid id);
         ActionResult saveOrUpdate(Papel papel);
+        void Delete(Papel papel);
     }
 }
