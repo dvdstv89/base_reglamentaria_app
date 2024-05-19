@@ -37,8 +37,10 @@ namespace BRapp.UIControlers
         {         
             if (complejo.hasImagen())
             {
+                forma.iconPictureBox1.Visible= false;
                 forma.pictureBoxOrganigramaEmpresa.BackgroundImage = Image.FromStream(new MemoryStream(complejo.Organigrama.Data));
-            }          
+            }
+           
             LLenarListaDepartamentos();
             if(complejo.TipoComplejo == Enums.TipoComplejo.SUCURSAL)
             {

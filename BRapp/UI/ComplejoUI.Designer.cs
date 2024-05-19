@@ -37,6 +37,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.labelMenuSeleccionado = new System.Windows.Forms.Label();
             this.pictureBoxOrganigramaEmpresa = new System.Windows.Forms.PictureBox();
@@ -60,6 +61,7 @@
             this.panel4.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOrganigramaEmpresa)).BeginInit();
             this.panelTiendasHeader.SuspendLayout();
@@ -141,6 +143,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.iconPictureBox1);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.pictureBoxOrganigramaEmpresa);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -148,6 +151,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(972, 441);
             this.panel1.TabIndex = 1;
+            // 
+            // iconPictureBox1
+            // 
+            this.iconPictureBox1.BackColor = System.Drawing.Color.White;
+            this.iconPictureBox1.ForeColor = System.Drawing.Color.Orange;
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Image;
+            this.iconPictureBox1.IconColor = System.Drawing.Color.Orange;
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox1.IconSize = 116;
+            this.iconPictureBox1.Location = new System.Drawing.Point(401, 169);
+            this.iconPictureBox1.Name = "iconPictureBox1";
+            this.iconPictureBox1.Size = new System.Drawing.Size(117, 116);
+            this.iconPictureBox1.TabIndex = 11;
+            this.iconPictureBox1.TabStop = false;
             // 
             // panel3
             // 
@@ -172,7 +189,6 @@
             // 
             // pictureBoxOrganigramaEmpresa
             // 
-            this.pictureBoxOrganigramaEmpresa.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxOrganigramaEmpresa.BackgroundImage")));
             this.pictureBoxOrganigramaEmpresa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBoxOrganigramaEmpresa.Location = new System.Drawing.Point(12, 43);
             this.pictureBoxOrganigramaEmpresa.Name = "pictureBoxOrganigramaEmpresa";
@@ -212,6 +228,7 @@
             // 
             // panelSucursal
             // 
+            this.panelSucursal.AutoScroll = true;
             this.panelSucursal.Controls.Add(this.panel7);
             this.panelSucursal.Controls.Add(this.panel9);
             this.panelSucursal.Controls.Add(this.panel10);
@@ -221,6 +238,7 @@
             this.panelSucursal.Name = "panelSucursal";
             this.panelSucursal.Size = new System.Drawing.Size(1484, 349);
             this.panelSucursal.TabIndex = 10;
+            this.panelSucursal.Paint += new System.Windows.Forms.PaintEventHandler(this.panelSucursal_Paint);
             // 
             // panel7
             // 
@@ -385,6 +403,7 @@
             this.panel4.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOrganigramaEmpresa)).EndInit();
             this.panelTiendasHeader.ResumeLayout(false);
@@ -426,5 +445,6 @@
         private System.Windows.Forms.Panel panel11;
         public System.Windows.Forms.RichTextBox richTextBoxMision;
         private System.Windows.Forms.Label label6;
+        public FontAwesome.Sharp.IconPictureBox iconPictureBox1;
     }
 }

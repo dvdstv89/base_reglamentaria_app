@@ -31,5 +31,10 @@ namespace BRapp.UI
         {
 
         }
+
+        private void panelSucursal_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
