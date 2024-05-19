@@ -35,12 +35,13 @@ namespace BRapp.UIControlers.Components
 
         protected override void initDataForm()
         {
-            if(res61.GetTipoGrupoDocumentacion().Count == 0)
+            if (res61.GetTipoGrupoDocumentacion().Count == 0)
             {
                 llenarListaGrupoTiendas();
             }
             else
             {
+                forma.panelHeader.Visible = res61.GetTipoGrupoDocumentacion()[0].TipoIndicacion == Enums.TipoIndicacion.RESOLUCION61;
                 llenarListaDocumentos();
             }           
         }

@@ -7,10 +7,10 @@ namespace BRapp.UIControlers
     internal class BienvenidaUIController : BaseUIController<BienvenidaUI>, IForm
     {
         private static BienvenidaUIController instance;
-        private readonly IBienvenidaService iBienvenidaService;
+        private readonly IBienvenidaService bienvenidaService;
         private BienvenidaUIController() : base(new BienvenidaUI())
         {
-            iBienvenidaService = BienvenidaService.Instance;
+            bienvenidaService = BienvenidaService.Instance;
         }
 
         public override BienvenidaUI ejecutar()
@@ -20,7 +20,7 @@ namespace BRapp.UIControlers
 
         protected override void aplicarTema()
         {
-           
+           forma.richTextBox1.Rtf = bienvenidaService.getBienvenida();
         }       
 
         public static BienvenidaUIController Instance

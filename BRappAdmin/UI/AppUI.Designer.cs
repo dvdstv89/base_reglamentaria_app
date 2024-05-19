@@ -43,10 +43,13 @@
             this.tbObjetoSocial = new RichTextBoxEx.RichTextBoxEx();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tbValoresCompartidos = new RichTextBoxEx.RichTextBoxEx();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.tbBienvenida = new RichTextBoxEx.RichTextBoxEx();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -99,7 +102,7 @@
             // 
             // btnActualizar
             // 
-            this.btnActualizar.Location = new System.Drawing.Point(1051, 413);
+            this.btnActualizar.Location = new System.Drawing.Point(1045, 726);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(75, 23);
             this.btnActualizar.TabIndex = 6;
@@ -128,9 +131,9 @@
             this.tbMision.FilePath = "";
             this.tbMision.Location = new System.Drawing.Point(6, 19);
             this.tbMision.Name = "tbMision";
-            this.tbMision.Rtf = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}\r\n{\\" +
-    "*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 \r\n\\pard\\fs20\\lang2057 richTextBox" +
-    "Ex1\\par\r\n}\r\n";
+            this.tbMision.Rtf = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang2057{\\fonttbl{\\f0\\fnil\\fcharset0 " +
+    "Arial;}}\r\n{\\*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 \r\n\\pard\\fs20\\par\r\n}\r\n" +
+    "";
             this.tbMision.SetColorWithFont = true;
             this.tbMision.ShowToolStrip = true;
             this.tbMision.Size = new System.Drawing.Size(536, 104);
@@ -158,9 +161,9 @@
             this.tbVision.FilePath = "";
             this.tbVision.Location = new System.Drawing.Point(9, 19);
             this.tbVision.Name = "tbVision";
-            this.tbVision.Rtf = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}\r\n{\\" +
-    "*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 \r\n\\pard\\fs20\\lang2057 richTextBox" +
-    "Ex1\\par\r\n}\r\n";
+            this.tbVision.Rtf = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang2057{\\fonttbl{\\f0\\fnil\\fcharset0 " +
+    "Arial;}}\r\n{\\*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 \r\n\\pard\\fs20\\par\r\n}\r\n" +
+    "";
             this.tbVision.SetColorWithFont = true;
             this.tbVision.ShowToolStrip = true;
             this.tbVision.Size = new System.Drawing.Size(536, 104);
@@ -188,9 +191,9 @@
             this.tbObjetoSocial.FilePath = "";
             this.tbObjetoSocial.Location = new System.Drawing.Point(6, 14);
             this.tbObjetoSocial.Name = "tbObjetoSocial";
-            this.tbObjetoSocial.Rtf = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}\r\n{\\" +
-    "*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 \r\n\\pard\\fs20\\lang2057 richTextBox" +
-    "Ex1\\par\r\n}\r\n";
+            this.tbObjetoSocial.Rtf = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang2057{\\fonttbl{\\f0\\fnil\\fcharset0 " +
+    "Arial;}}\r\n{\\*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 \r\n\\pard\\fs20\\par\r\n}\r\n" +
+    "";
             this.tbObjetoSocial.SetColorWithFont = true;
             this.tbObjetoSocial.ShowToolStrip = true;
             this.tbObjetoSocial.Size = new System.Drawing.Size(536, 104);
@@ -218,20 +221,51 @@
             this.tbValoresCompartidos.FilePath = "";
             this.tbValoresCompartidos.Location = new System.Drawing.Point(6, 14);
             this.tbValoresCompartidos.Name = "tbValoresCompartidos";
-            this.tbValoresCompartidos.Rtf = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}\r\n{\\" +
-    "*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 \r\n\\pard\\fs20\\lang2057 richTextBox" +
-    "Ex1\\par\r\n}\r\n";
+            this.tbValoresCompartidos.Rtf = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang2057{\\fonttbl{\\f0\\fnil\\fcharset0 " +
+    "Arial;}}\r\n{\\*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 \r\n\\pard\\fs20\\par\r\n}\r\n" +
+    "";
             this.tbValoresCompartidos.SetColorWithFont = true;
             this.tbValoresCompartidos.ShowToolStrip = true;
             this.tbValoresCompartidos.Size = new System.Drawing.Size(536, 104);
             this.tbValoresCompartidos.TabIndex = 18;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.tbBienvenida);
+            this.groupBox5.Location = new System.Drawing.Point(15, 402);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(1114, 318);
+            this.groupBox5.TabIndex = 19;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Bienvenida";
+            // 
+            // tbBienvenida
+            // 
+            this.tbBienvenida.AllowBullets = true;
+            this.tbBienvenida.AllowDefaultInsertText = true;
+            this.tbBienvenida.AllowDefaultSmartText = true;
+            this.tbBienvenida.AllowHyphenation = true;
+            this.tbBienvenida.AllowPictures = true;
+            this.tbBienvenida.AllowSpellCheck = true;
+            this.tbBienvenida.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.tbBienvenida.FilePath = "";
+            this.tbBienvenida.Location = new System.Drawing.Point(6, 14);
+            this.tbBienvenida.Name = "tbBienvenida";
+            this.tbBienvenida.Rtf = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang2057{\\fonttbl{\\f0\\fnil\\fcharset0 " +
+    "Arial;}}\r\n{\\*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 \r\n\\pard\\fs20\\par\r\n}\r\n" +
+    "";
+            this.tbBienvenida.SetColorWithFont = true;
+            this.tbBienvenida.ShowToolStrip = true;
+            this.tbBienvenida.Size = new System.Drawing.Size(1099, 289);
+            this.tbBienvenida.TabIndex = 18;
             // 
             // AppUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1132, 455);
+            this.ClientSize = new System.Drawing.Size(1132, 761);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -251,6 +285,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -273,5 +308,7 @@
         public RichTextBoxEx.RichTextBoxEx tbVision;
         public RichTextBoxEx.RichTextBoxEx tbObjetoSocial;
         public RichTextBoxEx.RichTextBoxEx tbValoresCompartidos;
+        private System.Windows.Forms.GroupBox groupBox5;
+        public RichTextBoxEx.RichTextBoxEx tbBienvenida;
     }
 }

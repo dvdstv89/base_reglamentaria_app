@@ -61,6 +61,16 @@ namespace BRapp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon BRLogo {
+            get {
+                object obj = ResourceManager.GetObject("BRLogo", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Logo {
@@ -96,16 +106,6 @@ namespace BRapp.Properties {
         internal static System.Drawing.Bitmap logoCaracol {
             get {
                 object obj = ResourceManager.GetObject("logoCaracol", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap PDF {
-            get {
-                object obj = ResourceManager.GetObject("PDF", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

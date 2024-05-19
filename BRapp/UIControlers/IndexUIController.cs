@@ -107,8 +107,8 @@ namespace BRapp.UIControlers
 
         protected override void forma_Load(object sender, EventArgs e)
         {
-            //bienvenidaToolStripMenuItem_Click(sender, e);
-            directorioToolStripMenuItem_Click(sender, e);
+            bienvenidaToolStripMenuItem_Click(sender, e);
+            //directorioToolStripMenuItem_Click(sender, e);
             base.forma_Load(sender, e);
         }       
 

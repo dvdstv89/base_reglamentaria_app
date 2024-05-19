@@ -63,9 +63,19 @@ namespace BRappAdmin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon logoaAdmin {
+        internal static System.Drawing.Icon BRLogo {
             get {
-                object obj = ResourceManager.GetObject("logoaAdmin", resourceCulture);
+                object obj = ResourceManager.GetObject("BRLogo", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Logo {
+            get {
+                object obj = ResourceManager.GetObject("Logo", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

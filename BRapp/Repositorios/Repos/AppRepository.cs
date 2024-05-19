@@ -12,7 +12,7 @@ namespace BRapp.Repositorios.Repos
     {
         private static AppRepository instance; 
         private readonly string QUERY_SELECT_ALL = "SELECT * FROM App";
-        private readonly string QUERY_EDIT = "UPDATE App SET fecha_actualizacion = @fechaActualizacion, copyright = @copyright, empresa =@empresa, mision=@mision, vision=@vision, objeto_social=@objeto_social, valores_compartidos =@valores_compartidos WHERE id = @Id";
+        private readonly string QUERY_EDIT = "UPDATE App SET fecha_actualizacion = @fechaActualizacion, copyright = @copyright, empresa =@empresa, mision=@mision, vision=@vision, objeto_social=@objeto_social, valores_compartidos =@valores_compartidos, bienvenida = @bienvenida WHERE id = @Id";
         private List<App> aplications;
         private readonly int AppId;
         private readonly IMapper mapperApp;
@@ -66,7 +66,8 @@ namespace BRapp.Repositorios.Repos
                 { "@mision", app.Mision },
                 { "@vision", app.Vision },
                 { "@objeto_social", app.ObjetoSocial },
-                { "@valores_compartidos", app.ValoresCompartidos }
+                { "@valores_compartidos", app.ValoresCompartidos },
+                { "@bienvenida", app.Bienvenida }
             };
             bool result = ExecuteWriteOperation(QUERY_EDIT, parametros);
             updateListApp();

@@ -378,7 +378,8 @@
     <Content Include="FodyWeavers.xml" />
     <Content Include="Logo.ico" />
     <Content Include="logoaAdmin.ico" />
-    <None Include="Resources\logoAdmin.ico" />
+    <None Include="Resources\Logo.ico" />
+    <None Include="Resources\BRLogo.ico" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

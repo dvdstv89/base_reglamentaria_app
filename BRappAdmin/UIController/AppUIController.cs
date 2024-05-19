@@ -38,7 +38,8 @@ namespace BRappAdmin.UIControlers
             forma.tbMision.Rtf = app.Mision;
             forma.tbVision.Rtf = app.Vision;
             forma.tbValoresCompartidos.Rtf = app.ValoresCompartidos;
-            forma.tbObjetoSocial.Rtf = app.ObjetoSocial;           
+            forma.tbObjetoSocial.Rtf = app.ObjetoSocial;
+            forma.tbBienvenida.Rtf = app.Bienvenida;
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -49,7 +50,8 @@ namespace BRappAdmin.UIControlers
             app.Mision = forma.tbMision.Rtf;
             app.Vision = forma.tbVision.Rtf;
             app.ObjetoSocial = forma.tbObjetoSocial.Rtf;
-            app.ValoresCompartidos= forma.tbValoresCompartidos.Rtf;          
+            app.ValoresCompartidos= forma.tbValoresCompartidos.Rtf;
+            app.Bienvenida = forma.tbBienvenida.Rtf;
 
             appServiceAdmin.updateApp(app);
             indexAdminUIController.updateFooter();

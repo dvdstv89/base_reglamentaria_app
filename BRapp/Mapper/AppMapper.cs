@@ -18,7 +18,8 @@ namespace BRapp.Mapper
                        reader["mision"].ToString(),
                        reader["vision"].ToString(),
                        reader["objeto_social"].ToString(),
-                       reader["valores_compartidos"].ToString()                      
+                       reader["valores_compartidos"].ToString(),
+                       reader["bienvenida"].ToString()
                    );
         }
 

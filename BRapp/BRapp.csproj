@@ -661,6 +661,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Logo.ico" />
+    <None Include="Resources\BRLogo.ico" />
     <Content Include="Resources\Logo.ico" />
     <Content Include="Resources\Logo.png" />
     <Content Include="Resources\logoCaracol.png" />
