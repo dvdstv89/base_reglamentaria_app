@@ -9,17 +9,15 @@ namespace BRapp.Repositorios.Repos.ReposDto
 {
     public class DepartamentoGrupoDocumentacionDtoRepository : BaseRepository, IDepartamentoGrupoDocumentacionDtoRepository
     {
-        private static DepartamentoGrupoDocumentacionDtoRepository instance; 
-
         private readonly string QUERY_SELECT_ALL = "SELECT * FROM DepartamentoTipoGrupoDocumentacion";
         private readonly string QUERY_DELETE = "Delete FROM DepartamentoTipoGrupoDocumentacion where id_departamento = @id_departamento and id_tipo_grupo_documentacion = @id_tipo_grupo_documentacion";
         private readonly string QUERY_INSERT = "INSERT INTO DepartamentoTipoGrupoDocumentacion (id_departamento, id_tipo_grupo_documentacion) VALUES ( @id_departamento, @id_tipo_grupo_documentacion)";
         private List<DepartamentoGrupoDocumentacionDto> departamentoGrupoDocumentacionDtos;
         private readonly IMapper departamentoGrupoDocumentacionMapper;
 
-        protected DepartamentoGrupoDocumentacionDtoRepository():base(AplicationConfig.ConnectionString, "DepartamentoTipoGrupoDocumentacion")
+        public DepartamentoGrupoDocumentacionDtoRepository(IMapper departamentoGrupoDocumentacionMapper) :base(AplicationConfig.ConnectionString, "DepartamentoTipoGrupoDocumentacion")
         {
-            departamentoGrupoDocumentacionMapper = new DepartamentoGrupoDocumentacionMapper ();
+            this.departamentoGrupoDocumentacionMapper = departamentoGrupoDocumentacionMapper;
             updateList();
         }
         protected void updateList()
@@ -89,13 +87,5 @@ namespace BRapp.Repositorios.Repos.ReposDto
         {
             return departamentoGrupoDocumentacionDtos.FindAll(dep => dep.idDepartamento == idDepartamento);
         }
-        public static DepartamentoGrupoDocumentacionDtoRepository Instance
-        {
-            get
-            {                
-                instance = (instance == null) ? new DepartamentoGrupoDocumentacionDtoRepository() : instance;
-                return instance;
-            }
-        } 
     }
 }

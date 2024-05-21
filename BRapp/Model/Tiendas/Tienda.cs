@@ -110,5 +110,10 @@ namespace BRapp.Model.Tiendas
         {
             return string.Empty;
         }
+
+        public bool hasPdfName()
+        {
+            return CertificadoComercial != null && CertificadoComercial.PDF != null && CertificadoComercial.PDF.Name != String.Empty;
+        }
     }
 }

@@ -4,27 +4,17 @@ using BRapp.Services.Interfaces;
 namespace BRapp.Services.Services
 {
     internal class SucursalService: ISucursalService
-    {
-        private static SucursalService instance;
+    {      
         private readonly IAppService appService;       
 
-        public SucursalService()
+        public SucursalService(IAppService appService)
         {
-            appService = AppService.Instance;           
+            this.appService = appService;           
         }
 
         public App GetApp()
         {
             return appService.getApp();
-        }       
-
-        public static SucursalService Instance
-        {
-            get
-            {
-                instance = (instance == null) ? new SucursalService() : instance;
-                return instance;               
-            }
-        }
+        }   
     }
 }

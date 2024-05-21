@@ -4,6 +4,7 @@ using BRapp.Services.Interfaces;
 using BRapp.Services.Services;
 using BRapp.UI;
 using BRapp.UIControlers;
+using BRappAdmin.Data;
 using BRappAdmin.UI;
 using System;
 using System.Collections.Generic;
@@ -24,8 +25,8 @@ namespace BRappAdmin.UIControlers
         {
             this.complejo= complejo;
             this.departamento = departamento;
-            departamentoService = DepartamentoService.Instance;
-            tipoGrupoDocumentacionService = TipoGrupoDocumentacionService.Instance;
+            departamentoService = AplicationAdminConfig.Component.Component.DepartamentoService;
+            tipoGrupoDocumentacionService = AplicationAdminConfig.Component.Component.TipoGrupoDocumentacionService;
             this.posicion = posicion;
         }
 
@@ -46,6 +47,7 @@ namespace BRappAdmin.UIControlers
                 forma.tbName.Text = departamento.Name;
                 forma.tbDescripcion.Rtf= departamento.Descripcion;
                 forma.cbTipo.Text = departamento.DepartamentoTipo.ToString();
+                forma.tbTrabajadores.Value = departamento.CantidadTrabajadores;
             }
         }
 
@@ -85,6 +87,7 @@ namespace BRappAdmin.UIControlers
             Enum.TryParse(forma.cbTipo.Text, out tipoDepartamento);
             string descripcion = forma.tbDescripcion.Rtf;
             List<TipoGrupoDocumentacion> tipoGrupoDocumentacions = GetTipoGrupoDocumentacionsSelected();
+            int trabajadores = (int)forma.tbTrabajadores.Value;
 
             if (departamento != null)
             {
@@ -92,10 +95,11 @@ namespace BRappAdmin.UIControlers
                 departamento.DepartamentoTipo = tipoDepartamento;
                 departamento.TipoGrupoDocumentacion = tipoGrupoDocumentacions;
                 departamento.Descripcion= descripcion;
+                departamento.CantidadTrabajadores= trabajadores;
             }
             else
             {
-                departamento = new Departamento(name, complejo, tipoDepartamento, descripcion, tipoGrupoDocumentacions, posicion);
+                departamento = new Departamento(name, complejo, tipoDepartamento, descripcion, tipoGrupoDocumentacions, posicion, trabajadores);
             }
         }
 

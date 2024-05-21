@@ -1,25 +1,22 @@
 ﻿using BRapp.Model;
-using BRapp.Services.Services;
 using BRapp.UI;
 using BRapp.UIControlers;
 using BRapp.Messages;
 using BRappAdmin.Services.Interfaces;
-using BRappAdmin.Services.Services;
 using BRappAdmin.UI;
 using System;
-using System.Windows.Forms;
+using BRappAdmin.Data;
 
 namespace BRappAdmin.UIControlers
 {
     internal class AppUIController : BaseUIController<AppUI>, IForm
     {
-        private static AppUIController instance;
         private readonly IndexAdminUIController indexAdminUIController;
         private readonly IAppServiceAdmin appServiceAdmin;      
         private App app;
-        private AppUIController(IndexAdminUIController indexAdminUIController) : base(new AppUI())
+        public AppUIController(IndexAdminUIController indexAdminUIController) : base(new AppUI())
         {
-            appServiceAdmin = AppServiceAdmin.Instance;    
+            appServiceAdmin = AplicationAdminConfig.Component.AppServiceAdmin;    
             this.indexAdminUIController = indexAdminUIController;            
         }       
 
@@ -57,10 +54,5 @@ namespace BRappAdmin.UIControlers
             indexAdminUIController.updateFooter();
             DialogUtil.INFORMATION(Mensajes.APP_UPDATED_OK);
         }
-
-        public static AppUIController Instance(IndexAdminUIController indexAdminUIController)
-        {
-            return (instance == null) ? new AppUIController(indexAdminUIController) : instance;
-        }         
     }
 }

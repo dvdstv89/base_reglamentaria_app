@@ -1,27 +1,18 @@
-﻿using BRapp.Model;
-using BRapp.Model.Tiendas;
-using BRapp.Services.Interfaces;
-using BRapp.Services.Services;
+﻿using BRapp.Model.Tiendas;
 using BRapp.UI.Cards;
 using BRapp.UIControlers.Components;
 using System;
 using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 
 namespace BRapp.UIControlers.CardUCController
 {
     internal class TiendaUCController : BaseUCController<TiendaCard, Tienda>, ICard
-    {             
-        private readonly VisorPDFUIController visorPDFUIController;
+    {     
         private readonly VisorDocumentacionUIController visorDocumentacionUIController;
-        private readonly ITiendaService tiendaService;
-        private readonly DocumentoPDF documentoApliado;
+       
         public TiendaUCController(Tienda tienda) : base(new TiendaCard(), tienda)
-        {                        
-            this.tiendaService = TiendasService.Instance;
-            this.documentoApliado = tiendaService.getDocumentoPDFApliado(tienda);
-            this.visorPDFUIController = new VisorPDFUIController(documentoApliado);
+        {
             this.visorDocumentacionUIController = new VisorDocumentacionUIController(tienda);
         }
 
@@ -62,24 +53,25 @@ namespace BRapp.UIControlers.CardUCController
             }
 
 
-            if (documentoApliado.hasImagen())
-            {
-                card.iconPictureBox1.Visible = false;
-                using (MemoryStream ms = new MemoryStream(documentoApliado.Imagen.Data))
-                {
-                    using (Image originalImage = Image.FromStream(ms))
-                    {
-                        ResizeImage(card.panelImagen, originalImage);
-                    }
-                }
-            }            
+            //if (documentoApliado.hasImagen())
+            //{
+            //    card.iconPictureBox1.Visible = false;
+            //    using (MemoryStream ms = new MemoryStream(documentoApliado.Imagen.Data))
+            //    {
+            //        using (Image originalImage = Image.FromStream(ms))
+            //        {
+            //            ResizeImage(card.panelImagen, originalImage);
+            //        }
+            //    }
+            //}            
         }
 
         private void btnCertificado_Click(object sender, EventArgs e)
         {
-            if (documentoApliado.hasDocumento())
+            if (objeto.hasPdfName())
             {
-                visorPDFUIController.showDialog();
+                var visorDocumentosUIController = new VisorPDFUIController(objeto.CertificadoComercial);
+                visorDocumentosUIController.showDialog();
             }
            
         }

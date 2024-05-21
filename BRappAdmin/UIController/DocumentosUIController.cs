@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using ListViewItem = System.Windows.Forms.ListViewItem;
 using BRapp.Services.Interfaces;
 using BRapp.Services.Services;
+using BRapp.Model.Tiendas;
+using BRappAdmin.Data;
 
 namespace BRappAdmin.UIControlers
 {
@@ -25,7 +27,7 @@ namespace BRappAdmin.UIControlers
 
         private DocumentosUIController() : base(new DocumentosUI())
         {
-            documentosService = PapelService.Instance;          
+            documentosService = AplicationAdminConfig.Component.Component.PapelService;
             columnSorter = new ListViewColumnSorter();
         }
 
@@ -65,7 +67,7 @@ namespace BRappAdmin.UIControlers
         {
             if (sender is ToolStripMenuItem menuItem && menuItemMappings.ContainsKey(menuItem))
             {               
-                modificarPapel(null, menuItemMappings[menuItem]);
+                modificarPapel(null, menuItemMappings[menuItem], papeles.Count+1, sender, e);
             }
         }
 
@@ -82,8 +84,7 @@ namespace BRappAdmin.UIControlers
             {
                 var item = new ListViewItem(papel.ToString());
                 item.SubItems.Add(papel.TipoClasificacionDocumento.ToString());                
-                bool hasPdf = papel.DocumentoPDF != null && papel.DocumentoPDF.hasDocumento();
-                item.SubItems.Add(hasPdf.ToString());
+                bool hasPdf = papel.DocumentoPDF != null && papel.DocumentoPDF.hasDocumento();             
                 item.SubItems.Add(papel.IsActivo.ToString());
                 item.Tag = papel;
                 forma.lwPapeles.Items.Add(item);
@@ -105,27 +106,27 @@ namespace BRappAdmin.UIControlers
 
         private void activarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            actualizarActivo(true);            
+            actualizarActivo(true, sender, e);
         }
 
         private void desactivarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            actualizarActivo(false);
+            actualizarActivo(false, sender, e);           
         }
 
-        private void actualizarActivo(bool activo)
+        private void actualizarActivo(bool activo, object sender, EventArgs e)
         {
             var papel = getPapelSeleccionado();
             papel.IsActivo = activo;
             documentosService.saveOrUpdate(papel);
             DialogUtil.INFORMATION(Mensajes.PAPEL_UPDATED_OK);
-            updateList();
+            txtSearch_TextChanged(sender, e);
         }
 
         private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var papelSeleccionado = getPapelSeleccionado();
-            modificarPapel(papelSeleccionado, papelSeleccionado.TipoClasificacionDocumento);
+             modificarPapel(papelSeleccionado, papelSeleccionado.TipoClasificacionDocumento, papeles.FindIndex(doc => doc.Id == papelSeleccionado.Id), sender, e);
         }
 
         private void lwPapeles_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -133,20 +134,19 @@ namespace BRappAdmin.UIControlers
             if (e.Button == MouseButtons.Left)
             {
                 var papelSeleccionado = getPapelSeleccionado();
-                modificarPapel(papelSeleccionado, papelSeleccionado.TipoClasificacionDocumento);
+               modificarPapel(papelSeleccionado, papelSeleccionado.TipoClasificacionDocumento, papeles.FindIndex(doc => doc.Id == papelSeleccionado.Id), sender, e);
             }
         }
 
-        private void modificarPapel(Papel papel, TipoClasificacionDocumento tipoClasificacionDocumento)
+        private void modificarPapel(Papel papel, TipoClasificacionDocumento tipoClasificacionDocumento, int posicion, object sender, EventArgs e)
         {
-            var papelUiController = new PapelUIController(papel, tipoClasificacionDocumento);
+            var papelUiController = new PapelUIController(papel, tipoClasificacionDocumento, posicion);
             DialogResult dialogResult = papelUiController.ejecutar().ShowDialog();
             if (dialogResult == DialogResult.OK)
             {
                 DialogUtil.INFORMATION(Mensajes.PAPEL_SAVED_OK);
-                forma.tbBuscar.Text = "";
-                updateList();
-            }
+                txtSearch_TextChanged(sender, e);
+            }           
         }
         private void marcarPapel()
         {
@@ -167,8 +167,10 @@ namespace BRappAdmin.UIControlers
         public static DocumentosUIController Instance
         {
             get
-            {
-                return (instance == null) ? new DocumentosUIController() : instance;
+            {               
+                //instance = (instance == null) ? new DocumentosUIController() : instance;
+                //return instance;
+                return new DocumentosUIController();
             }
         }
         private Papel getPapelSeleccionado()
@@ -185,16 +187,14 @@ namespace BRappAdmin.UIControlers
         private void resizeList(object sender, LayoutEventArgs e)
         {
             int totalWidth = forma.lwPapeles.Width - 25;
-            forma.columnName.Width = RoundNumber((totalWidth * 0.5));
-            forma.columnTipo.Width = RoundNumber((totalWidth * 0.3));         
-            forma.columnPDF.Width = RoundNumber((totalWidth * 0.1));
+            forma.columnName.Width = RoundNumber((totalWidth * 0.6));
+            forma.columnTipo.Width = RoundNumber((totalWidth * 0.3));
             forma.columnActivo.Width = RoundNumber((totalWidth * 0.1));
         }
         private void ListView_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             columnSorter.Sort(forma.lwPapeles, e.Column);
         }
-
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             updateList();

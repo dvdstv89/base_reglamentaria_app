@@ -16,7 +16,6 @@ namespace BRapp.UI.Cards
         public ToolTip toolTip1;
         private System.ComponentModel.IContainer components;
         public FontAwesome.Sharp.IconPictureBox iconPictureBox1;
-        public FontAwesome.Sharp.IconPictureBox iconPrincipal;
 
         public SistemaCard()
         {
@@ -31,18 +30,16 @@ namespace BRapp.UI.Cards
             this.btnResponsable = new FontAwesome.Sharp.IconButton();
             this.labelCargoResponsable = new System.Windows.Forms.TextBox();
             this.panelImagen = new System.Windows.Forms.Panel();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelTitle = new System.Windows.Forms.Panel();
             this.labelName = new System.Windows.Forms.Label();
-            this.iconPrincipal = new FontAwesome.Sharp.IconPictureBox();
             this.btnPdf = new FontAwesome.Sharp.IconButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.panel1.SuspendLayout();
             this.panelImagen.SuspendLayout();
-            this.panelTitle.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPrincipal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
+            this.panelTitle.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelDescripcion
@@ -112,6 +109,20 @@ namespace BRapp.UI.Cards
             this.panelImagen.Size = new System.Drawing.Size(120, 138);
             this.panelImagen.TabIndex = 28;
             // 
+            // iconPictureBox1
+            // 
+            this.iconPictureBox1.BackColor = System.Drawing.Color.White;
+            this.iconPictureBox1.ForeColor = System.Drawing.Color.Orange;
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Image;
+            this.iconPictureBox1.IconColor = System.Drawing.Color.Orange;
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox1.IconSize = 116;
+            this.iconPictureBox1.Location = new System.Drawing.Point(2, 11);
+            this.iconPictureBox1.Name = "iconPictureBox1";
+            this.iconPictureBox1.Size = new System.Drawing.Size(117, 116);
+            this.iconPictureBox1.TabIndex = 1;
+            this.iconPictureBox1.TabStop = false;
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
@@ -125,7 +136,6 @@ namespace BRapp.UI.Cards
             // 
             this.panelTitle.BackColor = System.Drawing.Color.Orange;
             this.panelTitle.Controls.Add(this.labelName);
-            this.panelTitle.Controls.Add(this.iconPrincipal);
             this.panelTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitle.Location = new System.Drawing.Point(0, 0);
             this.panelTitle.Name = "panelTitle";
@@ -134,28 +144,15 @@ namespace BRapp.UI.Cards
             // 
             // labelName
             // 
-            this.labelName.Dock = System.Windows.Forms.DockStyle.Right;
+            this.labelName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelName.ForeColor = System.Drawing.Color.White;
-            this.labelName.Location = new System.Drawing.Point(58, 0);
+            this.labelName.Location = new System.Drawing.Point(0, 0);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(425, 60);
+            this.labelName.Size = new System.Drawing.Size(483, 60);
             this.labelName.TabIndex = 7;
             this.labelName.Text = "David Estevez Diaz";
             this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // iconPrincipal
-            // 
-            this.iconPrincipal.BackColor = System.Drawing.Color.Transparent;
-            this.iconPrincipal.IconChar = FontAwesome.Sharp.IconChar.UserAlt;
-            this.iconPrincipal.IconColor = System.Drawing.Color.White;
-            this.iconPrincipal.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPrincipal.IconSize = 49;
-            this.iconPrincipal.Location = new System.Drawing.Point(3, 5);
-            this.iconPrincipal.Name = "iconPrincipal";
-            this.iconPrincipal.Size = new System.Drawing.Size(49, 51);
-            this.iconPrincipal.TabIndex = 6;
-            this.iconPrincipal.TabStop = false;
             // 
             // btnPdf
             // 
@@ -170,20 +167,6 @@ namespace BRapp.UI.Cards
             this.btnPdf.TabIndex = 32;
             this.toolTip1.SetToolTip(this.btnPdf, "Ver documentación del sistema");
             this.btnPdf.UseVisualStyleBackColor = true;
-            // 
-            // iconPictureBox1
-            // 
-            this.iconPictureBox1.BackColor = System.Drawing.Color.White;
-            this.iconPictureBox1.ForeColor = System.Drawing.Color.Orange;
-            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Image;
-            this.iconPictureBox1.IconColor = System.Drawing.Color.Orange;
-            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.IconSize = 116;
-            this.iconPictureBox1.Location = new System.Drawing.Point(2, 11);
-            this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(117, 116);
-            this.iconPictureBox1.TabIndex = 1;
-            this.iconPictureBox1.TabStop = false;
             // 
             // SistemaCard
             // 
@@ -201,9 +184,8 @@ namespace BRapp.UI.Cards
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panelImagen.ResumeLayout(false);
-            this.panelTitle.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.iconPrincipal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
+            this.panelTitle.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }                     

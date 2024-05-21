@@ -1,4 +1,5 @@
 ﻿
+using BRapp.Data;
 using BRapp.Model.Tiendas;
 using BRapp.Repositorios.Interfaces;
 using BRapp.Repositorios.Repos;
@@ -9,23 +10,13 @@ using System.Collections.Generic;
 namespace BRapp.Services.Services
 {
     public class ComplejoService : IComplejoService
-    {
-        private static ComplejoService instance;
+    {      
         protected readonly IComplejoRepository complejoRepository;
 
-        public ComplejoService()
+        public ComplejoService(IComplejoRepository complejoRepository)
         {
-            complejoRepository = ComplejoRepository.Instance;
-        }
-
-        public static ComplejoService Instance
-        {
-            get
-            {              
-                instance = (instance == null) ? new ComplejoService() : instance;
-                return instance;
-            }
-        }
+            this.complejoRepository = complejoRepository;
+        }      
 
         public List<Complejo> getAll()
         {

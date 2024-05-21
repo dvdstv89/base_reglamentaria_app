@@ -11,9 +11,7 @@ using BRapp.Utiles;
 namespace BRapp.Repositorios.Repos.ReposDto
 {
     public class TiendaDtoRepository : BaseRepository, ITiendaDtoRepository
-    {
-        private static TiendaDtoRepository instance; 
-
+    {       
         private readonly string QUERY_SELECT_ALL = "SELECT * FROM Tienda order by orden";
         private readonly string QUERY_UPDATE = @"UPDATE Tienda SET  name = @name, ubicacion = @ubicacion, telefono = @telefono, cantidad_trabajadores = @cantidad_trabajadores, 
                                                 cantidad_cajas_registradoras = @cantidad_cajas_registradoras, numero_registro_comercial = @numero_registro_comercial, certificado_scg = @certificado_scg, certificado_tmhs = @certificado_tmhs,
@@ -23,11 +21,11 @@ namespace BRapp.Repositorios.Repos.ReposDto
                                                 (id,   name, ubicacion,  telefono,  cantidad_trabajadores,  cantidad_cajas_registradoras,  numero_registro_comercial, certificado_scg, certificado_tmhs, certificado_sanitaria, is_activo, tipo_tienda, tipo_moneda, id_complejo, id_certificado_comercial, orden) 
                                          VALUES (@Id, @name, @ubicacion, @telefono, @cantidad_trabajadores, @cantidad_cajas_registradoras, @numero_registro_comercial, @certificado_scg, @certificado_tmhs, @certificado_sanitaria, @is_activo, @tipo_tienda, @tipo_moneda, @id_complejo, @id_certificado_comercial, @orden)"; 
         private List<TiendaDto> tiendaDtos;      
-        private readonly IMapper mapperTienda;
+        private readonly IMapper tiendaMapper;
 
-        protected TiendaDtoRepository():base(AplicationConfig.ConnectionString, "Tienda")
+        public TiendaDtoRepository(IMapper tiendaMapper) :base(AplicationConfig.ConnectionString, "Tienda")
         {
-            mapperTienda = new TiendaMapper();  
+            this.tiendaMapper = tiendaMapper;  
             updateListApp();
 
         }
@@ -46,7 +44,7 @@ namespace BRapp.Repositorios.Repos.ReposDto
                 {
                     while (reader.Read())
                     {
-                        apps.Add((TiendaDto)mapperTienda.Map(reader));
+                        apps.Add((TiendaDto)tiendaMapper.Map(reader));
                     }
                 }
             }
@@ -65,7 +63,7 @@ namespace BRapp.Repositorios.Repos.ReposDto
 
         public ActionResult saveOrUpdate(Tienda tienda)
         {
-            TiendaDto tiendaDto = (TiendaDto)mapperTienda.Map(tienda);
+            TiendaDto tiendaDto = (TiendaDto)tiendaMapper.Map(tienda);
             Dictionary<string, object> parametros = buildParametros(tiendaDto);
             int index = getIndexById(tiendaDto.id);
             if (index != -1)
@@ -105,14 +103,5 @@ namespace BRapp.Repositorios.Repos.ReposDto
             };          
             return parametros;
         }
-
-        public static TiendaDtoRepository Instance
-        {
-            get
-            {                
-                instance = (instance == null) ? new TiendaDtoRepository() : instance;
-                return instance;
-            }
-        } 
     }
 }

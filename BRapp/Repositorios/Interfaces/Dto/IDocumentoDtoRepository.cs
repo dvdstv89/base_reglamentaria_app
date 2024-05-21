@@ -5,7 +5,7 @@ using System;
 
 namespace BRapp.Repositorios.Interfaces.Dto
 {
-    internal interface IDocumentoDtoRepository
+    public interface IDocumentoDtoRepository
     {
         ActionResult saveOrUpdate(Documento papel);
         DocumentoDto getById(Guid id);

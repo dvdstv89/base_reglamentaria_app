@@ -12,7 +12,6 @@ namespace BRapp.Repositorios.Repos.ReposDto
 {
     internal class SistemaDtoRepository : BaseRepository, ISistemaDtoRepository
     {
-        private static SistemaDtoRepository instance;       
         private readonly string QUERY_DELETE = "Delete FROM Sistema where id_papel = @papelId";
         private readonly string QUERY_SELECT_ALL_SISTEMAS = "SELECT * FROM Sistema";
         private readonly string QUERY_UPDATE = "UPDATE Sistema SET id_responsable = @responsable, tipo_sistema = @tiposistema WHERE id_papel = @papelId";
@@ -20,9 +19,9 @@ namespace BRapp.Repositorios.Repos.ReposDto
         private readonly List<SistemaDto> sistemasDto;
         private readonly IMapper mapperSistema;
 
-        private SistemaDtoRepository() : base(AplicationConfig.ConnectionString, "Sistema")
+        public SistemaDtoRepository(IMapper mapperSistema) : base(AplicationConfig.ConnectionString, "Sistema")
         {
-            mapperSistema = new SistemaMapper();
+            this.mapperSistema = mapperSistema;
             sistemasDto = getAll_SistemasDto();
         }
 
@@ -90,14 +89,5 @@ namespace BRapp.Repositorios.Repos.ReposDto
             };
             return parametros;
         }
-
-        public static SistemaDtoRepository Instance
-        {
-            get
-            {
-                instance = (instance == null) ? new SistemaDtoRepository() : instance;
-                return instance;
-            }
-        } 
     }
 }

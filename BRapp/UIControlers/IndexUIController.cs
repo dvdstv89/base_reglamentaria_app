@@ -5,18 +5,14 @@ using BRapp.Enums.EnumsInstances;
 using System;
 using System.Windows.Forms;
 using BRapp.Services.Interfaces;
-using BRapp.Services.Services;
 using BRapp.Data;
 using BRapp.Model.Tiendas;
 using System.Collections.Generic;
-using BRapp.Enums.EnumFiltroBusqueda;
-using System.Windows.Controls;
 
 namespace BRapp.UIControlers
 {
     public class IndexUIController : BaseUIController<IndexUI>
     {
-        private static IndexUIController instance;
         protected readonly IIndexService iIndexService;
         private readonly IComplejoService complejoService;
 
@@ -24,10 +20,10 @@ namespace BRapp.UIControlers
 
         IForm activeForm = null;
         ButtonSeleccionado botonActivo = null;
-        protected IndexUIController(IIndexService iIndexService) : base(new IndexUI())
+        public IndexUIController() : base(new IndexUI())
         {
-            this.iIndexService = iIndexService;
-            complejoService = ComplejoService.Instance;
+            this.iIndexService = AplicationConfig.Component.IndexService;
+            complejoService = AplicationConfig.Component.ComplejoService;
             complejosItemMappings = new Dictionary<ToolStripMenuItem, Complejo>();
         }
 
@@ -36,6 +32,8 @@ namespace BRapp.UIControlers
             forma.menuStrip1.Layout += centrarMenu;
             forma.Layout += centrarFormulario;
             forma.Resize += Forma_Resize;
+            forma.btnLimpiarBusqueda.Click += new EventHandler(btnLimpiarBusqueda_Click);
+
             forma.bienvenidaToolStripMenuItem.Click += new EventHandler(bienvenidaToolStripMenuItem_Click);                     
             forma.sistemasToolStripMenuItem.Click += new EventHandler(sistemasToolStripMenuItem_Click);
            
@@ -82,7 +80,10 @@ namespace BRapp.UIControlers
             }
         }
 
-
+        private void btnLimpiarBusqueda_Click(object sender, EventArgs e)
+        {
+            forma.tbBuscar.Text = "";            
+        }
 
         private void ButtonToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -107,8 +108,7 @@ namespace BRapp.UIControlers
 
         protected override void forma_Load(object sender, EventArgs e)
         {
-            bienvenidaToolStripMenuItem_Click(sender, e);
-            //directorioToolStripMenuItem_Click(sender, e);
+            bienvenidaToolStripMenuItem_Click(sender, e);           
             base.forma_Load(sender, e);
         }       
 
@@ -304,14 +304,6 @@ namespace BRapp.UIControlers
             // Establecer el nuevo ancho para los paneles laterales
             forma.panelIzquierdo.Width = anchoPanelLateral;
             forma.panelDerecha.Width = anchoPanelLateral;
-        }       
-
-        public static IndexUIController Instance
-        {
-            get
-            {
-                return (instance == null) ? new IndexUIController(IndexService.Instance) : instance;               
-            }
         }
 
         private void Forma_Resize(object sender, EventArgs e)

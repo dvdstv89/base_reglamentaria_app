@@ -1,7 +1,7 @@
-﻿using BRapp.Model;
+﻿using BRapp.Data;
+using BRapp.Model;
 using BRapp.Model.Tiendas;
 using BRapp.Services.Interfaces;
-using BRapp.Services.Services;
 using BRapp.UI.Cards;
 using BRapp.UI.Component;
 using BRapp.UIControlers.CardUCController;
@@ -14,16 +14,21 @@ namespace BRapp.UIControlers.Components
 {
 
     internal class VisorDocumentacionUIController : BaseUIController<VisorDocumentacionUI>
-    {       
-        private readonly IVisorDocumentacionService visorDocumentosService;       
+    {
+        private readonly IVisorDocumentacionService visorDocumentosService;
         private readonly IRes61 res61;
         private readonly Resolucion resolucion61;
 
         public VisorDocumentacionUIController(IRes61 res61) : base(new VisorDocumentacionUI())
         {
             this.res61 = res61;
-            visorDocumentosService = VisorDocumentacionService.Instance;
+            visorDocumentosService = AplicationConfig.Component.VisorDocumentacionService;
             resolucion61 = visorDocumentosService.getRes61();
+        }
+
+        public bool IsEmptyRtf(string rft)
+        {
+            return visorDocumentosService.isEmptyRft(rft) || String.IsNullOrEmpty(rft);
         }
 
         public override VisorDocumentacionUI ejecutar()
@@ -54,11 +59,9 @@ namespace BRapp.UIControlers.Components
             forma.panelText.Dock = DockStyle.Fill;
             forma.richTextBox1.Rtf = res61.GetDescripcionRft();            
         }
-
         private void llenarListaDocumentos()
         {
-            forma.panelText.Visible = false;
-            forma.panelHeader.Visible = true;
+            forma.panelText.Visible = false;            
             forma.panelCard.Visible = true;
             forma.panelCard.Dock = DockStyle.Fill;
 
@@ -73,7 +76,6 @@ namespace BRapp.UIControlers.Components
                 ProcesarTipoGrupoDocumentacion(tipo);
             }
         }
-
         private Label createLabel(TipoGrupoDocumentacion tipo)
         {
             Label encabezadoLabel = new Label();

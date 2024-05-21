@@ -2,7 +2,6 @@
 using BRapp.Model;
 using BRapp.Model.Tiendas;
 using BRapp.Repositorios.Interfaces.Dto;
-using BRapp.Repositorios.Repos.ReposDto;
 using BRapp.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,26 +11,16 @@ namespace BRapp.Services.Services
 {
     public class GrupoDocumentacionService : IGrupoDocumentacionService
     {
-        private static GrupoDocumentacionService instance;
         protected readonly ITipoGrupoDocumentacionService tipoGrupoDocumentacionService;
         protected readonly IGrupoDocumentacionDtoRepository grupoDocumentacionDtoRepository;
         protected readonly IPapelService papelService;       
 
-        public GrupoDocumentacionService(IPapelService papelService)
+        public GrupoDocumentacionService(IPapelService papelService, ITipoGrupoDocumentacionService tipoGrupoDocumentacionService, IGrupoDocumentacionDtoRepository grupoDocumentacionDtoRepository)
         {
-            tipoGrupoDocumentacionService = TipoGrupoDocumentacionService.Instance;
-            grupoDocumentacionDtoRepository = GrupoDocumentacionDtoRepository.Instance;
+            this.tipoGrupoDocumentacionService = tipoGrupoDocumentacionService;
+            this.grupoDocumentacionDtoRepository = grupoDocumentacionDtoRepository;
             this.papelService = papelService;
-        }
-
-        public static GrupoDocumentacionService Instance
-        {
-            get
-            {              
-                instance = (instance == null) ? new GrupoDocumentacionService(PapelService.Instance) : instance;
-                return instance;
-            }
-        }
+        }       
 
         public List<GrupoDocumentacion> getAll()
         {

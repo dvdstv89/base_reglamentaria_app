@@ -14,8 +14,7 @@ using System.Linq;
 namespace BRapp.Repositorios.Repos
 {
     internal class DocumentoPdfRepository : BaseRepository, IDocumentoPdfRepository
-    {
-        private static DocumentoPdfRepository instance;
+    {       
         private readonly string QUERY_DELETE = "Delete FROM DocumentoPDF where id = @documentoId";
         private readonly string QUERY_SELECT_ALL_DOCUMENTOS_PDF = "SELECT id,pdf,image FROM DocumentoPDF";
         private readonly string QUERY_SELECT_DOCUMENTO_PDF_BLOBS = "SELECT * FROM DocumentoPDF WHERE id = @documentoId";
@@ -23,17 +22,13 @@ namespace BRapp.Repositorios.Repos
         private readonly string QUERY_INSERT = "INSERT INTO DocumentoPDF (id, pdf, image, blob_pdf, blob_imagen) VALUES ( @documentoId, @pdf, @image, @blob_pdf, @blob_imagen)";
 
         private readonly List<DocumentoPDF> documentos;
-        private readonly IMapper mapperDocumentoPDF;
-        private readonly IMapper mapperDocumentoPDFBlob;
-        private readonly IFileService filePdfLogoService;
-        private readonly IFileService filePdfDocumentService;
+        private readonly IMapper documentoPDFMapper;
+        private readonly IMapper documentoPDFBlobMapper;       
 
-        public DocumentoPdfRepository() : base(AplicationConfig.ConnectionString, "DocumentoPDF")
+        public DocumentoPdfRepository(IMapper documentoPDFMapper, IMapper documentoPDFBlobMapper) : base(AplicationConfig.ConnectionString, "DocumentoPDF")
         {
-            filePdfLogoService = new FileService();
-            filePdfDocumentService = new FileService();
-            mapperDocumentoPDF = new DocumentoPdfMapper(filePdfLogoService, filePdfDocumentService);
-            mapperDocumentoPDFBlob = new DocumentoPdfBlobMapper();
+            this.documentoPDFMapper = documentoPDFMapper;
+            this.documentoPDFBlobMapper = documentoPDFBlobMapper;
             documentos = getAll();
         }
 
@@ -55,7 +50,7 @@ namespace BRapp.Repositorios.Repos
             {
                 while (reader.Read())
                 {
-                    pdfs.Add((DocumentoPDF)mapperDocumentoPDF.Map(reader));
+                    pdfs.Add((DocumentoPDF)documentoPDFMapper.Map(reader));
                 }
             }
             return pdfs;
@@ -75,7 +70,7 @@ namespace BRapp.Repositorios.Repos
                 {
                     while (reader.Read())
                     {
-                        documentoPDF = (DocumentoPDF)mapperDocumentoPDFBlob.Map(reader);
+                        documentoPDF = (DocumentoPDF)documentoPDFBlobMapper.Map(reader);
                     }
                 }
                 return documentoPDF;
@@ -134,15 +129,5 @@ namespace BRapp.Repositorios.Repos
             };           
             return parametros;
         }
-
-
-        public static DocumentoPdfRepository Instance
-        {
-            get
-            {
-                instance = (instance == null) ? new DocumentoPdfRepository() : instance;
-                return instance;
-            }
-        } 
     }
 }

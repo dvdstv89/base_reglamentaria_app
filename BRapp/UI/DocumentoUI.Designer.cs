@@ -1,4 +1,7 @@
-﻿namespace BRapp.UI
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace BRapp.UI
 {
     partial class DocumentoUI
     {
@@ -79,7 +82,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "DocumentoUI";
             this.Text = "DocumentoUI";
-            this.ResumeLayout(false);
+            this.ResumeLayout(false);           
 
         }
 
@@ -89,5 +92,7 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel2;
         public System.Windows.Forms.FlowLayoutPanel flowLayoutDocumentos;
+
+
     }
 }

@@ -14,5 +14,11 @@ namespace BRapp.Model
             this.Contacto = Contacto;
             this.Logo = Logo;           
         }
+
+        public bool hasLogo()
+        {
+            return Logo != null && Logo.hasDataValid();
+        }
+
     }
 }

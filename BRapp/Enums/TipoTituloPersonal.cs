@@ -2,14 +2,14 @@
 {
     public enum TipoTituloPersonal
     {
+        _,
+        Sr,
+        Cr,       
+        Dtor,
+        Sdtor,
         Lic,
         Ing,
-        Sr,
-        Cro,
-        Cra,
-        Mas,
+        Msc,
         Dr,
-        Sdtor,
-        Dtor,
     }
 }

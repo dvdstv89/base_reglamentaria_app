@@ -1,18 +1,16 @@
 ﻿using BRapp.Model;
 using BRapp.Repositorios.Interfaces;
-using BRapp.Repositorios.Repos;
 using BRappAdmin.Services.Interfaces;
 
 namespace BRappAdmin.Services.Services
 {
     internal class AppServiceAdmin: IAppServiceAdmin
-    {
-        private static AppServiceAdmin instance;
+    {       
         private readonly IAppRepository appRepository;
 
-        public AppServiceAdmin()
+        public AppServiceAdmin(IAppRepository appRepository)
         {
-            appRepository = AppRepository.Instance;
+            this.appRepository = appRepository;
         }    
 
         public App getApp()
@@ -22,15 +20,6 @@ namespace BRappAdmin.Services.Services
         public bool updateApp(App app)
         {
            return appRepository.updateApp(app);
-        }
-
-        public static AppServiceAdmin Instance
-        {
-            get
-            {
-                instance = (instance == null) ? new AppServiceAdmin() : instance;
-                return instance;
-            }
-        }
+        }       
     }
 }

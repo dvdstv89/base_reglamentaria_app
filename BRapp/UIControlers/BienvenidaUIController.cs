@@ -1,16 +1,16 @@
-﻿using BRapp.Services.Interfaces;
-using BRapp.Services.Services;
+﻿using BRapp.Data;
+using BRapp.Services.Interfaces;
 using BRapp.UI;
 
 namespace BRapp.UIControlers
 {
-    internal class BienvenidaUIController : BaseUIController<BienvenidaUI>, IForm
+    public class BienvenidaUIController : BaseUIController<BienvenidaUI>, IForm
     {
         private static BienvenidaUIController instance;
         private readonly IBienvenidaService bienvenidaService;
         private BienvenidaUIController() : base(new BienvenidaUI())
         {
-            bienvenidaService = BienvenidaService.Instance;
+            bienvenidaService = AplicationConfig.Component.BienvenidaService;
         }
 
         public override BienvenidaUI ejecutar()

@@ -2,7 +2,6 @@
 using BRapp.Enums.EnumFiltroBusqueda;
 using BRapp.Model;
 using BRapp.Services.Interfaces;
-using BRapp.Services.Services;
 using BRapp.UI;
 using BRapp.UI.Cards;
 using BRapp.UIControlers.CardUCController;
@@ -17,7 +16,7 @@ namespace BRapp.UIControlers
     internal class DirectorioUIController : BaseUIController<DirectorioUI>, IForm
     {
         private static DirectorioUIController instance;
-        private readonly IDirectorioService iDirectorioService;
+        private readonly IDirectorioService directorioService;
         List<ICard> contactos = new List<ICard>();
         ButtonSeleccionado botonActivo = null;
         TipoContactoBusqueda tipoContactoBusqueda;
@@ -27,7 +26,7 @@ namespace BRapp.UIControlers
 
         private DirectorioUIController() : base(new DirectorioUI(), true)
         {
-            iDirectorioService = DirectorioService.Instance;
+            directorioService = AplicationConfig.Component.DirectorioService;
             radioButtonMappings.Add(forma.radioButtonTodos, TipoContactoBusqueda.TODOS);
             radioButtonMappings.Add(forma.radioButtonInterno, TipoContactoBusqueda.INTERNO);
             radioButtonMappings.Add(forma.radioButtonExterno, TipoContactoBusqueda.EXTERNO);
@@ -106,7 +105,8 @@ namespace BRapp.UIControlers
      
         private void LLenarListaContactos()
         {
-            List<Persona> contactosAux = iDirectorioService.filtrarContactos(tipoContactoBusqueda, filtroPaginaContactos);
+            List<Persona> contactosAux = directorioService.filtrarContactos(tipoContactoBusqueda, filtroPaginaContactos);
+            forma.flowLayoutContactos.SuspendLayout();
             forma.flowLayoutContactos.Controls.Clear();
             foreach (Persona contact in contactosAux)
             {
@@ -120,6 +120,7 @@ namespace BRapp.UIControlers
                 ExtraSpaceCard card = new ExtraSpaceCard();
                 forma.flowLayoutContactos.Controls.Add(card);
             }
+            forma.flowLayoutContactos.ResumeLayout();
         }
         private ICard getICardContacto(Persona contact)
         {

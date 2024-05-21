@@ -16,17 +16,7 @@ namespace BRapp.Model
         public bool IsActivo { get; set; }
         public DateTime FechaFirma { get; set; }
         public string Descripcion { get; set; }
-
-        protected Papel(TipoClasificacionDocumento TipoClasificacionDocumento, string Name, DocumentoPDF DocumentoPDF, DateTime fechaFirma, string Descripcion)
-        {
-            Id = Guid.NewGuid();
-            this.TipoClasificacionDocumento = TipoClasificacionDocumento;
-            this.Name = Name;
-            this.DocumentoPDF = DocumentoPDF;
-            this.FechaFirma= fechaFirma;
-            this.IsActivo = true;
-            this.Descripcion = Descripcion;
-        }
+        public int Orden { get; set; }     
 
         protected Papel(PapelDto papel, DocumentoPDF DocumentoPDF)
         {
@@ -37,6 +27,7 @@ namespace BRapp.Model
             this.Descripcion = papel.Descripcion;
             this.TipoClasificacionDocumento = papel.tipoClasificacionDocumento;
             this.DocumentoPDF = DocumentoPDF;
+            this.Orden= papel.Orden;
         }
 
         public virtual IconChar getIcono()
@@ -61,6 +52,11 @@ namespace BRapp.Model
         public string getNameSeleccionable()
         {
             return ToString();
+        }
+
+        public bool hasPdfName()
+        {
+            return DocumentoPDF != null && DocumentoPDF.PDF != null && DocumentoPDF.PDF.Name != String.Empty;
         }
     }
 }

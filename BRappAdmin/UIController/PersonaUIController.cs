@@ -4,6 +4,7 @@ using BRapp.Services.Interfaces;
 using BRapp.Services.Services;
 using BRapp.UI;
 using BRapp.UIControlers;
+using BRappAdmin.Data;
 using BRappAdmin.Services.Interfaces;
 using BRappAdmin.Services.Services;
 using BRappAdmin.UI;
@@ -15,15 +16,15 @@ namespace BRappAdmin.UIControlers
     internal class PersonaUIController : BaseUIController<PersonaUI>, IForm
     {       
         private readonly IDirectorioService contactosService;
-        private readonly IFileService fileLogoService;
+        private readonly IFileService fileService;
         private Persona persona;
         private readonly TipoPersona tipoPersona;       
         public PersonaUIController(Persona persona, TipoPersona tipoPersona) : base(new PersonaUI())
         {
             this.tipoPersona = tipoPersona;
             this.persona = persona;
-            contactosService = DirectorioService.Instance;
-            this.fileLogoService = new FileService();
+            contactosService = AplicationAdminConfig.Component.Component.DirectorioService;
+            this.fileService = AplicationAdminConfig.Component.Component.FileService;
         }
 
         public override PersonaUI ejecutar()
@@ -152,7 +153,7 @@ namespace BRappAdmin.UIControlers
         { 
             if (forma.openLogo.ShowDialog() == DialogResult.OK)
             {  
-                Fichero fichero = fileLogoService.guardarFichero(forma.openLogo.FileName);
+                Fichero fichero = fileService.guardarFichero(forma.openLogo.FileName);
                 forma.tbPJLogo.Text = fichero.Name;
                 forma.tbPJLogo.Tag = fichero;
             }

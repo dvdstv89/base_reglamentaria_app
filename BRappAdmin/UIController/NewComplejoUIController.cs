@@ -5,6 +5,7 @@ using BRapp.Services.Interfaces;
 using BRapp.Services.Services;
 using BRapp.UI;
 using BRapp.UIControlers;
+using BRappAdmin.Data;
 using BRappAdmin.UI;
 using System;
 using System.Windows.Forms;
@@ -14,14 +15,14 @@ namespace BRappAdmin.UIControlers
     internal class NewComplejoUIController : BaseUIController<NewComplejoUI>, IForm
     {       
         private readonly IComplejoService complejoService;
-        private readonly IFileService fileLogoService;
+        private readonly IFileService fileService;
         private Complejo complejo;
         private readonly int posicion;
         public NewComplejoUIController(Complejo complejo, int posicion) : base(new NewComplejoUI())
         {
             this.complejo = complejo;
-            complejoService = ComplejoService.Instance;
-            this.fileLogoService = new FileService();
+            complejoService = AplicationAdminConfig.Component.Component.ComplejoService;
+            this.fileService = AplicationAdminConfig.Component.Component.FileService;
             this.posicion = posicion;
         }
 
@@ -73,7 +74,7 @@ namespace BRappAdmin.UIControlers
         { 
             if (forma.openLogo.ShowDialog() == DialogResult.OK)
             {  
-                Fichero fichero = fileLogoService.guardarFichero(forma.openLogo.FileName);
+                Fichero fichero = fileService.guardarFichero(forma.openLogo.FileName);
                 forma.tbPJLogo.Text = fichero.Name;
                 forma.tbPJLogo.Tag = fichero;
             }

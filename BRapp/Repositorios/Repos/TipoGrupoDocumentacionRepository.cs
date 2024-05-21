@@ -10,19 +10,16 @@ namespace BRapp.Repositorios.Repos
 {
     public class TipoGrupoDocumentacionRepository : BaseRepository, ITipoGrupoDocumentacionRepository
     {
-        private static TipoGrupoDocumentacionRepository instance; 
-
         private readonly string QUERY_SELECT_ALL = "SELECT * FROM TipoGrupoDocumentacion";
         private readonly string QUERY_UPDATE = "UPDATE TipoGrupoDocumentacion SET name = @name, descripcion = @descripcion, tipo_indicacion = @tipo_indicacion WHERE id = @Id";
         private readonly string QUERY_INSERT = "INSERT INTO TipoGrupoDocumentacion (id, name, descripcion, tipo_indicacion) VALUES ( @Id, @name, @descripcion, @tipo_indicacion)"; 
         private List<TipoGrupoDocumentacion> tipoGrupoDocumentacions;      
-        private readonly IMapper mapperTipoGrupoDocumentacion;
+        private readonly IMapper tipoGrupoDocumentacionMapper;
 
-        protected TipoGrupoDocumentacionRepository():base(AplicationConfig.ConnectionString, "TipoGrupoDocumentacion")
+        public TipoGrupoDocumentacionRepository(IMapper tipoGrupoDocumentacionMapper) :base(AplicationConfig.ConnectionString, "TipoGrupoDocumentacion")
         {
-            mapperTipoGrupoDocumentacion = new TipoGrupoDocumentacionMapper();  
+            this.tipoGrupoDocumentacionMapper = tipoGrupoDocumentacionMapper;
             updateListApp();
-
         }
 
         protected void updateListApp()
@@ -39,7 +36,7 @@ namespace BRapp.Repositorios.Repos
                 {
                     while (reader.Read())
                     {
-                        apps.Add((TipoGrupoDocumentacion)mapperTipoGrupoDocumentacion.Map(reader));
+                        apps.Add((TipoGrupoDocumentacion)tipoGrupoDocumentacionMapper.Map(reader));
                     }
                 }
             }
@@ -84,14 +81,6 @@ namespace BRapp.Repositorios.Repos
             };          
             return parametros;
         }
-
-        public static TipoGrupoDocumentacionRepository Instance
-        {
-            get
-            {                
-                instance = (instance == null) ? new TipoGrupoDocumentacionRepository() : instance;
-                return instance;
-            }
-        } 
+       
     }
 }

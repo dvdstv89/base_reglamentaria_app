@@ -1,6 +1,4 @@
 ﻿using BRapp.Model;
-using BRapp.Services.Interfaces;
-using BRapp.Services.Services;
 using BRapp.UI.Cards;
 using BRapp.UIControlers.Components;
 using BRapp.Utiles;
@@ -12,17 +10,10 @@ using System.Windows.Forms;
 namespace BRapp.UIControlers.CardUCController
 {
     internal class ContratoUCController : BaseUCController<ContratoCard, Contrato>, ICard
-    {      
-        private readonly IPapelService papelService;
-        private readonly VisorPDFUIController visorDocumentosUIController;
-        private readonly IContratoService contratoService;
-        private readonly DocumentoPDF documentoApliado;
-        public ContratoUCController(Contrato documento, IPapelService papelService) : base(new ContratoCard(), documento)
+    {    
+        public ContratoUCController(Contrato documento) : base(new ContratoCard(), documento)
         {           
-            this.papelService = papelService;          
-            this.contratoService = ContratoService.Instance;
-            this.documentoApliado = contratoService.getDocumentoPDFApliado(documento);
-            this.visorDocumentosUIController = new VisorPDFUIController(documentoApliado);
+            
         }
 
         public override UserControl get()
@@ -44,13 +35,13 @@ namespace BRapp.UIControlers.CardUCController
             card.tbTipoContrato.Text = objeto.TipoContrato.ToString();
             card.tbResponsable.Text = objeto.Responsable.Name;
             card.tbFechaInicio.Text = FechaUtil.getShortText(objeto.FechaFirma);
-            card.tbFechaFin.Text = FechaUtil.getShortText(objeto.FechaFirma);
+            card.tbFechaFin.Text = FechaUtil.getShortText(objeto.FechaVencimiento);
             int diasRestantes = (int)objeto.getDiasRestantes();
             card.tbDiasRestantes.Text = (diasRestantes > -999) ? diasRestantes.ToString() : "???";          
-            if (documentoApliado.hasImagen())
+            if (objeto.Cliente.hasLogo())
             {
                 card.iconPictureBox1.Visible = false;
-                using (MemoryStream ms = new MemoryStream(documentoApliado.Imagen.Data))
+                using (MemoryStream ms = new MemoryStream(objeto.Cliente.Logo.Data))
                 {
                     using (Image originalImage = Image.FromStream(ms))
                     {
@@ -58,7 +49,7 @@ namespace BRapp.UIControlers.CardUCController
                     }
                 }
             }
-            card.btnPdf.Visible = visorDocumentosUIController.hasPdf();
+            card.btnPdf.Visible = objeto.hasPdfName();
             if (objeto.isProximoVencerse())
             {
                 card.tbDiasRestantes.BackColor= Color.Red;
@@ -75,7 +66,7 @@ namespace BRapp.UIControlers.CardUCController
             if(objeto.ContratoPadre != null)
             {
                 card.panelContratoPadre.Visible = true;
-                card.tbContratoPadre.Text = objeto.ContratoPadre.ToString();
+                card.tbContratoPadre.Text = objeto.ContratoPadre.Numero;               
             }
             else
             {
@@ -84,7 +75,8 @@ namespace BRapp.UIControlers.CardUCController
         }
 
         private void btnPdf_Click(object sender, EventArgs e)
-        {
+        {           
+            var visorDocumentosUIController = new VisorPDFUIController(objeto.DocumentoPDF);
             visorDocumentosUIController.showDialog();
         }
 
@@ -105,7 +97,7 @@ namespace BRapp.UIControlers.CardUCController
 
         private void btnContratoPadre_Click(object sender, EventArgs e)
         {
-            ContratoUCController contratoUCController = new ContratoUCController(objeto.ContratoPadre, papelService);
+            ContratoUCController contratoUCController = new ContratoUCController(objeto.ContratoPadre);
             contratoUCController.setInfo();
             var CardDialogUIController = new CardDialogUIController(contratoUCController);
             CardDialogUIController.showDialog();

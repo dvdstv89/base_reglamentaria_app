@@ -130,7 +130,7 @@ namespace BRapp.UI.Cards
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 58);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(480, 31);
+            this.panel3.Size = new System.Drawing.Size(480, 25);
             this.panel3.TabIndex = 5;
             // 
             // labelPosition
@@ -138,13 +138,12 @@ namespace BRapp.UI.Cards
             this.labelPosition.BackColor = System.Drawing.Color.WhiteSmoke;
             this.labelPosition.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.labelPosition.Cursor = System.Windows.Forms.Cursors.Default;
-            this.labelPosition.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelPosition.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPosition.Location = new System.Drawing.Point(38, 0);
             this.labelPosition.Multiline = true;
             this.labelPosition.Name = "labelPosition";
             this.labelPosition.ReadOnly = true;
-            this.labelPosition.Size = new System.Drawing.Size(442, 31);
+            this.labelPosition.Size = new System.Drawing.Size(439, 25);
             this.labelPosition.TabIndex = 8;
             this.labelPosition.TabStop = false;
             this.labelPosition.Text = "Informatico sdf sdf sdfg sdfg sdfg sdfg sdfs";
@@ -157,10 +156,10 @@ namespace BRapp.UI.Cards
             this.iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.Briefcase;
             this.iconPictureBox3.IconColor = System.Drawing.Color.Black;
             this.iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.iconPictureBox3.IconSize = 31;
+            this.iconPictureBox3.IconSize = 25;
             this.iconPictureBox3.Location = new System.Drawing.Point(0, 0);
             this.iconPictureBox3.Name = "iconPictureBox3";
-            this.iconPictureBox3.Size = new System.Drawing.Size(38, 31);
+            this.iconPictureBox3.Size = new System.Drawing.Size(38, 25);
             this.iconPictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.iconPictureBox3.TabIndex = 7;
             this.iconPictureBox3.TabStop = false;
@@ -171,7 +170,7 @@ namespace BRapp.UI.Cards
             this.panel4.Controls.Add(this.labelEmail);
             this.panel4.Controls.Add(this.iconPictureBox2);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 89);
+            this.panel4.Location = new System.Drawing.Point(0, 83);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(480, 25);
             this.panel4.TabIndex = 6;
@@ -214,7 +213,7 @@ namespace BRapp.UI.Cards
             this.panel5.Controls.Add(this.labelPhones);
             this.panel5.Controls.Add(this.iconPictureBox4);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 114);
+            this.panel5.Location = new System.Drawing.Point(0, 108);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(480, 25);
             this.panel5.TabIndex = 7;
@@ -257,7 +256,7 @@ namespace BRapp.UI.Cards
             this.panel6.Controls.Add(this.textBoxLocation);
             this.panel6.Controls.Add(this.iconPictureBox5);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(0, 139);
+            this.panel6.Location = new System.Drawing.Point(0, 133);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(480, 43);
             this.panel6.TabIndex = 8;
@@ -307,7 +306,7 @@ namespace BRapp.UI.Cards
             this.Controls.Add(this.panelTitle);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Name = "PersonaNaturalCard";
-            this.Size = new System.Drawing.Size(480, 185);
+            this.Size = new System.Drawing.Size(480, 177);
             this.panelTitle.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);

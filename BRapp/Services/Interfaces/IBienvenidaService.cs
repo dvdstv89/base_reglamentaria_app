@@ -1,6 +1,6 @@
 ﻿namespace BRapp.Services.Interfaces
 {
-    internal interface IBienvenidaService
+    public interface IBienvenidaService
     {
         string getBienvenida();
     }

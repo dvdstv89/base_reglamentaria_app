@@ -290,7 +290,7 @@
             this.tbTrabajadores.Size = new System.Drawing.Size(52, 20);
             this.tbTrabajadores.TabIndex = 69;
             this.tbTrabajadores.Value = new decimal(new int[] {
-            1,
+            4,
             0,
             0,
             0});

@@ -1,5 +1,4 @@
 ﻿using BRapp.Data;
-using BRapp.Model;
 using BRapp.Repositorios.Interfaces;
 using BRapp.Mapper;
 using System;
@@ -11,26 +10,18 @@ using System.Linq;
 namespace BRapp.Repositorios.Repos
 {
     public class ComplejoRepository : BaseRepository, IComplejoRepository
-    {
-        private static ComplejoRepository instance; 
-
+    {     
         private readonly string QUERY_SELECT_ALL = "SELECT * FROM Complejo order by orden";
         private readonly string QUERY_UPDATE = "UPDATE Complejo SET name = @name, organigrama = @organigrama, orden = @orden, tipo_complejo = @tipo_complejo WHERE id = @Id";
         private readonly string QUERY_INSERT = "INSERT INTO Complejo (id, name, organigrama, orden, tipo_complejo) VALUES ( @Id, @name, @organigrama, @orden, @tipo_complejo)"; 
         private List<Complejo> complejos;      
-        private readonly IMapper mapperComplejo;
+        private readonly IMapper complejoMapper;
 
-        protected ComplejoRepository():base(AplicationConfig.ConnectionString, "Complejo")
+        public ComplejoRepository(IMapper complejoMapper) :base(AplicationConfig.ConnectionString, "Complejo")
         {
-            mapperComplejo = new ComplejoMapper();  
+            this.complejoMapper = complejoMapper;  
             updateListApp();
-
-        }
-
-        protected void updateListApp()
-        {
-            complejos = getAll();
-        }
+        }       
 
         public List<Complejo> getAll()
         {
@@ -41,7 +32,7 @@ namespace BRapp.Repositorios.Repos
                 {
                     while (reader.Read())
                     {
-                        apps.Add((Complejo)mapperComplejo.Map(reader));
+                        apps.Add((Complejo)complejoMapper.Map(reader));
                     }
                 }
             }
@@ -51,12 +42,7 @@ namespace BRapp.Repositorios.Repos
         public Complejo getById(Guid id)
         {
             return complejos.FirstOrDefault(persona => persona.Id == id);
-        }
-
-        private int getIndexById(Guid id)
-        {
-            return complejos.FindIndex(doc => doc.Id == id);
-        }
+        }      
 
         public bool saveOrUpdate(Complejo complejo)
         {
@@ -75,6 +61,17 @@ namespace BRapp.Repositorios.Repos
             }
         }
 
+
+        protected void updateListApp()
+        {
+            complejos = getAll();
+        }
+
+        private int getIndexById(Guid id)
+        {
+            return complejos.FindIndex(doc => doc.Id == id);
+        }
+
         private Dictionary<string, object> buildParametros(Complejo complejo)
         {
             Dictionary<string, object> parametros = new Dictionary<string, object>
@@ -86,15 +83,6 @@ namespace BRapp.Repositorios.Repos
                 { "@Id", complejo.Id.ToString() }
             };          
             return parametros;
-        }
-
-        public static ComplejoRepository Instance
-        {
-            get
-            {                
-                instance = (instance == null) ? new ComplejoRepository() : instance;
-                return instance;
-            }
-        } 
+        }       
     }
 }

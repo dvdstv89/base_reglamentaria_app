@@ -44,7 +44,6 @@
             this.appToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contactosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.documentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nomencladoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.complejosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tipoDeGruposDeDocumentacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bienvenidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,10 +68,11 @@
             this.panelBusqueda = new System.Windows.Forms.Panel();
             this.cbArchivados = new System.Windows.Forms.CheckBox();
             this.tbBuscar = new System.Windows.Forms.TextBox();
-            this.btnSear = new FontAwesome.Sharp.IconButton();
             this.labelMenuSeleccionado = new System.Windows.Forms.Label();
             this.panelMain = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnLimpiarBusqueda = new FontAwesome.Sharp.IconButton();
+            this.btnBuscar = new FontAwesome.Sharp.IconButton();
             this.panelFooter.SuspendLayout();
             this.panelBanner.SuspendLayout();
             this.panelMenu.SuspendLayout();
@@ -223,7 +223,8 @@
             this.appToolStripMenuItem,
             this.contactosToolStripMenuItem,
             this.documentosToolStripMenuItem,
-            this.nomencladoresToolStripMenuItem});
+            this.complejosToolStripMenuItem,
+            this.tipoDeGruposDeDocumentacionToolStripMenuItem});
             this.adminToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
             this.adminToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded;
@@ -233,41 +234,32 @@
             // appToolStripMenuItem
             // 
             this.appToolStripMenuItem.Name = "appToolStripMenuItem";
-            this.appToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
+            this.appToolStripMenuItem.Size = new System.Drawing.Size(292, 26);
             this.appToolStripMenuItem.Text = "Empresa";
             // 
             // contactosToolStripMenuItem
             // 
             this.contactosToolStripMenuItem.Name = "contactosToolStripMenuItem";
-            this.contactosToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
+            this.contactosToolStripMenuItem.Size = new System.Drawing.Size(292, 26);
             this.contactosToolStripMenuItem.Text = "Contactos";
             // 
             // documentosToolStripMenuItem
             // 
             this.documentosToolStripMenuItem.Name = "documentosToolStripMenuItem";
-            this.documentosToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
+            this.documentosToolStripMenuItem.Size = new System.Drawing.Size(292, 26);
             this.documentosToolStripMenuItem.Text = "Documentos";
-            // 
-            // nomencladoresToolStripMenuItem
-            // 
-            this.nomencladoresToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.complejosToolStripMenuItem,
-            this.tipoDeGruposDeDocumentacionToolStripMenuItem});
-            this.nomencladoresToolStripMenuItem.Name = "nomencladoresToolStripMenuItem";
-            this.nomencladoresToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
-            this.nomencladoresToolStripMenuItem.Text = "Nomencladores";
             // 
             // complejosToolStripMenuItem
             // 
             this.complejosToolStripMenuItem.Name = "complejosToolStripMenuItem";
-            this.complejosToolStripMenuItem.Size = new System.Drawing.Size(320, 26);
+            this.complejosToolStripMenuItem.Size = new System.Drawing.Size(292, 26);
             this.complejosToolStripMenuItem.Text = "Complejos";
             // 
             // tipoDeGruposDeDocumentacionToolStripMenuItem
             // 
             this.tipoDeGruposDeDocumentacionToolStripMenuItem.Name = "tipoDeGruposDeDocumentacionToolStripMenuItem";
-            this.tipoDeGruposDeDocumentacionToolStripMenuItem.Size = new System.Drawing.Size(320, 26);
-            this.tipoDeGruposDeDocumentacionToolStripMenuItem.Text = "Tipo de Grupos de Documentación";
+            this.tipoDeGruposDeDocumentacionToolStripMenuItem.Size = new System.Drawing.Size(292, 26);
+            this.tipoDeGruposDeDocumentacionToolStripMenuItem.Text = "Tipo de Grupo Documentación";
             // 
             // bienvenidaToolStripMenuItem
             // 
@@ -417,19 +409,20 @@
             // 
             // panelBusqueda
             // 
+            this.panelBusqueda.Controls.Add(this.btnBuscar);
+            this.panelBusqueda.Controls.Add(this.btnLimpiarBusqueda);
             this.panelBusqueda.Controls.Add(this.cbArchivados);
             this.panelBusqueda.Controls.Add(this.tbBuscar);
-            this.panelBusqueda.Controls.Add(this.btnSear);
             this.panelBusqueda.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelBusqueda.Location = new System.Drawing.Point(1212, 0);
+            this.panelBusqueda.Location = new System.Drawing.Point(1178, 0);
             this.panelBusqueda.Name = "panelBusqueda";
-            this.panelBusqueda.Size = new System.Drawing.Size(263, 32);
+            this.panelBusqueda.Size = new System.Drawing.Size(297, 32);
             this.panelBusqueda.TabIndex = 3;
             // 
             // cbArchivados
             // 
             this.cbArchivados.AutoSize = true;
-            this.cbArchivados.Location = new System.Drawing.Point(3, 6);
+            this.cbArchivados.Location = new System.Drawing.Point(3, 7);
             this.cbArchivados.Name = "cbArchivados";
             this.cbArchivados.Size = new System.Drawing.Size(97, 17);
             this.cbArchivados.TabIndex = 4;
@@ -444,22 +437,6 @@
             this.tbBuscar.Name = "tbBuscar";
             this.tbBuscar.Size = new System.Drawing.Size(114, 23);
             this.tbBuscar.TabIndex = 24;
-            // 
-            // btnSear
-            // 
-            this.btnSear.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnSear.Enabled = false;
-            this.btnSear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSear.ForeColor = System.Drawing.Color.White;
-            this.btnSear.IconChar = FontAwesome.Sharp.IconChar.Sistrix;
-            this.btnSear.IconColor = System.Drawing.Color.Black;
-            this.btnSear.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSear.IconSize = 25;
-            this.btnSear.Location = new System.Drawing.Point(225, 0);
-            this.btnSear.Name = "btnSear";
-            this.btnSear.Size = new System.Drawing.Size(38, 32);
-            this.btnSear.TabIndex = 23;
-            this.btnSear.UseVisualStyleBackColor = true;
             // 
             // labelMenuSeleccionado
             // 
@@ -491,6 +468,36 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1475, 10);
             this.panel1.TabIndex = 7;
+            // 
+            // btnLimpiarBusqueda
+            // 
+            this.btnLimpiarBusqueda.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnLimpiarBusqueda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiarBusqueda.ForeColor = System.Drawing.Color.White;
+            this.btnLimpiarBusqueda.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
+            this.btnLimpiarBusqueda.IconColor = System.Drawing.Color.Black;
+            this.btnLimpiarBusqueda.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnLimpiarBusqueda.IconSize = 24;
+            this.btnLimpiarBusqueda.Location = new System.Drawing.Point(261, 0);
+            this.btnLimpiarBusqueda.Name = "btnLimpiarBusqueda";
+            this.btnLimpiarBusqueda.Size = new System.Drawing.Size(36, 32);
+            this.btnLimpiarBusqueda.TabIndex = 38;
+            this.btnLimpiarBusqueda.UseVisualStyleBackColor = true;
+            // 
+            // btnBusacar
+            // 
+            this.btnBuscar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscar.ForeColor = System.Drawing.Color.White;
+            this.btnBuscar.IconChar = FontAwesome.Sharp.IconChar.Sistrix;
+            this.btnBuscar.IconColor = System.Drawing.Color.Black;
+            this.btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnBuscar.IconSize = 24;
+            this.btnBuscar.Location = new System.Drawing.Point(225, 0);
+            this.btnBuscar.Name = "btnBusacar";
+            this.btnBuscar.Size = new System.Drawing.Size(36, 32);
+            this.btnBuscar.TabIndex = 39;
+            this.btnBuscar.UseVisualStyleBackColor = true;
             // 
             // IndexUI
             // 
@@ -562,11 +569,11 @@
         public System.Windows.Forms.ToolStripMenuItem documentosToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem dGToolStripMenuItem;
         public System.Windows.Forms.TextBox tbBuscar;
-        private FontAwesome.Sharp.IconButton btnSear;
         public System.Windows.Forms.Panel panelBusqueda;
         public System.Windows.Forms.CheckBox cbArchivados;
-        public System.Windows.Forms.ToolStripMenuItem nomencladoresToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem complejosToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem tipoDeGruposDeDocumentacionToolStripMenuItem;
+        public FontAwesome.Sharp.IconButton btnBuscar;
+        public FontAwesome.Sharp.IconButton btnLimpiarBusqueda;
     }
 }

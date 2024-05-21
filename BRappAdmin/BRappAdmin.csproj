@@ -225,6 +225,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\AplicationAdminConfig.cs" />
+    <Compile Include="Data\ComponentAdmin.cs" />
     <Compile Include="UIController\NewDepartamentoUIController.cs" />
     <Compile Include="UIController\NewTipoGrupoDocumentacionUIController.cs" />
     <Compile Include="UIController\TipoGrupoDocumentacionUIController.cs" />

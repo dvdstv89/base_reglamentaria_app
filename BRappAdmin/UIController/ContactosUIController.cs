@@ -10,6 +10,7 @@ using BRappAdmin.UIController;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using BRappAdmin.Data;
 
 namespace BRappAdmin.UIControlers
 {
@@ -23,7 +24,7 @@ namespace BRappAdmin.UIControlers
 
         private ContactosUIController() : base(new ContactosUI())
         {
-            contactosService = DirectorioService.Instance;            
+            contactosService = AplicationAdminConfig.Component.Component.DirectorioService;
             columnSorter = new ListViewColumnSorter();
         }
 
@@ -156,7 +157,9 @@ namespace BRappAdmin.UIControlers
         {
             get
             {
-                return (instance == null) ? new ContactosUIController() : instance;
+                //instance = (instance == null) ? new ContactosUIController() : instance;
+                //return instance;
+                return new ContactosUIController();
             }
         }
 

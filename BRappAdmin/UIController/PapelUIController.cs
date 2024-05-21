@@ -5,6 +5,7 @@ using BRapp.Services.Interfaces;
 using BRapp.Services.Services;
 using BRapp.UI;
 using BRapp.UIControlers;
+using BRappAdmin.Data;
 using BRappAdmin.UI;
 using System;
 using System.Windows.Forms;
@@ -14,20 +15,20 @@ namespace BRappAdmin.UIControlers
     internal class PapelUIController : BaseUIController<PapelUI>, IForm
     {       
         private readonly IPapelService documentosService;
-        private readonly IFileService filePdfLogoService;
-        private readonly IFileService filePdfDocumentService;
+        private readonly IFileService fileSevice;      
         private Papel papel;
         private readonly TipoClasificacionDocumento tipoClasificacionDocumento;
         private readonly IDirectorioService contactosService;
-        
-        public PapelUIController(Papel papel, TipoClasificacionDocumento tipoClasificacionDocumento) : base(new PapelUI())
+        private readonly int posicion;
+
+        public PapelUIController(Papel papel, TipoClasificacionDocumento tipoClasificacionDocumento, int posicion) : base(new PapelUI())
         {            
             this.tipoClasificacionDocumento = tipoClasificacionDocumento;
             this.papel = papel;
-            documentosService = PapelService.Instance; ;
-            filePdfLogoService = new FileService();
-            filePdfDocumentService = new FileService();
-            this.contactosService = DirectorioService.Instance;
+            documentosService = AplicationAdminConfig.Component.Component.PapelService;
+            fileSevice = AplicationAdminConfig.Component.Component.FileService;            
+            this.contactosService = AplicationAdminConfig.Component.Component.DirectorioService;
+            this.posicion = posicion;
         }
 
         public override PapelUI ejecutar()
@@ -194,7 +195,7 @@ namespace BRappAdmin.UIControlers
         {
             initUpdateComun();
             Contrato contrato = (Contrato)papel;
-            forma.dtFecha.Value = contrato.FechaVencimiento;
+            forma.dtFechaVencimientoContrato.Value = contrato.FechaVencimiento;
             forma.cbTipoContrato.Text = contrato.TipoContrato.ToString();
             forma.tbNumeroContrato.Text = contrato.Numero;
             forma.tbActaContrato.Value = contrato.NumeroActa;
@@ -263,6 +264,7 @@ namespace BRappAdmin.UIControlers
             papelDto.FechaFirma = forma.dtFecha.Value;
             papelDto.Descripcion = forma.tbDescripcion.Rtf;
             papelDto.tipoClasificacionDocumento = tipoClasificacionDocumento;
+            papelDto.Orden = posicion;
             return papelDto;
         }
         private SistemaDto CapturarSistemaDto()
@@ -288,7 +290,7 @@ namespace BRappAdmin.UIControlers
             contratoDto.tipoContrato= tipoContrato;
             contratoDto.numero = forma.tbNumeroContrato.Text;
             contratoDto.acta = (int)forma.tbActaContrato.Value;
-            contratoDto.acuerdo = (int)forma.tbAcuerdoContrato.Value;
+            contratoDto.acuerdo = (int)forma.tbAcuerdoContrato.Value;           
             return contratoDto;
         }
         private void CapturarDatosDocumentos()
@@ -372,7 +374,7 @@ namespace BRappAdmin.UIControlers
             PapelDto papelDto = CapturarPapelDto();
             DocumentoPDF documentoPDF = createOrUpdateDocumentoPdf();
             PersonaNatural responsable = (PersonaNatural)forma.cbResponsable.SelectedItem;
-            Resolucion derrogadaPor = (Resolucion)forma.cbResolucionDerrogada.Tag;
+            Resolucion derrogadaPor = forma.cbResolucionEsDerrogada.Checked ? (Resolucion)forma.cbResolucionDerrogada.SelectedItem : null;
             string numeroResolucion = forma.tbResolucionNumero.Text;
 
             if (papel != null)
@@ -402,7 +404,7 @@ namespace BRappAdmin.UIControlers
             DocumentoPDF documentoPDF = createOrUpdateDocumentoPdf();
             PersonaJuridica responsable = (PersonaJuridica)forma.cbResponsable.SelectedItem;
             PersonaJuridica cliente = (PersonaJuridica)forma.cbClienteContrato.SelectedItem;            
-            Contrato contratoPadre = (Contrato)forma.cbContratoPadre.Tag;
+            Contrato contratoPadre = forma.cbTieneContratoPadre.Checked ? (Contrato)forma.cbContratoPadre.SelectedItem : null;
 
             if (papel != null)
             {
@@ -443,7 +445,7 @@ namespace BRappAdmin.UIControlers
         { 
             if (forma.openLogo.ShowDialog() == DialogResult.OK)
             {  
-                Fichero fichero = filePdfLogoService.guardarFichero(forma.openLogo.FileName);
+                Fichero fichero = fileSevice.guardarFichero(forma.openLogo.FileName);
                 forma.tbImagen.Text = fichero.Name;
                 forma.tbImagen.Tag = fichero;
             }
@@ -452,7 +454,7 @@ namespace BRappAdmin.UIControlers
         {
             if (forma.openPdf.ShowDialog() == DialogResult.OK)
             {
-                Fichero fichero = filePdfDocumentService.guardarFichero(forma.openPdf.FileName);
+                Fichero fichero = fileSevice.guardarFichero(forma.openPdf.FileName);
                 forma.tbPdf.Text = fichero.Name;
                 forma.tbPdf.Tag = fichero;
             }

@@ -40,8 +40,11 @@
             this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tbDescripcion = new RichTextBoxEx.RichTextBoxEx();
+            this.tbTrabajadores = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbTrabajadores)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -92,7 +95,7 @@
             this.cbTipo.FormattingEnabled = true;
             this.cbTipo.Location = new System.Drawing.Point(95, 68);
             this.cbTipo.Name = "cbTipo";
-            this.cbTipo.Size = new System.Drawing.Size(468, 21);
+            this.cbTipo.Size = new System.Drawing.Size(335, 21);
             this.cbTipo.TabIndex = 51;
             // 
             // label10
@@ -163,13 +166,46 @@
             this.tbDescripcion.SetColorWithFont = true;
             this.tbDescripcion.ShowToolStrip = true;
             this.tbDescripcion.Size = new System.Drawing.Size(536, 122);
-            this.tbDescripcion.TabIndex = 25;
+            this.tbDescripcion.TabIndex = 25;           
+            // 
+            // tbTrabajadores
+            // 
+            this.tbTrabajadores.Location = new System.Drawing.Point(511, 71);
+            this.tbTrabajadores.Maximum = new decimal(new int[] {
+            400,
+            0,
+            0,
+            0});
+            this.tbTrabajadores.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.tbTrabajadores.Name = "tbTrabajadores";
+            this.tbTrabajadores.Size = new System.Drawing.Size(52, 20);
+            this.tbTrabajadores.TabIndex = 71;
+            this.tbTrabajadores.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(436, 74);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(69, 13);
+            this.label4.TabIndex = 70;
+            this.label4.Text = "Trabajadores";
             // 
             // NewDepartamentoUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(575, 522);
+            this.Controls.Add(this.tbTrabajadores);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cbTipo);
@@ -185,6 +221,7 @@
             this.Text = "Departamento";
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tbTrabajadores)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -203,5 +240,7 @@
         public System.Windows.Forms.ColumnHeader columnName;
         private System.Windows.Forms.GroupBox groupBox2;
         public RichTextBoxEx.RichTextBoxEx tbDescripcion;
+        public System.Windows.Forms.NumericUpDown tbTrabajadores;
+        private System.Windows.Forms.Label label4;
     }
 }

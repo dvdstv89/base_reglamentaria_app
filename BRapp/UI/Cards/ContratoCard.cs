@@ -310,6 +310,7 @@ namespace BRapp.UI.Cards
             this.tbResponsable.TabIndex = 23;
             this.tbResponsable.TabStop = false;
             this.tbResponsable.Text = "Comercial";
+            this.tbResponsable.WordWrap = false;
             // 
             // btnResponsable
             // 
@@ -342,6 +343,8 @@ namespace BRapp.UI.Cards
             this.tbTipoContrato.TabIndex = 21;
             this.tbTipoContrato.TabStop = false;
             this.tbTipoContrato.Text = "Compra-Venta";
+            this.tbTipoContrato.WordWrap = false;
+            this.tbTipoContrato.TextChanged += new System.EventHandler(this.tbTipoContrato_TextChanged);
             // 
             // btnTipoContrato
             // 
@@ -369,7 +372,7 @@ namespace BRapp.UI.Cards
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(120, 145);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(363, 25);
+            this.panel5.Size = new System.Drawing.Size(363, 22);
             this.panel5.TabIndex = 35;
             // 
             // tbFechaFin
@@ -383,7 +386,7 @@ namespace BRapp.UI.Cards
             this.tbFechaFin.Multiline = true;
             this.tbFechaFin.Name = "tbFechaFin";
             this.tbFechaFin.ReadOnly = true;
-            this.tbFechaFin.Size = new System.Drawing.Size(150, 25);
+            this.tbFechaFin.Size = new System.Drawing.Size(129, 22);
             this.tbFechaFin.TabIndex = 23;
             this.tbFechaFin.TabStop = false;
             this.tbFechaFin.Text = "18-enero-2024";
@@ -399,7 +402,7 @@ namespace BRapp.UI.Cards
             this.btnFechaFin.IconSize = 25;
             this.btnFechaFin.Location = new System.Drawing.Point(172, 0);
             this.btnFechaFin.Name = "btnFechaFin";
-            this.btnFechaFin.Size = new System.Drawing.Size(38, 25);
+            this.btnFechaFin.Size = new System.Drawing.Size(38, 22);
             this.btnFechaFin.TabIndex = 22;
             this.toolTip1.SetToolTip(this.btnFechaFin, "Fecha de Vencimiento");
             this.btnFechaFin.UseVisualStyleBackColor = true;
@@ -415,7 +418,7 @@ namespace BRapp.UI.Cards
             this.tbFechaInicio.Multiline = true;
             this.tbFechaInicio.Name = "tbFechaInicio";
             this.tbFechaInicio.ReadOnly = true;
-            this.tbFechaInicio.Size = new System.Drawing.Size(134, 25);
+            this.tbFechaInicio.Size = new System.Drawing.Size(134, 22);
             this.tbFechaInicio.TabIndex = 21;
             this.tbFechaInicio.TabStop = false;
             this.tbFechaInicio.Text = "18-enero-2023";
@@ -431,7 +434,7 @@ namespace BRapp.UI.Cards
             this.btnFechaInicio.IconSize = 25;
             this.btnFechaInicio.Location = new System.Drawing.Point(0, 0);
             this.btnFechaInicio.Name = "btnFechaInicio";
-            this.btnFechaInicio.Size = new System.Drawing.Size(38, 25);
+            this.btnFechaInicio.Size = new System.Drawing.Size(38, 22);
             this.btnFechaInicio.TabIndex = 20;
             this.toolTip1.SetToolTip(this.btnFechaInicio, "Fecha de Firma");
             this.btnFechaInicio.UseVisualStyleBackColor = true;
@@ -458,7 +461,7 @@ namespace BRapp.UI.Cards
             this.panelContratoPadre.Controls.Add(this.btnContratoPadre);
             this.panelContratoPadre.Controls.Add(this.tbContratoPadre);
             this.panelContratoPadre.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelContratoPadre.Location = new System.Drawing.Point(120, 170);
+            this.panelContratoPadre.Location = new System.Drawing.Point(120, 167);
             this.panelContratoPadre.Name = "panelContratoPadre";
             this.panelContratoPadre.Size = new System.Drawing.Size(363, 25);
             this.panelContratoPadre.TabIndex = 36;
@@ -469,7 +472,7 @@ namespace BRapp.UI.Cards
             this.tbContratoPadre.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbContratoPadre.Cursor = System.Windows.Forms.Cursors.Default;
             this.tbContratoPadre.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbContratoPadre.Location = new System.Drawing.Point(38, 0);
+            this.tbContratoPadre.Location = new System.Drawing.Point(38, 5);
             this.tbContratoPadre.Multiline = true;
             this.tbContratoPadre.Name = "tbContratoPadre";
             this.tbContratoPadre.ReadOnly = true;
@@ -535,6 +538,11 @@ namespace BRapp.UI.Cards
             this.panelImagen.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.ResumeLayout(false);
+
+        }
+
+        private void tbTipoContrato_TextChanged(object sender, System.EventArgs e)
+        {
 
         }
     }

@@ -15,6 +15,8 @@ namespace BRapp.Model.Tiendas
         public TipoDepartamento DepartamentoTipo { get; set; }
         public List<TipoGrupoDocumentacion> TipoGrupoDocumentacion { get; set; }
         public int Orden { get; set; }
+        public int CantidadTrabajadores { get; set; }
+
 
         public IconChar getIcono()
         {
@@ -26,12 +28,18 @@ namespace BRapp.Model.Tiendas
                 case TipoDepartamento.SEGURIDAD: return IconChar.ShieldAlt;
                 case TipoDepartamento.PANTRY: return IconChar.Coffee;
                 case TipoDepartamento.ALMACEN: return IconChar.Dolly;
-                case TipoDepartamento.GRUPO_TIENDA: return IconChar.Store;                       
+                case TipoDepartamento.GRUPO_TIENDA: return IconChar.Store;
+                case TipoDepartamento.DIR_SUCURSAL: return IconChar.UserTie;
+                case TipoDepartamento.SUBDIR_COMERCIAL: return IconChar.Globe;
+                case TipoDepartamento.SUBDIR_CONTABILIDAD: return IconChar.ChartLine;
+                case TipoDepartamento.SUBDIR_ASEGURAMIENTO: return IconChar.Truck;
+                case TipoDepartamento.SUBDIR_RRHH: return IconChar.UserFriends;
+                case TipoDepartamento.DPTO_TIENDAS: return IconChar.Store;
                 default: return IconChar.StoreAlt;
             }
         }
 
-        public Departamento(string Name, Complejo Complejo, TipoDepartamento DepartamentoTipo, string Descripcion, List<TipoGrupoDocumentacion> TipoGrupoDocumentacion, int Orden)
+        public Departamento(string Name, Complejo Complejo, TipoDepartamento DepartamentoTipo, string Descripcion, List<TipoGrupoDocumentacion> TipoGrupoDocumentacion, int Orden, int CantidadTrabajadores)
         {
             Id = Guid.NewGuid();          
             this.Name = Name;
@@ -40,6 +48,7 @@ namespace BRapp.Model.Tiendas
             this.TipoGrupoDocumentacion = TipoGrupoDocumentacion;         
             this.Descripcion = Descripcion;
             this.Orden = Orden;
+            this.CantidadTrabajadores = CantidadTrabajadores;
         }
 
         public Departamento(DepartamentoDto departamento, Complejo Complejo, List<TipoGrupoDocumentacion> TipoGrupoDocumentacion)
@@ -51,6 +60,7 @@ namespace BRapp.Model.Tiendas
             this.TipoGrupoDocumentacion = TipoGrupoDocumentacion;
             this.Descripcion = departamento.descripcion;
             this.Orden = departamento.Orden;
+            this.CantidadTrabajadores = departamento.CantidadTrabajadores;
         }
 
         public override string ToString()

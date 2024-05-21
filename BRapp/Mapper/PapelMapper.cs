@@ -20,6 +20,8 @@ namespace BRapp.Mapper
                 FechaFirma = documento.FechaFirma,
                 Descripcion = documento.Descripcion,
                 IsActivo = documento.IsActivo,
+                Orden = documento.Orden,
+
             };
         }
 
@@ -33,6 +35,7 @@ namespace BRapp.Mapper
                 tipoClasificacionDocumento = (TipoClasificacionDocumento)Enum.Parse(typeof(TipoClasificacionDocumento), reader["tipo_clasificacion_documento"].ToString()),
                 FechaFirma = Convert.ToDateTime(reader["fecha"].ToString()),
                 Descripcion = reader["descripcion"].ToString(),
+                Orden = Convert.ToInt32(reader["orden"].ToString())
             };
             papel.IsActivo = Convert.ToBoolean(reader["is_activo"]);
             return papel;

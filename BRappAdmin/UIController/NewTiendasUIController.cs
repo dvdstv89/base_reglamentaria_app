@@ -3,9 +3,9 @@ using BRapp.Enums;
 using BRapp.Model;
 using BRapp.Model.Tiendas;
 using BRapp.Services.Interfaces;
-using BRapp.Services.Services;
 using BRapp.UI;
 using BRapp.UIControlers;
+using BRappAdmin.Data;
 using BRappAdmin.UI;
 using System;
 using System.Collections.Generic;
@@ -16,8 +16,7 @@ namespace BRappAdmin.UIControlers
     internal class NewTiendasUIController : BaseUIController<NewTiendasUI>, IForm
     {     
         private readonly ITiendaService tiendasService;
-        private readonly IFileService fileLogoService;
-        private readonly IFileService filePdfService;
+        private readonly IFileService fileService;      
         private readonly ITipoGrupoDocumentacionService tipoGrupoDocumentacionService;
         private Tienda tienda;
         private Complejo complejo;
@@ -27,10 +26,9 @@ namespace BRappAdmin.UIControlers
         public NewTiendasUIController(Tienda tienda, Complejo complejo, int posicion) : base(new NewTiendasUI())
         {
             this.tienda = tienda;            
-            tiendasService = TiendasService.Instance;
-            tipoGrupoDocumentacionService = TipoGrupoDocumentacionService.Instance;
-            fileLogoService = new FileService();
-            filePdfService = new FileService();
+            tiendasService = AplicationAdminConfig.Component.Component.TiendaService;
+            tipoGrupoDocumentacionService = AplicationAdminConfig.Component.Component.TipoGrupoDocumentacionService;
+            fileService = AplicationAdminConfig.Component.Component.FileService;         
             this.complejo = complejo;
             this.posicion = posicion;
         }
@@ -204,7 +202,7 @@ namespace BRappAdmin.UIControlers
         {
             if (forma.openLogo.ShowDialog() == DialogResult.OK)
             {
-                Fichero fichero = fileLogoService.guardarFichero(forma.openLogo.FileName);
+                Fichero fichero = fileService.guardarFichero(forma.openLogo.FileName);
                 forma.tbImagen.Text = fichero.Name;
                 forma.tbImagen.Tag = fichero;
             }
@@ -213,7 +211,7 @@ namespace BRappAdmin.UIControlers
         {
             if (forma.openPdf.ShowDialog() == DialogResult.OK)
             {
-                Fichero fichero = filePdfService.guardarFichero(forma.openPdf.FileName);
+                Fichero fichero = fileService.guardarFichero(forma.openPdf.FileName);
                 forma.tbPdf.Text = fichero.Name;
                 forma.tbPdf.Tag = fichero;
             }

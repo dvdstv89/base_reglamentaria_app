@@ -3,8 +3,6 @@ using BRapp.Model;
 using BRapp.Model.Tiendas;
 using BRapp.Repositorios.Interfaces;
 using BRapp.Repositorios.Interfaces.Dto;
-using BRapp.Repositorios.Repos;
-using BRapp.Repositorios.Repos.ReposDto;
 using BRapp.Services.Interfaces;
 using BRapp.Utiles;
 using System;
@@ -14,8 +12,7 @@ using System.Linq;
 namespace BRapp.Services.Services
 {
     public class TiendasService: ITiendaService
-    {
-        private static TiendasService instance;
+    {      
         protected readonly ITiendaDtoRepository tiendaDtoRepository;
         private readonly ITiendaGrupoDocumentacionDtoRepository tiendaGrupoDocumentacion;     
         private readonly ITipoGrupoDocumentacionService tipoGrupoDocumentacionService;
@@ -23,13 +20,13 @@ namespace BRapp.Services.Services
         private readonly IComplejoService complejoService;
         protected List<Tienda> tiendas;
 
-        protected TiendasService()
+        public TiendasService(IComplejoService complejoService, ITiendaDtoRepository tiendaDtoRepository, ITiendaGrupoDocumentacionDtoRepository tiendaGrupoDocumentacion,  ITipoGrupoDocumentacionService tipoGrupoDocumentacionService, IDocumentoPdfRepository documentoPdfRepository)
         {
-            tiendaDtoRepository = TiendaDtoRepository.Instance;
-            tiendaGrupoDocumentacion = TiendaGrupoDocumentacionDtoRepository.Instance;          
-            documentoPdfRepository = DocumentoPdfRepository.Instance;
-            tipoGrupoDocumentacionService = TipoGrupoDocumentacionService.Instance;
-            complejoService = ComplejoService.Instance;
+            this.tiendaDtoRepository = tiendaDtoRepository;
+            this.tiendaGrupoDocumentacion = tiendaGrupoDocumentacion;
+            this.documentoPdfRepository = documentoPdfRepository;
+            this.tipoGrupoDocumentacionService = tipoGrupoDocumentacionService;
+            this.complejoService = complejoService;
             Populate();
         }
 
@@ -124,15 +121,6 @@ namespace BRapp.Services.Services
                 tiendaGrupoDocumentacion.save(grupoNuevo);
             }
             return true;
-        }
-
-        public static TiendasService Instance
-        {
-            get
-            {
-                instance = (instance == null) ? new TiendasService() : instance;
-                return instance;
-            }
         }
     }
 }

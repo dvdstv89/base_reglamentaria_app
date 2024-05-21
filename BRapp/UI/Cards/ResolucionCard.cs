@@ -9,7 +9,6 @@ namespace BRapp.UI.Cards
         private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
         private Panel panel1;
         public TextBox labelCargoResponsable;
-        public Panel panelImagen;
         private Panel panel2;
         public Panel panelTitle;
         public Label labelName;
@@ -19,9 +18,8 @@ namespace BRapp.UI.Cards
         private System.ComponentModel.IContainer components;
         public Panel panelDerrogadoPor;
         public FontAwesome.Sharp.IconButton btnDerrogadaPor;
-        public TextBox tbDerrogadoPor;
         public RichTextBox labelDescripcion;
-        public FontAwesome.Sharp.IconPictureBox iconPictureBox1;
+        public TextBox tbDerrogadoPor;
         public FontAwesome.Sharp.IconPictureBox iconPrincipal;
 
         public ResolucionCard()
@@ -38,7 +36,6 @@ namespace BRapp.UI.Cards
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnResponsable = new FontAwesome.Sharp.IconButton();
             this.labelCargoResponsable = new System.Windows.Forms.TextBox();
-            this.panelImagen = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelTitle = new System.Windows.Forms.Panel();
             this.labelName = new System.Windows.Forms.Label();
@@ -49,15 +46,12 @@ namespace BRapp.UI.Cards
             this.panelDerrogadoPor = new System.Windows.Forms.Panel();
             this.tbDerrogadoPor = new System.Windows.Forms.TextBox();
             this.labelDescripcion = new System.Windows.Forms.RichTextBox();
-            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
-            this.panelImagen.SuspendLayout();
             this.panelTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPrincipal)).BeginInit();
             this.panelDerrogadoPor.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel4
@@ -66,9 +60,9 @@ namespace BRapp.UI.Cards
             this.panel4.Controls.Add(this.lbFecha);
             this.panel4.Controls.Add(this.iconPictureBox2);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(120, 95);
+            this.panel4.Location = new System.Drawing.Point(0, 95);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(363, 25);
+            this.panel4.Size = new System.Drawing.Size(483, 25);
             this.panel4.TabIndex = 16;
             // 
             // lbFecha
@@ -77,11 +71,11 @@ namespace BRapp.UI.Cards
             this.lbFecha.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lbFecha.Cursor = System.Windows.Forms.Cursors.Default;
             this.lbFecha.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFecha.Location = new System.Drawing.Point(40, 1);
+            this.lbFecha.Location = new System.Drawing.Point(40, 3);
             this.lbFecha.Multiline = true;
             this.lbFecha.Name = "lbFecha";
             this.lbFecha.ReadOnly = true;
-            this.lbFecha.Size = new System.Drawing.Size(291, 25);
+            this.lbFecha.Size = new System.Drawing.Size(440, 19);
             this.lbFecha.TabIndex = 9;
             this.lbFecha.TabStop = false;
             this.lbFecha.Text = "Informatico sdf sdf sdfg sdfg sdfg sdfg sdfs";
@@ -109,9 +103,9 @@ namespace BRapp.UI.Cards
             this.panel1.Controls.Add(this.btnResponsable);
             this.panel1.Controls.Add(this.labelCargoResponsable);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(120, 70);
+            this.panel1.Location = new System.Drawing.Point(0, 70);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(363, 25);
+            this.panel1.Size = new System.Drawing.Size(483, 25);
             this.panel1.TabIndex = 15;
             // 
             // btnResponsable
@@ -136,25 +130,14 @@ namespace BRapp.UI.Cards
             this.labelCargoResponsable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.labelCargoResponsable.Cursor = System.Windows.Forms.Cursors.Default;
             this.labelCargoResponsable.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCargoResponsable.Location = new System.Drawing.Point(40, 0);
+            this.labelCargoResponsable.Location = new System.Drawing.Point(40, 3);
             this.labelCargoResponsable.Multiline = true;
             this.labelCargoResponsable.Name = "labelCargoResponsable";
             this.labelCargoResponsable.ReadOnly = true;
-            this.labelCargoResponsable.Size = new System.Drawing.Size(323, 25);
+            this.labelCargoResponsable.Size = new System.Drawing.Size(440, 20);
             this.labelCargoResponsable.TabIndex = 8;
             this.labelCargoResponsable.TabStop = false;
             this.labelCargoResponsable.Text = "Informatico sdf sdf sdfg sdfg sdfg sdfg sdfs";
-            // 
-            // panelImagen
-            // 
-            this.panelImagen.BackColor = System.Drawing.Color.White;
-            this.panelImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panelImagen.Controls.Add(this.iconPictureBox1);
-            this.panelImagen.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelImagen.Location = new System.Drawing.Point(0, 70);
-            this.panelImagen.Name = "panelImagen";
-            this.panelImagen.Size = new System.Drawing.Size(120, 138);
-            this.panelImagen.TabIndex = 14;
             // 
             // panel2
             // 
@@ -237,9 +220,9 @@ namespace BRapp.UI.Cards
             this.panelDerrogadoPor.Controls.Add(this.btnDerrogadaPor);
             this.panelDerrogadoPor.Controls.Add(this.tbDerrogadoPor);
             this.panelDerrogadoPor.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelDerrogadoPor.Location = new System.Drawing.Point(120, 120);
+            this.panelDerrogadoPor.Location = new System.Drawing.Point(0, 120);
             this.panelDerrogadoPor.Name = "panelDerrogadoPor";
-            this.panelDerrogadoPor.Size = new System.Drawing.Size(363, 25);
+            this.panelDerrogadoPor.Size = new System.Drawing.Size(483, 25);
             this.panelDerrogadoPor.TabIndex = 37;
             // 
             // tbDerrogadoPor
@@ -248,11 +231,11 @@ namespace BRapp.UI.Cards
             this.tbDerrogadoPor.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbDerrogadoPor.Cursor = System.Windows.Forms.Cursors.Default;
             this.tbDerrogadoPor.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDerrogadoPor.Location = new System.Drawing.Point(38, 0);
+            this.tbDerrogadoPor.Location = new System.Drawing.Point(40, 5);
             this.tbDerrogadoPor.Multiline = true;
             this.tbDerrogadoPor.Name = "tbDerrogadoPor";
             this.tbDerrogadoPor.ReadOnly = true;
-            this.tbDerrogadoPor.Size = new System.Drawing.Size(322, 22);
+            this.tbDerrogadoPor.Size = new System.Drawing.Size(440, 17);
             this.tbDerrogadoPor.TabIndex = 8;
             this.tbDerrogadoPor.TabStop = false;
             this.tbDerrogadoPor.Text = "Derrogada por";
@@ -264,27 +247,13 @@ namespace BRapp.UI.Cards
             this.labelDescripcion.DetectUrls = false;
             this.labelDescripcion.Dock = System.Windows.Forms.DockStyle.Left;
             this.labelDescripcion.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDescripcion.Location = new System.Drawing.Point(120, 145);
+            this.labelDescripcion.Location = new System.Drawing.Point(0, 145);
             this.labelDescripcion.Name = "labelDescripcion";
             this.labelDescripcion.ReadOnly = true;
             this.labelDescripcion.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.labelDescripcion.Size = new System.Drawing.Size(311, 63);
+            this.labelDescripcion.Size = new System.Drawing.Size(428, 63);
             this.labelDescripcion.TabIndex = 38;
             this.labelDescripcion.Text = "Descripcion";
-            // 
-            // iconPictureBox1
-            // 
-            this.iconPictureBox1.BackColor = System.Drawing.Color.White;
-            this.iconPictureBox1.ForeColor = System.Drawing.Color.Orange;
-            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Image;
-            this.iconPictureBox1.IconColor = System.Drawing.Color.Orange;
-            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.IconSize = 116;
-            this.iconPictureBox1.Location = new System.Drawing.Point(2, 11);
-            this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(117, 116);
-            this.iconPictureBox1.TabIndex = 1;
-            this.iconPictureBox1.TabStop = false;
             // 
             // ResolucionCard
             // 
@@ -295,7 +264,6 @@ namespace BRapp.UI.Cards
             this.Controls.Add(this.btnPdf);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panelImagen);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelTitle);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -306,12 +274,10 @@ namespace BRapp.UI.Cards
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panelImagen.ResumeLayout(false);
             this.panelTitle.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconPrincipal)).EndInit();
             this.panelDerrogadoPor.ResumeLayout(false);
             this.panelDerrogadoPor.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }                     

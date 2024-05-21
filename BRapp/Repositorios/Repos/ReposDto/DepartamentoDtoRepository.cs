@@ -12,19 +12,16 @@ namespace BRapp.Repositorios.Repos.ReposDto
 {
     public class DepartamentoDtoRepository : BaseRepository, IDepartamentoDtoRepository
     {
-        private static DepartamentoDtoRepository instance; 
-
         private readonly string QUERY_SELECT_ALL = "SELECT * FROM Departamento order by orden";
-        private readonly string QUERY_UPDATE = "UPDATE Departamento SET name = @name, id_complejo = @id_complejo, tipo_departamento = @tipo_departamento, descripcion = @descripcion, orden = @orden WHERE id = @Id";
-        private readonly string QUERY_INSERT = "INSERT INTO Departamento (id, name, id_complejo, tipo_departamento, descripcion, orden) VALUES ( @Id, @name, @id_complejo, @tipo_departamento, @descripcion, @orden)"; 
+        private readonly string QUERY_UPDATE = "UPDATE Departamento SET name = @name, id_complejo = @id_complejo, tipo_departamento = @tipo_departamento, descripcion = @descripcion, orden = @orden, trabajadores = @trabajadores WHERE id = @Id";
+        private readonly string QUERY_INSERT = "INSERT INTO Departamento (id, name, id_complejo, tipo_departamento, descripcion, orden, trabajadores) VALUES ( @Id, @name, @id_complejo, @tipo_departamento, @descripcion, @orden, @trabajadores)"; 
         private List<DepartamentoDto> departamentoDtos;      
-        private readonly IMapper mapperDepartamento;
+        private readonly IMapper departamentoMapper;
 
-        protected DepartamentoDtoRepository():base(AplicationConfig.ConnectionString, "Departamento")
+        public DepartamentoDtoRepository(IMapper departamentoMapper) :base(AplicationConfig.ConnectionString, "Departamento")
         {
-            mapperDepartamento = new DepartamentoMapper();  
+            this.departamentoMapper = departamentoMapper;  
             updateListApp();
-
         }
 
         protected void updateListApp()
@@ -41,7 +38,7 @@ namespace BRapp.Repositorios.Repos.ReposDto
                 {
                     while (reader.Read())
                     {
-                        apps.Add((DepartamentoDto)mapperDepartamento.Map(reader));
+                        apps.Add((DepartamentoDto)departamentoMapper.Map(reader));
                     }
                 }
             }
@@ -60,7 +57,7 @@ namespace BRapp.Repositorios.Repos.ReposDto
 
         public ActionResult saveOrUpdate(Departamento departamento)
         {
-            DepartamentoDto departamentoDto = (DepartamentoDto)mapperDepartamento.Map(departamento);
+            DepartamentoDto departamentoDto = (DepartamentoDto)departamentoMapper.Map(departamento);
 
             Dictionary<string, object> parametros = buildParametros(departamentoDto);
             int index = getIndexById(departamentoDto.id);
@@ -88,18 +85,10 @@ namespace BRapp.Repositorios.Repos.ReposDto
                 { "@tipo_departamento", departamentoDto.tipoDepartamento.ToString() },
                 { "@descripcion", departamentoDto.descripcion },
                 { "@orden", departamentoDto.Orden },
+                { "@trabajadores", departamentoDto.CantidadTrabajadores },
                 { "@Id", departamentoDto.id.ToString() }
             };          
             return parametros;
         }
-
-        public static DepartamentoDtoRepository Instance
-        {
-            get
-            {                
-                instance = (instance == null) ? new DepartamentoDtoRepository() : instance;
-                return instance;
-            }
-        } 
     }
 }

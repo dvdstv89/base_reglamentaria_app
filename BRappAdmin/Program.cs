@@ -1,6 +1,6 @@
 ﻿using BRapp.Data;
 using BRapp.Messages;
-using BRapp.Services.Services;
+using BRappAdmin.Data;
 using BRappAdmin.UIControlers;
 using System;
 using System.Windows.Forms;
@@ -18,11 +18,11 @@ namespace BRappAdmin
             AplicationConfig.APP_MODE_UPDATE = true;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);    
-            var appService = AppService.Instance;
+            var appService =  AplicationAdminConfig.Component.AppServiceAdmin;
             var app = appService.getApp();
             if (app != null)
             {
-                Application.Run(IndexAdminUIController.Instance.ejecutar());
+                Application.Run(new IndexAdminUIController().ejecutar());
             }
             else
             {

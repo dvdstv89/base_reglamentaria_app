@@ -36,7 +36,7 @@ namespace BRapp.Model.Tiendas
 
         public bool hasImagen()
         {
-            return Organigrama != null && Organigrama.Data.Length > 0;
+            return Organigrama != null && Organigrama.hasDataValid();
         }
     }
 }

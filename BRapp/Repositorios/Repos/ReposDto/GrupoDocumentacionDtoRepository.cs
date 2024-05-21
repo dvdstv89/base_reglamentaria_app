@@ -11,18 +11,16 @@ namespace BRapp.Repositorios.Repos.ReposDto
 {
     public class GrupoDocumentacionDtoRepository : BaseRepository, IGrupoDocumentacionDtoRepository
     {
-        private static GrupoDocumentacionDtoRepository instance; 
-
         private readonly string QUERY_SELECT_ALL = "SELECT * FROM GrupoDocumentacion order by orden";
         private readonly string QUERY_DELETE = "Delete FROM GrupoDocumentacion where id = @Id";
         private readonly string QUERY_UPDATE = "UPDATE GrupoDocumentacion SET id_tipo_grupo_documentacion = @id_tipo_grupo_documentacion, id_papel = @id_papel, is_opcional = @is_opcional, orden = @orden WHERE id = @Id";
         private readonly string QUERY_INSERT = "INSERT INTO GrupoDocumentacion (id, id_tipo_grupo_documentacion, id_papel, is_opcional,orden) VALUES ( @Id, @id_tipo_grupo_documentacion, @id_papel, @is_opcional, @orden)"; 
         private List<GrupoDocumentacionDto> grupoDocumentacions;      
-        private readonly IMapper mapperGrupoDocumentacion;
+        private readonly IMapper grupoDocumentacionMapper;
 
-        protected GrupoDocumentacionDtoRepository():base(AplicationConfig.ConnectionString, "GrupoDocumentacion")
+        public GrupoDocumentacionDtoRepository(IMapper grupoDocumentacionMapper) :base(AplicationConfig.ConnectionString, "GrupoDocumentacion")
         {
-            mapperGrupoDocumentacion = new GrupoDocumentacionMapper();  
+            this.grupoDocumentacionMapper = grupoDocumentacionMapper;  
             updateListApp();
 
         }
@@ -41,7 +39,7 @@ namespace BRapp.Repositorios.Repos.ReposDto
                 {
                     while (reader.Read())
                     {
-                        apps.Add((GrupoDocumentacionDto)mapperGrupoDocumentacion.Map(reader));
+                        apps.Add((GrupoDocumentacionDto)grupoDocumentacionMapper.Map(reader));
                     }
                 }
             }
@@ -60,7 +58,7 @@ namespace BRapp.Repositorios.Repos.ReposDto
 
         public bool saveOrUpdate(GrupoDocumentacion grupoDocumentacion)
         {           
-            GrupoDocumentacionDto grupoDocumentacionDto = (GrupoDocumentacionDto)mapperGrupoDocumentacion.Map(grupoDocumentacion);
+            GrupoDocumentacionDto grupoDocumentacionDto = (GrupoDocumentacionDto)grupoDocumentacionMapper.Map(grupoDocumentacion);
 
             Dictionary<string, object> parametros = buildParametros(grupoDocumentacionDto);
             int index = getIndexById(grupoDocumentacion.Id);
@@ -92,7 +90,7 @@ namespace BRapp.Repositorios.Repos.ReposDto
 
         public void Delete(GrupoDocumentacion grupoDocumentacion)
         {
-            GrupoDocumentacionDto grupoDocumentacionDto = (GrupoDocumentacionDto)mapperGrupoDocumentacion.Map(grupoDocumentacion);
+            GrupoDocumentacionDto grupoDocumentacionDto = (GrupoDocumentacionDto)grupoDocumentacionMapper.Map(grupoDocumentacion);
             Dictionary<string, object> parametros = buildParametros(grupoDocumentacionDto);
             int index = getIndexById(grupoDocumentacion.Id);
             if (index != -1)
@@ -101,14 +99,5 @@ namespace BRapp.Repositorios.Repos.ReposDto
                 ExecuteWriteOperation(QUERY_DELETE, parametros);
             }          
         }
-
-        public static GrupoDocumentacionDtoRepository Instance
-        {
-            get
-            {                
-                instance = (instance == null) ? new GrupoDocumentacionDtoRepository() : instance;
-                return instance;
-            }
-        } 
     }
 }

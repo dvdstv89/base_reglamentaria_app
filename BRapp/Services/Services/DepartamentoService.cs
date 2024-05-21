@@ -1,7 +1,6 @@
 ﻿using BRapp.Dto;
 using BRapp.Model.Tiendas;
 using BRapp.Repositorios.Interfaces.Dto;
-using BRapp.Repositorios.Repos.ReposDto;
 using BRapp.Services.Interfaces;
 using BRapp.Utiles;
 using System;
@@ -12,19 +11,18 @@ namespace BRapp.Services.Services
 {
     public class DepartamentoService : IDepartamentoService
     {
-        private static DepartamentoService instance;
         protected readonly IDepartamentoDtoRepository departamentoDtoRepository;
         private readonly IDepartamentoGrupoDocumentacionDtoRepository departamentoGrupoDocumentacionDtoRepository;
         private readonly ITipoGrupoDocumentacionService tipoGrupoDocumentacionService;      
         private readonly IComplejoService complejoService;
         protected List<Departamento> departamentos;
 
-        protected DepartamentoService()
+        public DepartamentoService(IDepartamentoDtoRepository departamentoDtoRepository, IDepartamentoGrupoDocumentacionDtoRepository departamentoGrupoDocumentacionDtoRepository, ITipoGrupoDocumentacionService tipoGrupoDocumentacionService, IComplejoService complejoService)
         {
-            departamentoDtoRepository = DepartamentoDtoRepository.Instance;
-            departamentoGrupoDocumentacionDtoRepository = DepartamentoGrupoDocumentacionDtoRepository.Instance;          
-            tipoGrupoDocumentacionService = TipoGrupoDocumentacionService.Instance;
-            complejoService = ComplejoService.Instance;
+            this.departamentoDtoRepository = departamentoDtoRepository;
+            this.departamentoGrupoDocumentacionDtoRepository = departamentoGrupoDocumentacionDtoRepository;
+            this.tipoGrupoDocumentacionService = tipoGrupoDocumentacionService;
+            this.complejoService = complejoService;
             Populate();
         }
 
@@ -111,16 +109,6 @@ namespace BRapp.Services.Services
                 departamentoGrupoDocumentacionDtoRepository.save(grupoNuevo);
             }
             return true;
-        }
-
-
-        public static DepartamentoService Instance
-        {
-            get
-            {
-                instance = (instance == null) ? new DepartamentoService() : instance;
-                return instance;
-            }
         }
     }
 }

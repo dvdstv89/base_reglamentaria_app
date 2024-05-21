@@ -2,7 +2,7 @@
 
 namespace BRapp.Mapper
 {
-    internal interface IMapper
+    public interface IMapper
     {
         object Map(SqliteDataReader reader);
         object Map(object objeto);

@@ -1,19 +1,22 @@
-﻿using BRapp.Services.Interfaces;
+﻿using BRapp.Model;
+using BRapp.Repositorios.Interfaces;
+using BRapp.Services.Interfaces;
+using System;
 
 namespace BRapp.Services.Services
 {
     internal class VisorPDFService: IVisorPDFService
     {
-        private static VisorPDFService instance;
-       
+        private readonly IDocumentoPdfRepository documentoPdfRepository;
 
-        public static VisorPDFService Instance
+        public VisorPDFService(IDocumentoPdfRepository documentoPdfRepository)
         {
-            get
-            {
-                instance = (instance == null) ? new VisorPDFService() : instance;
-                return instance;
-            }
+            this.documentoPdfRepository = documentoPdfRepository;
         }
+
+        public DocumentoPDF getDocumentoPDFApliado(Guid id)
+        {
+            return documentoPdfRepository.getDocumentoApliado(id);
+        }     
     }
 }

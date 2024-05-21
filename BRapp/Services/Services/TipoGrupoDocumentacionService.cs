@@ -1,7 +1,5 @@
-﻿
-using BRapp.Model.Tiendas;
+﻿using BRapp.Model.Tiendas;
 using BRapp.Repositorios.Interfaces;
-using BRapp.Repositorios.Repos;
 using BRapp.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,22 +7,12 @@ using System.Collections.Generic;
 namespace BRapp.Services.Services
 {
     public class TipoGrupoDocumentacionService : ITipoGrupoDocumentacionService
-    {
-        private static TipoGrupoDocumentacionService instance;
+    {       
         protected readonly ITipoGrupoDocumentacionRepository tipoGrupoDocumentacionRepository;
 
-        public TipoGrupoDocumentacionService()
+        public TipoGrupoDocumentacionService(ITipoGrupoDocumentacionRepository tipoGrupoDocumentacionRepository)
         {
-            tipoGrupoDocumentacionRepository = TipoGrupoDocumentacionRepository.Instance;
-        }
-
-        public static TipoGrupoDocumentacionService Instance
-        {
-            get
-            {              
-                instance = (instance == null) ? new TipoGrupoDocumentacionService() : instance;
-                return instance;
-            }
+            this.tipoGrupoDocumentacionRepository = tipoGrupoDocumentacionRepository;
         }
 
         public List<TipoGrupoDocumentacion> getAll()

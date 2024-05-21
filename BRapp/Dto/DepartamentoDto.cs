@@ -11,5 +11,6 @@ namespace BRapp.Dto
         public Guid idComplejo { get; set; }   
         public string descripcion { get; set; }
         public int Orden { get; set; }
+        public int CantidadTrabajadores { get; set; }
     }
 }

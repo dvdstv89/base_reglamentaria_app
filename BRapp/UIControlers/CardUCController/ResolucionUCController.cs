@@ -1,30 +1,20 @@
 ﻿using BRapp.Model;
-using BRapp.Services.Interfaces;
-using BRapp.Services.Services;
 using BRapp.UI.Cards;
 using BRapp.UIControlers.Components;
 using BRapp.Utiles;
 using System;
 using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 
 namespace BRapp.UIControlers.CardUCController
 {
     internal class ResolucionUCController : BaseUCController<ResolucionCard, Resolucion>, ICard
-    {      
-        private readonly IPapelService papelService;
-        private readonly VisorPDFUIController visorPDFUIController;
-        private readonly IResolucionService resolucionService;
-        private readonly DocumentoPDF documentoApliado;
+    {   
         private bool eventsSubscribed = false;
         public ResolucionUCController(Resolucion documento) 
             : base(new ResolucionCard(), documento) 
         { 
-            this.papelService = PapelService.Instance;
-            this.resolucionService = ResolucionService.Instance;
-            this.documentoApliado = resolucionService.getDocumentoPDFApliado(documento);
-            this.visorPDFUIController = new VisorPDFUIController(documentoApliado);
+                 
         }
 
         public override UserControl get()
@@ -47,22 +37,13 @@ namespace BRapp.UIControlers.CardUCController
             card.labelCargoResponsable.Text = objeto.Responsable.Cargo;
             card.labelDescripcion.Rtf = objeto.Descripcion;
             card.lbFecha.Text = FechaUtil.getLargeText(objeto.FechaFirma);          
-            if (documentoApliado.hasImagen())
-            {
-                card.iconPictureBox1.Visible = false;
-                using (MemoryStream ms = new MemoryStream(documentoApliado.Imagen.Data))
-                {
-                    using (Image originalImage = Image.FromStream(ms))
-                    {
-                        ResizeImage(card.panelImagen, originalImage);
-                    }
-                }
-            }
-            card.btnPdf.Visible = visorPDFUIController.hasPdf();
+           
+            card.btnPdf.Visible = objeto.hasPdfName();
             if (objeto.DerrogadaPor != null)
             {
                 card.panelDerrogadoPor.Visible = true;
-                card.tbDerrogadoPor.Text = objeto.DerrogadaPor.ToString();
+                card.tbDerrogadoPor.Text = objeto.DerrogadaPor.GetNumero();
+                card.panelTitle.BackColor = Color.Black;
             }
             else
             {
@@ -72,7 +53,8 @@ namespace BRapp.UIControlers.CardUCController
 
         private void btnPdf_Click(object sender, EventArgs e)
         {
-            visorPDFUIController.showDialog();
+            var visorDocumentosUIController = new VisorPDFUIController(objeto.DocumentoPDF);
+            visorDocumentosUIController.showDialog();
         }
         private void btnResponsable_Click(object sender, EventArgs e)
         {

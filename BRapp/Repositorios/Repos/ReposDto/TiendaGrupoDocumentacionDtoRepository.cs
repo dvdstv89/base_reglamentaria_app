@@ -9,17 +9,15 @@ namespace BRapp.Repositorios.Repos.ReposDto
 {
     public class TiendaGrupoDocumentacionDtoRepository : BaseRepository, ITiendaGrupoDocumentacionDtoRepository
     {
-        private static TiendaGrupoDocumentacionDtoRepository instance;
-
         private readonly string QUERY_SELECT_ALL = "SELECT * FROM TiendaTipoGrupoDocumentacion";
         private readonly string QUERY_DELETE = "Delete FROM TiendaTipoGrupoDocumentacion where id_tienda = @id_tienda and id_tipo_grupo_documentacion = @id_tipo_grupo_documentacion";
         private readonly string QUERY_INSERT = "INSERT INTO TiendaTipoGrupoDocumentacion (id_tienda, id_tipo_grupo_documentacion) VALUES ( @id_tienda, @id_tipo_grupo_documentacion)";
         private List<TiendaGrupoDocumentacionDto> tiendaGrupoDocumentacionDtos;
         private readonly IMapper tiendaGrupoDocumentacionMapper;
 
-        protected TiendaGrupoDocumentacionDtoRepository() : base(AplicationConfig.ConnectionString, "TiendaTipoGrupoDocumentacion")
+        public TiendaGrupoDocumentacionDtoRepository(IMapper tiendaGrupoDocumentacionMapper) : base(AplicationConfig.ConnectionString, "TiendaTipoGrupoDocumentacion")
         {
-            tiendaGrupoDocumentacionMapper = new TiendaGrupoDocumentacionMapper();
+            this.tiendaGrupoDocumentacionMapper = tiendaGrupoDocumentacionMapper;
             updateList();
         }
         protected void updateList()
@@ -87,14 +85,6 @@ namespace BRapp.Repositorios.Repos.ReposDto
         public List<TiendaGrupoDocumentacionDto> getAllByIdTienda(Guid idTienda)
         {
             return tiendaGrupoDocumentacionDtos.FindAll(dep => dep.idTienda == idTienda);
-        }
-        public static TiendaGrupoDocumentacionDtoRepository Instance
-        {
-            get
-            {
-                instance = (instance == null) ? new TiendaGrupoDocumentacionDtoRepository() : instance;
-                return instance;
-            }
-        }
+        }       
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BRapp.Dto;
+using System;
 
 namespace BRapp.Model
 {
@@ -24,6 +25,11 @@ namespace BRapp.Model
             return "RES-" + Numero + ": " + Name;
         }
 
+        public string GetNumero()
+        {
+            return "RES-" + Numero;
+        }
+
         public override bool IsArchivado()
         {
             try
@@ -34,6 +40,7 @@ namespace BRapp.Model
             {
                 return true;
             }
-        }
+        }       
+
     }
 }

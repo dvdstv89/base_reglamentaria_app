@@ -255,6 +255,11 @@
             // tbAcuerdoContrato
             // 
             this.tbAcuerdoContrato.Location = new System.Drawing.Point(85, 94);
+            this.tbAcuerdoContrato.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.tbAcuerdoContrato.Name = "tbAcuerdoContrato";
             this.tbAcuerdoContrato.Size = new System.Drawing.Size(283, 20);
             this.tbAcuerdoContrato.TabIndex = 26;

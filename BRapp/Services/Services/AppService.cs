@@ -1,6 +1,5 @@
 ﻿using BRapp.Model;
 using BRapp.Repositorios.Interfaces;
-using BRapp.Repositorios.Repos;
 using BRapp.Services.Interfaces;
 
 namespace BRapp.Services.Services
@@ -8,25 +7,15 @@ namespace BRapp.Services.Services
     public class AppService : IAppService
     {       
         protected readonly IAppRepository iAppRepository;
-        private static AppService instance;
-
-        protected AppService()
+      
+        public AppService(IAppRepository iAppRepository)
         {
-            this.iAppRepository = AppRepository.Instance;            
+            this.iAppRepository = iAppRepository;     
         }       
 
         public App getApp()
         {
             return iAppRepository.getApp();
-        }        
-
-        public static AppService Instance
-        {
-            get
-            {               
-                instance = (instance == null) ? new AppService() : instance;
-                return instance;
-            }
-        }
+        }     
     }
 }

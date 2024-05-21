@@ -5,7 +5,7 @@ using System;
 namespace BRapp.Mapper
 {
     internal class AppMapper : IMapper
-    {
+    {      
         public object Map(SqliteDataReader reader)
         {
           

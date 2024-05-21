@@ -1,18 +1,15 @@
 ﻿using BRapp.Model;
-using BRapp.Repositorios.Interfaces;
-using BRapp.Repositorios.Repos;
 using BRapp.Services.Interfaces;
 
 namespace BRapp.Services.Services
 {
     public class IndexService: IIndexService
-    {
-        private static IndexService instance;
+    {      
         protected readonly IAppService appService;
 
-        protected IndexService()
+        public IndexService(IAppService appService)
         {
-            this.appService = AppService.Instance;            
+            this.appService = appService;            
         }
 
         public string getFooter()
@@ -28,15 +25,6 @@ namespace BRapp.Services.Services
                      app.Empresa + ". \\b0 Actualización: "
                      + app.FechaActualizacion
                      + "\\par}";
-        }
-
-        public static IndexService Instance
-        {
-            get
-            {               
-                instance = (instance == null) ? new IndexService() : instance;
-                return instance;
-            }
         }
     }
 }

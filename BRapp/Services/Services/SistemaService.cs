@@ -1,10 +1,6 @@
 ﻿using BRapp.Dto;
-using BRapp.Mapper;
 using BRapp.Model;
-using BRapp.Repositorios.Interfaces;
 using BRapp.Repositorios.Interfaces.Dto;
-using BRapp.Repositorios.Repos;
-using BRapp.Repositorios.Repos.ReposDto;
 using BRapp.Services.Interfaces;
 using BRapp.Utiles;
 
@@ -12,25 +8,16 @@ namespace BRapp.Services.Services
 {
     internal class SistemaService : ISistemaService
     {
-        private static SistemaService instance;       
         private readonly ISistemaDtoRepository sistemaDtoRepository;
-        private readonly IDocumentoPdfRepository documentoPdfRepository;
-
-        private SistemaService()
+        public SistemaService(ISistemaDtoRepository sistemaDtoRepository)
         {              
-            sistemaDtoRepository = SistemaDtoRepository.Instance;
-            documentoPdfRepository = DocumentoPdfRepository.Instance;
+            this.sistemaDtoRepository = sistemaDtoRepository;          
         }      
 
         public SistemaDto getByPapel(PapelDto papel)
         {   
             return sistemaDtoRepository.getById(papel.idPapel);
-        }
-
-        public DocumentoPDF getDocumentoPDFApliado(Sistema sistema)
-        {
-            return documentoPdfRepository.getDocumentoApliado(sistema.DocumentoPDF.Id);
-        }
+        }       
 
         public ActionResult saveOrUpdate(Sistema papel)
         {           
@@ -40,15 +27,6 @@ namespace BRapp.Services.Services
         public void Delete(Sistema papel)
         {
            sistemaDtoRepository.Delete(papel);
-        }
-
-        public static SistemaService Instance
-        {
-            get
-            {
-                instance = (instance == null) ? new SistemaService() : instance;
-                return instance;
-            }
         }                   
     }
 }

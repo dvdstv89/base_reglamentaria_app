@@ -29,7 +29,7 @@ namespace BRapp.Model
                 this.NumeroAcuerdo = contratoDto.acuerdo;
                 this.TipoContrato = contratoDto.tipoContrato;
             }           
-        }
+        }       
 
         public bool HasContratoPadre()
         {

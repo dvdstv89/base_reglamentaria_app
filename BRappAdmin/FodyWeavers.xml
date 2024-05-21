@@ -23,10 +23,7 @@
 			System.Text.Encodings.Web
 			SQLitePCLRaw.batteries_v2
 			SQLitePCLRaw.core
-			SQLitePCLRaw.provider.dynamic_cdecl
-			Patagames.Pdf
-			Patagames.Pdf.WinForms
-			Patagames.Pdf.Wpf
+			SQLitePCLRaw.provider.dynamic_cdecl		
 			RichTextBoxEx
 			PrintRichTextBox
 			NetSpell.SpellChecker

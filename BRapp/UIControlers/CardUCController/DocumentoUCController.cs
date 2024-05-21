@@ -1,28 +1,17 @@
 ﻿using BRapp.Model;
-using BRapp.Services.Interfaces;
-using BRapp.Services.Services;
 using BRapp.UI.Cards;
 using BRapp.UIControlers.Components;
 using BRapp.Utiles;
 using System;
-using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 
 namespace BRapp.UIControlers.CardUCController
 {
     internal class DocumentoUCController : BaseUCController<DocumentoCard, Documento>, ICard
-    {      
-        private readonly IPapelService papelService;
-        private readonly VisorPDFUIController visorDocumentosUIController;
-        private readonly IDocumentoService documentoService;
-        private readonly DocumentoPDF documentoApliado;
+    {           
         public DocumentoUCController(Documento documento) : base(new DocumentoCard(), documento)
         {           
-            this.papelService = PapelService.Instance;
-            this.documentoService = DocumentoService.Instance;
-            this.documentoApliado = documentoService.getDocumentoPDFApliado(documento);
-            this.visorDocumentosUIController = new VisorPDFUIController(documentoApliado);
+          
         }
 
         public override UserControl get()
@@ -38,19 +27,8 @@ namespace BRapp.UIControlers.CardUCController
             card.labelName.Text = objeto.Name;
             card.labelCargoResponsable.Text = objeto.Responsable.Cargo;
             card.labelDescripcion.Rtf = objeto.Descripcion;
-            card.lbFecha.Text = FechaUtil.getLargeText(objeto.FechaFirma);
-            if (documentoApliado.hasImagen())
-            {
-                card.iconPictureBox1.Visible = false;
-                using (MemoryStream ms = new MemoryStream(documentoApliado.Imagen.Data))
-                {
-                    using (Image originalImage = Image.FromStream(ms))
-                    {                     
-                        ResizeImage(card.panelImagen, originalImage);                       
-                    }                  
-                }
-            }
-            card.btnPdf.Visible = visorDocumentosUIController.hasPdf();
+            card.lbFecha.Text = FechaUtil.getLargeText(objeto.FechaFirma);           
+            card.btnPdf.Visible = objeto.hasPdfName();
 
             if(objeto.TipoClasificacionDocumento == Enums.TipoClasificacionDocumento.DOCUMENTACION_BASICA)
             {
@@ -61,6 +39,7 @@ namespace BRapp.UIControlers.CardUCController
 
         private void btnPdf_Click(object sender, EventArgs e)
         {
+            var visorDocumentosUIController = new VisorPDFUIController(objeto.DocumentoPDF);
             visorDocumentosUIController.showDialog();
         }
 

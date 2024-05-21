@@ -14,6 +14,7 @@ namespace BRapp.Dto
         public bool IsActivo { get; set; }
         public DateTime FechaFirma { get; set; }
         public string Descripcion { get; set; }
+        public int Orden { get; set; }
 
         public ClasificacionDocumento GetClasificacionDocumento()
         {

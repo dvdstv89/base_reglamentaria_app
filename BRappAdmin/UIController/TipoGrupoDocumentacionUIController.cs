@@ -6,6 +6,7 @@ using BRapp.Services.Interfaces;
 using BRapp.Services.Services;
 using BRapp.UI;
 using BRapp.UIControlers;
+using BRappAdmin.Data;
 using BRappAdmin.UI;
 using System;
 using System.Collections.Generic;
@@ -29,8 +30,8 @@ namespace BRappAdmin.UIControlers
 
         private TipoGrupoDocumentacionUIController() : base(new TipoGrupoDocumentacionUI())
         {
-            tipoGrupoDocumentacionServiceAdmin = TipoGrupoDocumentacionService.Instance;
-            grupoDocumentacionServiceAdmin = GrupoDocumentacionService.Instance;
+            tipoGrupoDocumentacionServiceAdmin = AplicationAdminConfig.Component.Component.TipoGrupoDocumentacionService;
+            grupoDocumentacionServiceAdmin = AplicationAdminConfig.Component.Component.GrupoDocumentacionService;
         }
 
         public override TipoGrupoDocumentacionUI ejecutar()
@@ -71,7 +72,7 @@ namespace BRappAdmin.UIControlers
 
         private void nuevoDocumentoStripMenuItem1_Click(object sender, EventArgs e)
         {
-            var papelUiController = new PapelUIController(null, TipoClasificacionDocumento.DOCUMENTACION_BASICA);
+            var papelUiController = new PapelUIController(null, TipoClasificacionDocumento.DOCUMENTACION_BASICA, grupoDocumentacions.Count+1);
             DialogResult dialogResult = papelUiController.ejecutar().ShowDialog();
             if (dialogResult == DialogResult.OK)
             {                
@@ -149,7 +150,7 @@ namespace BRappAdmin.UIControlers
 
         private void modificarDocumentacionToolStripMenuItem_Click(object sender, EventArgs e)
         {           
-            modificarDocumento(getDocumentacionSeleccionado());
+            modificarDocumento(getDocumentacionSeleccionado(), grupoDocumentacions.FindIndex(doc => doc.Id == getDocumentacionSeleccionado().Id));
         }
 
         private void eliminarDocumentoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -170,7 +171,7 @@ namespace BRappAdmin.UIControlers
         {
             if (e.Button == MouseButtons.Left)
             {              
-                modificarDocumento(getDocumentacionSeleccionado());
+                modificarDocumento(getDocumentacionSeleccionado(), grupoDocumentacions.FindIndex(doc => doc.Id == getDocumentacionSeleccionado().Id));
             }
         }
 
@@ -185,9 +186,9 @@ namespace BRappAdmin.UIControlers
                 updateTipoList();
             }
         }
-        private void modificarDocumento(GrupoDocumentacion grupoDocumentacion)
+        private void modificarDocumento(GrupoDocumentacion grupoDocumentacion, int posicion)
         {
-            var papelUiController = new PapelUIController(grupoDocumentacion.Documento, TipoClasificacionDocumento.DOCUMENTACION_BASICA);
+            var papelUiController = new PapelUIController(grupoDocumentacion.Documento, TipoClasificacionDocumento.DOCUMENTACION_BASICA, posicion);
             DialogResult dialogResult = papelUiController.ejecutar().ShowDialog();
             if (dialogResult == DialogResult.OK)
             {
@@ -208,8 +209,8 @@ namespace BRappAdmin.UIControlers
             indexItemDocumentoSeleccionado = forma.listViewDocumentos.Items.IndexOf(itemDocumentoSeleccionado);
             forma.modificarDocumentoStripMenuItem2.Enabled = true;
             forma.eliminarDocumentoToolStripMenuItem.Enabled = true;
-            forma.obligatorioToolStripMenuItem.Visible = !getDocumentacionSeleccionado().IsOpcional;
-            forma.opcionalToolStripMenuItem.Visible = getDocumentacionSeleccionado().IsOpcional;           
+            forma.obligatorioToolStripMenuItem.Visible = getDocumentacionSeleccionado().IsOpcional;
+            forma.opcionalToolStripMenuItem.Visible = !getDocumentacionSeleccionado().IsOpcional;           
 
             forma.subirToolStripMenuItem.Visible = indexItemDocumentoSeleccionado > 0;
             forma.bajarToolStripMenuItem.Visible = indexItemDocumentoSeleccionado < forma.listViewDocumentos.Items.Count - 1;
@@ -270,12 +271,12 @@ namespace BRappAdmin.UIControlers
         private void obligatorioToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            cambiarOpcional(true);
+            cambiarOpcional(false);
         }
 
         private void opcionalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            cambiarOpcional(false);
+            cambiarOpcional(true);
         }
 
         private void cambiarOpcional(bool value)
@@ -317,8 +318,9 @@ namespace BRappAdmin.UIControlers
         {
             get
             {
-                instance = (instance == null) ? new TipoGrupoDocumentacionUIController() : instance;
-                return instance;
+                //instance = (instance == null) ? new TipoGrupoDocumentacionUIController() : instance;
+                //return instance;
+                return new TipoGrupoDocumentacionUIController();
             }
         }
     }

@@ -1,6 +1,5 @@
 ﻿using BRapp.Data;
 using BRapp.Messages;
-using BRapp.Services.Services;
 using BRapp.UIControlers;
 using System;
 using Application = System.Windows.Forms.Application;
@@ -15,11 +14,11 @@ namespace BRapp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             AplicationConfig.APP_MODE_UPDATE = false;
-            var appService = AppService.Instance;
+            var appService = AplicationConfig.Component.AppService;
             var app = appService.getApp();
             if (app != null)
-            {                
-                Application.Run(IndexUIController.Instance.ejecutar());
+            {
+                Application.Run(new IndexUIController().ejecutar()); ;
             }
             else
             {

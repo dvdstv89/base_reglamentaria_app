@@ -6,5 +6,6 @@ namespace BRapp.Services.Interfaces
     {
         Fichero guardarFichero(string selectedFilePath);
         Fichero extraerFichero(string fileName);
+        Fichero extraerFichero(string fileName, string data);
     }
 }

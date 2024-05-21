@@ -59,7 +59,6 @@
             this.lwPapeles = new System.Windows.Forms.ListView();
             this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnTipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnPDF = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnActivo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -105,13 +104,13 @@
             // sistemaToolStripMenuItem
             // 
             this.sistemaToolStripMenuItem.Name = "sistemaToolStripMenuItem";
-            this.sistemaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sistemaToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.sistemaToolStripMenuItem.Text = "Sistema";
             // 
             // contratoToolStripMenuItem
             // 
             this.contratoToolStripMenuItem.Name = "contratoToolStripMenuItem";
-            this.contratoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.contratoToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.contratoToolStripMenuItem.Text = "Contrato";
             // 
             // resolucionToolStripMenuItem
@@ -120,7 +119,7 @@
             this.resolucionInternaToolStripMenuItem,
             this.resolucionEmpresarialToolStripMenuItem});
             this.resolucionToolStripMenuItem.Name = "resolucionToolStripMenuItem";
-            this.resolucionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resolucionToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.resolucionToolStripMenuItem.Text = "Resolución";
             // 
             // resolucionInternaToolStripMenuItem
@@ -138,19 +137,19 @@
             // indicoToolStripMenuItem
             // 
             this.indicoToolStripMenuItem.Name = "indicoToolStripMenuItem";
-            this.indicoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.indicoToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.indicoToolStripMenuItem.Text = "Indico";
             // 
             // manualToolStripMenuItem
             // 
             this.manualToolStripMenuItem.Name = "manualToolStripMenuItem";
-            this.manualToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.manualToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.manualToolStripMenuItem.Text = "Manual";
             // 
             // dGToolStripMenuItem
             // 
             this.dGToolStripMenuItem.Name = "dGToolStripMenuItem";
-            this.dGToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dGToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.dGToolStripMenuItem.Text = "DG";
             // 
             // planToolStripMenuItem
@@ -159,7 +158,7 @@
             this.planInternoToolStripMenuItem,
             this.planEmpresarialToolStripMenuItem});
             this.planToolStripMenuItem.Name = "planToolStripMenuItem";
-            this.planToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.planToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.planToolStripMenuItem.Text = "Plan";
             // 
             // planInternoToolStripMenuItem
@@ -177,7 +176,7 @@
             // procedimientoToolStripMenuItem
             // 
             this.procedimientoToolStripMenuItem.Name = "procedimientoToolStripMenuItem";
-            this.procedimientoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.procedimientoToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.procedimientoToolStripMenuItem.Text = "Procedimiento";
             // 
             // programaToolStripMenuItem
@@ -186,7 +185,7 @@
             this.programaInternoToolStripMenuItem,
             this.programaEmpresarialToolStripMenuItem});
             this.programaToolStripMenuItem.Name = "programaToolStripMenuItem";
-            this.programaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.programaToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.programaToolStripMenuItem.Text = "Programa";
             // 
             // programaInternoToolStripMenuItem
@@ -204,13 +203,13 @@
             // reglamentoToolStripMenuItem
             // 
             this.reglamentoToolStripMenuItem.Name = "reglamentoToolStripMenuItem";
-            this.reglamentoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reglamentoToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.reglamentoToolStripMenuItem.Text = "Reglamento";
             // 
             // otrosDocumentosToolStripMenuItem
             // 
             this.otrosDocumentosToolStripMenuItem.Name = "otrosDocumentosToolStripMenuItem";
-            this.otrosDocumentosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.otrosDocumentosToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.otrosDocumentosToolStripMenuItem.Text = "Otros Documentos";
             // 
             // modificarToolStripMenuItem
@@ -301,7 +300,6 @@
             this.lwPapeles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnName,
             this.columnTipo,
-            this.columnPDF,
             this.columnActivo});
             this.lwPapeles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lwPapeles.FullRowSelect = true;
@@ -324,10 +322,6 @@
             // 
             this.columnTipo.Text = "Tipo";
             this.columnTipo.Width = 70;
-            // 
-            // columnPDF
-            // 
-            this.columnPDF.Text = "PDF";
             // 
             // columnActivo
             // 
@@ -387,7 +381,6 @@
         public System.Windows.Forms.ListView lwPapeles;
         public System.Windows.Forms.ColumnHeader columnName;
         public System.Windows.Forms.ColumnHeader columnTipo;
-        public System.Windows.Forms.ColumnHeader columnPDF;
         public System.Windows.Forms.ColumnHeader columnActivo;
         private System.Windows.Forms.Panel panel4;
         public System.Windows.Forms.TextBox tbBuscar;

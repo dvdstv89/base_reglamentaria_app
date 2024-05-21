@@ -12,7 +12,6 @@ namespace BRapp.Repositorios.Repos.ReposDto
 {
     internal class DocumentoDtoRepository : BaseRepository, IDocumentoDtoRepository
     {
-        private static DocumentoDtoRepository instance;
         private readonly string QUERY_DELETE = "Delete FROM Documento where id_papel = @papelId";
         private readonly string QUERY_SELECT_ALL = "SELECT * FROM Documento";
         private readonly string QUERY_UPDATE = "UPDATE Documento SET id_responsable = @responsable WHERE id_papel = @papelId";
@@ -20,9 +19,9 @@ namespace BRapp.Repositorios.Repos.ReposDto
         private readonly List<DocumentoDto> documentoDtos;
         private readonly IMapper mapperDocumento;
 
-        private DocumentoDtoRepository() : base(AplicationConfig.ConnectionString, "Documento")
+        public DocumentoDtoRepository(IMapper mapperDocumento) : base(AplicationConfig.ConnectionString, "Documento")
         {
-            mapperDocumento = new DocumentoMapper();
+            this.mapperDocumento = mapperDocumento;
             documentoDtos = getAll_DocumentosDto();
         }
 
@@ -90,14 +89,5 @@ namespace BRapp.Repositorios.Repos.ReposDto
             };
             return parametros;
         }
-
-        public static DocumentoDtoRepository Instance
-        {
-            get
-            {
-                instance = (instance == null) ? new DocumentoDtoRepository() : instance;
-                return instance;
-            }
-        } 
     }
 }

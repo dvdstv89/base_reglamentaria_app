@@ -2,26 +2,20 @@
 using BRapp.Services.Interfaces;
 using Microsoft.Data.Sqlite;
 using System;
-using System.Text;
 
 namespace BRapp.Mapper
 {
     internal class PersonaJuridicaMapper : IMapper
     {
-        private readonly IFileService fileLogoService;
+        private readonly IFileService fileService;
 
-        public PersonaJuridicaMapper(IFileService fileLogoService)
+        public PersonaJuridicaMapper(IFileService fileService)
         {
-            this.fileLogoService = fileLogoService;
+            this.fileService = fileService;
         }
-
         public object Map(SqliteDataReader reader) 
-        {
-            byte[] imagenData = Convert.FromBase64String(reader["logo"].ToString());
-            string logo = "";
-            if (imagenData.Length != 0) logo = "logotipo.jpg";
-            Fichero fichero= new Fichero(logo, imagenData);
-
+        {           
+            Fichero fichero = fileService.extraerFichero("logotipo.jpg", reader["logo"].ToString());
             PersonaJuridica persona = new PersonaJuridica
                    (                     
                       reader["name"].ToString(),

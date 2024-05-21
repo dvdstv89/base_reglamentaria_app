@@ -1,22 +1,12 @@
 ﻿using BRapp.Messages;
-using BRapp.Services.Services;
 using BRapp.UI;
 using BRapp.UIControlers;
-using BRappAdmin.Services.Services;
 using System;
-using System.Windows.Forms;
 
 namespace BRappAdmin.UIControlers
 {
     public class IndexAdminUIController : IndexUIController
     {
-        private static IndexAdminUIController instance;
-
-        private IndexAdminUIController():base(IndexService.Instance)
-        {
-           
-        }
-
         public override IndexUI ejecutar()
         {
             forma.appToolStripMenuItem.Click += new EventHandler(appToolStripMenuItem_Click);
@@ -44,7 +34,7 @@ namespace BRappAdmin.UIControlers
         private void appToolStripMenuItem_Click(object sender, EventArgs e)
         {
             forma.panelBusqueda.Visible = false;
-            var formulario = AppUIController.Instance(this);          
+            var formulario = new AppUIController(this);          
             formatearFormulario(forma.appToolStripMenuItem, forma.adminToolStripMenuItem, formulario, ButtonName.Administracion_App);
             formulario.ejecutar().Show();
         }
@@ -79,14 +69,6 @@ namespace BRappAdmin.UIControlers
             var formulario = TipoGrupoDocumentacionUIController.Instance;
             formatearFormulario(forma.tipoDeGruposDeDocumentacionToolStripMenuItem, forma.adminToolStripMenuItem, formulario, ButtonName.GrupoDocumentacion_App);
             formulario.ejecutar().Show();
-        }
-
-        public static new IndexUIController Instance
-        {
-            get
-            {
-                return (instance == null) ? new IndexAdminUIController() : instance;
-            }
         }
     }
 }

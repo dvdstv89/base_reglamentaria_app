@@ -1,7 +1,6 @@
 ﻿using BRapp.UI;
 using System.Collections.Generic;
 using BRapp.Services.Interfaces;
-using BRapp.Services.Services;
 using BRapp.Model.Tiendas;
 using System.IO;
 using System.Drawing;
@@ -9,29 +8,24 @@ using BRapp.Model;
 using BRapp.UI.Cards;
 using BRapp.UIControlers.CardUCController;
 using System.Windows.Forms;
+using BRapp.Data;
 
 namespace BRapp.UIControlers
 {
-
     internal class ComplejoUIController : BaseUIController<ComplejoUI>, IForm
     {
         private static Dictionary<Complejo, ComplejoUIController> instances = new Dictionary<Complejo, ComplejoUIController>();        
         private readonly ITiendaService tiendaService;
         private readonly IDepartamentoService departamentoService;
-        private readonly ISucursalService iSucursalService;
+        private readonly ISucursalService sucursalService;
         private readonly Complejo complejo;
         private ComplejoUIController(Complejo complejo) : base(new ComplejoUI(), true)
         {
             this.complejo = complejo;
-            tiendaService = TiendasService.Instance;
-            departamentoService = DepartamentoService.Instance;
-            iSucursalService = SucursalService.Instance;
-        }
-
-        public override ComplejoUI ejecutar()
-        {                     
-            return base.ejecutar();
-        }
+            tiendaService = AplicationConfig.Component.TiendaService;
+            departamentoService = AplicationConfig.Component.DepartamentoService;
+            sucursalService = AplicationConfig.Component.SucursalService;
+        }      
 
         protected override void aplicarTema()
         {         
@@ -49,7 +43,7 @@ namespace BRapp.UIControlers
                 forma.panelTiendas.Visible = false;
                
 
-                App app = app = iSucursalService.GetApp();
+                App app = app = sucursalService.GetApp();
                 forma.richTextBoxMision.Rtf = app.Mision;
                 forma.richTextBoxVision.Rtf = app.Vision;
                 forma.richTextBoxValoresCompartidos.Rtf = app.ValoresCompartidos;
@@ -90,8 +84,11 @@ namespace BRapp.UIControlers
                 control.Tag = tienda;
                 forma.panelTiendas.Controls.Add(control);
             }
-            ExtraSpaceCard extraCard = new ExtraSpaceCard();
-            forma.panelTiendas.Controls.Add(extraCard);
+            for (int i = 0; i < 3; i++)
+            {
+                ExtraSpaceCard card = new ExtraSpaceCard();
+                forma.panelTiendas.Controls.Add(card);
+            }
         }
 
         public static ComplejoUIController GetInstance(Complejo complejo)

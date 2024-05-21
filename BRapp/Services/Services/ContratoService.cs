@@ -2,8 +2,6 @@
 using BRapp.Model;
 using BRapp.Repositorios.Interfaces;
 using BRapp.Repositorios.Interfaces.Dto;
-using BRapp.Repositorios.Repos;
-using BRapp.Repositorios.Repos.ReposDto;
 using BRapp.Services.Interfaces;
 using BRapp.Utiles;
 
@@ -11,25 +9,18 @@ namespace BRapp.Services.Services
 {
     internal class ContratoService : IContratoService
     {
-        private static ContratoService instance;      
         private readonly IContratoDtoRepository contratoDtoRepository;
         private readonly IDocumentoPdfRepository documentoPdfRepository;
 
-        private ContratoService()
+        public ContratoService(IContratoDtoRepository contratoDtoRepository)
         {
-            contratoDtoRepository = ContratoDtoRepository.Instance;
-            documentoPdfRepository = DocumentoPdfRepository.Instance;
+            this.contratoDtoRepository = contratoDtoRepository;          
         }  
 
         public ContratoDto getByPapel(PapelDto papel)
         {
             return contratoDtoRepository.getById(papel.idPapel);
-        }
-
-        public DocumentoPDF getDocumentoPDFApliado(Contrato contrato)
-        {
-            return documentoPdfRepository.getDocumentoApliado(contrato.DocumentoPDF.Id);
-        }
+        }      
 
         public ActionResult saveOrUpdate(Contrato papel)
         {          
@@ -40,14 +31,5 @@ namespace BRapp.Services.Services
         {
             contratoDtoRepository.Delete(papel);
         }
-
-        public static ContratoService Instance
-        {
-            get
-            {
-                instance = (instance == null) ? new ContratoService() : instance;
-                return instance;
-            }
-        }                   
     }
 }

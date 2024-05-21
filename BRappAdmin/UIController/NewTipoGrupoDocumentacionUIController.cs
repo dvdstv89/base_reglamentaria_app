@@ -4,8 +4,7 @@ using BRapp.Services.Interfaces;
 using BRapp.Services.Services;
 using BRapp.UI;
 using BRapp.UIControlers;
-using BRappAdmin.Services.Interfaces;
-using BRappAdmin.Services.Services;
+using BRappAdmin.Data;
 using BRappAdmin.UI;
 using System;
 using System.Windows.Forms;
@@ -19,7 +18,7 @@ namespace BRappAdmin.UIControlers
         public NewTipoGrupoDocumentacionUIController(TipoGrupoDocumentacion tipoGrupoDocumentacion) : base(new NewTipoGrupoDocumentacionUI())
         {
             this.tipoGrupoDocumentacion = tipoGrupoDocumentacion;
-            tipoGrupoDocumentacionServiceAdmin = TipoGrupoDocumentacionService.Instance;                        
+            tipoGrupoDocumentacionServiceAdmin = AplicationAdminConfig.Component.Component.TipoGrupoDocumentacionService;
         }
 
         public override NewTipoGrupoDocumentacionUI ejecutar()

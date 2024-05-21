@@ -1,12 +1,10 @@
 ﻿using BRapp.Data;
-using BRapp.Dto;
 using BRapp.Enums;
 using BRapp.Enums.EnumFiltroBusqueda;
 using BRapp.Mapper;
 using BRapp.Model;
 using BRapp.Repositorios.Interfaces;
 using BRapp.Services.Interfaces;
-using BRapp.Services.Services;
 using BRapp.Utiles;
 using System;
 using System.Collections.Generic;
@@ -15,21 +13,20 @@ using System.Linq;
 namespace BRapp.Repositorios.Repos
 {
     public class DirectorioRepository : BaseRepository, IDirectorioRepository
-    {
-        private static DirectorioRepository instance;
+    {       
         private readonly string QUERY_SELECT_ALL_PERSONAS = "SELECT * FROM Persona order by tipo_persona DESC, name asc";       
         private readonly string QUERY_UPDATE_PERSONA = "UPDATE Persona SET name = @name, email = @email, phone = @phone,  address = @address, is_interno = @interno, is_favorito = @favorito, is_activo = @activo,  tipo_persona = @tipoPersona,  titulo_personal = @titulo, cargo = @cargo, cell = @cell,  contacto = @contacto, logo = @logo WHERE id = @personaId";
         private readonly string QUERY_INSERT_PERSONA = "INSERT INTO Persona (id, name, email, phone, address, is_interno, is_favorito, is_activo, tipo_persona, titulo_personal, cargo, cell, contacto, logo) VALUES ( @personaId, @name, @email, @phone, @address, @interno, @favorito, @activo, @tipoPersona, @titulo, @cargo, @cell, @contacto, @logo)";
         protected List<Persona> personas;
-        private readonly IMapper mapperPersonaJuridica;
-        private readonly IMapper mapperPersonaNatural;
-        private readonly IFileService fileLogoService;
+        private readonly IMapper personaJuridicaMapper;
+        private readonly IMapper personaNaturalMapper;
+        private readonly IFileService fileService;
 
-        protected DirectorioRepository() : base(AplicationConfig.ConnectionString, "Persona")
+        public DirectorioRepository(IMapper personaJuridicaMapper, IMapper personaNaturalMapper, IFileService fileService) : base(AplicationConfig.ConnectionString, "Persona")
         {
-            fileLogoService = new FileService();
-            mapperPersonaNatural = new PersonaNaturalMapper();
-            mapperPersonaJuridica = new PersonaJuridicaMapper(fileLogoService);
+            this.fileService = fileService;
+            this.personaNaturalMapper = personaNaturalMapper;
+            this.personaJuridicaMapper = personaJuridicaMapper;
             personas = getAll();
         }
 
@@ -48,11 +45,11 @@ namespace BRapp.Repositorios.Repos
                     TipoPersona tipoPersona = (TipoPersona)Enum.Parse(typeof(TipoPersona), reader["tipo_persona"].ToString());
                     if(tipoPersona == TipoPersona.JURIDICA)
                     {
-                        apps.Add((PersonaJuridica)mapperPersonaJuridica.Map(reader));
+                        apps.Add((PersonaJuridica)personaJuridicaMapper.Map(reader));
                     }
                     else if(tipoPersona == TipoPersona.NATURAL)
                     {
-                        apps.Add((PersonaNatural)mapperPersonaNatural.Map(reader));
+                        apps.Add((PersonaNatural)personaNaturalMapper.Map(reader));
                     }                   
                 }
             }
@@ -132,19 +129,10 @@ namespace BRapp.Repositorios.Repos
                 parametros.Add("@titulo", "");
                 parametros.Add("@cargo", "");
                 parametros.Add("@cell", "");
-                parametros.Add("@contacto", personaJuridica.Contacto);               
-                parametros.Add("@logo", (personaJuridica.Logo != null) ? ImageManager.GetBase64Image(personaJuridica.Logo.Data, 120, 138, 90) : "");
+                parametros.Add("@contacto", personaJuridica.Contacto);                
+                parametros.Add("@logo", (personaJuridica.Logo != null && personaJuridica.Logo.hasDataValid()) ? ImageManager.GetBase64Image(personaJuridica.Logo.Data, 120, 138, 90) : "");
             }
             return parametros;
         }
-
-        public static DirectorioRepository Instance
-        {
-            get
-            {
-                instance = (instance == null) ? new DirectorioRepository() : instance;
-                return instance;
-            }
-        } 
     }
 }

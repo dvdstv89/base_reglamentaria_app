@@ -10,14 +10,15 @@ namespace BRapp.Data
         public static bool APP_MODE_UPDATE;
         public readonly static string ApplicationPath;
         private static IConfiguration configuration;
-        public static readonly int ANCHO_PANTALLA = 1500; 
+        public static readonly int ANCHO_PANTALLA = 1500;
+        public readonly static Component Component;
         static AplicationConfig()
         {
             ApplicationPath = Application.StartupPath;
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("Data/settings.json", optional: false, reloadOnChange: true);
-
             configuration = builder.Build();
+            Component = new Component();
         }
         public static string ConnectionString
         {
@@ -50,7 +51,5 @@ namespace BRapp.Data
                 return new Guid("28a5dce0-cf0a-4069-b448-e247d0ada5bf");
             }
         }
-
-
     }
 }

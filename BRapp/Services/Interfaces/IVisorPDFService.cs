@@ -1,7 +1,10 @@
-﻿namespace BRapp.Services.Interfaces
+﻿using BRapp.Model;
+using System;
+
+namespace BRapp.Services.Interfaces
 {
-    internal interface IVisorPDFService
+    public interface IVisorPDFService
     {
-       
+        DocumentoPDF getDocumentoPDFApliado(Guid id);
     }
 }

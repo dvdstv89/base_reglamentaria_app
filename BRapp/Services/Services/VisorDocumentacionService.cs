@@ -8,18 +8,19 @@ namespace BRapp.Services.Services
 {
     internal class VisorDocumentacionService : IVisorDocumentacionService
     {
-        private static VisorDocumentacionService instance;
-
         private readonly IPapelService papelService;
         private readonly IGrupoDocumentacionService grupoDocumentacionService;
         private readonly Resolucion resolucion61;
+        private readonly string emptyRichTextBox;
 
-        public VisorDocumentacionService()
+        public VisorDocumentacionService(IGrupoDocumentacionService grupoDocumentacionService, IPapelService papelService)
         {
-            grupoDocumentacionService = GrupoDocumentacionService.Instance;
-            papelService = PapelService.Instance;
+            this.grupoDocumentacionService = grupoDocumentacionService;
+            this.papelService = papelService;
             resolucion61 = (Resolucion)papelService.getById(AplicationConfig.Resolucion61);
-
+            emptyRichTextBox =  "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang2057{\\fonttbl{\\f0\\fnil\\fcharset0 " +
+    "Arial;}}\r\n{\\*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 \r\n\\pard\\fs20\\par\r\n}\r\n" +
+    "";
 
         }
 
@@ -33,13 +34,9 @@ namespace BRapp.Services.Services
             return grupoDocumentacionService.getByIdTipoGrupoDocumentacion(tipo.Id);           
         }
 
-        public static VisorDocumentacionService Instance
+        public bool isEmptyRft(string rtf)
         {
-            get
-            {
-                instance = (instance == null) ? new VisorDocumentacionService() : instance;
-                return instance;
-            }
+            return emptyRichTextBox.Equals(rtf);
         }
     }
 }

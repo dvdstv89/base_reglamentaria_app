@@ -3,11 +3,8 @@ using BRapp.Enums;
 using BRapp.Enums.EnumsInstances;
 using BRapp.Model;
 using BRapp.Model.Papeles;
-using BRapp.Model.Tiendas;
 using BRapp.Repositorios.Interfaces;
 using BRapp.Repositorios.Interfaces.Dto;
-using BRapp.Repositorios.Repos;
-using BRapp.Repositorios.Repos.ReposDto;
 using BRapp.Services.Interfaces;
 using BRapp.Utiles;
 using System;
@@ -18,7 +15,6 @@ namespace BRapp.Services.Services
 {
     public class PapelService : IPapelService
     {
-        private static PapelService instance; 
         protected readonly ISistemaService sistemaService;
         protected readonly IDGService dGService;
         protected readonly IResolucionService resolucionService;
@@ -29,16 +25,17 @@ namespace BRapp.Services.Services
         protected readonly IDocumentoPdfRepository documentoPdfRepository;      
 
         protected List<Papel> papeles;       
-        protected PapelService()
+        public PapelService(ISistemaService sistemaService, IDGService dGService, IResolucionService resolucionService, IContratoService contratoService, 
+            IDocumentoService documentoService, IDirectorioService directorioService, IPapelDtoRepository papelDtoRepository, IDocumentoPdfRepository documentoPdfRepository)
         {
-            dGService = DGService.Instance;
-            directorioService = DirectorioService.Instance;
-            sistemaService = SistemaService.Instance;
-            resolucionService = ResolucionService.Instance;
-            contratoService = ContratoService.Instance;
-            documentoService = DocumentoService.Instance;
-            papelDtoRepository = PapelDtoRepository.Instance;
-            documentoPdfRepository = DocumentoPdfRepository.Instance;
+            this.dGService = dGService;
+            this.directorioService = directorioService;
+            this.sistemaService = sistemaService;
+            this.resolucionService = resolucionService;
+            this.contratoService = contratoService;
+            this.documentoService = documentoService;
+            this.papelDtoRepository = papelDtoRepository;
+            this.documentoPdfRepository = documentoPdfRepository;
             geAllPapeles();
         }
 
@@ -144,16 +141,9 @@ namespace BRapp.Services.Services
                 if (papel.getClasificacionDocumento().TipoDocumentoMenu == tipoDocumentoMenu && papel.IsActivo) papelesFiltrados.Add(papel);
             });
             return papelesFiltrados;
-        }       
+        }      
 
-        public static PapelService Instance
-        {
-            get
-            {
-                instance = (instance == null) ? new PapelService() : instance;
-                return instance;
-            }
-        }
+      
 
         protected int getIndexById(Guid id)
         {

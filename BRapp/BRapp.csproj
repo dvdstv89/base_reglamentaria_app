@@ -89,15 +89,6 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Patagames.Pdf, Version=11.81.45.472, Culture=neutral, PublicKeyToken=60fd6cf9b15941cf, processorArchitecture=MSIL">
-      <HintPath>..\packages\Pdfium.Net.SDK.4.89.2704\lib\net472\Patagames.Pdf.dll</HintPath>
-    </Reference>
-    <Reference Include="Patagames.Pdf.WinForms, Version=4.26.18.472, Culture=neutral, PublicKeyToken=60fd6cf9b15941cf, processorArchitecture=MSIL">
-      <HintPath>..\packages\Pdfium.Net.SDK.4.89.2704\lib\net472\Patagames.Pdf.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="Patagames.Pdf.Wpf, Version=4.26.20.472, Culture=neutral, PublicKeyToken=60fd6cf9b15941cf, processorArchitecture=MSIL">
-      <HintPath>..\packages\Pdfium.Net.SDK.4.89.2704\lib\net472\Patagames.Pdf.Wpf.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="SQLitePCLRaw.batteries_v2, Version=2.1.8.2226, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
@@ -385,7 +376,6 @@
     <Compile Include="Services\Interfaces\ISucursalService.cs" />
     <Compile Include="Services\Interfaces\IIndexService.cs" />
     <Compile Include="Services\Interfaces\IDirectorioService.cs" />
-    <Compile Include="Services\Interfaces\IConsultorService.cs" />
     <Compile Include="Services\Interfaces\IBienvenidaService.cs" />
     <Compile Include="Services\Interfaces\IPapelService.cs" />
     <Compile Include="Services\Services\GrupoDocumentacionService.cs" />
@@ -401,10 +391,10 @@
     <Compile Include="Services\Services\FileService.cs" />
     <Compile Include="Services\Services\VisorDocumentacionService.cs" />
     <Compile Include="Services\Services\VisorPDFService.cs" />
+    <Compile Include="Data\Component.cs" />
     <Compile Include="UIControlers\CardUCController\DocumentacionUCController.cs" />
     <Compile Include="UIControlers\CardUCController\TiendaUCController.cs" />
     <Compile Include="UIControlers\CardUCController\ContratoUCController.cs" />
-    <Compile Include="UIControlers\CardUCController\DgUCController.cs" />
     <Compile Include="UIControlers\CardUCController\CardDialogUIController.cs" />
     <Compile Include="UIControlers\CardUCController\ResolucionUCController.cs" />
     <Compile Include="UIControlers\CardUCController\PersonaJuridicaUCController.cs" />
@@ -431,9 +421,6 @@
     <Compile Include="UI\Cards\ContratoCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\Cards\DGCard.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="UI\Cards\ResolucionCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -456,6 +443,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UIControlers\CardUCController\ICard.cs" />
+    <Compile Include="UI\Component\ProgressBarUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Component\ProgressBarUI.Designer.cs">
+      <DependentUpon>ProgressBarUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Component\VisorDocumentacionUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -477,7 +470,6 @@
     <Compile Include="Utiles\ActionResult.cs" />
     <Compile Include="Utiles\ButtonSeleccionado.cs" />
     <Compile Include="Enums\EnumsInstances\TipoDocumentoMenu.cs" />
-    <Compile Include="Services\Services\ConsultorService.cs" />
     <Compile Include="Services\Services\PapelService.cs" />
     <Compile Include="Services\Services\TiendasService.cs" />
     <Compile Include="Services\Services\SucursalService.cs" />
@@ -544,8 +536,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utiles\ColorUtil.cs" />
-    <EmbeddedResource Include="Pdf.Net.SDK.licx" />
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="UI\BienvenidaUI.resx">
       <DependentUpon>BienvenidaUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -560,9 +550,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Cards\ContratoCard.resx">
       <DependentUpon>ContratoCard.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Cards\DGCard.resx">
-      <DependentUpon>DGCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Cards\ResolucionCard.resx">
       <DependentUpon>ResolucionCard.cs</DependentUpon>
@@ -587,6 +574,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ComplejoUI.resx">
       <DependentUpon>ComplejoUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Component\ProgressBarUI.resx">
+      <DependentUpon>ProgressBarUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Component\VisorDocumentacionUI.resx">
       <DependentUpon>VisorDocumentacionUI.cs</DependentUpon>
@@ -625,9 +615,6 @@
     <None Include="FodyWeavers.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="libpdfium.dylib">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -657,9 +644,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="FodyWeavers.xml" />
-    <Content Include="icudt.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Logo.ico" />
     <None Include="Resources\BRLogo.ico" />
     <Content Include="Resources\Logo.ico" />
@@ -678,12 +662,6 @@
     <Content Include="SQLitePCLRaw.provider.e_sqlite3.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="x64\pdfium.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="x86\pdfium.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -695,12 +673,10 @@
     <Error Condition="!Exists('..\packages\Costura.Fody.5.7.0\build\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.5.7.0\build\Costura.Fody.targets'))" />
     <Error Condition="!Exists('..\packages\Fody.6.8.0\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.6.8.0\build\Fody.targets'))" />
     <Error Condition="!Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets'))" />
-    <Error Condition="!Exists('..\packages\Pdfium.Net.SDK.4.89.2704\build\Pdfium.Net.SDK.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Pdfium.Net.SDK.4.89.2704\build\Pdfium.Net.SDK.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.2478.35\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.2478.35\build\Microsoft.Web.WebView2.targets'))" />
   </Target>
   <Import Project="..\packages\Costura.Fody.5.7.0\build\Costura.Fody.targets" Condition="Exists('..\packages\Costura.Fody.5.7.0\build\Costura.Fody.targets')" />
   <Import Project="..\packages\Fody.6.8.0\build\Fody.targets" Condition="Exists('..\packages\Fody.6.8.0\build\Fody.targets')" />
   <Import Project="..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
-  <Import Project="..\packages\Pdfium.Net.SDK.4.89.2704\build\Pdfium.Net.SDK.targets" Condition="Exists('..\packages\Pdfium.Net.SDK.4.89.2704\build\Pdfium.Net.SDK.targets')" />
   <Import Project="..\packages\Microsoft.Web.WebView2.1.0.2478.35\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.2478.35\build\Microsoft.Web.WebView2.targets')" />
 </Project>

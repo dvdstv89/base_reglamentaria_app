@@ -2,7 +2,7 @@
 
 namespace BRapp.Services.Interfaces
 {
-    internal interface ISucursalService
+    public interface ISucursalService
     {
         App GetApp();       
     }

@@ -7,8 +7,8 @@ namespace BRapp.UI.Cards
         public ToolTip toolTip1;
         private System.ComponentModel.IContainer components;
         public Label labelName;
-        public FontAwesome.Sharp.IconButton btnList;
         private Panel panel1;
+        public FontAwesome.Sharp.IconButton btnList;
         public FontAwesome.Sharp.IconPictureBox iconPrincipal;
 
         public DepartamentoCard()
@@ -21,9 +21,9 @@ namespace BRapp.UI.Cards
             this.components = new System.ComponentModel.Container();
             this.iconPrincipal = new FontAwesome.Sharp.IconPictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btnList = new FontAwesome.Sharp.IconButton();
             this.labelName = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnList = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.iconPrincipal)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -43,30 +43,14 @@ namespace BRapp.UI.Cards
             this.iconPrincipal.TabIndex = 6;
             this.iconPrincipal.TabStop = false;
             // 
-            // btnList
-            // 
-            this.btnList.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnList.ForeColor = System.Drawing.Color.White;
-            this.btnList.IconChar = FontAwesome.Sharp.IconChar.List;
-            this.btnList.IconColor = System.Drawing.Color.Black;
-            this.btnList.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnList.IconSize = 36;
-            this.btnList.Location = new System.Drawing.Point(431, 0);
-            this.btnList.Name = "btnList";
-            this.btnList.Size = new System.Drawing.Size(36, 45);
-            this.btnList.TabIndex = 34;
-            this.toolTip1.SetToolTip(this.btnList, "Ver documentación");
-            this.btnList.UseVisualStyleBackColor = true;
-            // 
             // labelName
             // 
-            this.labelName.Dock = System.Windows.Forms.DockStyle.Left;
+            this.labelName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelName.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelName.ForeColor = System.Drawing.Color.Black;
             this.labelName.Location = new System.Drawing.Point(45, 0);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(386, 45);
+            this.labelName.Size = new System.Drawing.Size(427, 45);
             this.labelName.TabIndex = 33;
             this.labelName.Text = "David Estevez Diaz";
             this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -81,6 +65,22 @@ namespace BRapp.UI.Cards
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(472, 45);
             this.panel1.TabIndex = 35;
+            // 
+            // btnList
+            // 
+            this.btnList.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnList.ForeColor = System.Drawing.Color.White;
+            this.btnList.IconChar = FontAwesome.Sharp.IconChar.List;
+            this.btnList.IconColor = System.Drawing.Color.Black;
+            this.btnList.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnList.IconSize = 36;
+            this.btnList.Location = new System.Drawing.Point(436, 0);
+            this.btnList.Name = "btnList";
+            this.btnList.Size = new System.Drawing.Size(36, 45);
+            this.btnList.TabIndex = 36;
+            this.toolTip1.SetToolTip(this.btnList, "Ver documentación");
+            this.btnList.UseVisualStyleBackColor = true;
             // 
             // DepartamentoCard
             // 

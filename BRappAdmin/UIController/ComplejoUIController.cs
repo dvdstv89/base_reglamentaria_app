@@ -1,9 +1,9 @@
 ﻿using BRapp.Messages;
 using BRapp.Model.Tiendas;
 using BRapp.Services.Interfaces;
-using BRapp.Services.Services;
 using BRapp.UI;
 using BRapp.UIControlers;
+using BRappAdmin.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,10 +33,10 @@ namespace BRappAdmin.UIControlers
 
         private ComplejoUIController() : base(new ComplejoUI())
         {
-            complejoService = ComplejoService.Instance;
-            tiendaService = TiendasService.Instance;
-            departamentoService = DepartamentoService.Instance;          
-    }
+            complejoService = AplicationAdminConfig.Component.Component.ComplejoService;
+            tiendaService = AplicationAdminConfig.Component.Component.TiendaService;
+            departamentoService = AplicationAdminConfig.Component.Component.DepartamentoService;
+        }
 
     public override ComplejoUI ejecutar()
         {
@@ -443,8 +443,9 @@ namespace BRappAdmin.UIControlers
         {
             get
             {
-                instance = (instance == null) ? new ComplejoUIController() : instance;
-                return instance;
+                //instance = (instance == null) ? new ComplejoUIController() : instance;
+                //return instance;
+                return new ComplejoUIController();
             }
         }
     }

@@ -12,7 +12,6 @@ namespace BRapp.Repositorios.Repos.ReposDto
 {
     internal class ResolucionDtoRepository : BaseRepository, IResolucionDtoRepository
     {
-        private static ResolucionDtoRepository instance;
         private readonly string QUERY_DELETE = "Delete FROM Resolucion where id_papel = @papelId";
         private readonly string QUERY_SELECT_ALL = "SELECT * FROM Resolucion";
         private readonly string QUERY_UPDATE = "UPDATE Resolucion SET id_responsable = @responsable, id_derrogada = @derrogada, numero = @numero WHERE id_papel = @papelId";
@@ -20,9 +19,9 @@ namespace BRapp.Repositorios.Repos.ReposDto
         private readonly List<ResolucionDto> resolucionDtos;
         private readonly IMapper mapperResolucion;
 
-        private ResolucionDtoRepository() : base(AplicationConfig.ConnectionString, "Resolucion")
+        public ResolucionDtoRepository(IMapper mapperResolucion) : base(AplicationConfig.ConnectionString, "Resolucion")
         {
-            mapperResolucion = new ResolucionMapper();
+            this.mapperResolucion = mapperResolucion;
             resolucionDtos = getAll_ResolucionesDto();
         }
 
@@ -90,14 +89,5 @@ namespace BRapp.Repositorios.Repos.ReposDto
             };
             return parametros;
         }
-
-        public static ResolucionDtoRepository Instance
-        {
-            get
-            {
-                instance = (instance == null) ? new ResolucionDtoRepository() : instance;
-                return instance;
-            }
-        } 
     }
 }

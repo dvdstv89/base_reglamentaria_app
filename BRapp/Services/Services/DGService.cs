@@ -1,25 +1,18 @@
 ﻿using BRapp.Dto;
 using BRapp.Model;
-using BRapp.Repositorios.Interfaces;
 using BRapp.Repositorios.Interfaces.Dto;
-using BRapp.Repositorios.Repos;
-using BRapp.Repositorios.Repos.ReposDto;
 using BRapp.Services.Interfaces;
 using BRapp.Utiles;
-using System;
 
 namespace BRapp.Services.Services
 {
     internal class DGService : IDGService
-    {
-        private static DGService instance;       
-        private readonly IDGDtoRepository dGDtoRepository;
-        private readonly IDocumentoPdfRepository documentoPdfRepository;
+    {             
+        private readonly IDGDtoRepository dGDtoRepository;       
 
-        private DGService()
+        public DGService(IDGDtoRepository dGDtoRepository)
         {
-            dGDtoRepository = DgDtoRepository.Instance;
-            documentoPdfRepository = DocumentoPdfRepository.Instance;
+            this.dGDtoRepository = dGDtoRepository;           
         }      
 
         public DGDto getByPapel(PapelDto papel)
@@ -32,23 +25,9 @@ namespace BRapp.Services.Services
             return dGDtoRepository.saveOrUpdate(papel);
         }
 
-        public DocumentoPDF getDocumentoPDFApliado(DG dg)
-        {
-            return documentoPdfRepository.getDocumentoApliado(dg.DocumentoPDF.Id);
-        }
-
         public void Delete(DG papel)
         {
             dGDtoRepository.Delete(papel);
         }
-
-        public static DGService Instance
-        {
-            get
-            {
-                instance = (instance == null) ? new DGService() : instance;
-                return instance;
-            }
-        }                   
     }
 }

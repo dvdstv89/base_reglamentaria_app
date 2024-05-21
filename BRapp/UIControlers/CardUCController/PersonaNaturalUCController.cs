@@ -1,7 +1,6 @@
-﻿using BRapp.Model;
-using BRapp.Services;
+﻿using BRapp.Data;
+using BRapp.Model;
 using BRapp.Services.Interfaces;
-using BRapp.Services.Services;
 using BRapp.UI.Cards;
 using System;
 using System.Windows.Forms;
@@ -13,7 +12,7 @@ namespace BRapp.UIControlers.CardUCController
         private readonly IDirectorioService iDirectorioService;
         public PersonaNaturalUCController(PersonaNatural persona) : base(new PersonaNaturalCard(), persona)
         {           
-            this.iDirectorioService = DirectorioService.Instance;
+            this.iDirectorioService = AplicationConfig.Component.DirectorioService;
         }
 
         public override UserControl get()

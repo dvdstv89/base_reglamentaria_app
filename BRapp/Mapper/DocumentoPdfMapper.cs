@@ -6,14 +6,12 @@ using System;
 namespace BRapp.Mapper
 {
     internal class DocumentoPdfMapper : IMapper
-    {
-        private readonly IFileService filePdfLogoService;
-        private readonly IFileService filePdfDocumentService;
+    {      
+        private readonly IFileService fileService;
 
-        public DocumentoPdfMapper(IFileService filePdfLogoService, IFileService filePdfDocumentService)
+        public DocumentoPdfMapper(IFileService fileService)
         {
-            this.filePdfLogoService = filePdfLogoService;
-            this.filePdfDocumentService = filePdfDocumentService;
+            this.fileService = fileService;           
         }
 
 
@@ -21,8 +19,8 @@ namespace BRapp.Mapper
             string url = reader["pdf"].ToString();
             string image = reader["image"].ToString();
 
-            Fichero ficheroPdf = filePdfDocumentService.extraerFichero(url);
-            Fichero logoPdf = filePdfLogoService.extraerFichero(image);
+            Fichero ficheroPdf = fileService.extraerFichero(url);
+            Fichero logoPdf = fileService.extraerFichero(image);
 
             DocumentoPDF documentoPDF = new DocumentoPDF
                    (

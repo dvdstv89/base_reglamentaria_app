@@ -11,24 +11,23 @@ using System.Linq;
 namespace BRapp.Repositorios.Repos.ReposDto
 {
     internal class DgDtoRepository : BaseRepository, IDGDtoRepository
-    {
-        private static DgDtoRepository instance;
+    {       
         private readonly string QUERY_DELETE = "Delete FROM DG where id_papel = @papelId";
         private readonly string QUERY_SELECT_ALL_SISTEMAS = "SELECT * FROM DG";
         private readonly string QUERY_UPDATE = "UPDATE DG SET id_responsable = @responsable, numero = @numero WHERE id_papel = @papelId";
         private readonly string QUERY_INSERT = "INSERT INTO DG (id_papel, numero, id_responsable) VALUES ( @papelId, @numero, @responsable)";
         private readonly List<DGDto> dgsDto;
-        private readonly IMapper mapperDG;
+        private readonly IMapper dGMapper;
 
-        private DgDtoRepository() : base(AplicationConfig.ConnectionString, "DG")
+        public DgDtoRepository(IMapper dGMapper) : base(AplicationConfig.ConnectionString, "DG")
         {
-            mapperDG = new DGMapper();
+            this.dGMapper = dGMapper;
             dgsDto = getAll_DgDto();
         }
 
         public void Delete(DG papel)
         {
-            DGDto dgDto = (DGDto)mapperDG.Map(papel);
+            DGDto dgDto = (DGDto)dGMapper.Map(papel);
             Dictionary<string, object> parametros = buildParametros(dgDto);
             int index = getIndexById(dgDto.idPapel);
             if (index != -1)
@@ -45,7 +44,7 @@ namespace BRapp.Repositorios.Repos.ReposDto
             {
                 while (reader.Read())
                 {
-                    dgs.Add((DGDto)mapperDG.Map(reader));
+                    dgs.Add((DGDto)dGMapper.Map(reader));
                 }
             }
             return dgs;
@@ -63,7 +62,7 @@ namespace BRapp.Repositorios.Repos.ReposDto
 
         public ActionResult saveOrUpdate(DG papel)
         {
-            DGDto dgDto = (DGDto)mapperDG.Map(papel);
+            DGDto dgDto = (DGDto)dGMapper.Map(papel);
             Dictionary<string, object> parametros = buildParametros(dgDto);
             int index = getIndexById(dgDto.idPapel);
             if (index != -1)
@@ -90,14 +89,5 @@ namespace BRapp.Repositorios.Repos.ReposDto
             };
             return parametros;
         }
-
-        public static DgDtoRepository Instance
-        {
-            get
-            {
-                instance = (instance == null) ? new DgDtoRepository() : instance;
-                return instance;
-            }
-        } 
     }
 }

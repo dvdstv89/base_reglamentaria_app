@@ -183,7 +183,7 @@
             this.labelMenuSeleccionado.Name = "labelMenuSeleccionado";
             this.labelMenuSeleccionado.Size = new System.Drawing.Size(972, 43);
             this.labelMenuSeleccionado.TabIndex = 4;
-            this.labelMenuSeleccionado.Text = "Organigrama del departamento de tiendas";
+            this.labelMenuSeleccionado.Text = "Organigrama";
             this.labelMenuSeleccionado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelMenuSeleccionado.Click += new System.EventHandler(this.labelMenuSeleccionado_Click);
             // 
@@ -236,7 +236,7 @@
             this.panelSucursal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelSucursal.Location = new System.Drawing.Point(0, 519);
             this.panelSucursal.Name = "panelSucursal";
-            this.panelSucursal.Size = new System.Drawing.Size(1484, 349);
+            this.panelSucursal.Size = new System.Drawing.Size(1484, 332);
             this.panelSucursal.TabIndex = 10;
             this.panelSucursal.Paint += new System.Windows.Forms.PaintEventHandler(this.panelSucursal_Paint);
             // 
@@ -355,7 +355,7 @@
             this.panel11.BackColor = System.Drawing.Color.NavajoWhite;
             this.panel11.Controls.Add(this.richTextBoxMision);
             this.panel11.Controls.Add(this.label6);
-            this.panel11.Location = new System.Drawing.Point(19, 0);
+            this.panel11.Location = new System.Drawing.Point(19, 3);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(240, 124);
             this.panel11.TabIndex = 7;
@@ -392,7 +392,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1484, 868);
+            this.ClientSize = new System.Drawing.Size(1484, 851);
             this.Controls.Add(this.panelSucursal);
             this.Controls.Add(this.panelTiendas);
             this.Controls.Add(this.panelTiendasHeader);

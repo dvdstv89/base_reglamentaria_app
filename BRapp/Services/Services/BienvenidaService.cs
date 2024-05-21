@@ -4,26 +4,16 @@ namespace BRapp.Services.Services
 {
     internal class BienvenidaService: IBienvenidaService
     {
-        private static BienvenidaService instance;
         private readonly ISucursalService sucursalService;
 
-        public BienvenidaService()
+        public BienvenidaService(ISucursalService sucursalService)
         {
-            sucursalService = SucursalService.Instance;
+            this.sucursalService = sucursalService;
         }
 
         public string getBienvenida()
         {
             return sucursalService.GetApp().Bienvenida;
-        }
-
-        public static BienvenidaService Instance
-        {
-            get
-            {
-                instance = (instance == null) ? new BienvenidaService() : instance;
-                return instance;
-            }
         }
     }
 }
