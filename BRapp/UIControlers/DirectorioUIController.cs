@@ -16,13 +16,13 @@ namespace BRapp.UIControlers
     internal class DirectorioUIController : BaseUIController<DirectorioUI>, IForm
     {
         private static DirectorioUIController instance;
-        private readonly IDirectorioService directorioService;
-        List<ICard> contactos = new List<ICard>();
+        private readonly IDirectorioService directorioService;      
         ButtonSeleccionado botonActivo = null;
         TipoContactoBusqueda tipoContactoBusqueda;
         FiltroPaginaContactos filtroPaginaContactos;
         private readonly Dictionary<RadioButton, TipoContactoBusqueda> radioButtonMappings = new Dictionary<RadioButton, TipoContactoBusqueda>();
         private readonly Dictionary<ToolStripMenuItem, FiltroPaginaContactos> menuItemMappings = new Dictionary<ToolStripMenuItem, FiltroPaginaContactos>();
+        List<Control> personas;
 
         private DirectorioUIController() : base(new DirectorioUI(), true)
         {
@@ -58,7 +58,7 @@ namespace BRapp.UIControlers
             menuItemMappings.Add(forma.wToolStripMenuItem, FiltroPaginaContactos.W);
             menuItemMappings.Add(forma.xToolStripMenuItem, FiltroPaginaContactos.X);
             menuItemMappings.Add(forma.yToolStripMenuItem, FiltroPaginaContactos.Y);
-            menuItemMappings.Add(forma.zToolStripMenuItem, FiltroPaginaContactos.Z);
+            menuItemMappings.Add(forma.zToolStripMenuItem, FiltroPaginaContactos.Z);            
         }
 
         protected override void forma_Load(object sender, EventArgs e)
@@ -74,9 +74,41 @@ namespace BRapp.UIControlers
                 menuItem.Click += ButtonToolStripMenuItem_Click;
             }
 
+            LLenarListaPersonasIniciales();
+            LLenarListaPersonas();
             tipoContactoBusqueda = TipoContactoBusqueda.TODOS;
-            filtrarContacto(forma.todosToolStripMenuItem);           
+            filtrarContacto(forma.favoritosToolStripMenuItem);           
             base.forma_Load(sender, e);
+        }
+
+        private void LLenarListaPersonasIniciales()
+        {
+            personas = new List<Control>();
+            List<Persona> personasAux = directorioService.getAll();
+
+            foreach (Persona contact in personasAux)
+            {
+                ICard card = getICardContacto(contact);
+                card.setInfo();
+                Control control = renderICard(card, contact);
+                personas.Add(control);
+            }          
+        }
+
+        private void LLenarListaPersonas()
+        {
+            forma.flowLayoutContactos.SuspendLayout();
+            forma.flowLayoutContactos.Controls.Clear();
+            foreach (Control control in personas)
+            {
+                forma.flowLayoutContactos.Controls.Add(control);
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                ExtraSpaceCard card = new ExtraSpaceCard();
+                forma.flowLayoutContactos.Controls.Add(card);
+            }
+            forma.flowLayoutContactos.ResumeLayout();
         }
 
         private void RadioButton_CheckedChanged(object sender, EventArgs e)
@@ -105,35 +137,35 @@ namespace BRapp.UIControlers
      
         private void LLenarListaContactos()
         {
-            List<Persona> contactosAux = directorioService.filtrarContactos(tipoContactoBusqueda, filtroPaginaContactos);
-            forma.flowLayoutContactos.SuspendLayout();
-            forma.flowLayoutContactos.Controls.Clear();
-            foreach (Persona contact in contactosAux)
+            forma.flowLayoutContactos.SuspendLayout();           
+            foreach (Control control in forma.flowLayoutContactos.Controls)
             {
-                ICard card = getICardContacto(contact);
-                card.setInfo();
-                renderICard(card);            
-                contactos.Add(card);
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                ExtraSpaceCard card = new ExtraSpaceCard();
-                forma.flowLayoutContactos.Controls.Add(card);
+                if (!(control is ExtraSpaceCard))
+                {
+                    Persona persona = control.Tag as Persona;
+                    control.Visible = persona != null && directorioService.contatoIsVisible(tipoContactoBusqueda, filtroPaginaContactos, persona);
+                }
             }
             forma.flowLayoutContactos.ResumeLayout();
-        }
+        }       
+
         private ICard getICardContacto(Persona contact)
         {
             return (contact is PersonaNatural) ? (ICard) new PersonaNaturalUCController(contact as PersonaNatural)
                                                : (ICard) new PersonaJuridicaUCController(contact as PersonaJuridica);
         }
-        private void renderICard(ICard iCard)
+        private Control renderICard(ICard iCard, Persona persona)
         {
-            if(iCard is PersonaNaturalUCController)
-                forma.flowLayoutContactos.Controls.Add(iCard.get() as PersonaNaturalCard);
-            else
-                forma.flowLayoutContactos.Controls.Add(iCard.get() as PersonaJuridicaCard);
+            Control control = null;
+            if (iCard is PersonaNaturalUCController) control = iCard.get() as PersonaNaturalCard;
+            else  control = iCard.get() as PersonaJuridicaCard;
+            if (control != null)
+            {
+                control.Tag = persona;
+            }
+            return control;
         }
+
         private void cambiarBotonActivo(ButtonSeleccionado button)
         {
             if (botonActivo != null)
@@ -147,7 +179,6 @@ namespace BRapp.UIControlers
                 botonActivo.marcarBoton();
             }
         }
-
         protected void centrarMenu(object sender, LayoutEventArgs e)
         {
             int totalWidth = 0;

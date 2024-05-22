@@ -8,8 +8,8 @@ namespace BRapp.Services.Interfaces
     public interface IDirectorioService
     {
         PersonaNatural GetPersonaNatural(Guid id);
-        PersonaJuridica GetPersonaJuridica(Guid id);      
-        List<Persona> filtrarContactos(TipoContactoBusqueda tipoContactoBusqueda, FiltroPaginaContactos filtroPaginaContactos);
+        PersonaJuridica GetPersonaJuridica(Guid id);
+        bool contatoIsVisible(TipoContactoBusqueda tipoContactoBusqueda, FiltroPaginaContactos filtroPaginaContactos, Persona persona);
         List<Persona> getAll();
         List<PersonaNatural> getAllPersonaNatural();
         List<PersonaNatural> getAllPersonaNaturalInterno();

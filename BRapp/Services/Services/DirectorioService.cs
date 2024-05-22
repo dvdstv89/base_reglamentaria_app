@@ -16,12 +16,25 @@ namespace BRapp.Services.Services
         public DirectorioService(IDirectorioRepository directorioRepository)
         {
             this.directorioRepository = directorioRepository;
+        }      
+
+        public bool contatoIsVisible(TipoContactoBusqueda tipoContactoBusqueda, FiltroPaginaContactos filtroPaginaContactos, Persona persona)
+        {
+            if ((tipoContactoBusqueda == TipoContactoBusqueda.TODOS ||
+               (tipoContactoBusqueda == TipoContactoBusqueda.INTERNO && persona.IsInterno) ||
+               (tipoContactoBusqueda == TipoContactoBusqueda.EXTERNO && !persona.IsInterno)) && persona.IsActivo)
+            {
+                if (filtroPaginaContactos == FiltroPaginaContactos.TODOS ||
+                (filtroPaginaContactos == FiltroPaginaContactos.FAVORITOS && persona.IsFavorito) ||
+                (filtroPaginaContactos == FiltroPaginaContactos.NN && persona.FiltroPorLetra("Ñ")) ||
+                persona.FiltroPorLetra(filtroPaginaContactos.ToString()))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
-        public List<Persona> filtrarContactos(TipoContactoBusqueda tipoContactoBusqueda, FiltroPaginaContactos filtroPaginaContactos)
-        {
-            return directorioRepository.filtrarContactos(tipoContactoBusqueda, filtroPaginaContactos);
-        }  
         public PersonaNatural GetPersonaNatural(Guid id)
         {
             return (PersonaNatural)directorioRepository.getById(id);

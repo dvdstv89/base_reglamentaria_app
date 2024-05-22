@@ -24,7 +24,7 @@ namespace BRapp.UIControlers.CardUCController
         public override void setInfo()
         {
             card.iconPrincipal.IconChar = objeto.getIcono();
-            card.labelName.Text = objeto.Name;
+            card.labelName.Text = objeto.ToString();
             card.labelCargoResponsable.Text = objeto.Responsable.Cargo;
             card.labelDescripcion.Rtf = objeto.Descripcion;
             card.lbFecha.Text = FechaUtil.getLargeText(objeto.FechaFirma);           

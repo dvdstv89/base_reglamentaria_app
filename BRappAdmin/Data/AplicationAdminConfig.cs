@@ -1,8 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Windows.Forms;
-
-namespace BRappAdmin.Data
+﻿namespace BRappAdmin.Data
 {
     internal static class AplicationAdminConfig
     {

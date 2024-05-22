@@ -54,25 +54,7 @@ namespace BRapp.Repositorios.Repos
                 }
             }
             return apps;
-        }
-
-        public List<Persona> filtrarContactos(TipoContactoBusqueda tipoContactoBusqueda, FiltroPaginaContactos filtroPaginaContactos)
-        {
-            var contactosFiltradosPorTipoContacto = personas.Where(contacto =>
-               (tipoContactoBusqueda == TipoContactoBusqueda.TODOS ||
-               (tipoContactoBusqueda == TipoContactoBusqueda.INTERNO && contacto.IsInterno) ||
-               (tipoContactoBusqueda == TipoContactoBusqueda.EXTERNO && !contacto.IsInterno)) && contacto.IsActivo).ToList();
-
-            // Filtra los contactos por el filtro de página (favoritos, NN, letra específica)
-            var contactosFiltradosPorPagina = contactosFiltradosPorTipoContacto.Where(contacto =>
-                filtroPaginaContactos == FiltroPaginaContactos.TODOS ||
-                (filtroPaginaContactos == FiltroPaginaContactos.FAVORITOS && contacto.IsFavorito) ||
-                (filtroPaginaContactos == FiltroPaginaContactos.NN && contacto.FiltroPorLetra("Ñ")) ||
-                contacto.FiltroPorLetra(filtroPaginaContactos.ToString())
-            ).ToList();
-
-            return contactosFiltradosPorPagina;
-        }
+        }       
 
         public Persona getById(Guid id)
         {

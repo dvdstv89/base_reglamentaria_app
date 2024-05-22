@@ -18,8 +18,8 @@ namespace BRapp.UIControlers.Components
         public VisorPDFUIController(DocumentoPDF documento) : base(new VisorPDFUI())
         {
             this.documento = documento;
-            visorDocumentosService = AplicationConfig.Component.VisorPDFService;
-        }
+            this.visorDocumentosService = AplicationConfig.Component.VisorPDFService;
+        }        
 
         public override VisorPDFUI ejecutar()
         {
@@ -37,7 +37,7 @@ namespace BRapp.UIControlers.Components
             {
                 // Inicializa WebView2
                 await forma.webView21.EnsureCoreWebView2Async();
-                DocumentoPDF documentoPDF = visorDocumentosService.getDocumentoPDFApliado(documento.Id);
+                DocumentoPDF documentoPDF = documento.hasDocumento() ? documento : visorDocumentosService.getDocumentoPDFApliado(documento.Id);
                 byte[] pdfData = documentoPDF.PDF.Data;
 
                 // Verifica si hay datos PDF para cargar
