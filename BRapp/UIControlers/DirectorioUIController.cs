@@ -9,6 +9,7 @@ using BRapp.Utiles;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace BRapp.UIControlers
@@ -84,7 +85,7 @@ namespace BRapp.UIControlers
         private void LLenarListaPersonasIniciales()
         {
             personas = new List<Control>();
-            List<Persona> personasAux = directorioService.getAll();
+            List<Persona> personasAux = directorioService.GetAll().Where(c => !c.getPhonesNumber().Equals(String.Empty) || !c.Email.Equals(String.Empty)).ToList();
 
             foreach (Persona contact in personasAux)
             {
@@ -143,7 +144,7 @@ namespace BRapp.UIControlers
                 if (!(control is ExtraSpaceCard))
                 {
                     Persona persona = control.Tag as Persona;
-                    control.Visible = persona != null && directorioService.contatoIsVisible(tipoContactoBusqueda, filtroPaginaContactos, persona);
+                    control.Visible = persona != null && directorioService.ContatoIsVisible(tipoContactoBusqueda, filtroPaginaContactos, persona);
                 }
             }
             forma.flowLayoutContactos.ResumeLayout();

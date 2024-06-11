@@ -36,7 +36,7 @@ namespace BRapp.UIControlers.CardUCController
         {
             objeto.IsFavorito = !objeto.IsFavorito;
             actualizarEstrella();
-            iDirectorioService.saveOrUpdate(objeto);
+            iDirectorioService.SaveOrUpdate(objeto);
         }
 
         private void actualizarEstrella()

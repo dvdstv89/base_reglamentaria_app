@@ -1,9 +1,10 @@
 ﻿using BRapp.Enums;
+using BRapp.Interfaces;
 using System;
 
 namespace BRapp.Model
 {
-    public abstract class Persona: ISeleccionable
+    public abstract class Persona: ISeleccionable, HasId
     {
         public Guid Id {get;set;}
         public string Name { get; set; }     
@@ -48,11 +49,16 @@ namespace BRapp.Model
             return ToString();
         }
 
+        public Guid getId()
+        {
+            return Id;
+        }
+
         public string COMBO
         {
             get { return ToString(); }
         }
 
-        
+        public abstract string GetCargo();        
     }
 }

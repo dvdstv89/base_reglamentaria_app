@@ -1,5 +1,4 @@
 ﻿using BRapp.Data;
-using BRapp.Enums.EnumsInstances;
 using BRapp.Model;
 using BRapp.Services.Interfaces;
 using BRapp.UI.Cards;
@@ -10,12 +9,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using BRapp.Model.Nomenclador;
 
 internal class DocumentoUIController : BaseUIController<DocumentoUI>, IForm
 {
-    private static Dictionary<TipoDocumentoMenu, DocumentoUIController> instances = new Dictionary<TipoDocumentoMenu, DocumentoUIController>();
+    private static Dictionary<MenuDocumental, DocumentoUIController> instances = new Dictionary<MenuDocumental, DocumentoUIController>();
     private readonly IPapelService papelService;
-    private readonly TipoDocumentoMenu tipoDocumentoInstance;
+    private readonly MenuDocumental menuDocumental;
     private int countUpdates;
     private readonly IndexUI indexUI;
 
@@ -23,10 +23,10 @@ internal class DocumentoUIController : BaseUIController<DocumentoUI>, IForm
     List<Control> documentosNormales = new List<Control>();
     List<Control> documentosArchivados = new List<Control>();
 
-    private DocumentoUIController(TipoDocumentoMenu tipoDocumentoInstance, IndexUIController indexUIController) : base(new DocumentoUI(), true)
+    private DocumentoUIController(MenuDocumental menuDocumental, IndexUIController indexUIController) : base(new DocumentoUI(), true)
     {
         countUpdates = 0;
-        this.tipoDocumentoInstance = tipoDocumentoInstance;
+        this.menuDocumental = menuDocumental;
         papelService = AplicationConfig.Component.PapelService;
         indexUI = (IndexUI)indexUIController.getForm();
     }
@@ -49,10 +49,11 @@ internal class DocumentoUIController : BaseUIController<DocumentoUI>, IForm
 
     private ICard getICardPapel(Papel papel)
     {
-        if (papel is Sistema) return new SistemaUCController(papel as Sistema);
-        else if (papel is Resolucion) return new ResolucionUCController(papel as Resolucion);
-        else if (papel is Contrato) return new ContratoUCController(papel as Contrato);      
-        else if (papel is Documento) return new DocumentoUCController(papel as Documento);
+        if (papel.TipoDocumentacion.TipoCard == BRapp.Enums.TipoCard.SISTEMA) return new SistemaUCController(papel);       
+        else if (papel.TipoDocumentacion.TipoCard == BRapp.Enums.TipoCard.CONTRATO) return new ContratoUCController(papel);
+        else if (papel.TipoDocumentacion.TipoCard == BRapp.Enums.TipoCard.DOCUMENTO 
+            || papel.TipoDocumentacion.TipoCard == BRapp.Enums.TipoCard.RESOLUCION
+            || papel.TipoDocumentacion.TipoCard == BRapp.Enums.TipoCard.NOTA) return new DocumentoUCController(papel);
         return null;
     }
 
@@ -60,8 +61,7 @@ internal class DocumentoUIController : BaseUIController<DocumentoUI>, IForm
     {
         Control control = null;
         if (iCard is SistemaUCController) control = iCard.get() as SistemaCard;
-        else if (iCard is DocumentoUCController) control = iCard.get() as DocumentoCard;
-        else if (iCard is ResolucionUCController) control = iCard.get() as ResolucionCard;
+        else if (iCard is DocumentoUCController) control = iCard.get() as DocumentoCard;       
         else if (iCard is ContratoUCController) control = iCard.get() as ContratoCard;      
         if (control != null)
         {
@@ -72,10 +72,7 @@ internal class DocumentoUIController : BaseUIController<DocumentoUI>, IForm
 
     private void ActiveForm_VisibleChanged(object sender, EventArgs e)
     {
-        indexUI.cbArchivados.Visible = (tipoDocumentoInstance == TipoDocumentoMenu.PRE_RESOLUCIONES_EMPRESARIALES
-            || tipoDocumentoInstance == TipoDocumentoMenu.DOC_CONTRATO
-            || tipoDocumentoInstance == TipoDocumentoMenu.DOC_RESOLUCIONES_INDICOS)
-            ? true : false;
+        indexUI.cbArchivados.Visible = menuDocumental.ShowArchivados;
         indexUI.tbBuscar.Text = string.Empty;
         indexUI.cbArchivados.Checked = false;
 
@@ -134,18 +131,15 @@ internal class DocumentoUIController : BaseUIController<DocumentoUI>, IForm
 
     private List<Papel> GetDocumentosOrdenados()
     {
-        List<Papel> documentosAux = papelService.filtrarDocumentos(tipoDocumentoInstance);
-        switch (tipoDocumentoInstance)
+        List<Papel> documentosAux = papelService.GetByMenuDocumental(menuDocumental);
+        if (documentosAux.Count > 0 && documentosAux[0].TipoDocumentacion.TipoCard == BRapp.Enums.TipoCard.CONTRATO)
         {
-            case TipoDocumentoMenu.DOC_CONTRATO: return documentosAux.OfType<Contrato>().OrderBy(contrato => contrato.getDiasRestantes()).Cast<Papel>().ToList();
-            default: return documentosAux;
+            return documentosAux.OrderBy(contrato => contrato.getDiasRestantes()).Cast<Papel>().ToList();
         }
+        return documentosAux;
     }
 
-    public static DocumentoUIController GetInstance(TipoDocumentoMenu parametro, IndexUIController indexUIController)
-    {
-        return new DocumentoUIController(parametro, indexUIController);
-    }
+   
 
     private void txtSearch_TextChanged(object sender, EventArgs e)
     {
@@ -171,5 +165,10 @@ internal class DocumentoUIController : BaseUIController<DocumentoUI>, IForm
             }
         }
         forma.flowLayoutDocumentos.ResumeLayout();
+    }
+
+    public static DocumentoUIController GetInstance(MenuDocumental menuDocumental, IndexUIController indexUIController)
+    {
+        return new DocumentoUIController(menuDocumental, indexUIController);
     }
 }

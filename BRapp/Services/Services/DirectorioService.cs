@@ -3,6 +3,7 @@ using BRapp.Enums.EnumFiltroBusqueda;
 using BRapp.Model;
 using BRapp.Repositorios.Interfaces;
 using BRapp.Services.Interfaces;
+using BRapp.Utiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace BRapp.Services.Services
             this.directorioRepository = directorioRepository;
         }      
 
-        public bool contatoIsVisible(TipoContactoBusqueda tipoContactoBusqueda, FiltroPaginaContactos filtroPaginaContactos, Persona persona)
+        public bool ContatoIsVisible(TipoContactoBusqueda tipoContactoBusqueda, FiltroPaginaContactos filtroPaginaContactos, Persona persona)
         {
             if ((tipoContactoBusqueda == TipoContactoBusqueda.TODOS ||
                (tipoContactoBusqueda == TipoContactoBusqueda.INTERNO && persona.IsInterno) ||
@@ -37,65 +38,28 @@ namespace BRapp.Services.Services
 
         public PersonaNatural GetPersonaNatural(Guid id)
         {
-            return (PersonaNatural)directorioRepository.getById(id);
+            return (PersonaNatural)directorioRepository.GetById(id);
         }
-
         public PersonaJuridica GetPersonaJuridica(Guid id)
         {
-            return (PersonaJuridica)directorioRepository.getById(id);
-        }       
-
-        public bool saveOrUpdate(Persona persona)
+            return (PersonaJuridica)directorioRepository.GetById(id);
+        }
+        public ActionResult SaveOrUpdate(Persona persona)
         {
-            return directorioRepository.saveOrUpdate(persona);
+            return directorioRepository.SaveOrUpdate(persona);
+        }
+        public List<Persona> GetAll()
+        {
+            return directorioRepository.GetAll();
         }
 
-        public List<Persona> getAll()
+        public List<Persona> GetAllPersonaByTipoResponsable(TipoResponsable tipoResponsable)
         {
-            return directorioRepository.getAllPersonas();
-        }
-
-        public List<PersonaNatural> getAllPersonaNatural()
-        {
-            return directorioRepository.getAllPersonas()
-                .Where(contacto => contacto.TipoPersona == TipoPersona.NATURAL && contacto.IsActivo)
-                .Cast<PersonaNatural>()
+            TipoPersona tipoPersona = tipoResponsable == TipoResponsable.PersonaNaturalInterna || tipoResponsable == TipoResponsable.PersonaNaturalExterna ? TipoPersona.NATURAL : TipoPersona.JURIDICA;
+            bool isInterno = tipoResponsable == TipoResponsable.PersonaNaturalInterna || tipoResponsable == TipoResponsable.PersonaJuridicaInterna;
+            return directorioRepository.GetAll()
+                .Where(contacto => contacto.TipoPersona == tipoPersona && contacto.IsInterno == isInterno  && contacto.IsActivo)                
                 .ToList();
-        }
-        public List<PersonaNatural> getAllPersonaNaturalInterno()
-        {
-            return directorioRepository.getAllPersonas()
-                  .Where(contacto => contacto.TipoPersona == TipoPersona.NATURAL && contacto.IsActivo && contacto.IsInterno)
-                  .Cast<PersonaNatural>()
-                  .ToList();
-        }
-        public List<PersonaNatural> getAllPersonaNaturalExterno()
-        {
-            return directorioRepository.getAllPersonas()
-                 .Where(contacto => contacto.TipoPersona == TipoPersona.NATURAL && contacto.IsActivo && !contacto.IsInterno)
-                 .Cast<PersonaNatural>()
-                 .ToList();
-        }
-        public List<PersonaJuridica> getAllPersonaJuridica()
-        {
-            return directorioRepository.getAllPersonas()
-                 .Where(contacto => contacto.TipoPersona == TipoPersona.JURIDICA && contacto.IsActivo && contacto.IsInterno)
-                 .Cast<PersonaJuridica>()
-                 .ToList();
-        }
-        public List<PersonaJuridica> getAllPersonaJuridicaInterno()
-        {
-            return directorioRepository.getAllPersonas()
-                 .Where(contacto => contacto.TipoPersona == TipoPersona.JURIDICA && contacto.IsActivo && contacto.IsInterno)
-                 .Cast<PersonaJuridica>()
-                 .ToList();
-        }
-        public List<PersonaJuridica> getAllPersonaJuridicaExterno()
-        {
-            return directorioRepository.getAllPersonas()
-                 .Where(contacto => contacto.TipoPersona == TipoPersona.JURIDICA && contacto.IsActivo && !contacto.IsInterno)
-                 .Cast<PersonaJuridica>()
-                 .ToList();
-        }
+        }       
     }
 }

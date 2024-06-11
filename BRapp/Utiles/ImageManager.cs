@@ -2,10 +2,11 @@
 using System.IO;
 using System.Drawing.Imaging;
 using System;
+using FontAwesome.Sharp;
 
 namespace BRapp.Utiles
 {
-    public class ImageManager
+    public static class ImageManager
     {
         public static string GetBase64Image(byte[] imageData, int targetWidth, int targetHeight, long quality)
         {
@@ -56,6 +57,30 @@ namespace BRapp.Utiles
                 }
             }
             return null;
+        }
+
+        public static Image GetFontAwesomeIconImage(IconChar iconChar, int size, Color color)
+        {
+            IconPictureBox iconPictureBox = new IconPictureBox
+            {
+                IconChar = iconChar,
+                IconSize = size,
+                ForeColor = color,
+                BackColor = Color.White, // Fondo blanco
+                Width = size,
+                Height = size
+            };
+
+            Bitmap bitmap = new Bitmap(size, size);
+            using (Graphics g = Graphics.FromImage(bitmap))
+            {
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                g.Clear(Color.Transparent);
+                iconPictureBox.DrawToBitmap(bitmap, new Rectangle(0, 0, size, size));
+            }
+
+            return bitmap;
         }
     }
 }

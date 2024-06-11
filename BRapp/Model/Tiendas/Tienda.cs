@@ -1,16 +1,18 @@
 ﻿using BRapp.Dto;
 using BRapp.Enums;
+using BRapp.Interfaces;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
 
 namespace BRapp.Model.Tiendas
 {
-    public class Tienda : ISeleccionable, IRes61
+    public class Tienda : ISeleccionable, IVisorDocumentacion, HasId
     {
         public Guid Id { get; set; }
-        public Complejo Complejo { get; set; } 
-        public DocumentoPDF CertificadoComercial { get; set; }
+        public Complejo Complejo { get; set; }
+        public Departamento Departamento { get; set; }
+        public Papel CertificadoComercial { get; set; }
         public List<TipoGrupoDocumentacion> TipoGrupoDocumentacion { get; set; }
         public string Name { get; set; }     
         public string Ubicacion { get; set; }
@@ -18,13 +20,13 @@ namespace BRapp.Model.Tiendas
         public int CantidadTrabajadores { get; set; }
         public int CantidadCajasRegistradoras { get; set; }
         public TipoTienda TiendaTipo { get; set; }
-        public TipoMoneda TipoMoneda { get; set; }
-        public string NumeroRegistroComercial { get; set; }
+        public TipoMoneda TipoMoneda { get; set; }      
         public bool CertificadoSCG { get; set; }
         public bool CertificadoTMHS { get; set; }
         public bool CertificadoSANITARIA { get; set; }
         public bool IsActivo { get; set; }
         public int Orden { get; set; }
+        public Fichero Logo { get; set; }
 
         public IconChar getIcono()
         {
@@ -47,7 +49,7 @@ namespace BRapp.Model.Tiendas
             }
         }
 
-        public Tienda(TiendaDto tiendaDto, Complejo Complejo, DocumentoPDF CertificadoComercial, List<TipoGrupoDocumentacion> TipoGrupoDocumentacion)
+        public Tienda(TiendaDto tiendaDto, Complejo Complejo, Departamento Departamento, Papel CertificadoComercial, List<TipoGrupoDocumentacion> TipoGrupoDocumentacion)
         {
             this.Id = tiendaDto.id;
             this.Name = tiendaDto.name;
@@ -56,8 +58,7 @@ namespace BRapp.Model.Tiendas
             this.CantidadTrabajadores = tiendaDto.cantidadTrabajadores;
             this.CantidadCajasRegistradoras = tiendaDto.cantidadCajasRegistradoras;
             this.TiendaTipo = tiendaDto.tiendaTipo;
-            this.TipoMoneda = tiendaDto.tipoMoneda;
-            this.NumeroRegistroComercial = tiendaDto.numeroRegistroComercial;
+            this.TipoMoneda = tiendaDto.tipoMoneda;          
             this.CertificadoSCG = tiendaDto.CertificadoSCG;
             this.CertificadoTMHS = tiendaDto.CertificadoTMHS;
             this.CertificadoSANITARIA = tiendaDto.CertificadoSANITARIA;
@@ -66,30 +67,9 @@ namespace BRapp.Model.Tiendas
             this.CertificadoComercial = CertificadoComercial;
             this.TipoGrupoDocumentacion = TipoGrupoDocumentacion;
             this.Orden = tiendaDto.Orden;
-        }
-
-        public Tienda(string Name, string Ubicacion, string Telefono, int CantidadTrabajadores, int CantidadCajasRegistradoras, TipoTienda TiendaTipo,
-            TipoMoneda TipoMoneda, string NumeroRegistroComercial, bool CertificadoSCG, bool CertificadoTMHS, bool CertificadoSANITARIA, bool IsActivo,
-            Complejo Complejo, DocumentoPDF CertificadoComercial, List<TipoGrupoDocumentacion> TipoGrupoDocumentacion, int Orden)
-        {
-            Id = Guid.NewGuid();
-            this.Name = Name;
-            this.Ubicacion = Ubicacion;
-            this.Telefono = Telefono;
-            this.CantidadTrabajadores = CantidadTrabajadores;
-            this.CantidadCajasRegistradoras = CantidadCajasRegistradoras;
-            this.TiendaTipo = TiendaTipo;
-            this.TipoMoneda = TipoMoneda;
-            this.NumeroRegistroComercial = NumeroRegistroComercial;
-            this.CertificadoSCG = CertificadoSCG;
-            this.CertificadoTMHS = CertificadoTMHS;
-            this.CertificadoSANITARIA = CertificadoSANITARIA;
-            this.IsActivo = IsActivo;
-            this.Complejo = Complejo;
-            this.CertificadoComercial = CertificadoComercial;
-            this.TipoGrupoDocumentacion = TipoGrupoDocumentacion;
-            this.Orden = Orden;
-        }
+            this.Departamento = Departamento;
+            this.Logo = tiendaDto.Logo;
+        }       
 
         public override string ToString()
         {
@@ -113,12 +93,27 @@ namespace BRapp.Model.Tiendas
 
         public bool hasPdfName()
         {
-            return CertificadoComercial != null && CertificadoComercial.PDF != null && CertificadoComercial.PDF.Name != String.Empty;
+            return CertificadoComercial != null && CertificadoComercial.hasPdfName();
         }
 
         public bool hasImageName()
         {
-            return CertificadoComercial != null && CertificadoComercial.Imagen != null && CertificadoComercial.Imagen.Name != String.Empty;
+            return Logo != null && Logo.hasDataValid();
+        }
+
+        public Guid getId()
+        {
+            return Id;
+        }
+
+        public string COMBO
+        {
+            get { return ToString(); }
+        }
+
+        public string getNumeroCertificadoComercial()
+        {
+            return CertificadoComercial != null ? CertificadoComercial.Numero : "";
         }
     }
 }

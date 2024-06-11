@@ -37,11 +37,14 @@
             this.openLogo = new System.Windows.Forms.OpenFileDialog();
             this.comboTipoIndicacion = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tbDescripcion = new RichTextBoxEx.RichTextBoxEx();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(270, 98);
+            this.btnGuardar.Location = new System.Drawing.Point(721, 502);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 15;
@@ -56,7 +59,7 @@
             this.btnBuscarLogo.IconColor = System.Drawing.Color.Black;
             this.btnBuscarLogo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnBuscarLogo.IconSize = 24;
-            this.btnBuscarLogo.Location = new System.Drawing.Point(309, 38);
+            this.btnBuscarLogo.Location = new System.Drawing.Point(358, 38);
             this.btnBuscarLogo.Name = "btnBuscarLogo";
             this.btnBuscarLogo.Size = new System.Drawing.Size(36, 27);
             this.btnBuscarLogo.TabIndex = 4;
@@ -67,7 +70,7 @@
             this.tbPJLogo.Location = new System.Drawing.Point(85, 38);
             this.tbPJLogo.Name = "tbPJLogo";
             this.tbPJLogo.ReadOnly = true;
-            this.tbPJLogo.Size = new System.Drawing.Size(218, 20);
+            this.tbPJLogo.Size = new System.Drawing.Size(267, 20);
             this.tbPJLogo.TabIndex = 3;
             // 
             // label6
@@ -92,7 +95,7 @@
             // 
             this.tbPJName.Location = new System.Drawing.Point(62, 6);
             this.tbPJName.Name = "tbPJName";
-            this.tbPJName.Size = new System.Drawing.Size(283, 20);
+            this.tbPJName.Size = new System.Drawing.Size(332, 20);
             this.tbPJName.TabIndex = 1;
             // 
             // openLogo
@@ -105,26 +108,57 @@
             // 
             this.comboTipoIndicacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboTipoIndicacion.FormattingEnabled = true;
-            this.comboTipoIndicacion.Location = new System.Drawing.Point(106, 71);
+            this.comboTipoIndicacion.Location = new System.Drawing.Point(508, 6);
             this.comboTipoIndicacion.Name = "comboTipoIndicacion";
-            this.comboTipoIndicacion.Size = new System.Drawing.Size(239, 21);
+            this.comboTipoIndicacion.Size = new System.Drawing.Size(288, 21);
             this.comboTipoIndicacion.TabIndex = 67;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 74);
+            this.label3.Location = new System.Drawing.Point(414, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 13);
             this.label3.TabIndex = 66;
             this.label3.Text = "Tipo complejo";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.tbDescripcion);
+            this.groupBox2.Location = new System.Drawing.Point(12, 71);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(784, 431);
+            this.groupBox2.TabIndex = 68;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Descripción";
+            // 
+            // tbDescripcion
+            // 
+            this.tbDescripcion.AllowBullets = true;
+            this.tbDescripcion.AllowDefaultInsertText = true;
+            this.tbDescripcion.AllowDefaultSmartText = true;
+            this.tbDescripcion.AllowHyphenation = true;
+            this.tbDescripcion.AllowPictures = true;
+            this.tbDescripcion.AllowSpellCheck = true;
+            this.tbDescripcion.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.tbDescripcion.FilePath = "";
+            this.tbDescripcion.Location = new System.Drawing.Point(6, 19);
+            this.tbDescripcion.Name = "tbDescripcion";
+            this.tbDescripcion.Rtf = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang2057{\\fonttbl{\\f0\\fnil\\fcharset0 " +
+    "Arial;}}\r\n{\\*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 \r\n\\pard\\fs20\\par\r\n}\r\n" +
+    "";
+            this.tbDescripcion.SetColorWithFont = true;
+            this.tbDescripcion.ShowToolStrip = true;
+            this.tbDescripcion.Size = new System.Drawing.Size(772, 406);
+            this.tbDescripcion.TabIndex = 25;
             // 
             // NewComplejoUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(358, 135);
+            this.ClientSize = new System.Drawing.Size(808, 536);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.comboTipoIndicacion);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnBuscarLogo);
@@ -137,6 +171,7 @@
             this.Name = "NewComplejoUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Complejo";
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,5 +188,7 @@
         public System.Windows.Forms.OpenFileDialog openLogo;
         public System.Windows.Forms.ComboBox comboTipoIndicacion;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox groupBox2;
+        public RichTextBoxEx.RichTextBoxEx tbDescripcion;
     }
 }

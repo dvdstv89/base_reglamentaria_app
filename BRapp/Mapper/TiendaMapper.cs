@@ -1,13 +1,22 @@
 ﻿using BRapp.Dto;
 using BRapp.Enums;
+using BRapp.Model;
 using BRapp.Model.Tiendas;
+using BRapp.Services.Interfaces;
+using BRapp.Services.Services;
 using Microsoft.Data.Sqlite;
 using System;
 
 namespace BRapp.Mapper
 {
     internal class TiendaMapper : IMapper
-    {     
+    {
+        private readonly IFileService fileService;
+
+        public TiendaMapper(IFileService fileService)
+        {
+            this.fileService = fileService;
+        }
         public object Map(object objeto)
         {
             Tienda tienda = (Tienda) objeto;
@@ -18,8 +27,7 @@ namespace BRapp.Mapper
                 ubicacion = tienda.Ubicacion,
                 telefono= tienda.Telefono,
                 cantidadTrabajadores = tienda.CantidadTrabajadores,
-                cantidadCajasRegistradoras= tienda.CantidadCajasRegistradoras,
-                numeroRegistroComercial= tienda.NumeroRegistroComercial,
+                cantidadCajasRegistradoras= tienda.CantidadCajasRegistradoras,               
                 CertificadoSCG= tienda.CertificadoSCG,
                 CertificadoTMHS= tienda.CertificadoTMHS,
                 CertificadoSANITARIA= tienda.CertificadoSANITARIA,
@@ -27,13 +35,16 @@ namespace BRapp.Mapper
                 tiendaTipo = tienda.TiendaTipo,
                 tipoMoneda= tienda.TipoMoneda,
                 idComplejo = (tienda.Complejo != null) ? tienda.Complejo.Id : Guid.Empty,
+                idDepartamento = (tienda.Departamento != null) ? tienda.Departamento.Id : Guid.Empty,
                 idCertificadoComercial = (tienda.CertificadoComercial != null) ? tienda.CertificadoComercial.Id : Guid.Empty   ,
-                Orden = tienda.Orden
+                Orden = tienda.Orden    ,
+                Logo= tienda.Logo 
             };
         }
 
         public object Map(SqliteDataReader reader)
         {
+            Fichero fichero = fileService.ExtraerFichero("logotipo.jpg", reader["logo"].ToString());
             return new TiendaDto()
             {
                 id = Guid.Parse(reader["id"].ToString()),
@@ -41,8 +52,7 @@ namespace BRapp.Mapper
                 ubicacion = reader["ubicacion"].ToString(),
                 telefono = reader["telefono"].ToString(),
                 cantidadTrabajadores = Convert.ToInt32(reader["cantidad_trabajadores"].ToString()),
-                cantidadCajasRegistradoras = Convert.ToInt32(reader["cantidad_cajas_registradoras"].ToString()),
-                numeroRegistroComercial = reader["numero_registro_comercial"].ToString(),
+                cantidadCajasRegistradoras = Convert.ToInt32(reader["cantidad_cajas_registradoras"].ToString()),               
                 CertificadoSCG = Convert.ToBoolean(reader["certificado_scg"]),
                 CertificadoTMHS = Convert.ToBoolean(reader["certificado_tmhs"]),
                 CertificadoSANITARIA = Convert.ToBoolean(reader["certificado_sanitaria"]),
@@ -50,8 +60,10 @@ namespace BRapp.Mapper
                 tiendaTipo = (TipoTienda)Enum.Parse(typeof(TipoTienda), reader["tipo_tienda"].ToString()),
                 tipoMoneda = (TipoMoneda)Enum.Parse(typeof(TipoMoneda), reader["tipo_moneda"].ToString()),
                 idComplejo = Guid.Parse(reader["id_complejo"].ToString()),
+                idDepartamento = Guid.Parse(reader["id_departamento"].ToString()),
                 idCertificadoComercial = Guid.Parse(reader["id_certificado_comercial"].ToString()) ,
-                Orden = Convert.ToInt32(reader["orden"].ToString())
+                Orden = Convert.ToInt32(reader["orden"].ToString()),
+                Logo = fichero
             };
         }
     }

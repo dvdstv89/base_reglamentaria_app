@@ -26,5 +26,15 @@ namespace BRappAdmin.UI
         {
 
         }
+
+        private void dtFechaVencimientoContrato_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NewTiendasUI_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

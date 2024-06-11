@@ -142,7 +142,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.tbVision);
-            this.groupBox2.Location = new System.Drawing.Point(584, 124);
+            this.groupBox2.Location = new System.Drawing.Point(578, 124);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(548, 133);
             this.groupBox2.TabIndex = 12;
@@ -281,6 +281,7 @@
             this.Name = "AppUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Empresa";
+            this.Load += new System.EventHandler(this.AppUI_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);

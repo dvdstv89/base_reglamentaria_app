@@ -1,5 +1,4 @@
 ﻿using BRapp.Dto;
-using BRapp.Enums;
 using BRapp.Model;
 using Microsoft.Data.Sqlite;
 using System;
@@ -13,15 +12,23 @@ namespace BRapp.Mapper
             Papel documento = (Papel) objeto;
             return new PapelDto()
             {
-                idPapel = documento.Id,
-                idPdf = (documento.DocumentoPDF != null) ? documento.DocumentoPDF.Id : Guid.Empty,
-                name = documento.Name,
-                tipoClasificacionDocumento = documento.TipoClasificacionDocumento,
+                IdPapel = documento.Id,
+                IdPdf = (documento.ArchivoPDF != null) ? documento.ArchivoPDF.Id : Guid.Empty,
+                Name = documento.Name,              
                 FechaFirma = documento.FechaFirma,
                 Descripcion = documento.Descripcion,
                 IsActivo = documento.IsActivo,
                 Orden = documento.Orden,
-
+                IdTipoDocumentacion = (documento.TipoDocumentacion != null) ? documento.TipoDocumentacion.Id : Guid.Empty,
+                IdPadre = (documento.Padre != null) ? documento.Padre.Id : Guid.Empty,
+                IdCliente = (documento.Cliente != null) ? documento.Cliente.Id : Guid.Empty,
+                IdResponsable = (documento.Responsable != null) ? documento.Responsable.Id : Guid.Empty,
+                FechaVencimiento = documento.FechaVencimiento,
+                Numero = documento.Numero,
+                Acta = documento.NumeroActa,
+                Acuerdo = documento.NumeroAcuerdo,
+                Tipo = documento.Tipo,
+                IsOpcional= documento.IsOpcional,
             };
         }
 
@@ -29,15 +36,24 @@ namespace BRapp.Mapper
         {
             PapelDto papel = new PapelDto()
             {
-                idPapel = Guid.Parse(reader["id"].ToString()),
-                idPdf = Guid.Parse(reader["id_pdf"].ToString()),
-                name = reader["name"].ToString(),
-                tipoClasificacionDocumento = (TipoClasificacionDocumento)Enum.Parse(typeof(TipoClasificacionDocumento), reader["tipo_clasificacion_documento"].ToString()),
+                IdPapel = Guid.Parse(reader["id"].ToString()),
+                IdPdf = Guid.Parse(reader["id_pdf"].ToString()),
+                Name = reader["name"].ToString(),             
                 FechaFirma = Convert.ToDateTime(reader["fecha"].ToString()),
                 Descripcion = reader["descripcion"].ToString(),
-                Orden = Convert.ToInt32(reader["orden"].ToString())
-            };
-            papel.IsActivo = Convert.ToBoolean(reader["is_activo"]);
+                Orden = Convert.ToInt32(reader["orden"].ToString()),
+                IsActivo = Convert.ToBoolean(reader["is_activo"]),
+                IdTipoDocumentacion = Guid.Parse(reader["id_tipo_documentacion"].ToString()),
+                IdPadre = Guid.Parse(reader["id_padre"].ToString()),
+                IdCliente = Guid.Parse(reader["id_cliente"].ToString()),
+                IdResponsable = Guid.Parse(reader["id_responsable"].ToString()),
+                FechaVencimiento = Convert.ToDateTime(reader["fecha_vencimiento"].ToString()),
+                Tipo = reader["tipo"].ToString(),
+                Numero = reader["numero"].ToString(),
+                Acta = reader["acta"].ToString(),
+                IsOpcional = Convert.ToBoolean(reader["is_opcional"]),
+                Acuerdo = reader["acuerdo"].ToString()
+            };           
             return papel;
         }
     }

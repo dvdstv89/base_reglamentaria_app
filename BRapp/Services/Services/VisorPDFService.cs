@@ -1,5 +1,4 @@
 ﻿using BRapp.Model;
-using BRapp.Repositorios.Interfaces;
 using BRapp.Services.Interfaces;
 using System;
 
@@ -7,16 +6,16 @@ namespace BRapp.Services.Services
 {
     internal class VisorPDFService: IVisorPDFService
     {
-        private readonly IDocumentoPdfRepository documentoPdfRepository;
+        private readonly IDocumentoPdfService documentoPdfService;
 
-        public VisorPDFService(IDocumentoPdfRepository documentoPdfRepository)
+        public VisorPDFService(IDocumentoPdfService documentoPdfService)
         {
-            this.documentoPdfRepository = documentoPdfRepository;
+            this.documentoPdfService = documentoPdfService;
         }
 
-        public DocumentoPDF getDocumentoPDFApliado(Guid id)
+        public DocumentoPDFBlob GetDocumentoPDFApliado(Guid id)
         {
-            return documentoPdfRepository.getDocumentoApliado(id);
+            return documentoPdfService.GetDocumentoPDFApliado(id);
         }     
     }
 }

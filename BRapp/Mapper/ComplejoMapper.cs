@@ -21,7 +21,8 @@ namespace BRapp.Mapper
                        reader["name"].ToString(),
                        fichero,
                        (TipoComplejo)Enum.Parse(typeof(TipoComplejo), reader["tipo_complejo"].ToString()),
-                       Convert.ToInt32(reader["orden"].ToString())
+                       Convert.ToInt32(reader["orden"].ToString()),
+                       reader["descripcion"].ToString()
                    );
         }
 

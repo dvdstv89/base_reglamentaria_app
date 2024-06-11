@@ -14,7 +14,7 @@ namespace BRapp.Services.Services
 
         public App GetApp()
         {
-            return appService.getApp();
+            return appService.GetApp();
         }   
     }
 }

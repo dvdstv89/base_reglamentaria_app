@@ -163,7 +163,7 @@ namespace BRapp.UI.Cards
             // 
             this.labelName.Dock = System.Windows.Forms.DockStyle.Right;
             this.labelName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelName.ForeColor = System.Drawing.Color.White;
+            this.labelName.ForeColor = System.Drawing.Color.Black;
             this.labelName.Location = new System.Drawing.Point(58, 0);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(425, 60);
@@ -174,8 +174,9 @@ namespace BRapp.UI.Cards
             // iconPrincipal
             // 
             this.iconPrincipal.BackColor = System.Drawing.Color.Transparent;
+            this.iconPrincipal.ForeColor = System.Drawing.Color.Black;
             this.iconPrincipal.IconChar = FontAwesome.Sharp.IconChar.UserAlt;
-            this.iconPrincipal.IconColor = System.Drawing.Color.White;
+            this.iconPrincipal.IconColor = System.Drawing.Color.Black;
             this.iconPrincipal.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPrincipal.IconSize = 49;
             this.iconPrincipal.Location = new System.Drawing.Point(3, 5);

@@ -14,7 +14,7 @@ namespace BRapp.Mapper
                        Guid.Parse(reader["id"].ToString()),
                        reader["name"].ToString(),
                        reader["descripcion"].ToString(),
-                       (TipoIndicacion)Enum.Parse(typeof(TipoIndicacion), reader["tipo_indicacion"].ToString())
+                       (LugarMostrarDocumentacion)Enum.Parse(typeof(LugarMostrarDocumentacion), reader["lugar_mostrar_documentacion"].ToString())
                    );
         }
 

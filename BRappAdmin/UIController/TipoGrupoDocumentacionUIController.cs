@@ -3,7 +3,6 @@ using BRapp.Messages;
 using BRapp.Model;
 using BRapp.Model.Tiendas;
 using BRapp.Services.Interfaces;
-using BRapp.Services.Services;
 using BRapp.UI;
 using BRapp.UIControlers;
 using BRappAdmin.Data;
@@ -49,18 +48,18 @@ namespace BRappAdmin.UIControlers
 
 
             forma.nuevoToolStripMenuItem.Click += new EventHandler(nuevoToolStripMenuItem_Click);
-            forma.modificarToolStripMenuItem.Click += new EventHandler(modificarTiposToolStripMenuItem_Click);           
-          
-            
-            forma.nuevoDocumentoStripMenuItem1.Click += new EventHandler(nuevoDocumentoStripMenuItem1_Click);
+            forma.modificarToolStripMenuItem.Click += new EventHandler(modificarTiposToolStripMenuItem_Click);
+            forma.eliminarToolStripMenuItem.Click += new EventHandler(eliminarToolStripMenuItem_Click);
+
+
+            forma.notaToolStripMenuItem.Click += new EventHandler(notaToolStripMenuItem_Click);
+            forma.documentoToolStripMenuItem.Click += new EventHandler(documentoToolStripMenuItem_Click);
+         //   forma.buscarDocumentoExistenteToolStripMenuItem.Click += new EventHandler(buscarDocumentoExistenteToolStripMenuItem_Click);
             forma.modificarDocumentoStripMenuItem2.Click += new EventHandler(modificarDocumentacionToolStripMenuItem_Click);
             forma.eliminarDocumentoToolStripMenuItem.Click += new EventHandler(eliminarDocumentoToolStripMenuItem_Click);
             forma.subirToolStripMenuItem.Click += new EventHandler(subirToolStripMenuItem_Click);
             forma.bajarToolStripMenuItem.Click += new EventHandler(bajarToolStripMenuItem_Click);
-
-
-            forma.obligatorioToolStripMenuItem.Click += new EventHandler(obligatorioToolStripMenuItem_Click);
-            forma.opcionalToolStripMenuItem.Click += new EventHandler(opcionalToolStripMenuItem_Click);
+           
 
             return base.ejecutar();
         }
@@ -70,15 +69,29 @@ namespace BRappAdmin.UIControlers
             modificarTipo(null);
         }
 
-        private void nuevoDocumentoStripMenuItem1_Click(object sender, EventArgs e)
+        private void notaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var papelUiController = new PapelUIController(null, TipoClasificacionDocumento.DOCUMENTACION_BASICA, grupoDocumentacions.Count+1);
+            var papelUiController = new PapelUIController(null, TipoCard.NOTA, grupoDocumentacions.Count+1, null);
             DialogResult dialogResult = papelUiController.ejecutar().ShowDialog();
             if (dialogResult == DialogResult.OK)
             {                
-                Documento documento = (Documento)papelUiController.GetPapel();
-                GrupoDocumentacion grupo = new GrupoDocumentacion(getTipoSeleccionado(), documento, false, grupoDocumentacions.Count+1);
-                grupoDocumentacionServiceAdmin.saveOrUpdate(grupo);
+                Papel documento = papelUiController.GetPapel();
+                GrupoDocumentacion grupo = new GrupoDocumentacion(getTipoSeleccionado(), documento, grupoDocumentacions.Count+1);
+                grupoDocumentacionServiceAdmin.SaveOrUpdate(grupo);
+                DialogUtil.INFORMATION(Mensajes.PAPEL_SAVED_OK);
+                forma.tbBuscarDocumentos.Text = "";
+                updateDocumentosList();
+            }
+        }
+        private void documentoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var papelUiController = new PapelUIController(null, TipoCard.DOCUMENTO, grupoDocumentacions.Count + 1, null);
+            DialogResult dialogResult = papelUiController.ejecutar().ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                Papel documento = papelUiController.GetPapel();
+                GrupoDocumentacion grupo = new GrupoDocumentacion(getTipoSeleccionado(), documento, grupoDocumentacions.Count + 1);
+                grupoDocumentacionServiceAdmin.SaveOrUpdate(grupo);
                 DialogUtil.INFORMATION(Mensajes.PAPEL_SAVED_OK);
                 forma.tbBuscarDocumentos.Text = "";
                 updateDocumentosList();
@@ -92,12 +105,14 @@ namespace BRappAdmin.UIControlers
 
         private void updateTipoList()
         {
-            tiposGruposDocumentacion = tipoGrupoDocumentacionServiceAdmin.getAll();
+            tiposGruposDocumentacion = tipoGrupoDocumentacionServiceAdmin.GetAll();
             forma.lwTipos.Items.Clear();
-            foreach (TipoGrupoDocumentacion papel in tiposGruposDocumentacion)
+            forma.listViewDocumentos.Items.Clear();
+            foreach (TipoGrupoDocumentacion grupo in tiposGruposDocumentacion)
             {
-                var item = new ListViewItem(papel.ToString());
-                item.Tag = papel;
+                var item = new ListViewItem(grupo.ToString());
+                item.SubItems.Add(grupo.Descripcion);
+                item.Tag = grupo;
                 forma.lwTipos.Items.Add(item);
             }
             desmarcarTipos();
@@ -105,7 +120,7 @@ namespace BRappAdmin.UIControlers
 
         private void updateDocumentosList()
         {
-            grupoDocumentacions = grupoDocumentacionServiceAdmin.getAllByTipoGrupoDocumentacion(getTipoSeleccionado());
+            grupoDocumentacions = grupoDocumentacionServiceAdmin.GetAllByTipoGrupoDocumentacion(getTipoSeleccionado().Id);
             forma.listViewDocumentos.Items.Clear();
             foreach (GrupoDocumentacion papel in grupoDocumentacions)
             {
@@ -155,8 +170,15 @@ namespace BRappAdmin.UIControlers
 
         private void eliminarDocumentoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            grupoDocumentacionServiceAdmin.Delete(getDocumentacionSeleccionado());
+            //si es nota se va           
+            grupoDocumentacionServiceAdmin.Delete(getDocumentacionSeleccionado().Id);
             updateDocumentosList();
+        }
+
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            grupoDocumentacionServiceAdmin.DeleteTipo(getTipoSeleccionado().Id);
+            updateTipoList();
         }
 
         private void lwTipos_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -188,7 +210,7 @@ namespace BRappAdmin.UIControlers
         }
         private void modificarDocumento(GrupoDocumentacion grupoDocumentacion, int posicion)
         {
-            var papelUiController = new PapelUIController(grupoDocumentacion.Documento, TipoClasificacionDocumento.DOCUMENTACION_BASICA, posicion);
+            var papelUiController = new PapelUIController(grupoDocumentacion.Documento, grupoDocumentacion.Documento.TipoDocumentacion.TipoCard, posicion, grupoDocumentacion);
             DialogResult dialogResult = papelUiController.ejecutar().ShowDialog();
             if (dialogResult == DialogResult.OK)
             {
@@ -202,22 +224,22 @@ namespace BRappAdmin.UIControlers
             itemTipoSeleccionado = forma.lwTipos.SelectedItems[0];
             forma.modificarToolStripMenuItem.Enabled = true;
             forma.panelDocumentos.Enabled = true;
+            forma.eliminarToolStripMenuItem.Enabled = true;
         }
         private void marcarDocumentacion()
         {
             itemDocumentoSeleccionado = forma.listViewDocumentos.SelectedItems[0];
             indexItemDocumentoSeleccionado = forma.listViewDocumentos.Items.IndexOf(itemDocumentoSeleccionado);
             forma.modificarDocumentoStripMenuItem2.Enabled = true;
+            forma.eliminarDocumentoToolStripMenuItem.Enabled = getDocumentacionSeleccionado().Documento.TipoDocumentacion.TipoCard == TipoCard.NOTA;           
             forma.eliminarDocumentoToolStripMenuItem.Enabled = true;
-            forma.obligatorioToolStripMenuItem.Visible = getDocumentacionSeleccionado().IsOpcional;
-            forma.opcionalToolStripMenuItem.Visible = !getDocumentacionSeleccionado().IsOpcional;           
-
             forma.subirToolStripMenuItem.Visible = indexItemDocumentoSeleccionado > 0;
             forma.bajarToolStripMenuItem.Visible = indexItemDocumentoSeleccionado < forma.listViewDocumentos.Items.Count - 1;
         }
         private void desmarcarTipos()
         {
             forma.modificarToolStripMenuItem.Enabled = false;
+            forma.eliminarToolStripMenuItem.Enabled = false;
             itemTipoSeleccionado = null;
             forma.lwTipos.SelectedItems.Clear();          
             forma.panelDocumentos.Enabled = false;
@@ -226,9 +248,7 @@ namespace BRappAdmin.UIControlers
         private void desmarcarDocumentacion()
         {
             forma.modificarDocumentoStripMenuItem2.Enabled = false;
-            forma.eliminarDocumentoToolStripMenuItem.Enabled = false;
-            forma.obligatorioToolStripMenuItem.Visible = false;
-            forma.opcionalToolStripMenuItem.Visible = false;
+            forma.eliminarDocumentoToolStripMenuItem.Enabled = false;         
             itemDocumentoSeleccionado = null;
             forma.listViewDocumentos.SelectedItems.Clear();
 
@@ -260,36 +280,14 @@ namespace BRappAdmin.UIControlers
         private void resizeTiposList(object sender, LayoutEventArgs e)
         {
             int totalWidth = forma.lwTipos.Width - 25;
-            forma.columnName.Width = RoundNumber((totalWidth * 1));          
+            forma.columnNameGrupo.Width = RoundNumber((totalWidth * 0.3));
+            forma.columnDescripcionGrupo.Width = RoundNumber((totalWidth * 0.7));
         }
         private void resizeDocumentacionList(object sender, LayoutEventArgs e)
         {
             int totalWidth = forma.lwTipos.Width - 25;          
             forma.columnDocumentoName.Width = RoundNumber((totalWidth * 1));
-        }
-
-        private void obligatorioToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            cambiarOpcional(false);
-        }
-
-        private void opcionalToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            cambiarOpcional(true);
-        }
-
-        private void cambiarOpcional(bool value)
-        {
-            var grupoDocumentoSeleccionado = getDocumentacionSeleccionado();
-            if (grupoDocumentoSeleccionado != null)
-            {
-                grupoDocumentoSeleccionado.IsOpcional= value;
-                grupoDocumentacionServiceAdmin.saveOrUpdate(grupoDocumentoSeleccionado);
-                updateDocumentosList();
-            }           
-        }
-
+        }       
 
         private void subirToolStripMenuItem_Click(object sender, EventArgs e)
         {           
@@ -311,15 +309,13 @@ namespace BRappAdmin.UIControlers
         {
             GrupoDocumentacion grupo = getListViewItemSeleccionado<GrupoDocumentacion>(item);
             grupo.Orden = orden;
-            grupoDocumentacionServiceAdmin.saveOrUpdate(grupo);
+            grupoDocumentacionServiceAdmin.SaveOrUpdate(grupo);
         }
 
         public static TipoGrupoDocumentacionUIController Instance
         {
             get
-            {
-                //instance = (instance == null) ? new TipoGrupoDocumentacionUIController() : instance;
-                //return instance;
+            {           
                 return new TipoGrupoDocumentacionUIController();
             }
         }

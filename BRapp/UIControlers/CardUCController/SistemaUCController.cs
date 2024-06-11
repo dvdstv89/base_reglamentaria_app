@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace BRapp.UIControlers.CardUCController
 {
-    internal class SistemaUCController : BaseUCController<SistemaCard, Sistema>, ICard
+    internal class SistemaUCController : BaseUCController<SistemaCard, Papel>, ICard
     {       
-        public SistemaUCController(Sistema documento) : base(new SistemaCard(), documento)
+        public SistemaUCController(Papel documento) : base(new SistemaCard(), documento)
         {           
                   
         }
@@ -24,20 +24,20 @@ namespace BRapp.UIControlers.CardUCController
         {
             card.iconPictureBox1.IconChar = objeto.getIcono();
             card.labelName.Text = objeto.Name;
-            card.labelCargoResponsable.Text = objeto.Responsable.Cargo;
+            card.labelCargoResponsable.Text = ((PersonaNatural)objeto.Responsable).Cargo;
             card.labelDescripcion.Rtf = objeto.Descripcion;
             card.btnPdf.Visible = objeto.hasPdfName();           
         }        
 
         private void btnPdf_Click(object sender, EventArgs e)
         {
-            var visorDocumentosUIController = new VisorPDFUIController(objeto.DocumentoPDF);
+            var visorDocumentosUIController = new VisorPDFUIController(objeto.ArchivoPDF);
             visorDocumentosUIController.showDialog();
         }
 
         private void btnResponsable_Click(object sender, EventArgs e)
         {
-            PersonaNaturalUCController personaNaturalUCController = new PersonaNaturalUCController(objeto.Responsable);
+            PersonaNaturalUCController personaNaturalUCController = new PersonaNaturalUCController((PersonaNatural)objeto.Responsable);
             personaNaturalUCController.setInfo();
             var CardDialogUIController = new CardDialogUIController(personaNaturalUCController);
             CardDialogUIController.showDialog();

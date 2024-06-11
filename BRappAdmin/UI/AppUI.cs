@@ -16,5 +16,10 @@ namespace BRappAdmin.UI
         {
             InitializeComponent();
         }
+
+        private void AppUI_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

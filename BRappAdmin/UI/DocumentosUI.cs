@@ -15,6 +15,21 @@ namespace BRappAdmin.UI
         public DocumentosUI()
         {
             InitializeComponent();
-        }        
+        }
+
+        private void programaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void programaEmpresarialToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void internoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

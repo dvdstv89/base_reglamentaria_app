@@ -109,7 +109,7 @@ namespace BRapp.UI.Cards
             this.tbActaAcuerdo.Multiline = true;
             this.tbActaAcuerdo.Name = "tbActaAcuerdo";
             this.tbActaAcuerdo.ReadOnly = true;
-            this.tbActaAcuerdo.Size = new System.Drawing.Size(150, 25);
+            this.tbActaAcuerdo.Size = new System.Drawing.Size(129, 25);
             this.tbActaAcuerdo.TabIndex = 23;
             this.tbActaAcuerdo.TabStop = false;
             this.tbActaAcuerdo.Text = "Acta 1/Acuerdo 3";
@@ -187,7 +187,7 @@ namespace BRapp.UI.Cards
             // 
             this.labelName.Dock = System.Windows.Forms.DockStyle.Right;
             this.labelName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelName.ForeColor = System.Drawing.Color.White;
+            this.labelName.ForeColor = System.Drawing.Color.Black;
             this.labelName.Location = new System.Drawing.Point(52, 0);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(431, 60);
@@ -202,7 +202,7 @@ namespace BRapp.UI.Cards
             this.tbDiasRestantes.Cursor = System.Windows.Forms.Cursors.Default;
             this.tbDiasRestantes.Dock = System.Windows.Forms.DockStyle.Left;
             this.tbDiasRestantes.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDiasRestantes.ForeColor = System.Drawing.Color.White;
+            this.tbDiasRestantes.ForeColor = System.Drawing.Color.Black;
             this.tbDiasRestantes.Location = new System.Drawing.Point(0, 0);
             this.tbDiasRestantes.Name = "tbDiasRestantes";
             this.tbDiasRestantes.ReadOnly = true;
@@ -215,8 +215,9 @@ namespace BRapp.UI.Cards
             // iconPrincipal
             // 
             this.iconPrincipal.BackColor = System.Drawing.Color.Transparent;
+            this.iconPrincipal.ForeColor = System.Drawing.Color.Black;
             this.iconPrincipal.IconChar = FontAwesome.Sharp.IconChar.UserAlt;
-            this.iconPrincipal.IconColor = System.Drawing.Color.White;
+            this.iconPrincipal.IconColor = System.Drawing.Color.Black;
             this.iconPrincipal.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPrincipal.IconSize = 39;
             this.iconPrincipal.Location = new System.Drawing.Point(3, 18);

@@ -30,26 +30,12 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sistemaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contratoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resolucionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resolucionInternaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resolucionEmpresarialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.indicoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.manualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.planToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.planInternoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.planEmpresarialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.procedimientoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.programaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.programaInternoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.programaEmpresarialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reglamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.otrosDocumentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sistemaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.activarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.desactivarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.tbBuscar = new System.Windows.Forms.TextBox();
@@ -60,6 +46,8 @@
             this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnTipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnActivo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.resoluciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.documentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -75,7 +63,8 @@
             this.nuevoToolStripMenuItem,
             this.modificarToolStripMenuItem,
             this.activarToolStripMenuItem,
-            this.desactivarToolStripMenuItem});
+            this.desactivarToolStripMenuItem,
+            this.eliminarToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -86,131 +75,25 @@
             // nuevoToolStripMenuItem
             // 
             this.nuevoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sistemaToolStripMenuItem,
             this.contratoToolStripMenuItem,
-            this.resolucionToolStripMenuItem,
-            this.indicoToolStripMenuItem,
-            this.manualToolStripMenuItem,
-            this.dGToolStripMenuItem,
-            this.planToolStripMenuItem,
-            this.procedimientoToolStripMenuItem,
-            this.programaToolStripMenuItem,
-            this.reglamentoToolStripMenuItem,
-            this.otrosDocumentosToolStripMenuItem});
+            this.sistemaToolStripMenuItem,
+            this.resoluciónToolStripMenuItem,
+            this.documentoToolStripMenuItem});
             this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
             this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(54, 30);
             this.nuevoToolStripMenuItem.Text = "Nuevo";
             // 
-            // sistemaToolStripMenuItem
-            // 
-            this.sistemaToolStripMenuItem.Name = "sistemaToolStripMenuItem";
-            this.sistemaToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.sistemaToolStripMenuItem.Text = "Sistema";
-            // 
             // contratoToolStripMenuItem
             // 
             this.contratoToolStripMenuItem.Name = "contratoToolStripMenuItem";
-            this.contratoToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.contratoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.contratoToolStripMenuItem.Text = "Contrato";
             // 
-            // resolucionToolStripMenuItem
+            // sistemaToolStripMenuItem
             // 
-            this.resolucionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.resolucionInternaToolStripMenuItem,
-            this.resolucionEmpresarialToolStripMenuItem});
-            this.resolucionToolStripMenuItem.Name = "resolucionToolStripMenuItem";
-            this.resolucionToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.resolucionToolStripMenuItem.Text = "Resolución";
-            // 
-            // resolucionInternaToolStripMenuItem
-            // 
-            this.resolucionInternaToolStripMenuItem.Name = "resolucionInternaToolStripMenuItem";
-            this.resolucionInternaToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.resolucionInternaToolStripMenuItem.Text = "Resolución Interna";
-            // 
-            // resolucionEmpresarialToolStripMenuItem
-            // 
-            this.resolucionEmpresarialToolStripMenuItem.Name = "resolucionEmpresarialToolStripMenuItem";
-            this.resolucionEmpresarialToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.resolucionEmpresarialToolStripMenuItem.Text = "Resolución Empresarial";
-            // 
-            // indicoToolStripMenuItem
-            // 
-            this.indicoToolStripMenuItem.Name = "indicoToolStripMenuItem";
-            this.indicoToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.indicoToolStripMenuItem.Text = "Indico";
-            // 
-            // manualToolStripMenuItem
-            // 
-            this.manualToolStripMenuItem.Name = "manualToolStripMenuItem";
-            this.manualToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.manualToolStripMenuItem.Text = "Manual";
-            // 
-            // dGToolStripMenuItem
-            // 
-            this.dGToolStripMenuItem.Name = "dGToolStripMenuItem";
-            this.dGToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.dGToolStripMenuItem.Text = "DG";
-            // 
-            // planToolStripMenuItem
-            // 
-            this.planToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.planInternoToolStripMenuItem,
-            this.planEmpresarialToolStripMenuItem});
-            this.planToolStripMenuItem.Name = "planToolStripMenuItem";
-            this.planToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.planToolStripMenuItem.Text = "Plan";
-            // 
-            // planInternoToolStripMenuItem
-            // 
-            this.planInternoToolStripMenuItem.Name = "planInternoToolStripMenuItem";
-            this.planInternoToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.planInternoToolStripMenuItem.Text = "Plan Interno";
-            // 
-            // planEmpresarialToolStripMenuItem
-            // 
-            this.planEmpresarialToolStripMenuItem.Name = "planEmpresarialToolStripMenuItem";
-            this.planEmpresarialToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.planEmpresarialToolStripMenuItem.Text = "Plan Empresarial";
-            // 
-            // procedimientoToolStripMenuItem
-            // 
-            this.procedimientoToolStripMenuItem.Name = "procedimientoToolStripMenuItem";
-            this.procedimientoToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.procedimientoToolStripMenuItem.Text = "Procedimiento";
-            // 
-            // programaToolStripMenuItem
-            // 
-            this.programaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.programaInternoToolStripMenuItem,
-            this.programaEmpresarialToolStripMenuItem});
-            this.programaToolStripMenuItem.Name = "programaToolStripMenuItem";
-            this.programaToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.programaToolStripMenuItem.Text = "Programa";
-            // 
-            // programaInternoToolStripMenuItem
-            // 
-            this.programaInternoToolStripMenuItem.Name = "programaInternoToolStripMenuItem";
-            this.programaInternoToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.programaInternoToolStripMenuItem.Text = "Programa Interno";
-            // 
-            // programaEmpresarialToolStripMenuItem
-            // 
-            this.programaEmpresarialToolStripMenuItem.Name = "programaEmpresarialToolStripMenuItem";
-            this.programaEmpresarialToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.programaEmpresarialToolStripMenuItem.Text = "Programa Empresarial";
-            // 
-            // reglamentoToolStripMenuItem
-            // 
-            this.reglamentoToolStripMenuItem.Name = "reglamentoToolStripMenuItem";
-            this.reglamentoToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.reglamentoToolStripMenuItem.Text = "Reglamento";
-            // 
-            // otrosDocumentosToolStripMenuItem
-            // 
-            this.otrosDocumentosToolStripMenuItem.Name = "otrosDocumentosToolStripMenuItem";
-            this.otrosDocumentosToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.otrosDocumentosToolStripMenuItem.Text = "Otros Documentos";
+            this.sistemaToolStripMenuItem.Name = "sistemaToolStripMenuItem";
+            this.sistemaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sistemaToolStripMenuItem.Text = "Sistema";
             // 
             // modificarToolStripMenuItem
             // 
@@ -229,6 +112,12 @@
             this.desactivarToolStripMenuItem.Name = "desactivarToolStripMenuItem";
             this.desactivarToolStripMenuItem.Size = new System.Drawing.Size(73, 30);
             this.desactivarToolStripMenuItem.Text = "Desactivar";
+            // 
+            // eliminarToolStripMenuItem
+            // 
+            this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(62, 30);
+            this.eliminarToolStripMenuItem.Text = "Eliminar";
             // 
             // panel1
             // 
@@ -328,6 +217,18 @@
             this.columnActivo.Text = "Activo";
             this.columnActivo.Width = 72;
             // 
+            // resoluciónToolStripMenuItem
+            // 
+            this.resoluciónToolStripMenuItem.Name = "resoluciónToolStripMenuItem";
+            this.resoluciónToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resoluciónToolStripMenuItem.Text = "Resolución";
+            // 
+            // documentoToolStripMenuItem
+            // 
+            this.documentoToolStripMenuItem.Name = "documentoToolStripMenuItem";
+            this.documentoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.documentoToolStripMenuItem.Text = "Documento";
+            // 
             // DocumentosUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -360,21 +261,6 @@
         public System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem sistemaToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem contratoToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem resolucionToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem resolucionInternaToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem resolucionEmpresarialToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem indicoToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem manualToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem planToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem planInternoToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem planEmpresarialToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem procedimientoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem programaToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem programaInternoToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem programaEmpresarialToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem reglamentoToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem otrosDocumentosToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem dGToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
@@ -385,5 +271,8 @@
         private System.Windows.Forms.Panel panel4;
         public System.Windows.Forms.TextBox tbBuscar;
         private FontAwesome.Sharp.IconButton btnSear;
+        public System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem resoluciónToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem documentoToolStripMenuItem;
     }
 }

@@ -4,8 +4,8 @@ namespace BRapp.Services.Interfaces
 {
     public interface IFileService
     {
-        Fichero guardarFichero(string selectedFilePath);
-        Fichero extraerFichero(string fileName);
-        Fichero extraerFichero(string fileName, string data);
+        Fichero GuardarFichero(string selectedFilePath);
+        Fichero ExtraerFichero(string fileName);
+        Fichero ExtraerFichero(string fileName, string data);
     }
 }

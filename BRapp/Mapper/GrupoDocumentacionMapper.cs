@@ -12,8 +12,7 @@ namespace BRapp.Mapper
             GrupoDocumentacion grupoDocumentacion = (GrupoDocumentacion) objeto;
             return new GrupoDocumentacionDto()
             {
-                id = grupoDocumentacion.Id,              
-                IsOpcional = grupoDocumentacion.IsOpcional,
+                id = grupoDocumentacion.Id,   
                 idDocumento = (grupoDocumentacion.Documento != null) ? grupoDocumentacion.Documento.Id : Guid.Empty,
                 idTipoGrupoDocumentacion = (grupoDocumentacion.TipoGrupoDocumentacion != null) ? grupoDocumentacion.TipoGrupoDocumentacion.Id : Guid.Empty,
                 Orden = grupoDocumentacion.Orden
@@ -24,8 +23,7 @@ namespace BRapp.Mapper
         {
             return new GrupoDocumentacionDto()
             {
-                id = Guid.Parse(reader["id"].ToString()),                         
-                IsOpcional = Convert.ToBoolean(reader["is_opcional"]),
+                id = Guid.Parse(reader["id"].ToString()),      
                 idDocumento = Guid.Parse(reader["id_papel"].ToString()),
                 idTipoGrupoDocumentacion = Guid.Parse(reader["id_tipo_grupo_documentacion"].ToString()),
                 Orden = Convert.ToInt32(reader["orden"].ToString())

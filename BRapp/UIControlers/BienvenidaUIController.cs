@@ -14,15 +14,22 @@ namespace BRapp.UIControlers
         }
 
         public override BienvenidaUI ejecutar()
-        {                     
+        {
+            forma.bRichTextBox1.KeyPress += BRichTextBox1_TabIndexChanged;
             return base.ejecutar();
+        }
+
+        private void BRichTextBox1_TabIndexChanged(object sender, System.EventArgs e)
+        {
+            aplicarTema();
         }
 
         protected override void aplicarTema()
         {
-           forma.richTextBox1.Rtf = bienvenidaService.getBienvenida();
-        }       
+            forma.bRichTextBox1.Rtf = bienvenidaService.GetBienvenida();           
+        }
 
+       
         public static BienvenidaUIController Instance
         {
             get

@@ -1,79 +1,82 @@
-﻿using BRapp.Data;
-using BRapp.Mapper;
+﻿using BRapp.Mapper;
 using System;
 using System.Collections.Generic;
-using BRapp.Repositorios.Interfaces.Dto;
+using BRapp.Repositorios.Interfaces;
 using BRapp.Dto;
+using BRapp.Utiles;
 
 namespace BRapp.Repositorios.Repos.ReposDto
 {
-    public class TiendaGrupoDocumentacionDtoRepository : BaseRepository, ITiendaGrupoDocumentacionDtoRepository
+    public class TiendaGrupoDocumentacionDtoRepository : BaseRepository<TiendaGrupoDocumentacionDto>, ITiendaGrupoDocumentacionDtoRepository
     {
-        private readonly string QUERY_SELECT_ALL = "SELECT * FROM TiendaTipoGrupoDocumentacion";
-        private readonly string QUERY_DELETE = "Delete FROM TiendaTipoGrupoDocumentacion where id_tienda = @id_tienda and id_tipo_grupo_documentacion = @id_tipo_grupo_documentacion";
-        private readonly string QUERY_INSERT = "INSERT INTO TiendaTipoGrupoDocumentacion (id_tienda, id_tipo_grupo_documentacion) VALUES ( @id_tienda, @id_tipo_grupo_documentacion)";
-        private List<TiendaGrupoDocumentacionDto> tiendaGrupoDocumentacionDtos;
-        private readonly IMapper tiendaGrupoDocumentacionMapper;
+        private static readonly string QUERY_SELECT_ALL = "SELECT * FROM TiendaTipoGrupoDocumentacion";
+        private static readonly string QUERY_DELETE = "Delete FROM TiendaTipoGrupoDocumentacion where id_tienda = @id_tienda and id_tipo_grupo_documentacion = @id_tipo_grupo_documentacion";
+        private readonly string QUERY_DELETE_For_Tienda = "Delete FROM TiendaTipoGrupoDocumentacion where id_tienda = @id_tienda";
+        private readonly string QUERY_DELETE_For_Grupo = "Delete FROM TiendaTipoGrupoDocumentacion where  id_tipo_grupo_documentacion = @id_tipo_grupo_documentacion";
+        private readonly string QUERY_INSERT = "INSERT INTO TiendaTipoGrupoDocumentacion (id_tienda, id_tipo_grupo_documentacion) VALUES ( @id_tienda, @id_tipo_grupo_documentacion)";       
 
-        public TiendaGrupoDocumentacionDtoRepository(IMapper tiendaGrupoDocumentacionMapper) : base(AplicationConfig.ConnectionString, "TiendaTipoGrupoDocumentacion")
+        public TiendaGrupoDocumentacionDtoRepository(IMapper tiendaGrupoDocumentacionMapper) : base(tiendaGrupoDocumentacionMapper, QUERY_DELETE, QUERY_SELECT_ALL) { }
+
+        public List<TiendaGrupoDocumentacionDto> getAllByIdTienda(Guid idTienda)
         {
-            this.tiendaGrupoDocumentacionMapper = tiendaGrupoDocumentacionMapper;
-            updateList();
+            return listado.FindAll(dep => dep.idTienda == idTienda);
         }
-        protected void updateList()
-        {
-            tiendaGrupoDocumentacionDtos = getAll();
-        }
-        private List<TiendaGrupoDocumentacionDto> getAll()
-        {
-            List<TiendaGrupoDocumentacionDto> apps = new List<TiendaGrupoDocumentacionDto>();
-            using (var reader = EjecutarConsulta(QUERY_SELECT_ALL))
-            {
-                if (reader != null)
-                {
-                    while (reader.Read())
-                    {
-                        apps.Add((TiendaGrupoDocumentacionDto)tiendaGrupoDocumentacionMapper.Map(reader));
-                    }
-                }
-            }
-            return apps;
-        }
-        private int getIndexById(TiendaGrupoDocumentacionDto tienda)
-        {
-            return tiendaGrupoDocumentacionDtos.FindIndex(doc => doc.idTienda == tienda.idTienda && doc.idTipoGrupoDocumentacion == tienda.idTipoGrupoDocumentacion);
-        }
-        public bool save(TiendaGrupoDocumentacionDto tienda)
+
+        public ActionResult Save(TiendaGrupoDocumentacionDto tienda)
         {
             Dictionary<string, object> parametros = buildParametros(tienda);
             int index = getIndexById(tienda);
             if (index != -1)
             {
-                return false;
+                return ActionResult.NONE;
             }
             else
             {
-                bool result = ExecuteWriteOperation(QUERY_INSERT, parametros);
-                tiendaGrupoDocumentacionDtos.Add(tienda);
-                return result;
+                ExecuteWriteOperation(QUERY_INSERT, parametros);
+                listado.Add(tienda);
+                return ActionResult.CREATED;
             }
         }
-        public bool delete(TiendaGrupoDocumentacionDto tienda)
+        public ActionResult Delete(TiendaGrupoDocumentacionDto tienda)
         {
             Dictionary<string, object> parametros = buildParametros(tienda);
             int index = getIndexById(tienda);
             if (index != -1)
             {
-                tiendaGrupoDocumentacionDtos.RemoveAt(index);
-                return ExecuteWriteOperation(QUERY_DELETE, parametros);
+                listado.RemoveAt(index);
+                ExecuteWriteOperation(QUERY_DELETE, parametros);
+                return ActionResult.DELETED;
             }
             else
             {
-                return false;
+                return ActionResult.NONE;
             }
 
         }
-        private Dictionary<string, object> buildParametros(TiendaGrupoDocumentacionDto tienda)
+        public ActionResult DeleteForTienda(Guid idTienda)
+        {
+            Dictionary<string, object> parametros = new Dictionary<string, object>
+            {
+                { "@id_tienda", idTienda.ToString() }               
+            };
+            RemoveByIdTienda(idTienda);
+            ExecuteWriteOperation(QUERY_DELETE_For_Tienda, parametros);
+            return ActionResult.DELETED;
+
+        }
+        public ActionResult DeleteForGrupo(Guid idGrupo)
+        {
+            Dictionary<string, object> parametros = new Dictionary<string, object>
+            {
+                { "@id_tipo_grupo_documentacion",idGrupo.ToString() }
+            };
+            RemoveByIdGrupo(idGrupo);
+            ExecuteWriteOperation(QUERY_DELETE_For_Grupo, parametros);
+            return ActionResult.DELETED;
+        }      
+      
+
+        protected override Dictionary<string, object> buildParametros(TiendaGrupoDocumentacionDto tienda)
         {
             Dictionary<string, object> parametros = new Dictionary<string, object>
             {
@@ -82,9 +85,17 @@ namespace BRapp.Repositorios.Repos.ReposDto
             };
             return parametros;
         }
-        public List<TiendaGrupoDocumentacionDto> getAllByIdTienda(Guid idTienda)
+        private int getIndexById(TiendaGrupoDocumentacionDto tienda)
         {
-            return tiendaGrupoDocumentacionDtos.FindAll(dep => dep.idTienda == idTienda);
-        }       
+            return listado.FindIndex(doc => doc.idTienda == tienda.idTienda && doc.idTipoGrupoDocumentacion == tienda.idTipoGrupoDocumentacion);
+        }
+        private void RemoveByIdTienda(Guid idTienda)
+        {
+            listado.RemoveAll(doc => doc.idTienda == idTienda);
+        }
+        private void RemoveByIdGrupo(Guid idGrupo)
+        {
+            listado.RemoveAll(doc => doc.idTipoGrupoDocumentacion == idGrupo);
+        }
     }
 }

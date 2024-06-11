@@ -1,86 +1,74 @@
-﻿using BRapp.Data;
-using BRapp.Mapper;
-using System;
+﻿using BRapp.Mapper;
 using System.Collections.Generic;
 using BRapp.Model.Tiendas;
-using System.Linq;
-using BRapp.Repositorios.Interfaces.Dto;
+using BRapp.Repositorios.Interfaces;
 using BRapp.Dto;
 using BRapp.Utiles;
+using System;
+using System.Linq;
 
 namespace BRapp.Repositorios.Repos.ReposDto
 {
-    public class TiendaDtoRepository : BaseRepository, ITiendaDtoRepository
+    public class TiendaDtoRepository : BaseRepository<TiendaDto>, ITiendaDtoRepository
     {       
-        private readonly string QUERY_SELECT_ALL = "SELECT * FROM Tienda order by orden";
-        private readonly string QUERY_UPDATE = @"UPDATE Tienda SET  name = @name, ubicacion = @ubicacion, telefono = @telefono, cantidad_trabajadores = @cantidad_trabajadores, 
-                                                cantidad_cajas_registradoras = @cantidad_cajas_registradoras, numero_registro_comercial = @numero_registro_comercial, certificado_scg = @certificado_scg, certificado_tmhs = @certificado_tmhs,
+        private static readonly string QUERY_SELECT_ALL = "SELECT * FROM Tienda order by orden";
+        private static readonly string QUERY_UPDATE = @"UPDATE Tienda SET  name = @name, ubicacion = @ubicacion, telefono = @telefono, cantidad_trabajadores = @cantidad_trabajadores, 
+                                                cantidad_cajas_registradoras = @cantidad_cajas_registradoras, certificado_scg = @certificado_scg, certificado_tmhs = @certificado_tmhs,
                                                 certificado_sanitaria = @certificado_sanitaria, is_activo = @is_activo, tipo_tienda = @tipo_tienda, tipo_moneda = @tipo_moneda,
-                                                id_complejo = @id_complejo, id_certificado_comercial = @id_certificado_comercial, orden = @orden WHERE id = @Id";
-        private readonly string QUERY_INSERT = @"INSERT INTO Tienda 
-                                                (id,   name, ubicacion,  telefono,  cantidad_trabajadores,  cantidad_cajas_registradoras,  numero_registro_comercial, certificado_scg, certificado_tmhs, certificado_sanitaria, is_activo, tipo_tienda, tipo_moneda, id_complejo, id_certificado_comercial, orden) 
-                                         VALUES (@Id, @name, @ubicacion, @telefono, @cantidad_trabajadores, @cantidad_cajas_registradoras, @numero_registro_comercial, @certificado_scg, @certificado_tmhs, @certificado_sanitaria, @is_activo, @tipo_tienda, @tipo_moneda, @id_complejo, @id_certificado_comercial, @orden)"; 
-        private List<TiendaDto> tiendaDtos;      
-        private readonly IMapper tiendaMapper;
+                                                id_complejo = @id_complejo, id_departamento = @id_departamento, id_certificado_comercial = @id_certificado_comercial, orden = @orden, logo = @logo WHERE id = @Id";
+        private static readonly string QUERY_INSERT = @"INSERT INTO Tienda 
+                                                (id,   name, ubicacion,  telefono,  cantidad_trabajadores,  cantidad_cajas_registradoras,  certificado_scg, certificado_tmhs, certificado_sanitaria, is_activo, tipo_tienda, tipo_moneda, id_complejo, id_certificado_comercial, orden, id_departamento, logo) 
+                                         VALUES (@Id, @name, @ubicacion, @telefono, @cantidad_trabajadores, @cantidad_cajas_registradoras, @certificado_scg, @certificado_tmhs, @certificado_sanitaria, @is_activo, @tipo_tienda, @tipo_moneda, @id_complejo, @id_certificado_comercial, @orden, @id_departamento, @logo)";
+        private static readonly string QUERY_DELETE = "Delete FROM Tienda WHERE id = @Id";
 
-        public TiendaDtoRepository(IMapper tiendaMapper) :base(AplicationConfig.ConnectionString, "Tienda")
+        private readonly ITiendaGrupoDocumentacionDtoRepository tiendaGrupoDocumentacionDtoRepository;
+
+        public TiendaDtoRepository(IMapper tiendaMapper, ITiendaGrupoDocumentacionDtoRepository tiendaGrupoDocumentacionDtoRepository) : base(tiendaMapper, QUERY_DELETE, QUERY_SELECT_ALL) 
         {
-            this.tiendaMapper = tiendaMapper;  
-            updateListApp();
-
+            this.tiendaGrupoDocumentacionDtoRepository = tiendaGrupoDocumentacionDtoRepository;
         }
 
-        protected void updateListApp()
+        public override ActionResult DeleteById(Guid id)
         {
-            tiendaDtos = getAll();
+            base.DeleteById(id);
+            return tiendaGrupoDocumentacionDtoRepository.DeleteForTienda(id);
         }
 
-        public List<TiendaDto> getAll()
+
+        public ActionResult SaveOrUpdate(Tienda tienda)
         {
-            List<TiendaDto> apps = new List<TiendaDto>();
-            using (var reader = EjecutarConsulta(QUERY_SELECT_ALL))
+            TiendaDto tiendaDto = (TiendaDto)mapper.Map(tienda);
+            ActionResult actionResult = saveOrUpdate(QUERY_INSERT, QUERY_UPDATE, tiendaDto);
+            List<TiendaGrupoDocumentacionDto> gruposAntiguos = tiendaGrupoDocumentacionDtoRepository.getAllByIdTienda(tienda.Id);
+            List<TipoGrupoDocumentacion> gruposNuevos = tienda.TipoGrupoDocumentacion;
+
+
+            List<TiendaGrupoDocumentacionDto> gruposParaEliminar = gruposAntiguos
+                 .Where(antiguo => !gruposNuevos.Any(nuevo => nuevo.Id == antiguo.idTipoGrupoDocumentacion))
+                 .ToList();
+
+            List<TipoGrupoDocumentacion> gruposParaGuardar = gruposNuevos
+                .Where(nuevo => !gruposAntiguos.Any(antiguo => antiguo.idTipoGrupoDocumentacion == nuevo.Id))
+                .ToList();
+
+            foreach (var grupoEliminar in gruposParaEliminar)
             {
-                if (reader != null)
+                tiendaGrupoDocumentacionDtoRepository.Delete(grupoEliminar);
+            }
+
+            foreach (var grupoGuardar in gruposParaGuardar)
+            {
+                var grupoNuevo = new TiendaGrupoDocumentacionDto()
                 {
-                    while (reader.Read())
-                    {
-                        apps.Add((TiendaDto)tiendaMapper.Map(reader));
-                    }
-                }
+                    idTienda = tienda.Id,
+                    idTipoGrupoDocumentacion = grupoGuardar.Id
+                };
+                tiendaGrupoDocumentacionDtoRepository.Save(grupoNuevo);
             }
-            return apps;
-        }      
-
-        public TiendaDto getById(Guid id)
-        {
-            return tiendaDtos.FirstOrDefault(persona => persona.id == id);
+            return actionResult;
         }
 
-        private int getIndexById(Guid id)
-        {
-            return tiendaDtos.FindIndex(doc => doc.id == id);
-        }
-
-        public ActionResult saveOrUpdate(Tienda tienda)
-        {
-            TiendaDto tiendaDto = (TiendaDto)tiendaMapper.Map(tienda);
-            Dictionary<string, object> parametros = buildParametros(tiendaDto);
-            int index = getIndexById(tiendaDto.id);
-            if (index != -1)
-            {
-                tiendaDtos[index] = tiendaDto;
-                ExecuteWriteOperation(QUERY_UPDATE, parametros);
-                return ActionResult.UPDATED;
-            }
-            else
-            {
-                ExecuteWriteOperation(QUERY_INSERT, parametros);
-                tiendaDtos.Add(tiendaDto);
-                return ActionResult.CREATED;
-            }
-        }
-
-        private Dictionary<string, object> buildParametros(TiendaDto tiendaDto)
+        protected override Dictionary<string, object> buildParametros(TiendaDto tiendaDto)
         {
             Dictionary<string, object> parametros = new Dictionary<string, object>
             {
@@ -88,8 +76,7 @@ namespace BRapp.Repositorios.Repos.ReposDto
                 { "@ubicacion", tiendaDto.ubicacion },
                 { "@telefono", tiendaDto.telefono },
                 { "@cantidad_trabajadores", tiendaDto.cantidadTrabajadores },
-                { "@cantidad_cajas_registradoras", tiendaDto.cantidadCajasRegistradoras },
-                { "@numero_registro_comercial", tiendaDto.numeroRegistroComercial },
+                { "@cantidad_cajas_registradoras", tiendaDto.cantidadCajasRegistradoras },              
                 { "@certificado_scg", tiendaDto.CertificadoSCG },
                 { "@certificado_tmhs", tiendaDto.CertificadoTMHS },
                 { "@certificado_sanitaria", tiendaDto.CertificadoSANITARIA },
@@ -97,10 +84,12 @@ namespace BRapp.Repositorios.Repos.ReposDto
                 { "@tipo_tienda", tiendaDto.tiendaTipo },
                 { "@tipo_moneda", tiendaDto.tipoMoneda },
                 { "@id_complejo", tiendaDto.idComplejo },
+                { "@id_departamento", tiendaDto.idDepartamento },
                 { "@id_certificado_comercial", tiendaDto.idCertificadoComercial },
                 { "@orden", tiendaDto.Orden },
+                { "@logo", (tiendaDto.Logo != null && tiendaDto.Logo.hasDataValid()) ? ImageManager.GetBase64Image(tiendaDto.Logo.Data, 120, 138, 90) : ""},
                 { "@Id", tiendaDto.id.ToString() }
-            };          
+        };          
             return parametros;
         }
     }

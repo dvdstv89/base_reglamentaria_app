@@ -2,6 +2,6 @@
 {
     public interface IBienvenidaService
     {
-        string getBienvenida();
+        string GetBienvenida();
     }
 }

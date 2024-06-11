@@ -29,39 +29,41 @@
         private void InitializeComponent()
         {
             this.panelText = new System.Windows.Forms.Panel();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.bRichTextBox1 = new BRichTextBox.BRichTextBox();
             this.panelText.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelText
             // 
-            this.panelText.Controls.Add(this.richTextBox1);
+            this.panelText.Controls.Add(this.bRichTextBox1);
             this.panelText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelText.Location = new System.Drawing.Point(0, 0);
             this.panelText.Name = "panelText";
             this.panelText.Padding = new System.Windows.Forms.Padding(10);
-            this.panelText.Size = new System.Drawing.Size(800, 450);
+            this.panelText.Size = new System.Drawing.Size(800, 777);
             this.panelText.TabIndex = 29;
             // 
-            // richTextBox1
+            // bRichTextBox1
             // 
-            this.richTextBox1.BackColor = System.Drawing.Color.White;
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Location = new System.Drawing.Point(10, 10);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(780, 430);
-            this.richTextBox1.TabIndex = 27;
-            this.richTextBox1.Text = "";
+            this.bRichTextBox1.AddDate = false;
+            this.bRichTextBox1.AutoScroll = false;
+            this.bRichTextBox1.BackColor = System.Drawing.Color.White;
+            this.bRichTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.bRichTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bRichTextBox1.Location = new System.Drawing.Point(10, 10);
+            this.bRichTextBox1.Name = "bRichTextBox1";
+            this.bRichTextBox1.Size = new System.Drawing.Size(780, 757);
+            this.bRichTextBox1.TabIndex = 3;
+            this.bRichTextBox1.Text = "";
             // 
             // BienvenidaUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 777);
             this.Controls.Add(this.panelText);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "BienvenidaUI";
             this.Text = "BienvenidaUI";
             this.panelText.ResumeLayout(false);
@@ -72,6 +74,6 @@
         #endregion
 
         public System.Windows.Forms.Panel panelText;
-        public System.Windows.Forms.RichTextBox richTextBox1;
+        public BRichTextBox.BRichTextBox bRichTextBox1;
     }
 }

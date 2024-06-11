@@ -8,10 +8,10 @@ using System.Windows.Forms;
 
 namespace BRapp.UIControlers.CardUCController
 {
-    internal class ResolucionUCController : BaseUCController<ResolucionCard, Resolucion>, ICard
+    internal class ResolucionUCController : BaseUCController<ResolucionCard, Papel>, ICard
     {   
         private bool eventsSubscribed = false;
-        public ResolucionUCController(Resolucion documento) 
+        public ResolucionUCController(Papel documento) 
             : base(new ResolucionCard(), documento) 
         { 
                  
@@ -34,16 +34,18 @@ namespace BRapp.UIControlers.CardUCController
         {
             card.iconPrincipal.IconChar = objeto.getIcono();
             card.labelName.Text = objeto.ToString();
-            card.labelCargoResponsable.Text = objeto.Responsable.Cargo;
+            card.labelCargoResponsable.Text = ((PersonaNatural)objeto.Responsable).Cargo;
             card.labelDescripcion.Rtf = objeto.Descripcion;
             card.lbFecha.Text = FechaUtil.getLargeText(objeto.FechaFirma);          
            
             card.btnPdf.Visible = objeto.hasPdfName();
-            if (objeto.DerrogadaPor != null)
+            if (objeto.Padre != null)
             {
                 card.panelDerrogadoPor.Visible = true;
-                card.tbDerrogadoPor.Text = objeto.DerrogadaPor.GetNumero();
+                card.tbDerrogadoPor.Text = objeto.Padre.Numero;
                 card.panelTitle.BackColor = Color.Black;
+                card.labelName.ForeColor= Color.White;
+                card.iconPrincipal.IconColor = Color.White;
             }
             else
             {
@@ -53,19 +55,19 @@ namespace BRapp.UIControlers.CardUCController
 
         private void btnPdf_Click(object sender, EventArgs e)
         {
-            var visorDocumentosUIController = new VisorPDFUIController(objeto.DocumentoPDF);
+            var visorDocumentosUIController = new VisorPDFUIController(objeto.ArchivoPDF);
             visorDocumentosUIController.showDialog();
         }
         private void btnResponsable_Click(object sender, EventArgs e)
         {
-            PersonaNaturalUCController personaNaturalUCController = new PersonaNaturalUCController(objeto.Responsable);
+            PersonaNaturalUCController personaNaturalUCController = new PersonaNaturalUCController((PersonaNatural)objeto.Responsable);
             personaNaturalUCController.setInfo();
             var CardDialogUIController = new CardDialogUIController(personaNaturalUCController);
             CardDialogUIController.showDialog();
         }
         private void btnDerrogadaPor_Click(object sender, EventArgs e)
         {
-            ResolucionUCController resolucionUCController = new ResolucionUCController(objeto.DerrogadaPor);
+            ResolucionUCController resolucionUCController = new ResolucionUCController(objeto.Padre);
             resolucionUCController.setInfo();
             var CardDialogUIController = new CardDialogUIController(resolucionUCController);
             CardDialogUIController.showDialog();

@@ -1,12 +1,15 @@
-﻿namespace BRapp.Model
+﻿using BRapp.Interfaces;
+using System;
+
+namespace BRapp.Model
 {
-    public class App
+    public class App : HasId
     {
         public int Id { get; set; }
         public string FechaActualizacion { get; set; }
         public string CopyRight { get; set; }
         public string Empresa { get; set; }
-        public string Bienvenida { get; set; }
+        public string Bienvenida { get; set; }       
         public string Mision { get; set; }
         public string Vision { get; set; }
         public string ObjetoSocial { get; set; }
@@ -23,6 +26,11 @@
             this.ObjetoSocial = ObjetoSocial;
             this.ValoresCompartidos= ValoresCompartidos;   
             this.Bienvenida= Bienvenida;
-        }      
+        }
+
+        public Guid getId()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

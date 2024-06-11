@@ -1,62 +1,62 @@
 ﻿using BRapp.Dto;
 using BRapp.Model;
 using BRapp.Model.Tiendas;
-using BRapp.Repositorios.Interfaces.Dto;
+using BRapp.Repositorios.Interfaces;
 using BRapp.Services.Interfaces;
+using BRapp.Utiles;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace BRapp.Services.Services
 {
-    public class GrupoDocumentacionService : IGrupoDocumentacionService
+    public class GrupoDocumentacionService : BaseListServicio<GrupoDocumentacion, GrupoDocumentacionDto>, IGrupoDocumentacionService
     {
-        protected readonly ITipoGrupoDocumentacionService tipoGrupoDocumentacionService;
-        protected readonly IGrupoDocumentacionDtoRepository grupoDocumentacionDtoRepository;
+        protected readonly ITipoGrupoDocumentacionService tipoGrupoDocumentacionService;       
+        protected readonly ITipoGrupoDocumentacionRepository tipoGrupoDocumentacionRepository;
+        protected readonly ITiendaGrupoDocumentacionDtoRepository tiendaGrupoDocumentacionDtoRepository;
+        protected readonly IDepartamentoGrupoDocumentacionDtoRepository departamentoGrupoDocumentacionDtoRepository;        
         protected readonly IPapelService papelService;       
 
-        public GrupoDocumentacionService(IPapelService papelService, ITipoGrupoDocumentacionService tipoGrupoDocumentacionService, IGrupoDocumentacionDtoRepository grupoDocumentacionDtoRepository)
+        public GrupoDocumentacionService(IPapelService papelService, ITipoGrupoDocumentacionService tipoGrupoDocumentacionService, IGrupoDocumentacionDtoRepository grupoDocumentacionDtoRepository,
+            ITipoGrupoDocumentacionRepository tipoGrupoDocumentacionRepository, ITiendaGrupoDocumentacionDtoRepository tiendaGrupoDocumentacionDtoRepository, IDepartamentoGrupoDocumentacionDtoRepository departamentoGrupoDocumentacionDtoRepository)
+        :base(grupoDocumentacionDtoRepository)
         {
-            this.tipoGrupoDocumentacionService = tipoGrupoDocumentacionService;
-            this.grupoDocumentacionDtoRepository = grupoDocumentacionDtoRepository;
+            this.tipoGrupoDocumentacionService = tipoGrupoDocumentacionService;           
             this.papelService = papelService;
-        }       
+            this.tipoGrupoDocumentacionRepository = tipoGrupoDocumentacionRepository;
+            this.tiendaGrupoDocumentacionDtoRepository = tiendaGrupoDocumentacionDtoRepository;
+            this.departamentoGrupoDocumentacionDtoRepository = departamentoGrupoDocumentacionDtoRepository;
+            Populate();
+        }
 
-        public List<GrupoDocumentacion> getAll()
-        {
-            List<GrupoDocumentacion> grupoDocumentacions = new List<GrupoDocumentacion>();
-            List<GrupoDocumentacionDto> grupoDocumentacionDtos = grupoDocumentacionDtoRepository.getAll();
+        protected override void Populate()
+        {           
+            List<GrupoDocumentacionDto> grupoDocumentacionDtos = repository.GetAll();
             foreach (GrupoDocumentacionDto grupo in grupoDocumentacionDtos)
             {
-                Documento documento = (Documento)papelService.getById(grupo.idDocumento);
-                TipoGrupoDocumentacion tipoGrupoDocumentacion = tipoGrupoDocumentacionService.getById(grupo.idTipoGrupoDocumentacion);
-                grupoDocumentacions.Add(new GrupoDocumentacion(grupo, tipoGrupoDocumentacion, documento));
+                Papel documento = papelService.GetById(grupo.idDocumento);
+                TipoGrupoDocumentacion tipoGrupoDocumentacion = tipoGrupoDocumentacionService.GetById(grupo.idTipoGrupoDocumentacion);
+                listado.Add(new GrupoDocumentacion(grupo, tipoGrupoDocumentacion, documento));
+            }          
+        }       
+
+        public List<GrupoDocumentacion> GetAllByTipoGrupoDocumentacion(Guid idTipoGrupoDocumentacion)
+        {
+            return listado.FindAll(grupo => grupo.TipoGrupoDocumentacion != null && grupo.TipoGrupoDocumentacion.Id == idTipoGrupoDocumentacion);
+        }
+
+        public ActionResult DeleteTipo(Guid idTipoGrupoDocumentacion)
+        {
+            List<GrupoDocumentacion> grupos = GetAllByTipoGrupoDocumentacion(idTipoGrupoDocumentacion);
+            foreach (GrupoDocumentacion grupo in grupos)
+            {
+                base.DeleteById(grupo.Id);
             }
-            return grupoDocumentacions;
-        }
-        public GrupoDocumentacion getById(Guid id)
-        {
-            return getAll().FirstOrDefault(g => g.Id == id);
-        }
-
-        public List<GrupoDocumentacion> getByIdTipoGrupoDocumentacion(Guid id)
-        {
-            return getAll().FindAll(tipo => tipo.TipoGrupoDocumentacion.Id == id).ToList();
-        }
-        public List<GrupoDocumentacion> getAllByTipoGrupoDocumentacion(TipoGrupoDocumentacion tipoGrupoDocumentacion)
-        {
-            return getAll().FindAll(grupo => grupo.TipoGrupoDocumentacion.Id == tipoGrupoDocumentacion.Id);
-        }
-
-        public bool saveOrUpdate(GrupoDocumentacion grupoDocumentacion)
-        {
-            return grupoDocumentacionDtoRepository.saveOrUpdate(grupoDocumentacion);
-        }
-
-        public void Delete(GrupoDocumentacion grupoDocumentacion)
-        {
-            grupoDocumentacionDtoRepository.Delete(grupoDocumentacion);
-            papelService.Delete(grupoDocumentacion.Documento);
-        }
+            //asociacion con tienda
+            tiendaGrupoDocumentacionDtoRepository.DeleteForGrupo(idTipoGrupoDocumentacion);
+            //asociacion con departamento
+            departamentoGrupoDocumentacionDtoRepository.DeleteForGrupo(idTipoGrupoDocumentacion);
+            return tipoGrupoDocumentacionRepository.DeleteById(idTipoGrupoDocumentacion);            
+        }       
     }
 }

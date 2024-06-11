@@ -4,6 +4,6 @@ namespace BRapp.Services.Interfaces
 {
     public interface IAppService
     {
-        App getApp();       
+        App GetApp();       
     }
 }

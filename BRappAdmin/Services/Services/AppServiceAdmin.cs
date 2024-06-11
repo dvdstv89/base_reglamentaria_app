@@ -1,5 +1,6 @@
 ﻿using BRapp.Model;
 using BRapp.Repositorios.Interfaces;
+using BRapp.Utiles;
 using BRappAdmin.Services.Interfaces;
 
 namespace BRappAdmin.Services.Services
@@ -15,11 +16,11 @@ namespace BRappAdmin.Services.Services
 
         public App getApp()
         {
-            return appRepository.getApp();
+            return appRepository.GetApp();
         }
-        public bool updateApp(App app)
+        public ActionResult updateApp(App app)
         {
-           return appRepository.updateApp(app);
+           return appRepository.UpdateApp(app);
         }       
     }
 }

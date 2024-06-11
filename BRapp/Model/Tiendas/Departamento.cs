@@ -1,12 +1,13 @@
 ﻿using BRapp.Dto;
 using BRapp.Enums;
+using BRapp.Interfaces;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
 
 namespace BRapp.Model.Tiendas
 {
-    public class Departamento : ISeleccionable, IRes61
+    public class Departamento : ISeleccionable, IVisorDocumentacion, HasId
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
@@ -81,6 +82,16 @@ namespace BRapp.Model.Tiendas
         public string GetDescripcionRft()
         {
             return Descripcion;
+        }
+
+        public Guid getId()
+        {
+            return Id;
+        }
+
+        public string COMBO
+        {
+            get { return ToString(); }
         }
     }
 }

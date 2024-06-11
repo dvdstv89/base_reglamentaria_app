@@ -88,7 +88,7 @@ namespace BRappAdmin.UIControlers
             {
                 CapturarDatosPersonaJuridica();
             }
-            contactosService.saveOrUpdate(persona);
+            contactosService.SaveOrUpdate(persona);
             forma.DialogResult= DialogResult.OK;
             forma.Close();
         }
@@ -153,7 +153,7 @@ namespace BRappAdmin.UIControlers
         { 
             if (forma.openLogo.ShowDialog() == DialogResult.OK)
             {  
-                Fichero fichero = fileService.guardarFichero(forma.openLogo.FileName);
+                Fichero fichero = fileService.GuardarFichero(forma.openLogo.FileName);
                 forma.tbPJLogo.Text = fichero.Name;
                 forma.tbPJLogo.Tag = fichero;
             }

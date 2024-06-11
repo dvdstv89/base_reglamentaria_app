@@ -11,11 +11,14 @@
         PLAN_EMPRESARIAL,
         PLAN_INTERNO,      
         PROCEDIMIENTO,     
-        PROGRAMA_EMPRESARIAL,
-        PROGRAMA_INTERNO,
+        PROGRAMA_EMPRESARIAL,      
         REGLAMENTO,      
         OTRO_DOCUMENTO,
         DG,
-        DOCUMENTACION_BASICA
+        DOCUMENTACION_BASICA,
+        CERTIFICADO_COMERCIAL,
+        MODELO,
+        ESPECIFICO,
+        NOTA
     }
 }

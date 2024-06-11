@@ -11,20 +11,20 @@ namespace BRapp.UIControlers.Components
 
     internal class VisorPDFUIController : BaseUIController<VisorPDFUI>
     {
-        private readonly DocumentoPDF documento;     
+        private readonly ArchivoPDF archivoPDF;     
         private readonly IVisorPDFService visorDocumentosService;
         
 
-        public VisorPDFUIController(DocumentoPDF documento) : base(new VisorPDFUI())
+        public VisorPDFUIController(ArchivoPDF archivoPDF) : base(new VisorPDFUI())
         {
-            this.documento = documento;
+            this.archivoPDF = archivoPDF;
             this.visorDocumentosService = AplicationConfig.Component.VisorPDFService;
         }        
 
         public override VisorPDFUI ejecutar()
         {
             forma.Load += new EventHandler(TuFormulario_Load);         
-            forma.Text = documento.PDF.Name;
+            forma.Text = archivoPDF.GetName();
             return forma;
         }
         
@@ -37,8 +37,8 @@ namespace BRapp.UIControlers.Components
             {
                 // Inicializa WebView2
                 await forma.webView21.EnsureCoreWebView2Async();
-                DocumentoPDF documentoPDF = documento.hasDocumento() ? documento : visorDocumentosService.getDocumentoPDFApliado(documento.Id);
-                byte[] pdfData = documentoPDF.PDF.Data;
+                DocumentoPDFBlob documentoPDF  = visorDocumentosService.GetDocumentoPDFApliado(archivoPDF.Id);
+                byte[] pdfData = documentoPDF.Data;
 
                 // Verifica si hay datos PDF para cargar
                 if (pdfData != null && pdfData.Length > 0)

@@ -20,5 +20,9 @@ namespace BRapp.Model
             return Logo != null && Logo.hasDataValid();
         }
 
+        public override string GetCargo()
+        {
+            return "";
+        }
     }
 }

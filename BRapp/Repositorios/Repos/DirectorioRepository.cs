@@ -1,88 +1,29 @@
-﻿using BRapp.Data;
-using BRapp.Enums;
-using BRapp.Enums.EnumFiltroBusqueda;
-using BRapp.Mapper;
+﻿using BRapp.Mapper;
 using BRapp.Model;
 using BRapp.Repositorios.Interfaces;
-using BRapp.Services.Interfaces;
 using BRapp.Utiles;
-using System;
 using System.Collections.Generic;
-using System.Linq;
+
 
 namespace BRapp.Repositorios.Repos
 {
-    public class DirectorioRepository : BaseRepository, IDirectorioRepository
-    {       
-        private readonly string QUERY_SELECT_ALL_PERSONAS = "SELECT * FROM Persona order by tipo_persona DESC, name asc";       
-        private readonly string QUERY_UPDATE_PERSONA = "UPDATE Persona SET name = @name, email = @email, phone = @phone,  address = @address, is_interno = @interno, is_favorito = @favorito, is_activo = @activo,  tipo_persona = @tipoPersona,  titulo_personal = @titulo, cargo = @cargo, cell = @cell,  contacto = @contacto, logo = @logo WHERE id = @personaId";
-        private readonly string QUERY_INSERT_PERSONA = "INSERT INTO Persona (id, name, email, phone, address, is_interno, is_favorito, is_activo, tipo_persona, titulo_personal, cargo, cell, contacto, logo) VALUES ( @personaId, @name, @email, @phone, @address, @interno, @favorito, @activo, @tipoPersona, @titulo, @cargo, @cell, @contacto, @logo)";
-        protected List<Persona> personas;
-        private readonly IMapper personaJuridicaMapper;
-        private readonly IMapper personaNaturalMapper;
-        private readonly IFileService fileService;
+    public class DirectorioRepository : BaseRepository<Persona>, IDirectorioRepository
+    {
+        private static readonly string QUERY_DELETE = "Delete FROM Persona WHERE id = @Id";
+        private static readonly string QUERY_SELECT_ALL = "SELECT * FROM Persona order by tipo_persona DESC, name asc";       
+        private static readonly string QUERY_UPDATE = "UPDATE Persona SET name = @name, email = @email, phone = @phone,  address = @address, is_interno = @interno, is_favorito = @favorito, is_activo = @activo,  tipo_persona = @tipoPersona,  titulo_personal = @titulo, cargo = @cargo, cell = @cell,  contacto = @contacto, logo = @logo WHERE id = @personaId";
+        private static readonly string QUERY_INSERT = "INSERT INTO Persona (id, name, email, phone, address, is_interno, is_favorito, is_activo, tipo_persona, titulo_personal, cargo, cell, contacto, logo) VALUES ( @personaId, @name, @email, @phone, @address, @interno, @favorito, @activo, @tipoPersona, @titulo, @cargo, @cell, @contacto, @logo)";
+      
+      
+        public DirectorioRepository(IMapper personaMapper) : base(personaMapper, QUERY_DELETE, QUERY_SELECT_ALL) { }        
 
-        public DirectorioRepository(IMapper personaJuridicaMapper, IMapper personaNaturalMapper, IFileService fileService) : base(AplicationConfig.ConnectionString, "Persona")
-        {
-            this.fileService = fileService;
-            this.personaNaturalMapper = personaNaturalMapper;
-            this.personaJuridicaMapper = personaJuridicaMapper;
-            personas = getAll();
-        }
 
-        public List<Persona> getAllPersonas()
+        public ActionResult SaveOrUpdate(Persona persona)
         {
-            return personas;
-        }      
-
-        private List<Persona> getAll()
-        {
-            List<Persona> apps = new List<Persona>();
-            using (var reader = EjecutarConsulta(QUERY_SELECT_ALL_PERSONAS))
-            {
-                while (reader.Read())
-                {
-                    TipoPersona tipoPersona = (TipoPersona)Enum.Parse(typeof(TipoPersona), reader["tipo_persona"].ToString());
-                    if(tipoPersona == TipoPersona.JURIDICA)
-                    {
-                        apps.Add((PersonaJuridica)personaJuridicaMapper.Map(reader));
-                    }
-                    else if(tipoPersona == TipoPersona.NATURAL)
-                    {
-                        apps.Add((PersonaNatural)personaNaturalMapper.Map(reader));
-                    }                   
-                }
-            }
-            return apps;
+            return saveOrUpdate(QUERY_INSERT, QUERY_UPDATE, persona);
         }       
 
-        public Persona getById(Guid id)
-        {
-            return personas.FirstOrDefault(persona => persona.Id == id);
-        }
-        private int getIndexById(Guid id)
-        {
-            return personas.FindIndex(doc => doc.Id == id);
-        }
-
-        public bool saveOrUpdate(Persona persona)
-        {
-            Dictionary<string, object> parametros = buildParametros(persona);
-            int index = getIndexById(persona.Id);
-            if (index != -1)
-            {
-                personas[index] = persona;
-                return ExecuteWriteOperation(QUERY_UPDATE_PERSONA, parametros); 
-            }
-            else
-            {                
-                bool result = ExecuteWriteOperation(QUERY_INSERT_PERSONA, parametros);
-                personas.Add(persona);
-                return result;
-            }
-        }
-
-        private Dictionary<string, object> buildParametros(Persona persona)
+        protected override Dictionary<string, object> buildParametros(Persona persona)
         {
             Dictionary<string, object> parametros = new Dictionary<string, object>
             {

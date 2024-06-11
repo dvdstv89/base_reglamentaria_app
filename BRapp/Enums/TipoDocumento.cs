@@ -13,6 +13,9 @@
         OTRO_DOCUMENTO,
         CONTRATO,
         DG,
-        DOCUMENTACION_BASICA
+        DOCUMENTACION_BASICA,
+        CERTIFICADO_COMERCIAL,
+        DOCUMENTO,
+        NOTA
     }
 }

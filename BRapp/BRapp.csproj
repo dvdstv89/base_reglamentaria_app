@@ -39,6 +39,9 @@
     <ApplicationIcon>BRLogo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BRichTextBox, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BRichTextBox.1.0.5\lib\net40\BRichTextBox.dll</HintPath>
+    </Reference>
     <Reference Include="Costura, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Costura.Fody.5.7.0\lib\netstandard1.0\Costura.dll</HintPath>
     </Reference>
@@ -75,6 +78,13 @@
     <Reference Include="Microsoft.Extensions.Primitives, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Primitives.8.0.0\lib\net462\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1004\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.2478.35, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.WebView2.1.0.2478.35\lib\net45\Microsoft.Web.WebView2.Core.dll</HintPath>
     </Reference>
@@ -89,8 +99,17 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NetSpell.SpellChecker, Version=2.1.7.41329, Culture=neutral, PublicKeyToken=318b389f0db66e46">
+      <HintPath>..\packages\NetSpell.2.1.7\lib\NetSpell.SpellChecker.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="RtfPipe, Version=2.0.7677.4303, Culture=neutral, PublicKeyToken=5f6ab4ce530296d2, processorArchitecture=MSIL">
+      <HintPath>..\packages\RtfPipe.2.0.7677.4303\lib\net45\RtfPipe.dll</HintPath>
+    </Reference>
     <Reference Include="SQLitePCLRaw.batteries_v2, Version=2.1.8.2226, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
       <HintPath>..\packages\SQLitePCLRaw.bundle_green.2.1.8\lib\net461\SQLitePCLRaw.batteries_v2.dll</HintPath>
     </Reference>
@@ -181,6 +200,9 @@
       <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Sockets, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Net.Sockets.4.3.0\lib\net46\System.Net.Sockets.dll</HintPath>
       <Private>True</Private>
@@ -250,6 +272,28 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.9\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.40804.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -267,24 +311,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\AplicationConfig.cs" />
-    <Compile Include="Data\ClasificacionDocumentoData.cs" />
+    <Compile Include="Dto\ClasificacionDocumentacionDto.cs" />
     <Compile Include="Dto\GrupoDocumentacionDto.cs" />
     <Compile Include="Dto\DepartamentoDto.cs" />
     <Compile Include="Dto\TiendaDto.cs" />
     <Compile Include="Dto\PapelDto.cs" />
-    <Compile Include="Dto\DocumentoDto.cs" />
-    <Compile Include="Dto\ResolucionDto.cs" />
-    <Compile Include="Dto\ContratoDto.cs" />
-    <Compile Include="Dto\DGDto.cs" />
-    <Compile Include="Dto\SistemaDto.cs" />
     <Compile Include="Dto\DepartamentoGrupoDocumentacionDto.cs" />
     <Compile Include="Dto\TiendaGrupoDocumentacionDto.cs" />
+    <Compile Include="Enums\LugarMostrarDocumentacion.cs" />
+    <Compile Include="Enums\TipoResponsable.cs" />
+    <Compile Include="Enums\TipoUbicacionMenu.cs" />
     <Compile Include="Enums\TipoClasificacionDocumento.cs" />
     <Compile Include="Enums\TipoComplejo.cs" />
     <Compile Include="Enums\TipoMoneda.cs" />
     <Compile Include="Enums\TipoDepartamento.cs" />
-    <Compile Include="Enums\TipoIndicacion.cs" />
     <Compile Include="Enums\TipoTienda.cs" />
+    <Compile Include="Interfaces\HasId.cs" />
+    <Compile Include="Mapper\ClasificacionDocumentacionlMapper.cs" />
+    <Compile Include="Mapper\MenuDocumentalMapper.cs" />
+    <Compile Include="Mapper\TipoDocumentacionMapper.cs" />
+    <Compile Include="Mapper\PersonaMapper.cs" />
+    <Compile Include="Model\ArchivoPDF.cs" />
+    <Compile Include="Dto\DocumentoPDFBlob.cs" />
+    <Compile Include="Repositorios\Interfaces\IRepository.cs" />
     <Compile Include="Mapper\ComplejoMapper.cs" />
     <Compile Include="Mapper\DepartamentoGrupoDocumentacionMapper.cs" />
     <Compile Include="Mapper\TiendaGrupoDocumentacionMapper.cs" />
@@ -293,41 +342,28 @@
     <Compile Include="Mapper\GrupoDocumentacionMapper.cs" />
     <Compile Include="Mapper\TipoGrupoDocumentacionMapper.cs" />
     <Compile Include="Mapper\DocumentoPdfBlobMapper.cs" />
-    <Compile Include="Mapper\ResolucionMapper.cs" />
     <Compile Include="Mapper\DocumentoPdfMapper.cs" />
-    <Compile Include="Mapper\DocumentoMapper.cs" />
-    <Compile Include="Mapper\ContratoMapper.cs" />
-    <Compile Include="Mapper\DGMapper.cs" />
-    <Compile Include="Mapper\SistemaMapper.cs" />
     <Compile Include="Mapper\PapelMapper.cs" />
-    <Compile Include="Mapper\PersonaJuridicaMapper.cs" />
-    <Compile Include="Mapper\PersonaNaturalMapper.cs" />
     <Compile Include="Mapper\AppMapper.cs" />
     <Compile Include="Mapper\IMapper.cs" />
     <Compile Include="Messages\Mensajes.cs" />
     <Compile Include="Model\Fichero.cs" />
-    <Compile Include="Model\IRes61.cs" />
+    <Compile Include="Model\IVisorDocumentacion.cs" />
     <Compile Include="Model\ISeleccionable.cs" />
-    <Compile Include="Model\Papeles\ClasificacionDocumento.cs" />
-    <Compile Include="Model\Papeles\DG.cs" />
+    <Compile Include="Model\Nomenclador\ClasificacionDocumentacion.cs" />
+    <Compile Include="Model\Nomenclador\MenuDocumental.cs" />
+    <Compile Include="Model\Nomenclador\TipoDocumentacion.cs" />
+    <Compile Include="Enums\TipoCard.cs" />
     <Compile Include="Model\Tiendas\Complejo.cs" />
     <Compile Include="Model\Tiendas\Departamento.cs" />
     <Compile Include="Model\Tiendas\TipoGrupoDocumentacion.cs" />
     <Compile Include="Model\Tiendas\GrupoDocumentacion.cs" />
-    <Compile Include="Repositorios\Interfaces\Dto\IDepartamentoGrupoDocumentacionDtoRepository.cs" />
-    <Compile Include="Repositorios\Interfaces\Dto\ITiendaGrupoDocumentacionDtoRepository.cs" />
-    <Compile Include="Repositorios\Interfaces\Dto\ITiendaDtoRepository.cs" />
-    <Compile Include="Repositorios\Interfaces\Dto\IDocumentoDtoRepository.cs" />
-    <Compile Include="Repositorios\Interfaces\Dto\IDepartamentoDtoRepository.cs" />
-    <Compile Include="Repositorios\Interfaces\Dto\IPapelDtoRepository.cs" />
-    <Compile Include="Repositorios\Interfaces\Dto\IResolucionDtoRepository.cs" />
-    <Compile Include="Repositorios\Interfaces\Dto\IContratoDtoRepository.cs" />
-    <Compile Include="Repositorios\Interfaces\Dto\IDGDtoRepository.cs" />
-    <Compile Include="Repositorios\Interfaces\Dto\ISistemaDtoRepository.cs" />
-    <Compile Include="Repositorios\Interfaces\Dto\IGrupoDocumentacionDtoRepository.cs" />
-    <Compile Include="Repositorios\Interfaces\ITipoGrupoDocumentacionRepository.cs" />
-    <Compile Include="Repositorios\Interfaces\IComplejoRepository.cs" />
-    <Compile Include="Repositorios\Interfaces\IDocumentoPdfRepository.cs" />
+    <Compile Include="Repositorios\Interfaces\IDepartamentoGrupoDocumentacionDtoRepository.cs" />
+    <Compile Include="Repositorios\Interfaces\ITiendaGrupoDocumentacionDtoRepository.cs" />
+    <Compile Include="Repositorios\Repos\Nomenclador\MenuDocumentalRepository.cs" />
+    <Compile Include="Repositorios\Repos\Nomenclador\ClasificacionDocumentacionDtoRepository.cs" />
+    <Compile Include="Repositorios\Repos\Nomenclador\TipoDocumentacionRepository.cs" />
+    <Compile Include="Repositorios\Repos\DocumentoPdfBlobRepository.cs" />
     <Compile Include="Repositorios\Repos\ReposDto\DepartamentoGrupoDocumentacionDtoRepository.cs" />
     <Compile Include="Repositorios\Repos\ReposDto\TiendaGrupoDocumentacionDtoRepository.cs" />
     <Compile Include="Repositorios\Repos\ReposDto\TiendaDtoRepository.cs" />
@@ -344,50 +380,36 @@
     <Compile Include="Enums\TipoContrato.cs" />
     <Compile Include="Enums\TipoTituloPersonal.cs" />
     <Compile Include="Model\App.cs" />
-    <Compile Include="Model\DocumentoPDF.cs" />
+    <Compile Include="Dto\DocumentoPDF.cs" />
     <Compile Include="Model\Personas\PersonaNatural.cs" />
     <Compile Include="Model\Personas\PersonaJuridica.cs" />
-    <Compile Include="Model\Papeles\Papel.cs" />
-    <Compile Include="Repositorios\Interfaces\IDirectorioRepository.cs" />
+    <Compile Include="Model\Papel.cs" />
     <Compile Include="Repositorios\Interfaces\IAppRepository.cs" />
     <Compile Include="Repositorios\Repos\AppRepository.cs" />
     <Compile Include="Repositorios\Repos\DocumentoPdfRepository.cs" />
-    <Compile Include="Repositorios\Repos\ReposDto\DocumentoDtoRepository.cs" />
     <Compile Include="Repositorios\Repos\ReposDto\PapelDtoRepository.cs" />
-    <Compile Include="Repositorios\Repos\ReposDto\ResolucionDtoRepository.cs" />
-    <Compile Include="Repositorios\Repos\ReposDto\ContratoDtoRepository.cs" />
-    <Compile Include="Repositorios\Repos\ReposDto\DgDtoRepository.cs" />
-    <Compile Include="Repositorios\Repos\ReposDto\SistemaDtoRepository.cs" />
     <Compile Include="Repositorios\Repos\DirectorioRepository.cs" />
-    <Compile Include="Services\Interfaces\IGrupoDocumentacionService.cs" />
-    <Compile Include="Services\Interfaces\IDepartamentoService.cs" />
-    <Compile Include="Services\Interfaces\ITipoGrupoDocumentacionService.cs" />
-    <Compile Include="Services\Interfaces\IComplejoService.cs" />
-    <Compile Include="Services\Interfaces\IDocumentoService.cs" />
-    <Compile Include="Services\Interfaces\IContratoService.cs" />
+    <Compile Include="Services\Interfaces\IService.cs" />
     <Compile Include="Services\Interfaces\IAppService.cs" />
-    <Compile Include="Services\Interfaces\IResolucionService.cs" />
-    <Compile Include="Services\Interfaces\IDGService.cs" />
-    <Compile Include="Services\Interfaces\ISistemaService.cs" />
     <Compile Include="Services\Interfaces\IFileService.cs" />
+    <Compile Include="Services\Interfaces\IDocumentoPdfService.cs" />
     <Compile Include="Services\Interfaces\IVisorDocumentacionService.cs" />
     <Compile Include="Services\Interfaces\IVisorPDFService.cs" />
-    <Compile Include="Services\Interfaces\ITiendaService.cs" />
     <Compile Include="Services\Interfaces\ISucursalService.cs" />
     <Compile Include="Services\Interfaces\IIndexService.cs" />
     <Compile Include="Services\Interfaces\IDirectorioService.cs" />
     <Compile Include="Services\Interfaces\IBienvenidaService.cs" />
-    <Compile Include="Services\Interfaces\IPapelService.cs" />
+    <Compile Include="Services\Services\BaseListServicio.cs" />
+    <Compile Include="Services\Services\BaseService.cs" />
+    <Compile Include="Services\Services\ClasificacionDocumentacionService.cs" />
+    <Compile Include="Services\Services\MenuDocumentalService.cs" />
+    <Compile Include="Services\Services\TipoDocumentacionService.cs" />
+    <Compile Include="Services\Services\DocumentoPDFService.cs" />
     <Compile Include="Services\Services\GrupoDocumentacionService.cs" />
     <Compile Include="Services\Services\DepartamentoService.cs" />
     <Compile Include="Services\Services\TipoGrupoDocumentacionService.cs" />
     <Compile Include="Services\Services\ComplejoService.cs" />
-    <Compile Include="Services\Services\DocumentoService.cs" />
     <Compile Include="Services\Services\AppService.cs" />
-    <Compile Include="Services\Services\ResolucionService.cs" />
-    <Compile Include="Services\Services\ContratoService.cs" />
-    <Compile Include="Services\Services\DGService.cs" />
-    <Compile Include="Services\Services\SistemaService.cs" />
     <Compile Include="Services\Services\FileService.cs" />
     <Compile Include="Services\Services\VisorDocumentacionService.cs" />
     <Compile Include="Services\Services\VisorPDFService.cs" />
@@ -403,6 +425,7 @@
     <Compile Include="UIControlers\CardUCController\SistemaUCController.cs" />
     <Compile Include="UIControlers\CardUCController\PersonaNaturalUCController.cs" />
     <Compile Include="UIControlers\CardUCController\BaseUCController.cs" />
+    <Compile Include="UIControlers\SucursalUIController.cs" />
     <Compile Include="UIControlers\Components\VisorDocumentacionUIController.cs" />
     <Compile Include="UIControlers\Components\VisorPDFUIController.cs" />
     <Compile Include="UIControlers\SeleccionarObjetoUIController.cs" />
@@ -443,6 +466,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UIControlers\CardUCController\ICard.cs" />
+    <Compile Include="UI\SucursalUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SucursalUI.Designer.cs">
+      <DependentUpon>SucursalUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Component\ProgressBarUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -469,7 +498,6 @@
     </Compile>
     <Compile Include="Utiles\ActionResult.cs" />
     <Compile Include="Utiles\ButtonSeleccionado.cs" />
-    <Compile Include="Enums\EnumsInstances\TipoDocumentoMenu.cs" />
     <Compile Include="Services\Services\PapelService.cs" />
     <Compile Include="Services\Services\TiendasService.cs" />
     <Compile Include="Services\Services\SucursalService.cs" />
@@ -502,10 +530,6 @@
     <Compile Include="UIControlers\IndexUIController.cs" />
     <Compile Include="UIControlers\MyRenderer.cs" />
     <Compile Include="Model\Personas\Persona.cs" />
-    <Compile Include="Model\Papeles\Contrato.cs" />
-    <Compile Include="Model\Papeles\Documento.cs" />
-    <Compile Include="Model\Papeles\Resolucion.cs" />
-    <Compile Include="Model\Papeles\Sistema.cs" />
     <Compile Include="Model\Tiendas\Tienda.cs" />
     <Compile Include="Services\Services\DirectorioService.cs" />
     <Compile Include="Services\Services\IndexService.cs" />
@@ -519,6 +543,7 @@
     <Compile Include="Utiles\FechaUtil.cs" />
     <Compile Include="Messages\DialogUtil.cs" />
     <Compile Include="Utiles\ImageManager.cs" />
+    <Compile Include="Utiles\RtfToHtmlConverter.cs" />
     <Compile Include="Utiles\Styles\Colors.cs" />
     <Compile Include="Utiles\Styles\MyFontStyle.cs" />
     <Compile Include="UI\DirectorioUI.cs">
@@ -571,6 +596,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Cards\PersonaNaturalCard.resx">
       <DependentUpon>PersonaNaturalCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SucursalUI.resx">
+      <DependentUpon>SucursalUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ComplejoUI.resx">
       <DependentUpon>ComplejoUI.cs</DependentUpon>
@@ -663,7 +691,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="1NOUSO\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

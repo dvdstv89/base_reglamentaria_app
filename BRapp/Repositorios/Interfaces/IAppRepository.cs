@@ -1,10 +1,11 @@
 ﻿using BRapp.Model;
+using BRapp.Utiles;
 
 namespace BRapp.Repositorios.Interfaces
 {
     public interface IAppRepository
     {
-        bool updateApp(App app);
-        App getApp();
+        ActionResult UpdateApp(App app);
+        App GetApp();
     }
 }

@@ -23,7 +23,7 @@ namespace BRappAdmin.UIControlers
         private ListViewColumnSorter columnSorter;
         ListViewItem itemSeleccionado;
         private List<Papel> papeles;      
-        private readonly Dictionary<ToolStripMenuItem, TipoClasificacionDocumento> menuItemMappings = new Dictionary<ToolStripMenuItem, TipoClasificacionDocumento>();
+        private readonly Dictionary<ToolStripMenuItem, TipoCard> menuItemMappings = new Dictionary<ToolStripMenuItem, TipoCard>();
 
         private DocumentosUIController() : base(new DocumentosUI())
         {
@@ -41,20 +41,10 @@ namespace BRappAdmin.UIControlers
             forma.activarToolStripMenuItem.Click += new EventHandler(activarToolStripMenuItem_Click);
             forma.desactivarToolStripMenuItem.Click += new EventHandler(desactivarToolStripMenuItem_Click);
             forma.modificarToolStripMenuItem.Click += new EventHandler(modificarToolStripMenuItem_Click);
-            menuItemMappings.Add(forma.sistemaToolStripMenuItem, TipoClasificacionDocumento.SISTEMA);
-            menuItemMappings.Add(forma.contratoToolStripMenuItem, TipoClasificacionDocumento.CONTRATO);
-            menuItemMappings.Add(forma.resolucionInternaToolStripMenuItem, TipoClasificacionDocumento.RESOLUCION_INTERNA);
-            menuItemMappings.Add(forma.resolucionEmpresarialToolStripMenuItem, TipoClasificacionDocumento.RESOLUCION_EMPRESARIAL);
-            menuItemMappings.Add(forma.indicoToolStripMenuItem, TipoClasificacionDocumento.INDICO);
-            menuItemMappings.Add(forma.manualToolStripMenuItem, TipoClasificacionDocumento.MANUAL);
-            menuItemMappings.Add(forma.dGToolStripMenuItem, TipoClasificacionDocumento.DG);
-            menuItemMappings.Add(forma.planEmpresarialToolStripMenuItem, TipoClasificacionDocumento.PLAN_EMPRESARIAL);
-            menuItemMappings.Add(forma.planInternoToolStripMenuItem, TipoClasificacionDocumento.PLAN_INTERNO);
-            menuItemMappings.Add(forma.procedimientoToolStripMenuItem, TipoClasificacionDocumento.PROCEDIMIENTO);
-            menuItemMappings.Add(forma.programaEmpresarialToolStripMenuItem, TipoClasificacionDocumento.PROGRAMA_EMPRESARIAL);
-            menuItemMappings.Add(forma.programaInternoToolStripMenuItem, TipoClasificacionDocumento.PROGRAMA_INTERNO);
-            menuItemMappings.Add(forma.reglamentoToolStripMenuItem, TipoClasificacionDocumento.REGLAMENTO);
-            menuItemMappings.Add(forma.otrosDocumentosToolStripMenuItem, TipoClasificacionDocumento.OTRO_DOCUMENTO);           
+            menuItemMappings.Add(forma.sistemaToolStripMenuItem, TipoCard.SISTEMA);
+            menuItemMappings.Add(forma.contratoToolStripMenuItem, TipoCard.CONTRATO);
+            menuItemMappings.Add(forma.resoluciónToolStripMenuItem, TipoCard.RESOLUCION);
+            menuItemMappings.Add(forma.documentoToolStripMenuItem, TipoCard.DOCUMENTO);                        
             foreach (var menuItem in menuItemMappings.Keys)
             {
                 menuItem.Click += ButtonToolStripMenuItem_Click;
@@ -78,13 +68,13 @@ namespace BRappAdmin.UIControlers
 
         private void updateList()
         {
-            papeles = documentosService.getAllDistintDocumentacion_Basica();
+            papeles = documentosService.GetAllWhitCard();
             forma.lwPapeles.Items.Clear();
             foreach (Papel papel in papeles)
             {
                 var item = new ListViewItem(papel.ToString());
-                item.SubItems.Add(papel.TipoClasificacionDocumento.ToString());                
-                bool hasPdf = papel.DocumentoPDF != null && papel.DocumentoPDF.hasDocumento();             
+                item.SubItems.Add(papel.TipoDocumentacion.ToString());                
+                bool hasPdf = papel.ArchivoPDF != null && papel.ArchivoPDF.hasDocumento();             
                 item.SubItems.Add(papel.IsActivo.ToString());
                 item.Tag = papel;
                 forma.lwPapeles.Items.Add(item);
@@ -118,7 +108,7 @@ namespace BRappAdmin.UIControlers
         {
             var papel = getPapelSeleccionado();
             papel.IsActivo = activo;
-            documentosService.saveOrUpdate(papel);
+            documentosService.SaveOrUpdate(papel);
             DialogUtil.INFORMATION(Mensajes.PAPEL_UPDATED_OK);
             txtSearch_TextChanged(sender, e);
         }
@@ -126,7 +116,7 @@ namespace BRappAdmin.UIControlers
         private void modificarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var papelSeleccionado = getPapelSeleccionado();
-             modificarPapel(papelSeleccionado, papelSeleccionado.TipoClasificacionDocumento, papeles.FindIndex(doc => doc.Id == papelSeleccionado.Id), sender, e);
+             modificarPapel(papelSeleccionado, papelSeleccionado.TipoDocumentacion.TipoCard, papeles.FindIndex(doc => doc.Id == papelSeleccionado.Id), sender, e);
         }
 
         private void lwPapeles_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -134,13 +124,13 @@ namespace BRappAdmin.UIControlers
             if (e.Button == MouseButtons.Left)
             {
                 var papelSeleccionado = getPapelSeleccionado();
-               modificarPapel(papelSeleccionado, papelSeleccionado.TipoClasificacionDocumento, papeles.FindIndex(doc => doc.Id == papelSeleccionado.Id), sender, e);
+               modificarPapel(papelSeleccionado, papelSeleccionado.TipoDocumentacion.TipoCard, papeles.FindIndex(doc => doc.Id == papelSeleccionado.Id), sender, e);
             }
         }
 
-        private void modificarPapel(Papel papel, TipoClasificacionDocumento tipoClasificacionDocumento, int posicion, object sender, EventArgs e)
+        private void modificarPapel(Papel papel, TipoCard tipoCard, int posicion, object sender, EventArgs e)
         {
-            var papelUiController = new PapelUIController(papel, tipoClasificacionDocumento, posicion);
+            var papelUiController = new PapelUIController(papel, tipoCard, posicion, null);
             DialogResult dialogResult = papelUiController.ejecutar().ShowDialog();
             if (dialogResult == DialogResult.OK)
             {

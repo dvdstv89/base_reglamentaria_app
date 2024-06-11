@@ -43,13 +43,6 @@ namespace BRapp.Data
                 string destinationPath = Path.Combine(ApplicationPath, index);
                 return destinationPath;
             }
-        }
-        public static Guid Resolucion61
-        {
-            get
-            {
-                return new Guid("28a5dce0-cf0a-4069-b448-e247d0ada5bf");
-            }
-        }
+        }      
     }
 }

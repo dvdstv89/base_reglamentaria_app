@@ -16,24 +16,22 @@ namespace BRapp.UIControlers.Components
     internal class VisorDocumentacionUIController : BaseUIController<VisorDocumentacionUI>
     {
         private readonly IVisorDocumentacionService visorDocumentosService;
-        private readonly IRes61 res61;
-        private readonly Resolucion resolucion61;
+        private readonly IVisorDocumentacion res61;
+     
 
-        public VisorDocumentacionUIController(IRes61 res61) : base(new VisorDocumentacionUI())
+        public VisorDocumentacionUIController(IVisorDocumentacion res61) : base(new VisorDocumentacionUI())
         {
             this.res61 = res61;
-            visorDocumentosService = AplicationConfig.Component.VisorDocumentacionService;
-            resolucion61 = visorDocumentosService.getRes61();
+            visorDocumentosService = AplicationConfig.Component.VisorDocumentacionService;            
         }
 
         public bool IsEmptyRtf(string rft)
         {
-            return visorDocumentosService.isEmptyRft(rft) || String.IsNullOrEmpty(rft);
+            return visorDocumentosService.IsEmptyRft(rft) || String.IsNullOrEmpty(rft);
         }
 
         public override VisorDocumentacionUI ejecutar()
-        {           
-            forma.btnResolucion61.Click += new EventHandler(btnResolucion61_Click);
+        {                      
             forma.Load += new EventHandler(forma_Load);
             return forma;
         }
@@ -45,15 +43,13 @@ namespace BRapp.UIControlers.Components
                 llenarListaGrupoTiendas();
             }
             else
-            {
-                forma.panelHeader.Visible = res61.GetTipoGrupoDocumentacion()[0].TipoIndicacion == Enums.TipoIndicacion.RESOLUCION61;
+            {               
                 llenarListaDocumentos();
             }           
         }
 
         private void llenarListaGrupoTiendas()
-        {
-            forma.panelHeader.Visible = false;
+        {           
             forma.panelCard.Visible = false;
             forma.panelText.Visible = true;          
             forma.panelText.Dock = DockStyle.Fill;
@@ -63,12 +59,9 @@ namespace BRapp.UIControlers.Components
         {
             forma.panelText.Visible = false;            
             forma.panelCard.Visible = true;
-            forma.panelCard.Dock = DockStyle.Fill;
+            forma.panelCard.Dock = DockStyle.Fill;          
 
-            forma.lbResolucion61.Text = resolucion61.ToString();
-            forma.btnResolucion61.IconChar = resolucion61.getIcono();
-          
-
+            forma.panelDepartamentos.Controls.Clear();
             foreach (TipoGrupoDocumentacion tipo in res61.GetTipoGrupoDocumentacion())
             {              
                 Label encabezadoLabel = createLabel(tipo);
@@ -93,8 +86,8 @@ namespace BRapp.UIControlers.Components
 
         private void ProcesarTipoGrupoDocumentacion(TipoGrupoDocumentacion tipo)
         {
-            List<GrupoDocumentacion> grupoDocumentacions = visorDocumentosService.getGrupoDocumentacion(tipo);          
-            int order = 0;
+            List<GrupoDocumentacion> grupoDocumentacions = visorDocumentosService.GetGrupoDocumentacion(tipo);          
+            int order = 0;           
             foreach (GrupoDocumentacion grupo in grupoDocumentacions)
             {
                 ICard card = new DocumentacionUCController(grupo, ++order);
@@ -106,16 +99,6 @@ namespace BRapp.UIControlers.Components
             }
             ExtraSpaceCard extraCard = new ExtraSpaceCard();
             forma.panelDepartamentos.Controls.Add(extraCard);
-        }
-
-
-
-        private void btnResolucion61_Click(object sender, EventArgs e)
-        {
-            ResolucionUCController resolucionUCController = new ResolucionUCController(resolucion61);
-            resolucionUCController.setInfo();
-            var CardDialogUIController = new CardDialogUIController(resolucionUCController);
-            CardDialogUIController.showDialog();
         }
     }
 }

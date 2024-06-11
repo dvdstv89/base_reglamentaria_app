@@ -1,11 +1,12 @@
 ﻿
 using BRapp.Model;
+using BRapp.Utiles;
 
 namespace BRappAdmin.Services.Interfaces
 {
     internal interface IAppServiceAdmin
     {
         App getApp();
-        bool updateApp(App app);
+        ActionResult updateApp(App app);
     }
 }

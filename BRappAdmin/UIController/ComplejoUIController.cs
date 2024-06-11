@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using System.Xml.Linq;
 using ComplejoUI = BRappAdmin.UI.ComplejoUI;
 using ListViewItem = System.Windows.Forms.ListViewItem;
 
@@ -73,6 +72,9 @@ namespace BRappAdmin.UIControlers
             forma.lwComplejos.Layout += resizeListComplejo;
             forma.lwDepartamentos.Layout += resizeListDepartamento;
             forma.lwTiendas.Layout += resizeListTienda;
+
+            forma.eliminarDepartamentoToolStripMenuItem .Click += new EventHandler(eliminarDepartamentoToolStripMenuItem_Click);
+            forma.eliminarTiendaToolStripMenuItem.Click += new EventHandler(eliminarTiendaToolStripMenuItem_Click);
 
             forma.Resize += Forma_Resize;
             return base.ejecutar();
@@ -188,7 +190,7 @@ namespace BRappAdmin.UIControlers
 
         private void updateListComplejos()
         {
-            complejos = complejoService.getAll();
+            complejos = complejoService.GetAll();
             complejos = complejos.OrderBy(t => t.Orden).ToList();
             forma.lwComplejos.Items.Clear();
             foreach (Complejo papel in complejos)
@@ -201,7 +203,7 @@ namespace BRappAdmin.UIControlers
         }
         private void updateListDepartamentos()
         {
-            departamentos = departamentoService.getDepartamentosByComplejo(getComplejoSeleccionado());
+            departamentos = departamentoService.GetDepartamentosByComplejo(getComplejoSeleccionado());
             departamentos = departamentos.OrderBy(t => t.Orden).ToList();
             forma.lwDepartamentos.Items.Clear();
             foreach (Departamento papel in departamentos)
@@ -214,13 +216,17 @@ namespace BRappAdmin.UIControlers
         }
         private void updateListTiendas()
         {
-            tiendas = tiendaService.getTiendasByComplejo(getComplejoSeleccionado());
+            tiendas = tiendaService.GetTiendasByComplejo(getComplejoSeleccionado());
             tiendas= tiendas.OrderBy(t=> t.Orden).ToList();
 
             forma.lwTiendas.Items.Clear();
             foreach (Tienda papel in tiendas)
             {
                 var item = new ListViewItem(papel.ToString());
+                if(papel.Departamento != null)
+                {
+                    item.SubItems.Add(papel.Departamento.ToString());
+                }               
                 item.Tag = papel;
                 forma.lwTiendas.Items.Add(item);
             }
@@ -278,6 +284,7 @@ namespace BRappAdmin.UIControlers
             itemDepartamentoSeleccionado = forma.lwDepartamentos.SelectedItems[0];
             indexItemDepartamentoSeleccionado = forma.lwDepartamentos.Items.IndexOf(itemDepartamentoSeleccionado);
             forma.modificarDapartamentoToolStripMenuItem.Enabled = true;
+            forma.eliminarDepartamentoToolStripMenuItem.Enabled = true;
 
             forma.subirDepartamentoToolStripMenuItem.Visible = indexItemDepartamentoSeleccionado > 0;
             forma.bajarDepartamentoToolStripMenuItem.Visible = indexItemDepartamentoSeleccionado < forma.lwDepartamentos.Items.Count - 1;
@@ -287,6 +294,7 @@ namespace BRappAdmin.UIControlers
             itemTiendaSeleccionado = forma.lwTiendas.SelectedItems[0];
             indexItemTiendaSeleccionado = forma.lwTiendas.Items.IndexOf(itemTiendaSeleccionado);
             forma.modificarTiendaToolStripMenuItem.Enabled = true;
+            forma.eliminarTiendaToolStripMenuItem.Enabled = true;
 
             forma.subirTiendaToolStripMenuItem.Visible = indexItemTiendaSeleccionado > 0;
             forma.bajarTiendaToolStripMenuItem.Visible = indexItemTiendaSeleccionado < forma.lwTiendas.Items.Count - 1;
@@ -309,6 +317,7 @@ namespace BRappAdmin.UIControlers
         private void desmarcarDepartamento()
         {
             forma.modificarDapartamentoToolStripMenuItem.Enabled = false;
+            forma.eliminarDepartamentoToolStripMenuItem.Enabled = false;
             itemDepartamentoSeleccionado = null;
             forma.lwDepartamentos.SelectedItems.Clear();
             forma.subirDepartamentoToolStripMenuItem.Visible = false;
@@ -321,6 +330,7 @@ namespace BRappAdmin.UIControlers
             forma.lwTiendas.SelectedItems.Clear();
             forma.subirTiendaToolStripMenuItem.Visible = false;
             forma.bajarTiendaToolStripMenuItem.Visible = false;
+            forma.eliminarTiendaToolStripMenuItem.Enabled = false;
         }
        
         private Complejo getComplejoSeleccionado()
@@ -349,7 +359,8 @@ namespace BRappAdmin.UIControlers
         private void resizeListTienda(object sender, LayoutEventArgs e)
         {
             int totalWidth = forma.lwTiendas.Width - 25;
-            forma.columnNombreTienda.Width = RoundNumber((totalWidth * 1));
+            forma.columnNombreTienda.Width = RoundNumber((totalWidth * 0.6));
+            forma.columnGrupoTienda.Width = RoundNumber((totalWidth * 0.4));
         }
 
         private void txtSearchComplejo_TextChanged(object sender, EventArgs e)
@@ -386,7 +397,7 @@ namespace BRappAdmin.UIControlers
         {
             Complejo grupo = getListViewItemSeleccionado<Complejo>(item);
             grupo.Orden = orden;
-            complejoService.saveOrUpdate(grupo);
+            complejoService.SaveOrUpdate(grupo);
         }
 
         private void subirTiendaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -408,7 +419,7 @@ namespace BRappAdmin.UIControlers
         {
             Tienda grupo = getListViewItemSeleccionado<Tienda>(item);
             grupo.Orden = orden;
-            tiendaService.saveOrUpdate(grupo);
+            tiendaService.SaveOrUpdate(grupo);
         }
 
         private void subirDepartamentoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -429,7 +440,18 @@ namespace BRappAdmin.UIControlers
         {
             Departamento grupo = getListViewItemSeleccionado<Departamento>(item);
             grupo.Orden = orden;
-            departamentoService.saveOrUpdate(grupo);
+            departamentoService.SaveOrUpdate(grupo);
+        }
+
+        private void eliminarDepartamentoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            departamentoService.Delete(getDepartamentoSeleccionado().Id);
+            updateListDepartamentos();
+        }
+        private void eliminarTiendaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tiendaService.Delete(getTiendaSeleccionado().Id);
+            updateListTiendas();
         }
 
         private void Forma_Resize(object sender, EventArgs e)

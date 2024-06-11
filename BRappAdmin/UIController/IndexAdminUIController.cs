@@ -14,6 +14,10 @@ namespace BRappAdmin.UIControlers
             forma.documentosToolStripMenuItem.Click += new EventHandler(documentosToolStripMenuItem_Click);
             forma.complejosToolStripMenuItem.Click += new EventHandler(complejosToolStripMenuItem_Click);
             forma.tipoDeGruposDeDocumentacionToolStripMenuItem.Click += new EventHandler(tipoDeGruposDeDocumentacionToolStripMenuItem_Click);
+
+            forma.MenuDocumentalToolStripMenuItem.Click += new EventHandler(MenuDocumentalToolStripMenuItem_Click);
+            forma.TipoDocumentacionToolStripMenuItem.Click += new EventHandler(TipoDocumentacionToolStripMenuItem_Click);
+            forma.ClasificacionDocumentacionToolStripMenuItem.Click += new EventHandler(ClasificacionDocumentacionToolStripMenuItem_Click);
             return base.ejecutar();
         }
 
@@ -68,6 +72,30 @@ namespace BRappAdmin.UIControlers
             forma.panelBusqueda.Visible = false;
             var formulario = TipoGrupoDocumentacionUIController.Instance;
             formatearFormulario(forma.tipoDeGruposDeDocumentacionToolStripMenuItem, forma.adminToolStripMenuItem, formulario, ButtonName.GrupoDocumentacion_App);
+            formulario.ejecutar().Show();
+        }
+
+        private void MenuDocumentalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            forma.panelBusqueda.Visible = false;
+            var formulario = MenuDocumentalUIController.Instance;
+            formatearFormulario(forma.MenuDocumentalToolStripMenuItem, forma.adminToolStripMenuItem, formulario, ButtonName.Nomenclador_MenuDocumental_App);
+            formulario.ejecutar().Show();
+        }
+
+        private void TipoDocumentacionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            forma.panelBusqueda.Visible = false;
+            var formulario = TipoDocumentacionlUIController.Instance;
+            formatearFormulario(forma.TipoDocumentacionToolStripMenuItem, forma.adminToolStripMenuItem, formulario, ButtonName.Nomenclador_TipoDocumentacion_App);
+            formulario.ejecutar().Show();
+        }
+
+        private void ClasificacionDocumentacionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            forma.panelBusqueda.Visible = false;
+            var formulario = ClasificacionDocumentacionUIController.Instance;
+            formatearFormulario(forma.ClasificacionDocumentacionToolStripMenuItem, forma.adminToolStripMenuItem, formulario, ButtonName.Nomenclador_ClasificacionDocumentacion_App);
             formulario.ejecutar().Show();
         }
     }

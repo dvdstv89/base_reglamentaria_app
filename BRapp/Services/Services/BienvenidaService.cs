@@ -11,7 +11,7 @@ namespace BRapp.Services.Services
             this.sucursalService = sucursalService;
         }
 
-        public string getBienvenida()
+        public string GetBienvenida()
         {
             return sucursalService.GetApp().Bienvenida;
         }

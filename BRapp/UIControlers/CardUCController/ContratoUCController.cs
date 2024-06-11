@@ -9,11 +9,11 @@ using System.Windows.Forms;
 
 namespace BRapp.UIControlers.CardUCController
 {
-    internal class ContratoUCController : BaseUCController<ContratoCard, Contrato>, ICard
-    {    
-        public ContratoUCController(Contrato documento) : base(new ContratoCard(), documento)
-        {           
-            
+    internal class ContratoUCController : BaseUCController<ContratoCard, Papel>, ICard
+    {
+        public ContratoUCController(Papel documento) : base(new ContratoCard(), documento)
+        {
+
         }
 
         public override UserControl get()
@@ -30,18 +30,18 @@ namespace BRapp.UIControlers.CardUCController
             card.iconPrincipal.IconChar = objeto.getIcono();
             card.labelName.Text = objeto.Name;
             card.labelNumero.Text = objeto.Numero;
-            card.tbActaAcuerdo.Text = objeto.getActaAcuerdo();
+            card.tbActaAcuerdo.Text = objeto.NumeroAcuerdo.ToString();
             card.tbCliente.Text = objeto.Cliente.Name;
-            card.tbTipoContrato.Text = objeto.TipoContrato.ToString();
+            card.tbTipoContrato.Text = objeto.Tipo;
             card.tbResponsable.Text = objeto.Responsable.Name;
             card.tbFechaInicio.Text = FechaUtil.getShortText(objeto.FechaFirma);
             card.tbFechaFin.Text = FechaUtil.getShortText(objeto.FechaVencimiento);
             int diasRestantes = (int)objeto.getDiasRestantes();
-            card.tbDiasRestantes.Text = (diasRestantes > -999) ? diasRestantes.ToString() : "???";          
-            if (objeto.Cliente.hasLogo())
+            card.tbDiasRestantes.Text = (diasRestantes > -999) ? diasRestantes.ToString() : "???";
+            if (((PersonaJuridica)objeto.Cliente).hasLogo())
             {
                 card.iconPictureBox1.Visible = false;
-                using (MemoryStream ms = new MemoryStream(objeto.Cliente.Logo.Data))
+                using (MemoryStream ms = new MemoryStream(((PersonaJuridica)objeto.Cliente).Logo.Data))
                 {
                     using (Image originalImage = Image.FromStream(ms))
                     {
@@ -50,23 +50,30 @@ namespace BRapp.UIControlers.CardUCController
                 }
             }
             card.btnPdf.Visible = objeto.hasPdfName();
-            if (objeto.isProximoVencerse())
+            if (objeto.isProximoVencerse() || objeto.isVencido())
             {
                 card.tbDiasRestantes.BackColor= Color.Red;
                 card.labelName.BackColor = Color.Red;
-                card.panelTitle.BackColor = Color.Red;              
+                card.panelTitle.BackColor = Color.Red;
+                card.labelName.ForeColor = Color.White;
+                card.iconPrincipal.IconColor = Color.White;
+                card.tbDiasRestantes.ForeColor= Color.White;
+                card.tbDiasRestantes.ForeColor = Color.White;
             }
             else if (objeto.isVencido())
             {
                 card.tbDiasRestantes.BackColor = Color.Black;
                 card.labelName.BackColor = Color.Black;
                 card.panelTitle.BackColor = Color.Black;
+                card.labelName.ForeColor = Color.White;
+                card.iconPrincipal.IconColor = Color.White;
+                card.tbDiasRestantes.ForeColor = Color.White;
             }
 
-            if(objeto.ContratoPadre != null)
+            if(objeto.Padre != null)
             {
                 card.panelContratoPadre.Visible = true;
-                card.tbContratoPadre.Text = objeto.ContratoPadre.Numero;               
+                card.tbContratoPadre.Text = objeto.Padre.Numero;               
             }
             else
             {
@@ -76,20 +83,20 @@ namespace BRapp.UIControlers.CardUCController
 
         private void btnPdf_Click(object sender, EventArgs e)
         {           
-            var visorDocumentosUIController = new VisorPDFUIController(objeto.DocumentoPDF);
+            var visorDocumentosUIController = new VisorPDFUIController(objeto.ArchivoPDF);
             visorDocumentosUIController.showDialog();
         }
 
         private void btnResponsable_Click(object sender, EventArgs e)
         {
-            PersonaJuridicaUCController personaJuridicaUCController = new PersonaJuridicaUCController(objeto.Responsable);
+            PersonaJuridicaUCController personaJuridicaUCController = new PersonaJuridicaUCController((PersonaJuridica)objeto.Responsable);
             personaJuridicaUCController.setInfo();
             var CardDialogUIController = new CardDialogUIController(personaJuridicaUCController);
             CardDialogUIController.showDialog();
         }
         private void btnCliente_Click(object sender, EventArgs e)
         {
-            PersonaJuridicaUCController personaJuridicaUCController = new PersonaJuridicaUCController(objeto.Cliente);
+            PersonaJuridicaUCController personaJuridicaUCController = new PersonaJuridicaUCController((PersonaJuridica)objeto.Cliente);
             personaJuridicaUCController.setInfo();
             var CardDialogUIController = new CardDialogUIController(personaJuridicaUCController);
             CardDialogUIController.showDialog();
@@ -97,7 +104,7 @@ namespace BRapp.UIControlers.CardUCController
 
         private void btnContratoPadre_Click(object sender, EventArgs e)
         {
-            ContratoUCController contratoUCController = new ContratoUCController(objeto.ContratoPadre);
+            ContratoUCController contratoUCController = new ContratoUCController(objeto.Padre);
             contratoUCController.setInfo();
             var CardDialogUIController = new CardDialogUIController(contratoUCController);
             CardDialogUIController.showDialog();

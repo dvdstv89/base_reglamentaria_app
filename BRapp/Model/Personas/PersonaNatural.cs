@@ -1,6 +1,5 @@
 ﻿using BRapp.Enums;
-using System;
-using System.Xml.Linq;
+using System.Text;
 
 namespace BRapp.Model
 {
@@ -20,7 +19,26 @@ namespace BRapp.Model
 
         public override string getPhonesNumber()
         {
-            return Phone + " / " + Cell;
+            StringBuilder result= new StringBuilder();
+            if (!Phone.Equals(string.Empty))
+            {
+                result.Append(Phone);
+            }
+
+            if (!Cell.Equals(string.Empty))
+            {
+                if(result.Length > 0)
+                {
+                    result.Append(" / ");
+                }
+
+                result.Append(Cell);
+            }
+            return result.ToString();
+        }
+        public override string GetCargo()
+        {
+            return Cargo;
         }
     }
 }

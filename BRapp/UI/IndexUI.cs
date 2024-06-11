@@ -21,5 +21,15 @@ namespace BRapp.UI
         {
 
         }
+
+        private void dGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clasificacionDeLaDocumentaciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

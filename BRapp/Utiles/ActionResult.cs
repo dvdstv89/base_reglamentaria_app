@@ -5,6 +5,7 @@
         CREATED,
         UPDATED,
         DELETED,
-        FAILED
+        FAILED,
+        NONE
     }
 }

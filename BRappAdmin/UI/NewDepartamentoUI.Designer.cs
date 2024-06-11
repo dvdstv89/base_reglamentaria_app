@@ -42,6 +42,7 @@
             this.tbDescripcion = new RichTextBoxEx.RichTextBoxEx();
             this.tbTrabajadores = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
+            this.columnDescripcion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbTrabajadores)).BeginInit();
@@ -121,7 +122,8 @@
             // 
             this.lwTipos.CheckBoxes = true;
             this.lwTipos.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnName});
+            this.columnName,
+            this.columnDescripcion});
             this.lwTipos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lwTipos.FullRowSelect = true;
             this.lwTipos.GridLines = true;
@@ -166,7 +168,7 @@
             this.tbDescripcion.SetColorWithFont = true;
             this.tbDescripcion.ShowToolStrip = true;
             this.tbDescripcion.Size = new System.Drawing.Size(536, 122);
-            this.tbDescripcion.TabIndex = 25;           
+            this.tbDescripcion.TabIndex = 25;
             // 
             // tbTrabajadores
             // 
@@ -198,6 +200,10 @@
             this.label4.Size = new System.Drawing.Size(69, 13);
             this.label4.TabIndex = 70;
             this.label4.Text = "Trabajadores";
+            // 
+            // columnDescripcion
+            // 
+            this.columnDescripcion.Text = "Descripción";
             // 
             // NewDepartamentoUI
             // 
@@ -242,5 +248,6 @@
         public RichTextBoxEx.RichTextBoxEx tbDescripcion;
         public System.Windows.Forms.NumericUpDown tbTrabajadores;
         private System.Windows.Forms.Label label4;
+        public System.Windows.Forms.ColumnHeader columnDescripcion;
     }
 }

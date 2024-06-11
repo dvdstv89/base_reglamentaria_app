@@ -227,8 +227,14 @@
   <ItemGroup>
     <Compile Include="Data\AplicationAdminConfig.cs" />
     <Compile Include="Data\ComponentAdmin.cs" />
+    <Compile Include="UIController\ClasificacionDocumentacionUIController.cs" />
+    <Compile Include="UIController\NewMenuDocumentalUIController.cs" />
+    <Compile Include="UIController\NewClasificacionDocumentacionUIController.cs" />
+    <Compile Include="UIController\NewTipoDocumentacionUIController.cs" />
+    <Compile Include="UIController\TipoDocumentacionlUIController.cs" />
     <Compile Include="UIController\NewDepartamentoUIController.cs" />
     <Compile Include="UIController\NewTipoGrupoDocumentacionUIController.cs" />
+    <Compile Include="UIController\MenuDocumentalUIController.cs" />
     <Compile Include="UIController\TipoGrupoDocumentacionUIController.cs" />
     <Compile Include="UIController\ComplejoUIController.cs" />
     <Compile Include="UIController\NewComplejoUIController.cs" />
@@ -239,6 +245,36 @@
     <Compile Include="UIController\DocumentosUIController.cs" />
     <Compile Include="UIController\ContactosUIController.cs" />
     <Compile Include="UIController\IndexAdminUIController.cs" />
+    <Compile Include="UI\ClasificacionDocumentacionUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ClasificacionDocumentacionUI.Designer.cs">
+      <DependentUpon>ClasificacionDocumentacionUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\NewCLasificacionDocumentacionUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\NewCLasificacionDocumentacionUI.Designer.cs">
+      <DependentUpon>NewCLasificacionDocumentacionUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\NewTipoDocumentacionUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\NewTipoDocumentacionUI.Designer.cs">
+      <DependentUpon>NewTipoDocumentacionUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\NewMenuDocumentalUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\NewMenuDocumentalUI.Designer.cs">
+      <DependentUpon>NewMenuDocumentalUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\TipoDocumentacionUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\TipoDocumentacionUI.Designer.cs">
+      <DependentUpon>TipoDocumentacionUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\NewDepartamentoUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -256,6 +292,12 @@
     </Compile>
     <Compile Include="UI\NewComplejoUI.Designer.cs">
       <DependentUpon>NewComplejoUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MenuDocumentalUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MenuDocumentalUI.Designer.cs">
+      <DependentUpon>MenuDocumentalUI.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\TipoGrupoDocumentacionUI.cs">
       <SubType>Form</SubType>
@@ -310,6 +352,21 @@
     <Compile Include="UI\AppUI.Designer.cs">
       <DependentUpon>AppUI.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\ClasificacionDocumentacionUI.resx">
+      <DependentUpon>ClasificacionDocumentacionUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\NewCLasificacionDocumentacionUI.resx">
+      <DependentUpon>NewCLasificacionDocumentacionUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\NewTipoDocumentacionUI.resx">
+      <DependentUpon>NewTipoDocumentacionUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\NewMenuDocumentalUI.resx">
+      <DependentUpon>NewMenuDocumentalUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\TipoDocumentacionUI.resx">
+      <DependentUpon>TipoDocumentacionUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\NewDepartamentoUI.resx">
       <DependentUpon>NewDepartamentoUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -318,6 +375,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\NewComplejoUI.resx">
       <DependentUpon>NewComplejoUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MenuDocumentalUI.resx">
+      <DependentUpon>MenuDocumentalUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\TipoGrupoDocumentacionUI.resx">
       <DependentUpon>TipoGrupoDocumentacionUI.cs</DependentUpon>

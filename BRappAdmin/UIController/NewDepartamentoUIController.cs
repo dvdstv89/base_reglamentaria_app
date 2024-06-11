@@ -53,12 +53,13 @@ namespace BRappAdmin.UIControlers
 
         private void updateListTipoGrupoDocumentacion()
         {
-            List<TipoGrupoDocumentacion> tipoGrupoDocumentacions = tipoGrupoDocumentacionService.getAll();
+            List<TipoGrupoDocumentacion> tipoGrupoDocumentacions = tipoGrupoDocumentacionService.GetAllForDepartamentos();
             forma.lwTipos.Items.Clear();
             forma.lwTipos.Width++;
             foreach (TipoGrupoDocumentacion papel in tipoGrupoDocumentacions)
             {
                 var item = new ListViewItem(papel.ToString());
+                item.SubItems.Add(papel.Descripcion);
                 item.Tag = papel;
                 forma.lwTipos.Items.Add(item);
             }
@@ -75,7 +76,7 @@ namespace BRappAdmin.UIControlers
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             CapturarDatos();
-            departamentoService.saveOrUpdate(departamento);
+            departamentoService.SaveOrUpdate(departamento);
             forma.DialogResult = DialogResult.OK;
             forma.Close();
         }
@@ -123,7 +124,8 @@ namespace BRappAdmin.UIControlers
         private void resizeListTipoGrupoDocumentacion(object sender, LayoutEventArgs e)
         {
             int totalWidth = forma.lwTipos.Width - 25;
-            forma.columnName.Width = RoundNumber((totalWidth * 1));
+            forma.columnName.Width = RoundNumber((totalWidth * 0.5));
+            forma.columnDescripcion.Width = RoundNumber((totalWidth * 0.5));
         }
     }
 }

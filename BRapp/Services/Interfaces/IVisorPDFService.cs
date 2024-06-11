@@ -5,6 +5,6 @@ namespace BRapp.Services.Interfaces
 {
     public interface IVisorPDFService
     {
-        DocumentoPDF getDocumentoPDFApliado(Guid id);
+        DocumentoPDFBlob GetDocumentoPDFApliado(Guid id);
     }
 }

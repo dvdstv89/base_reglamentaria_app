@@ -39,44 +39,34 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuStripPrincipal = new System.Windows.Forms.MenuStrip();
             this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.appToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contactosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.documentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.complejosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tipoDeGruposDeDocumentacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nomencladoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuDocumentalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TipoDocumentacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClasificacionDocumentacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bienvenidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sucursalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sistemasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.procedimientosYReglamentosEmpresarialesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.manualesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reglamentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.procedimientosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.planesYProgramasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resolucionesEmpresarialesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.documentosInternosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.planesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.programasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resolucionesEIndicosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.otrosDocumentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contrataciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.directorioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelPaginaActiva = new System.Windows.Forms.Panel();
             this.panelBusqueda = new System.Windows.Forms.Panel();
+            this.btnBuscar = new FontAwesome.Sharp.IconButton();
+            this.btnLimpiarBusqueda = new FontAwesome.Sharp.IconButton();
             this.cbArchivados = new System.Windows.Forms.CheckBox();
             this.tbBuscar = new System.Windows.Forms.TextBox();
             this.labelMenuSeleccionado = new System.Windows.Forms.Label();
             this.panelMain = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnLimpiarBusqueda = new FontAwesome.Sharp.IconButton();
-            this.btnBuscar = new FontAwesome.Sharp.IconButton();
             this.panelFooter.SuspendLayout();
             this.panelBanner.SuspendLayout();
             this.panelMenu.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.menuStripPrincipal.SuspendLayout();
             this.panelPaginaActiva.SuspendLayout();
             this.panelBusqueda.SuspendLayout();
             this.SuspendLayout();
@@ -186,36 +176,33 @@
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.SystemColors.Info;
-            this.panelMenu.Controls.Add(this.menuStrip1);
+            this.panelMenu.Controls.Add(this.menuStripPrincipal);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelMenu.Location = new System.Drawing.Point(14, 107);
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(1475, 42);
             this.panelMenu.TabIndex = 4;
             // 
-            // menuStrip1
+            // menuStripPrincipal
             // 
-            this.menuStrip1.AutoSize = false;
-            this.menuStrip1.BackColor = System.Drawing.Color.Orange;
-            this.menuStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuStrip1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStripPrincipal.AutoSize = false;
+            this.menuStripPrincipal.BackColor = System.Drawing.Color.Orange;
+            this.menuStripPrincipal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.menuStripPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.menuStripPrincipal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuStripPrincipal.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.menuStripPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.adminToolStripMenuItem,
             this.bienvenidaToolStripMenuItem,
             this.sucursalToolStripMenuItem,
-            this.sistemasToolStripMenuItem,
-            this.procedimientosYReglamentosEmpresarialesToolStripMenuItem,
-            this.documentosInternosToolStripMenuItem,
             this.consultorToolStripMenuItem,
             this.directorioToolStripMenuItem});
-            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1475, 42);
-            this.menuStrip1.TabIndex = 2;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStripPrincipal.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.menuStripPrincipal.Location = new System.Drawing.Point(0, 0);
+            this.menuStripPrincipal.Name = "menuStripPrincipal";
+            this.menuStripPrincipal.Size = new System.Drawing.Size(1475, 42);
+            this.menuStripPrincipal.TabIndex = 2;
+            this.menuStripPrincipal.Text = "menuStrip1";
             // 
             // adminToolStripMenuItem
             // 
@@ -224,7 +211,8 @@
             this.contactosToolStripMenuItem,
             this.documentosToolStripMenuItem,
             this.complejosToolStripMenuItem,
-            this.tipoDeGruposDeDocumentacionToolStripMenuItem});
+            this.tipoDeGruposDeDocumentacionToolStripMenuItem,
+            this.nomencladoresToolStripMenuItem});
             this.adminToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
             this.adminToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded;
@@ -234,32 +222,61 @@
             // appToolStripMenuItem
             // 
             this.appToolStripMenuItem.Name = "appToolStripMenuItem";
-            this.appToolStripMenuItem.Size = new System.Drawing.Size(292, 26);
+            this.appToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
             this.appToolStripMenuItem.Text = "Empresa";
             // 
             // contactosToolStripMenuItem
             // 
             this.contactosToolStripMenuItem.Name = "contactosToolStripMenuItem";
-            this.contactosToolStripMenuItem.Size = new System.Drawing.Size(292, 26);
+            this.contactosToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
             this.contactosToolStripMenuItem.Text = "Contactos";
             // 
             // documentosToolStripMenuItem
             // 
             this.documentosToolStripMenuItem.Name = "documentosToolStripMenuItem";
-            this.documentosToolStripMenuItem.Size = new System.Drawing.Size(292, 26);
+            this.documentosToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
             this.documentosToolStripMenuItem.Text = "Documentos";
             // 
             // complejosToolStripMenuItem
             // 
             this.complejosToolStripMenuItem.Name = "complejosToolStripMenuItem";
-            this.complejosToolStripMenuItem.Size = new System.Drawing.Size(292, 26);
+            this.complejosToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
             this.complejosToolStripMenuItem.Text = "Complejos";
             // 
             // tipoDeGruposDeDocumentacionToolStripMenuItem
             // 
             this.tipoDeGruposDeDocumentacionToolStripMenuItem.Name = "tipoDeGruposDeDocumentacionToolStripMenuItem";
-            this.tipoDeGruposDeDocumentacionToolStripMenuItem.Size = new System.Drawing.Size(292, 26);
-            this.tipoDeGruposDeDocumentacionToolStripMenuItem.Text = "Tipo de Grupo Documentación";
+            this.tipoDeGruposDeDocumentacionToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
+            this.tipoDeGruposDeDocumentacionToolStripMenuItem.Text = "Grupo Documentación";
+            // 
+            // nomencladoresToolStripMenuItem
+            // 
+            this.nomencladoresToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuDocumentalToolStripMenuItem,
+            this.TipoDocumentacionToolStripMenuItem,
+            this.ClasificacionDocumentacionToolStripMenuItem});
+            this.nomencladoresToolStripMenuItem.Name = "nomencladoresToolStripMenuItem";
+            this.nomencladoresToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
+            this.nomencladoresToolStripMenuItem.Text = "Nomencladores";
+            // 
+            // MenuDocumentalToolStripMenuItem
+            // 
+            this.MenuDocumentalToolStripMenuItem.Name = "MenuDocumentalToolStripMenuItem";
+            this.MenuDocumentalToolStripMenuItem.Size = new System.Drawing.Size(316, 26);
+            this.MenuDocumentalToolStripMenuItem.Text = "Menu Documental";
+            // 
+            // TipoDocumentacionToolStripMenuItem
+            // 
+            this.TipoDocumentacionToolStripMenuItem.Name = "TipoDocumentacionToolStripMenuItem";
+            this.TipoDocumentacionToolStripMenuItem.Size = new System.Drawing.Size(316, 26);
+            this.TipoDocumentacionToolStripMenuItem.Text = "Tipo de Documentos";
+            // 
+            // ClasificacionDocumentacionToolStripMenuItem
+            // 
+            this.ClasificacionDocumentacionToolStripMenuItem.Name = "ClasificacionDocumentacionToolStripMenuItem";
+            this.ClasificacionDocumentacionToolStripMenuItem.Size = new System.Drawing.Size(316, 26);
+            this.ClasificacionDocumentacionToolStripMenuItem.Text = "Clasificación de la Documentación";
+            this.ClasificacionDocumentacionToolStripMenuItem.Click += new System.EventHandler(this.clasificacionDeLaDocumentaciónToolStripMenuItem_Click);
             // 
             // bienvenidaToolStripMenuItem
             // 
@@ -276,109 +293,6 @@
             this.sucursalToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded;
             this.sucursalToolStripMenuItem.Size = new System.Drawing.Size(81, 38);
             this.sucursalToolStripMenuItem.Text = "Sucursal";
-            // 
-            // sistemasToolStripMenuItem
-            // 
-            this.sistemasToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.sistemasToolStripMenuItem.Name = "sistemasToolStripMenuItem";
-            this.sistemasToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded;
-            this.sistemasToolStripMenuItem.Size = new System.Drawing.Size(84, 38);
-            this.sistemasToolStripMenuItem.Text = "Sistemas";
-            // 
-            // procedimientosYReglamentosEmpresarialesToolStripMenuItem
-            // 
-            this.procedimientosYReglamentosEmpresarialesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.manualesToolStripMenuItem,
-            this.reglamentosToolStripMenuItem,
-            this.procedimientosToolStripMenuItem,
-            this.planesYProgramasToolStripMenuItem,
-            this.resolucionesEmpresarialesToolStripMenuItem,
-            this.dGToolStripMenuItem});
-            this.procedimientosYReglamentosEmpresarialesToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.procedimientosYReglamentosEmpresarialesToolStripMenuItem.Name = "procedimientosYReglamentosEmpresarialesToolStripMenuItem";
-            this.procedimientosYReglamentosEmpresarialesToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded;
-            this.procedimientosYReglamentosEmpresarialesToolStripMenuItem.Size = new System.Drawing.Size(338, 38);
-            this.procedimientosYReglamentosEmpresarialesToolStripMenuItem.Text = "Procedimientos y Reglamentos Empresariales";
-            // 
-            // manualesToolStripMenuItem
-            // 
-            this.manualesToolStripMenuItem.Name = "manualesToolStripMenuItem";
-            this.manualesToolStripMenuItem.Size = new System.Drawing.Size(272, 26);
-            this.manualesToolStripMenuItem.Text = "Manuales";
-            // 
-            // reglamentosToolStripMenuItem
-            // 
-            this.reglamentosToolStripMenuItem.Name = "reglamentosToolStripMenuItem";
-            this.reglamentosToolStripMenuItem.Size = new System.Drawing.Size(272, 26);
-            this.reglamentosToolStripMenuItem.Text = "Reglamentos";
-            // 
-            // procedimientosToolStripMenuItem
-            // 
-            this.procedimientosToolStripMenuItem.Name = "procedimientosToolStripMenuItem";
-            this.procedimientosToolStripMenuItem.Size = new System.Drawing.Size(272, 26);
-            this.procedimientosToolStripMenuItem.Text = "Procedimientos";
-            // 
-            // planesYProgramasToolStripMenuItem
-            // 
-            this.planesYProgramasToolStripMenuItem.Name = "planesYProgramasToolStripMenuItem";
-            this.planesYProgramasToolStripMenuItem.Size = new System.Drawing.Size(272, 26);
-            this.planesYProgramasToolStripMenuItem.Text = "Planes y Programas";
-            // 
-            // resolucionesEmpresarialesToolStripMenuItem
-            // 
-            this.resolucionesEmpresarialesToolStripMenuItem.Name = "resolucionesEmpresarialesToolStripMenuItem";
-            this.resolucionesEmpresarialesToolStripMenuItem.Size = new System.Drawing.Size(272, 26);
-            this.resolucionesEmpresarialesToolStripMenuItem.Text = "Resoluciones Empresariales";
-            // 
-            // dGToolStripMenuItem
-            // 
-            this.dGToolStripMenuItem.Name = "dGToolStripMenuItem";
-            this.dGToolStripMenuItem.Size = new System.Drawing.Size(272, 26);
-            this.dGToolStripMenuItem.Text = "DG";
-            // 
-            // documentosInternosToolStripMenuItem
-            // 
-            this.documentosInternosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.planesToolStripMenuItem,
-            this.programasToolStripMenuItem,
-            this.resolucionesEIndicosToolStripMenuItem,
-            this.otrosDocumentosToolStripMenuItem,
-            this.contrataciónToolStripMenuItem});
-            this.documentosInternosToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.documentosInternosToolStripMenuItem.Name = "documentosInternosToolStripMenuItem";
-            this.documentosInternosToolStripMenuItem.Overflow = System.Windows.Forms.ToolStripItemOverflow.AsNeeded;
-            this.documentosInternosToolStripMenuItem.Size = new System.Drawing.Size(171, 38);
-            this.documentosInternosToolStripMenuItem.Text = "Documentos Internos";
-            // 
-            // planesToolStripMenuItem
-            // 
-            this.planesToolStripMenuItem.Name = "planesToolStripMenuItem";
-            this.planesToolStripMenuItem.Size = new System.Drawing.Size(236, 26);
-            this.planesToolStripMenuItem.Text = "Planes";
-            // 
-            // programasToolStripMenuItem
-            // 
-            this.programasToolStripMenuItem.Name = "programasToolStripMenuItem";
-            this.programasToolStripMenuItem.Size = new System.Drawing.Size(236, 26);
-            this.programasToolStripMenuItem.Text = "Programas";
-            // 
-            // resolucionesEIndicosToolStripMenuItem
-            // 
-            this.resolucionesEIndicosToolStripMenuItem.Name = "resolucionesEIndicosToolStripMenuItem";
-            this.resolucionesEIndicosToolStripMenuItem.Size = new System.Drawing.Size(236, 26);
-            this.resolucionesEIndicosToolStripMenuItem.Text = "Resoluciones e Indicos";
-            // 
-            // otrosDocumentosToolStripMenuItem
-            // 
-            this.otrosDocumentosToolStripMenuItem.Name = "otrosDocumentosToolStripMenuItem";
-            this.otrosDocumentosToolStripMenuItem.Size = new System.Drawing.Size(236, 26);
-            this.otrosDocumentosToolStripMenuItem.Text = "Otros Documentos";
-            // 
-            // contrataciónToolStripMenuItem
-            // 
-            this.contrataciónToolStripMenuItem.Name = "contrataciónToolStripMenuItem";
-            this.contrataciónToolStripMenuItem.Size = new System.Drawing.Size(236, 26);
-            this.contrataciónToolStripMenuItem.Text = "Contratación";
             // 
             // consultorToolStripMenuItem
             // 
@@ -418,6 +332,36 @@
             this.panelBusqueda.Name = "panelBusqueda";
             this.panelBusqueda.Size = new System.Drawing.Size(297, 32);
             this.panelBusqueda.TabIndex = 3;
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscar.ForeColor = System.Drawing.Color.White;
+            this.btnBuscar.IconChar = FontAwesome.Sharp.IconChar.Sistrix;
+            this.btnBuscar.IconColor = System.Drawing.Color.Black;
+            this.btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnBuscar.IconSize = 24;
+            this.btnBuscar.Location = new System.Drawing.Point(225, 0);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(36, 32);
+            this.btnBuscar.TabIndex = 39;
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            // 
+            // btnLimpiarBusqueda
+            // 
+            this.btnLimpiarBusqueda.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnLimpiarBusqueda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiarBusqueda.ForeColor = System.Drawing.Color.White;
+            this.btnLimpiarBusqueda.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
+            this.btnLimpiarBusqueda.IconColor = System.Drawing.Color.Black;
+            this.btnLimpiarBusqueda.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnLimpiarBusqueda.IconSize = 24;
+            this.btnLimpiarBusqueda.Location = new System.Drawing.Point(261, 0);
+            this.btnLimpiarBusqueda.Name = "btnLimpiarBusqueda";
+            this.btnLimpiarBusqueda.Size = new System.Drawing.Size(36, 32);
+            this.btnLimpiarBusqueda.TabIndex = 38;
+            this.btnLimpiarBusqueda.UseVisualStyleBackColor = true;
             // 
             // cbArchivados
             // 
@@ -469,36 +413,6 @@
             this.panel1.Size = new System.Drawing.Size(1475, 10);
             this.panel1.TabIndex = 7;
             // 
-            // btnLimpiarBusqueda
-            // 
-            this.btnLimpiarBusqueda.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnLimpiarBusqueda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLimpiarBusqueda.ForeColor = System.Drawing.Color.White;
-            this.btnLimpiarBusqueda.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
-            this.btnLimpiarBusqueda.IconColor = System.Drawing.Color.Black;
-            this.btnLimpiarBusqueda.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnLimpiarBusqueda.IconSize = 24;
-            this.btnLimpiarBusqueda.Location = new System.Drawing.Point(261, 0);
-            this.btnLimpiarBusqueda.Name = "btnLimpiarBusqueda";
-            this.btnLimpiarBusqueda.Size = new System.Drawing.Size(36, 32);
-            this.btnLimpiarBusqueda.TabIndex = 38;
-            this.btnLimpiarBusqueda.UseVisualStyleBackColor = true;
-            // 
-            // btnBusacar
-            // 
-            this.btnBuscar.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.ForeColor = System.Drawing.Color.White;
-            this.btnBuscar.IconChar = FontAwesome.Sharp.IconChar.Sistrix;
-            this.btnBuscar.IconColor = System.Drawing.Color.Black;
-            this.btnBuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnBuscar.IconSize = 24;
-            this.btnBuscar.Location = new System.Drawing.Point(225, 0);
-            this.btnBuscar.Name = "btnBusacar";
-            this.btnBuscar.Size = new System.Drawing.Size(36, 32);
-            this.btnBuscar.TabIndex = 39;
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            // 
             // IndexUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -521,8 +435,8 @@
             this.panelFooter.ResumeLayout(false);
             this.panelBanner.ResumeLayout(false);
             this.panelMenu.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menuStripPrincipal.ResumeLayout(false);
+            this.menuStripPrincipal.PerformLayout();
             this.panelPaginaActiva.ResumeLayout(false);
             this.panelBusqueda.ResumeLayout(false);
             this.panelBusqueda.PerformLayout();
@@ -538,7 +452,7 @@
         private System.Windows.Forms.Panel panel4;
         public System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Panel panelPaginaActiva;
-        public System.Windows.Forms.MenuStrip menuStrip1;
+        public System.Windows.Forms.MenuStrip menuStripPrincipal;
         public System.Windows.Forms.Label labelMenuSeleccionado;
         public System.Windows.Forms.Label labelTitulo;
         public System.Windows.Forms.Label labelSlogan;
@@ -546,28 +460,14 @@
         public System.Windows.Forms.ToolStripMenuItem directorioToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem bienvenidaToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
-        public System.Windows.Forms.ToolStripMenuItem sistemasToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem procedimientosYReglamentosEmpresarialesToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem planesToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem programasToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem resolucionesEIndicosToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem otrosDocumentosToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem contrataciónToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem consultorToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem sucursalToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem manualesToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem reglamentosToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem procedimientosToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem planesYProgramasToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem resolucionesEmpresarialesToolStripMenuItem;
         public System.Windows.Forms.Panel panelIzquierdo;
         public System.Windows.Forms.Panel panelDerecha;
-        public System.Windows.Forms.ToolStripMenuItem documentosInternosToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem adminToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem appToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem contactosToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem documentosToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem dGToolStripMenuItem;
         public System.Windows.Forms.TextBox tbBuscar;
         public System.Windows.Forms.Panel panelBusqueda;
         public System.Windows.Forms.CheckBox cbArchivados;
@@ -575,5 +475,9 @@
         public System.Windows.Forms.ToolStripMenuItem tipoDeGruposDeDocumentacionToolStripMenuItem;
         public FontAwesome.Sharp.IconButton btnBuscar;
         public FontAwesome.Sharp.IconButton btnLimpiarBusqueda;
+        private System.Windows.Forms.ToolStripMenuItem nomencladoresToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem MenuDocumentalToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem TipoDocumentacionToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem ClasificacionDocumentacionToolStripMenuItem;
     }
 }

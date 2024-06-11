@@ -4,6 +4,6 @@ namespace BRapp.Services.Interfaces
 {
     public interface IIndexService
     {      
-        string getFooter();
+        string GetFooter();
     }
 }

@@ -41,13 +41,14 @@ namespace BRappAdmin.UIControlers
                 forma.tbPJLogo.Text = complejo.Organigrama.Name;
                 forma.tbPJName.Text = complejo.Name;
                 forma.comboTipoIndicacion.Text = complejo.TipoComplejo.ToString();
+                forma.tbDescripcion.Rtf = complejo.Descripcion;
             }          
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             CapturarDatos();
-            complejoService.saveOrUpdate(complejo);
+            complejoService.SaveOrUpdate(complejo);
             forma.DialogResult= DialogResult.OK;
             forma.Close();
         }
@@ -58,15 +59,17 @@ namespace BRappAdmin.UIControlers
             Enum.TryParse(forma.comboTipoIndicacion.Text, out tipoComplejo);
             string name = forma.tbPJName.Text;
             Fichero logo = (Fichero)forma.tbPJLogo.Tag;
+            string descripcion = forma.tbDescripcion.Rtf;
             if (complejo != null)
             {
                 complejo.Name = name;  
                 complejo.TipoComplejo= tipoComplejo;
                 if (logo != null) complejo.Organigrama = logo;
+                complejo.Descripcion= descripcion;
             }
             else
             {
-                complejo = new Complejo(name, logo, tipoComplejo, posicion);
+                complejo = new Complejo(name, logo, tipoComplejo, posicion, descripcion);
             }
         }       
 
@@ -74,7 +77,7 @@ namespace BRappAdmin.UIControlers
         { 
             if (forma.openLogo.ShowDialog() == DialogResult.OK)
             {  
-                Fichero fichero = fileService.guardarFichero(forma.openLogo.FileName);
+                Fichero fichero = fileService.GuardarFichero(forma.openLogo.FileName);
                 forma.tbPJLogo.Text = fichero.Name;
                 forma.tbPJLogo.Tag = fichero;
             }

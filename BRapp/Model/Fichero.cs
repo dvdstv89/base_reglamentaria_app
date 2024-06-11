@@ -1,4 +1,6 @@
-﻿namespace BRapp.Model
+﻿using System;
+
+namespace BRapp.Model
 {
     public class Fichero
     {
@@ -8,16 +10,20 @@
         {
             this.Data = Data;
             this.Name = Name;
-        }
-
-        public Fichero clone()
-        {
-            return new Fichero(this.Name, this.Data);
-        }
+        }      
 
         public bool hasDataValid()
         {
             return Data != null && Data.Length > 0;
+        }
+
+        public bool hasDocumento()
+        {
+            return !Name.Equals(String.Empty);
+        }
+        public void CleanData()
+        {
+            Data = null;
         }
     }
 }

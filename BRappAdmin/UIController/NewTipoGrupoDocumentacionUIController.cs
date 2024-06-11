@@ -29,38 +29,38 @@ namespace BRappAdmin.UIControlers
 
         protected override void initDataForm()
         {
-            forma.comboTipoIndicacion.DataSource = Enum.GetValues(typeof(TipoIndicacion));
+            forma.comboBoxMostrar.DataSource = Enum.GetValues(typeof(LugarMostrarDocumentacion));
             if (tipoGrupoDocumentacion != null)
             {
-                forma.tbDescripcion.Rtf = tipoGrupoDocumentacion.Descripcion;
+                forma.tbDescripcion.Text = tipoGrupoDocumentacion.Descripcion;
                 forma.tbPJName.Text = tipoGrupoDocumentacion.Name;
-                forma.comboTipoIndicacion.Text = tipoGrupoDocumentacion.TipoIndicacion.ToString();
+                forma.comboBoxMostrar.Text = tipoGrupoDocumentacion.LugarMostrarDocumentacion.ToString();
             }          
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             CapturarDatos();
-            tipoGrupoDocumentacionServiceAdmin.saveOrUpdate(tipoGrupoDocumentacion);
+            tipoGrupoDocumentacionServiceAdmin.SaveOrUpdate(tipoGrupoDocumentacion);
             forma.DialogResult= DialogResult.OK;
             forma.Close();
         }
        
         private void CapturarDatos()
         {
-            TipoIndicacion tipoIndicacion;
-            Enum.TryParse(forma.comboTipoIndicacion.Text, out tipoIndicacion);
+            LugarMostrarDocumentacion lugarMostrarDocumentacion;
+            Enum.TryParse(forma.comboBoxMostrar.Text, out lugarMostrarDocumentacion);
             string name = forma.tbPJName.Text;
-            string descripcion = forma.tbDescripcion.Rtf;
+            string descripcion = forma.tbDescripcion.Text;
             if (tipoGrupoDocumentacion != null)
             {
                 tipoGrupoDocumentacion.Name = name;              
                 tipoGrupoDocumentacion.Descripcion = descripcion;
-                tipoGrupoDocumentacion.TipoIndicacion = tipoIndicacion;
+                tipoGrupoDocumentacion.LugarMostrarDocumentacion = lugarMostrarDocumentacion;
             }
             else
             {
-                tipoGrupoDocumentacion = new TipoGrupoDocumentacion(name, descripcion, tipoIndicacion);
+                tipoGrupoDocumentacion = new TipoGrupoDocumentacion(name, descripcion, lugarMostrarDocumentacion);
             }
         }  
     }

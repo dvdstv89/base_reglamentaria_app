@@ -12,9 +12,9 @@ namespace BRapp.Services.Services
             this.appService = appService;            
         }
 
-        public string getFooter()
+        public string GetFooter()
         {
-           return buildFooter(appService.getApp());
+           return buildFooter(appService.GetApp());
         }       
 
         protected string buildFooter(App app)

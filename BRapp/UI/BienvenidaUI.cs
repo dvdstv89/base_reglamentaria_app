@@ -16,5 +16,10 @@ namespace BRapp.UI
         {
             InitializeComponent();
         }
+
+        private void richTextBoxEx1_Load(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

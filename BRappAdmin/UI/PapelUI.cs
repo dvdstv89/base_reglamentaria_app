@@ -16,5 +16,15 @@ namespace BRappAdmin.UI
         {
             InitializeComponent();
         }
+
+        private void cbObligatorio_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PapelUI_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

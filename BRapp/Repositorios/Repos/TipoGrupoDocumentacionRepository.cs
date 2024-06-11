@@ -1,86 +1,36 @@
-﻿using BRapp.Data;
-using BRapp.Repositorios.Interfaces;
+﻿using BRapp.Repositorios.Interfaces;
 using BRapp.Mapper;
-using System;
 using System.Collections.Generic;
 using BRapp.Model.Tiendas;
-using System.Linq;
+using BRapp.Utiles;
+using BRapp.Enums;
 
 namespace BRapp.Repositorios.Repos
 {
-    public class TipoGrupoDocumentacionRepository : BaseRepository, ITipoGrupoDocumentacionRepository
+    public class TipoGrupoDocumentacionRepository : BaseRepository<TipoGrupoDocumentacion>, ITipoGrupoDocumentacionRepository
     {
-        private readonly string QUERY_SELECT_ALL = "SELECT * FROM TipoGrupoDocumentacion";
-        private readonly string QUERY_UPDATE = "UPDATE TipoGrupoDocumentacion SET name = @name, descripcion = @descripcion, tipo_indicacion = @tipo_indicacion WHERE id = @Id";
-        private readonly string QUERY_INSERT = "INSERT INTO TipoGrupoDocumentacion (id, name, descripcion, tipo_indicacion) VALUES ( @Id, @name, @descripcion, @tipo_indicacion)"; 
-        private List<TipoGrupoDocumentacion> tipoGrupoDocumentacions;      
-        private readonly IMapper tipoGrupoDocumentacionMapper;
+        private static readonly string QUERY_SELECT_ALL = "SELECT * FROM TipoGrupoDocumentacion";
+        private static readonly string QUERY_UPDATE = "UPDATE TipoGrupoDocumentacion SET name = @name, descripcion = @descripcion, lugar_mostrar_documentacion = @lugar_mostrar_documentacion WHERE id = @Id";
+        private static readonly string QUERY_INSERT = "INSERT INTO TipoGrupoDocumentacion (id, name, descripcion, lugar_mostrar_documentacion) VALUES ( @Id, @name, @descripcion, @lugar_mostrar_documentacion)";
+        private static readonly string QUERY_DELETE = "Delete FROM TipoGrupoDocumentacion WHERE id = @Id";     
 
-        public TipoGrupoDocumentacionRepository(IMapper tipoGrupoDocumentacionMapper) :base(AplicationConfig.ConnectionString, "TipoGrupoDocumentacion")
+        public TipoGrupoDocumentacionRepository(IMapper tipoGrupoDocumentacionMapper) : base(tipoGrupoDocumentacionMapper, QUERY_DELETE, QUERY_SELECT_ALL) { }
+
+        public ActionResult SaveOrUpdate(TipoGrupoDocumentacion tipoGrupoDocumentacion)
         {
-            this.tipoGrupoDocumentacionMapper = tipoGrupoDocumentacionMapper;
-            updateListApp();
+            return saveOrUpdate(QUERY_INSERT, QUERY_UPDATE, tipoGrupoDocumentacion);
         }
 
-        protected void updateListApp()
-        {
-            tipoGrupoDocumentacions = getAll();
-        }
-
-        public List<TipoGrupoDocumentacion> getAll()
-        {
-            List<TipoGrupoDocumentacion> apps = new List<TipoGrupoDocumentacion>();
-            using (var reader = EjecutarConsulta(QUERY_SELECT_ALL))
-            {
-                if (reader != null)
-                {
-                    while (reader.Read())
-                    {
-                        apps.Add((TipoGrupoDocumentacion)tipoGrupoDocumentacionMapper.Map(reader));
-                    }
-                }
-            }
-            return apps;
-        }      
-
-        public TipoGrupoDocumentacion getById(Guid id)
-        {
-            return tipoGrupoDocumentacions.FirstOrDefault(persona => persona.Id == id);
-        }
-
-        private int getIndexById(Guid id)
-        {
-            return tipoGrupoDocumentacions.FindIndex(doc => doc.Id == id);
-        }
-
-        public bool saveOrUpdate(TipoGrupoDocumentacion tipoGrupoDocumentacion)
-        {
-            Dictionary<string, object> parametros = buildParametros(tipoGrupoDocumentacion);
-            int index = getIndexById(tipoGrupoDocumentacion.Id);
-            if (index != -1)
-            {
-                tipoGrupoDocumentacions[index] = tipoGrupoDocumentacion;
-                return ExecuteWriteOperation(QUERY_UPDATE, parametros);
-            }
-            else
-            {
-                bool result = ExecuteWriteOperation(QUERY_INSERT, parametros);
-                tipoGrupoDocumentacions.Add(tipoGrupoDocumentacion);
-                return result;
-            }
-        }
-
-        private Dictionary<string, object> buildParametros(TipoGrupoDocumentacion tipoGrupoDocumentacion)
+        protected override Dictionary<string, object> buildParametros(TipoGrupoDocumentacion tipoGrupoDocumentacion)
         {
             Dictionary<string, object> parametros = new Dictionary<string, object>
             {
                 { "@name", tipoGrupoDocumentacion.Name },
                 { "@descripcion", tipoGrupoDocumentacion.Descripcion },
-                { "@tipo_indicacion", tipoGrupoDocumentacion.TipoIndicacion },
+                { "@lugar_mostrar_documentacion", tipoGrupoDocumentacion.LugarMostrarDocumentacion.ToString() },
                 { "@Id", tipoGrupoDocumentacion.Id.ToString() }
             };          
             return parametros;
-        }
-       
+        }      
     }
 }

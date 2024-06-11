@@ -15,7 +15,7 @@ namespace BRapp
             Application.SetCompatibleTextRenderingDefault(false);
             AplicationConfig.APP_MODE_UPDATE = false;
             var appService = AplicationConfig.Component.AppService;
-            var app = appService.getApp();
+            var app = appService.GetApp();
             if (app != null)
             {
                 Application.Run(new IndexUIController().ejecutar()); ;

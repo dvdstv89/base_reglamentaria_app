@@ -17,17 +17,20 @@
 			System.Diagnostics.DiagnosticSource
 			System.Memory
 			System.Numerics.Vectors
-			System.Runtime.CompilerServices.Unsafe		
+			System.Runtime.CompilerServices.Unsafe
 			System.Threading.Tasks.Extensions
 			System.ValueTuple
 			System.Text.Encodings.Web
 			SQLitePCLRaw.batteries_v2
 			SQLitePCLRaw.core
-			SQLitePCLRaw.provider.dynamic_cdecl		
+			SQLitePCLRaw.provider.dynamic_cdecl
 			RichTextBoxEx
 			PrintRichTextBox
 			NetSpell.SpellChecker
-			System.Text.Json			
+			System.Text.Json
+			BRichTextBox
+			Microsoft.Web.WebView2.Core
+			Microsoft.Web.WebView2.WinForms
 		</IncludeAssemblies>
 		<Unmanaged32Assemblies>
 			<!-- Lista de ensamblados no administrados (32 bits) -->

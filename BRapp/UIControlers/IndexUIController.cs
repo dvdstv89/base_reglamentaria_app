@@ -1,55 +1,47 @@
 ﻿using BRapp.Messages;
 using BRapp.UI;
 using BRapp.Utiles;
-using BRapp.Enums.EnumsInstances;
 using System;
 using System.Windows.Forms;
 using BRapp.Services.Interfaces;
 using BRapp.Data;
 using BRapp.Model.Tiendas;
 using System.Collections.Generic;
+using BRapp.Model.Nomenclador;
+using System.Linq;
+using BRapp.Enums;
+using System.Drawing;
 
 namespace BRapp.UIControlers
 {
     public class IndexUIController : BaseUIController<IndexUI>
     {
-        protected readonly IIndexService iIndexService;
+        protected readonly IIndexService indexService;
         private readonly IComplejoService complejoService;
+        private readonly IMenuDocumentalService menuDocumentalService;
 
         Dictionary<ToolStripMenuItem, Complejo> complejosItemMappings;
+        Dictionary<ToolStripMenuItem, MenuDocumental> documentacionItemMappings;       
 
         IForm activeForm = null;
         ButtonSeleccionado botonActivo = null;
         public IndexUIController() : base(new IndexUI())
         {
-            this.iIndexService = AplicationConfig.Component.IndexService;
+            indexService = AplicationConfig.Component.IndexService;
             complejoService = AplicationConfig.Component.ComplejoService;
+            menuDocumentalService = AplicationConfig.Component.MenuDocumentalService;
+
             complejosItemMappings = new Dictionary<ToolStripMenuItem, Complejo>();
+            documentacionItemMappings = new Dictionary<ToolStripMenuItem, MenuDocumental>();            
         }
 
         public override IndexUI ejecutar()
         {
-            forma.menuStrip1.Layout += centrarMenu;
+            forma.menuStripPrincipal.Layout += centrarMenu;
             forma.Layout += centrarFormulario;
             forma.Resize += Forma_Resize;
             forma.btnLimpiarBusqueda.Click += new EventHandler(btnLimpiarBusqueda_Click);
-
-            forma.bienvenidaToolStripMenuItem.Click += new EventHandler(bienvenidaToolStripMenuItem_Click);                     
-            forma.sistemasToolStripMenuItem.Click += new EventHandler(sistemasToolStripMenuItem_Click);
-           
-            forma.manualesToolStripMenuItem.Click += new EventHandler(manualesToolStripMenuItem_Click);
-            forma.reglamentosToolStripMenuItem.Click += new EventHandler(reglamentosToolStripMenuItem_Click);
-            forma.procedimientosToolStripMenuItem.Click += new EventHandler(procedimientosToolStripMenuItem_Click);
-            forma.planesYProgramasToolStripMenuItem.Click += new EventHandler(planesYProgramasToolStripMenuItem_Click);
-            forma.resolucionesEmpresarialesToolStripMenuItem.Click += new EventHandler(resolucionesEmpresarialesToolStripMenuItem_Click);
-            forma.dGToolStripMenuItem.Click += new EventHandler(dGToolStripMenuItem_Click);
-
-            forma.planesToolStripMenuItem.Click += new EventHandler(planesToolStripMenuItem_Click);
-            forma.programasToolStripMenuItem.Click += new EventHandler(programasToolStripMenuItem_Click);
-            forma.resolucionesEIndicosToolStripMenuItem.Click += new EventHandler(resolucionesEIndicosToolStripMenuItem_Click);
-            forma.otrosDocumentosToolStripMenuItem.Click += new EventHandler(otrosDocumentosToolStripMenuItem_Click);
-
-            forma.contrataciónToolStripMenuItem.Click += new EventHandler(contrataciónToolStripMenuItem_Click);
+            forma.bienvenidaToolStripMenuItem.Click += new EventHandler(bienvenidaToolStripMenuItem_Click);           
             forma.consultorToolStripMenuItem.Click += new EventHandler(consultorToolStripMenuItem_Click);
             forma.directorioToolStripMenuItem.Click += new EventHandler(directorioToolStripMenuItem_Click);           
 
@@ -59,24 +51,54 @@ namespace BRapp.UIControlers
         protected override void aplicarTema()
         {
             cargarComplejos();
+            cargarDocumentacionSeccion(3, TipoUbicacionMenu.SISTEMA);
+            cargarDocumentacionSeccion(4, TipoUbicacionMenu.EXTERNO);
+            cargarDocumentacionSeccion(5, TipoUbicacionMenu.INTERNO);
             forma.adminToolStripMenuItem.Visible= false;
-            forma.menuStrip1.Renderer = new MyRenderer();
+            forma.menuStripPrincipal.Renderer = new MyRenderer();
             updateFooter();
             forma.richTextBox1.SelectionAlignment = HorizontalAlignment.Center;
             forma.richTextBox1.TabStop = false;
         }
 
-
         private void cargarComplejos()
         {
-            List<Complejo> complejos = complejoService.getAll();
+            List<Complejo> complejos = complejoService.GetAll();
             foreach (Complejo complejo in complejos)
             {
                 ToolStripMenuItem buttonMenu = new ToolStripMenuItem();
                 buttonMenu.Text= complejo.ToString();
-                buttonMenu.Click += ButtonToolStripMenuItem_Click;
+                buttonMenu.Click += ComplejoToolStripMenuItem_Click;
                 forma.sucursalToolStripMenuItem.DropDownItems.Add(buttonMenu);
                 complejosItemMappings.Add(buttonMenu, complejo);
+            }
+        }
+
+        private void cargarDocumentacionSeccion(int positionMenu, Enums.TipoUbicacionMenu tipoUbicacion)
+        {
+            List<MenuDocumental> menuDocumentals = menuDocumentalService.GetAllByTipoUbicacionMenu(tipoUbicacion);
+            ToolStripMenuItem buttonPadre = null;
+            foreach (MenuDocumental menu in menuDocumentals)
+            {
+                ToolStripMenuItem buttonMenu = new ToolStripMenuItem();
+                buttonMenu.Text = menu.ToString();
+                if (menu.AbrirPagina)
+                {
+                    buttonMenu.Click += DocumentacionToolStripMenuItem_Click;
+                }
+                buttonPadre = buttonPadre == null? GetButtonPadre(tipoUbicacion): buttonPadre;
+                if(buttonPadre != null)
+                {
+                    buttonPadre.DropDownItems.Add(buttonMenu);
+                }
+                documentacionItemMappings.Add(buttonMenu, menu);
+            }
+
+            buttonPadre = buttonPadre == null ? GetButtonPadre(tipoUbicacion) : buttonPadre;
+            if (buttonPadre != null)
+            {
+                buttonPadre.ForeColor = Color.White;
+                forma.menuStripPrincipal.Items.Insert(positionMenu, buttonPadre);             
             }
         }
 
@@ -85,7 +107,7 @@ namespace BRapp.UIControlers
             forma.tbBuscar.Text = "";            
         }
 
-        private void ButtonToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ComplejoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (sender is ToolStripMenuItem menuItem && complejosItemMappings.ContainsKey(menuItem))
             {
@@ -93,17 +115,47 @@ namespace BRapp.UIControlers
             }
         }
 
+        private void DocumentacionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (sender is ToolStripMenuItem menuItem && documentacionItemMappings.ContainsKey(menuItem))
+            {
+                documentacionSeccion(menuItem, documentacionItemMappings[menuItem]);
+            }
+        }
+
         private void complejoSeccion(ToolStripMenuItem buttonMenu, Complejo complejo)
         {
             forma.panelBusqueda.Visible = false;
-            var formulario = ComplejoUIController.GetInstance(complejo);
-            formatearFormulario(buttonMenu, forma.sucursalToolStripMenuItem, formulario, complejo.ToString());
+            if (complejo.TipoComplejo == Enums.TipoComplejo.COMPLEJO)
+            {
+                var formulario = ComplejoUIController.GetInstance(complejo);
+                formatearFormulario(buttonMenu, forma.sucursalToolStripMenuItem, formulario, complejo.ToString());
+                formulario.ejecutar().Show();
+            }
+            else
+            {
+                var formulario = SucursalUIController.GetInstance(complejo);
+                formatearFormulario(buttonMenu, forma.sucursalToolStripMenuItem, formulario, complejo.ToString());
+                formulario.ejecutar().Show();
+            }           
+        }
+        private void documentacionSeccion(ToolStripMenuItem buttonMenu, MenuDocumental menu)
+        {
+            forma.panelBusqueda.Visible = menu.ShowPanelBusqueda;           
+            var formulario = DocumentoUIController.GetInstance(menu, this);          
+            formatearFormulario(buttonMenu, GetButtonPadre(menu.TipoUbicacionMenu), formulario, menu.Name);
             formulario.ejecutar().Show();
+        }
+
+        public ToolStripMenuItem GetButtonPadre(Enums.TipoUbicacionMenu tipoUbicacion)
+        {
+            return documentacionItemMappings
+                .FirstOrDefault(kvp => kvp.Value.TipoUbicacionMenu == tipoUbicacion && kvp.Value.IsRaiz).Key;
         }
 
         public void updateFooter()
         {
-            forma.richTextBox1.Rtf = iIndexService.getFooter();
+            forma.richTextBox1.Rtf = indexService.GetFooter();
         }
 
         protected override void forma_Load(object sender, EventArgs e)
@@ -118,103 +170,7 @@ namespace BRapp.UIControlers
             var formulario = BienvenidaUIController.Instance;
             formatearFormulario(forma.bienvenidaToolStripMenuItem, null, formulario, ButtonName.BienvenidaButton);
             formulario.ejecutar().Show();
-        }      
-
-        private void sistemasToolStripMenuItem_Click(object sender, EventArgs e)
-        {           
-            forma.panelBusqueda.Visible = true;
-            var formulario = DocumentoUIController.GetInstance(TipoDocumentoMenu.SISTEMA, this);
-            formatearFormulario(forma.sistemasToolStripMenuItem, null, formulario, ButtonName.SistemaButton);
-            formulario.ejecutar().Show();
-        }
-
-        private void manualesToolStripMenuItem_Click(object sender, EventArgs e)
-        {            
-            forma.panelBusqueda.Visible = true;
-            var formulario = DocumentoUIController.GetInstance(TipoDocumentoMenu.PRE_MANUALES, this);
-            formatearFormulario(forma.manualesToolStripMenuItem,forma.procedimientosYReglamentosEmpresarialesToolStripMenuItem, formulario, ButtonName.PRE_ManualesButton);
-            formulario.ejecutar().Show();
-        }
-
-        private void reglamentosToolStripMenuItem_Click(object sender, EventArgs e)
-        {            
-            forma.panelBusqueda.Visible = true;
-            var formulario = DocumentoUIController.GetInstance(TipoDocumentoMenu.PRE_REGLAMENTOS, this);
-            formatearFormulario(forma.reglamentosToolStripMenuItem, forma.procedimientosYReglamentosEmpresarialesToolStripMenuItem, formulario, ButtonName.PRE_ReglamentosButton);
-            formulario.ejecutar().Show();
-        }
-
-        private void procedimientosToolStripMenuItem_Click(object sender, EventArgs e)
-        {           
-            forma.panelBusqueda.Visible = true;
-            var formulario = DocumentoUIController.GetInstance(TipoDocumentoMenu.PRE_PROCEDIMIENTOS, this);
-            formatearFormulario(forma.procedimientosToolStripMenuItem, forma.procedimientosYReglamentosEmpresarialesToolStripMenuItem, formulario, ButtonName.PRE_ProcedimientosButton);
-            formulario.ejecutar().Show();
-        }
-
-        private void planesYProgramasToolStripMenuItem_Click(object sender, EventArgs e)
-        {           
-            forma.panelBusqueda.Visible = true;
-            var formulario = DocumentoUIController.GetInstance(TipoDocumentoMenu.PRE_PLANES_PROGRAMAS, this);
-            formatearFormulario(forma.planesYProgramasToolStripMenuItem, forma.procedimientosYReglamentosEmpresarialesToolStripMenuItem, formulario, ButtonName.PRE_PlanesProgramasButton);
-            formulario.ejecutar().Show();
-        }
-
-        private void resolucionesEmpresarialesToolStripMenuItem_Click(object sender, EventArgs e)
-        {           
-            forma.panelBusqueda.Visible = true;
-            var formulario = DocumentoUIController.GetInstance(TipoDocumentoMenu.PRE_RESOLUCIONES_EMPRESARIALES, this);
-            formatearFormulario(forma.resolucionesEmpresarialesToolStripMenuItem, forma.procedimientosYReglamentosEmpresarialesToolStripMenuItem, formulario, ButtonName.PRE_ResolucionesButton);
-            formulario.ejecutar().Show();
-        }
-
-        private void dGToolStripMenuItem_Click(object sender, EventArgs e)
-        {            
-            forma.panelBusqueda.Visible = true;
-            var formulario = DocumentoUIController.GetInstance(TipoDocumentoMenu.PRE_DG, this);
-            formatearFormulario(forma.dGToolStripMenuItem, forma.procedimientosYReglamentosEmpresarialesToolStripMenuItem, formulario, ButtonName.PRE_DG);
-            formulario.ejecutar().Show();
-        }
-
-        private void planesToolStripMenuItem_Click(object sender, EventArgs e)
-        {           
-            forma.panelBusqueda.Visible = true;
-            var formulario = DocumentoUIController.GetInstance(TipoDocumentoMenu.DOC_PLANES, this);
-            formatearFormulario(forma.planesToolStripMenuItem, forma.documentosInternosToolStripMenuItem, formulario, ButtonName.DocumentosInternos_PlanesButton);
-            formulario.ejecutar().Show();
-        }
-
-        private void programasToolStripMenuItem_Click(object sender, EventArgs e)
-        {           
-            forma.panelBusqueda.Visible = true;
-            var formulario = DocumentoUIController.GetInstance(TipoDocumentoMenu.DOC_PROGRAMAS, this);
-            formatearFormulario(forma.programasToolStripMenuItem, forma.documentosInternosToolStripMenuItem, formulario, ButtonName.DocumentosInternos_ProgramasButton);
-            formulario.ejecutar().Show();
-        }
-
-        private void resolucionesEIndicosToolStripMenuItem_Click(object sender, EventArgs e)
-        {          
-            forma.panelBusqueda.Visible = true;
-            var formulario = DocumentoUIController.GetInstance(TipoDocumentoMenu.DOC_RESOLUCIONES_INDICOS, this);
-            formatearFormulario(forma.resolucionesEIndicosToolStripMenuItem, forma.documentosInternosToolStripMenuItem, formulario, ButtonName.DocumentosInternos_ResolucionesIndicosButton);
-            formulario.ejecutar().Show();
-        }
-
-        private void otrosDocumentosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            forma.panelBusqueda.Visible = true;
-            var formulario = DocumentoUIController.GetInstance(TipoDocumentoMenu.DOC_OTROS_DOCUMENTOS, this);
-            formatearFormulario(forma.otrosDocumentosToolStripMenuItem, forma.documentosInternosToolStripMenuItem, formulario, ButtonName.DocumentosInternos_DocumentosButton);
-            formulario.ejecutar().Show();
-        }
-
-        private void contrataciónToolStripMenuItem_Click(object sender, EventArgs e)
-        {           
-            forma.panelBusqueda.Visible = true;
-            var formulario = DocumentoUIController.GetInstance(TipoDocumentoMenu.DOC_CONTRATO, this);
-            formatearFormulario(forma.contrataciónToolStripMenuItem, forma.documentosInternosToolStripMenuItem, formulario, ButtonName.DocumentosInternos_ContratacionButton);
-            formulario.ejecutar().Show();
-        }
+        }                    
 
         private void consultorToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -276,7 +232,7 @@ namespace BRapp.UIControlers
         protected void centrarMenu(object sender, LayoutEventArgs e)
         {
             int totalWidth = 0;
-            foreach (ToolStripItem item in forma.menuStrip1.Items)
+            foreach (ToolStripItem item in forma.menuStripPrincipal.Items)
             {
                 if (AplicationConfig.APP_MODE_UPDATE)
                 {
@@ -290,9 +246,9 @@ namespace BRapp.UIControlers
                 totalWidth += 10;
             }
 
-            int espacioWidth = (forma.menuStrip1.Width - totalWidth) / 2;
+            int espacioWidth = (forma.menuStripPrincipal.Width - totalWidth) / 2;
 
-            forma.menuStrip1.Padding = new Padding(espacioWidth, 0, espacioWidth, 0);
+            forma.menuStripPrincipal.Padding = new Padding(espacioWidth, 0, espacioWidth, 0);
         }
         private void centrarFormulario(object sender, LayoutEventArgs e)
         {

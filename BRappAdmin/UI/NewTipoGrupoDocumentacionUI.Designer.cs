@@ -32,15 +32,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbPJName = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tbDescripcion = new RichTextBoxEx.RichTextBoxEx();
-            this.comboTipoIndicacion = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.tbDescripcion = new System.Windows.Forms.TextBox();
+            this.comboBoxMostrar = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(488, 198);
+            this.btnGuardar.Location = new System.Drawing.Point(485, 195);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 29);
             this.btnGuardar.TabIndex = 15;
@@ -66,7 +66,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.tbDescripcion);
-            this.groupBox1.Location = new System.Drawing.Point(12, 59);
+            this.groupBox1.Location = new System.Drawing.Point(10, 56);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(548, 133);
             this.groupBox1.TabIndex = 16;
@@ -75,50 +75,38 @@
             // 
             // tbDescripcion
             // 
-            this.tbDescripcion.AllowBullets = true;
-            this.tbDescripcion.AllowDefaultInsertText = true;
-            this.tbDescripcion.AllowDefaultSmartText = true;
-            this.tbDescripcion.AllowHyphenation = true;
-            this.tbDescripcion.AllowPictures = true;
-            this.tbDescripcion.AllowSpellCheck = true;
-            this.tbDescripcion.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.tbDescripcion.FilePath = "";
             this.tbDescripcion.Location = new System.Drawing.Point(6, 19);
+            this.tbDescripcion.Multiline = true;
             this.tbDescripcion.Name = "tbDescripcion";
-            this.tbDescripcion.Rtf = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang2057{\\fonttbl{\\f0\\fnil\\fcharset0 " +
-    "Arial;}}\r\n{\\*\\generator Riched20 10.0.22621}\\viewkind4\\uc1 \r\n\\pard\\fs20\\par\r\n}\r\n" +
-    "";
-            this.tbDescripcion.SetColorWithFont = true;
-            this.tbDescripcion.ShowToolStrip = true;
-            this.tbDescripcion.Size = new System.Drawing.Size(536, 104);
-            this.tbDescripcion.TabIndex = 15;
+            this.tbDescripcion.Size = new System.Drawing.Size(536, 108);
+            this.tbDescripcion.TabIndex = 17;
             // 
-            // comboTipoIndicacion
+            // comboBoxMostrar
             // 
-            this.comboTipoIndicacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboTipoIndicacion.FormattingEnabled = true;
-            this.comboTipoIndicacion.Location = new System.Drawing.Point(92, 32);
-            this.comboTipoIndicacion.Name = "comboTipoIndicacion";
-            this.comboTipoIndicacion.Size = new System.Drawing.Size(468, 21);
-            this.comboTipoIndicacion.TabIndex = 65;
+            this.comboBoxMostrar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxMostrar.FormattingEnabled = true;
+            this.comboBoxMostrar.Location = new System.Drawing.Point(75, 29);
+            this.comboBoxMostrar.Name = "comboBoxMostrar";
+            this.comboBoxMostrar.Size = new System.Drawing.Size(485, 21);
+            this.comboBoxMostrar.TabIndex = 80;
             // 
-            // label3
+            // label2
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 35);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 13);
-            this.label3.TabIndex = 64;
-            this.label3.Text = "Tipo indicación";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(57, 13);
+            this.label2.TabIndex = 79;
+            this.label2.Text = "Mostrar en";
             // 
             // NewTipoGrupoDocumentacionUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(575, 238);
-            this.Controls.Add(this.comboTipoIndicacion);
-            this.Controls.Add(this.label3);
+            this.ClientSize = new System.Drawing.Size(570, 237);
+            this.Controls.Add(this.comboBoxMostrar);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label1);
@@ -128,6 +116,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tipo de Grupo de Documentación";
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -139,8 +128,8 @@
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox tbPJName;
         private System.Windows.Forms.GroupBox groupBox1;
-        public RichTextBoxEx.RichTextBoxEx tbDescripcion;
-        public System.Windows.Forms.ComboBox comboTipoIndicacion;
-        private System.Windows.Forms.Label label3;
+        public System.Windows.Forms.TextBox tbDescripcion;
+        public System.Windows.Forms.ComboBox comboBoxMostrar;
+        private System.Windows.Forms.Label label2;
     }
 }

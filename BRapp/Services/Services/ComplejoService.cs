@@ -1,35 +1,17 @@
-﻿
-using BRapp.Data;
-using BRapp.Model.Tiendas;
+﻿using BRapp.Model.Tiendas;
 using BRapp.Repositorios.Interfaces;
-using BRapp.Repositorios.Repos;
 using BRapp.Services.Interfaces;
-using System;
 using System.Collections.Generic;
 
 namespace BRapp.Services.Services
 {
-    public class ComplejoService : IComplejoService
-    {      
-        protected readonly IComplejoRepository complejoRepository;
+    public class ComplejoService : BaseService<Complejo, Complejo>, IComplejoService
+    {  
+        public ComplejoService(IComplejoRepository complejoRepository) : base(complejoRepository) { }
 
-        public ComplejoService(IComplejoRepository complejoRepository)
+        public override List<Complejo> GetAll()
         {
-            this.complejoRepository = complejoRepository;
+            return repository.GetAll();
         }      
-
-        public List<Complejo> getAll()
-        {
-           return complejoRepository.getAll();            
-        }
-
-        public Complejo getById(Guid idComplejo)
-        {
-            return complejoRepository.getById(idComplejo);
-        }
-        public bool saveOrUpdate(Complejo complejo)
-        {
-            return complejoRepository.saveOrUpdate(complejo);
-        }
     }
 }

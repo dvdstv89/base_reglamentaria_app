@@ -51,7 +51,7 @@ namespace BRappAdmin.UIControlers
 
         private void updateList()
         {
-            personas = contactosService.getAll();
+            personas = contactosService.GetAll();
             forma.lwPersonas.Items.Clear();
             foreach (Persona persona in personas)
             {
@@ -93,7 +93,7 @@ namespace BRappAdmin.UIControlers
         {
             var persona = getPersonaSeleccionada();
             persona.IsActivo = activo;
-            contactosService.saveOrUpdate(persona);
+            contactosService.SaveOrUpdate(persona);
             DialogUtil.INFORMATION(Mensajes.CONTACTO_UPDATED_OK);
             updateList();
         }

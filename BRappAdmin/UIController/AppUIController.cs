@@ -48,11 +48,11 @@ namespace BRappAdmin.UIControlers
             app.Vision = forma.tbVision.Rtf;
             app.ObjetoSocial = forma.tbObjetoSocial.Rtf;
             app.ValoresCompartidos= forma.tbValoresCompartidos.Rtf;
-            app.Bienvenida = forma.tbBienvenida.Rtf;
-
+            app.Bienvenida = forma.tbBienvenida.Rtf;         
             appServiceAdmin.updateApp(app);
             indexAdminUIController.updateFooter();
             DialogUtil.INFORMATION(Mensajes.APP_UPDATED_OK);
         }
     }
 }
+

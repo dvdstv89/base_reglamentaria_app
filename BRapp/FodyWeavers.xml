@@ -23,10 +23,23 @@
 			System.Text.Encodings.Web
 			System.Text.Json
 			System.Threading.Tasks.Extensions
-			System.ValueTuple			
+			System.ValueTuple
 			Microsoft.Web.WebView2.Core
 			Microsoft.Web.WebView2.WinForms
 			Microsoft.Web.WebView2.Wpf
+			BRichTextBox
+			System.Net.Http.Formatting
+			System.Web.Helpers
+			System.Web.Http
+			System.Web.Mvc
+			System.Web.Razor
+			System.Web.WebPages.Deployment
+			System.Web.WebPages
+			System.Web.WebPages.Razor
+			RtfPipe
+			Newtonsoft.Json
+			NetSpell.SpellChecker
+			Microsoft.Web.Infrastructure
 		</IncludeAssemblies>
 		<Unmanaged32Assemblies>
 			<!-- Lista de ensamblados no administrados (32 bits) -->

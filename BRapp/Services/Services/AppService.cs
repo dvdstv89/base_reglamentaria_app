@@ -13,9 +13,9 @@ namespace BRapp.Services.Services
             this.iAppRepository = iAppRepository;     
         }       
 
-        public App getApp()
+        public App GetApp()
         {
-            return iAppRepository.getApp();
+            return iAppRepository.GetApp();
         }     
     }
 }

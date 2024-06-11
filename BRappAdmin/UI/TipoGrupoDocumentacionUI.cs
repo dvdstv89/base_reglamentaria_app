@@ -15,6 +15,11 @@ namespace BRappAdmin.UI
         public TipoGrupoDocumentacionUI()
         {
             InitializeComponent();
-        }       
+        }
+
+        private void nuevoDocumentoStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -13,27 +13,30 @@ namespace BRapp.UIControlers.CardUCController
 {
     internal class TiendaUCController : BaseUCController<TiendaCard, Tienda>, ICard
     {
-        private readonly IVisorPDFService visorDocumentosService;
-        DocumentoPDF documentoPDF;
+        private readonly IVisorPDFService visorDocumentosService;       
+        private bool eventsSubscribed = false;
         public TiendaUCController(Tienda tienda) : base(new TiendaCard(), tienda)
         {
-            this.visorDocumentosService = AplicationConfig.Component.VisorPDFService;
-            this.documentoPDF = null;
+            this.visorDocumentosService = AplicationConfig.Component.VisorPDFService;           
         }
 
         public override UserControl get()
         {
-            card.btnCertificadoComercial.Click += new EventHandler(btnCertificado_Click);
-            card.btnList.Click += new EventHandler(btnDocumentacion_Click);           
+           
+            if (!eventsSubscribed)
+            {
+                card.btnCertificadoComercial.Click += new EventHandler(btnCertificado_Click);
+                card.btnList.Click += new EventHandler(btnDocumentacion_Click);
+                eventsSubscribed = true;
+            }
             return base.get();
         }
 
         public override void setInfo()
         {
             card.iconPrincipal.IconChar = objeto.getIcono();
-            card.labelName.Text = objeto.ToString();
-          
-            card.tbRegistroComercial.Text = objeto.NumeroRegistroComercial;
+            card.labelName.Text = objeto.ToString();          
+            card.tbRegistroComercial.Text = objeto.getNumeroCertificadoComercial();
             card.tbCajas.Text = objeto.CantidadCajasRegistradoras.ToString();          
             card.tbTrabajadores.Text = objeto.CantidadTrabajadores.ToString();
             card.tbTelefono.Text = objeto.Telefono;
@@ -59,9 +62,8 @@ namespace BRapp.UIControlers.CardUCController
 
             if (objeto.hasImageName())
             {
-                card.iconPictureBox1.Visible = false;
-                documentoPDF = visorDocumentosService.getDocumentoPDFApliado(objeto.CertificadoComercial.Id);
-                using (MemoryStream ms = new MemoryStream(documentoPDF.Imagen.Data))
+                card.iconPictureBox1.Visible = false;               
+                using (MemoryStream ms = new MemoryStream(objeto.Logo.Data))
                 {
                     using (Image originalImage = Image.FromStream(ms))
                     {
@@ -75,7 +77,7 @@ namespace BRapp.UIControlers.CardUCController
         {
             if (objeto.hasPdfName())
             {
-                var visorDocumentosUIController = documentoPDF != null ? new VisorPDFUIController(documentoPDF) : new VisorPDFUIController(objeto.CertificadoComercial);
+                var visorDocumentosUIController = new VisorPDFUIController(objeto.CertificadoComercial.ArchivoPDF);
                 visorDocumentosUIController.showDialog();
             }
            

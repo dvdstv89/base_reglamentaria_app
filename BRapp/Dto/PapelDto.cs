@@ -1,24 +1,31 @@
-﻿using BRapp.Data;
-using BRapp.Enums;
-using BRapp.Model.Papeles;
+﻿using BRapp.Interfaces;
 using System;
 
 namespace BRapp.Dto
 {
-    public class PapelDto
+    public class PapelDto : HasId
     {
-        public Guid idPapel { get; set; }
-        public TipoClasificacionDocumento tipoClasificacionDocumento { get; set; }       
-        public Guid idPdf { get; set; }
-        public string name { get; set; }
+        public Guid IdPapel { get; set; }       
+        public Guid IdPdf { get; set; }       
+        public Guid IdTipoDocumentacion { get; set; }
+        public string Name { get; set; } = string.Empty;
         public bool IsActivo { get; set; }
         public DateTime FechaFirma { get; set; }
-        public string Descripcion { get; set; }
+        public string Descripcion { get; set; } = string.Empty;
         public int Orden { get; set; }
+        public Guid IdPadre { get; set; }
+        public Guid IdCliente { get; set; }
+        public Guid IdResponsable { get; set; }
+        public DateTime FechaVencimiento { get; set; }
+        public string Numero { get; set; } = string.Empty;
+        public string Acta { get; set; } = string.Empty;
+        public string Acuerdo { get; set; } = string.Empty;
+        public string Tipo { get; set; } = string.Empty;
+        public bool IsOpcional { get; set; }
 
-        public ClasificacionDocumento GetClasificacionDocumento()
+        public Guid getId()
         {
-            return ClasificacionDocumentoData.getClasificacionDocumento(tipoClasificacionDocumento);
+            return IdPapel;
         }
     }
 }

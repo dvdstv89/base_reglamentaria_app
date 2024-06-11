@@ -1,82 +1,69 @@
-﻿using BRapp.Data;
-using BRapp.Mapper;
-using System;
+﻿using BRapp.Mapper;
 using System.Collections.Generic;
 using BRapp.Model.Tiendas;
-using System.Linq;
-using BRapp.Repositorios.Interfaces.Dto;
+using BRapp.Repositorios.Interfaces;
 using BRapp.Dto;
 using BRapp.Utiles;
+using System;
+using System.Linq;
 
 namespace BRapp.Repositorios.Repos.ReposDto
 {
-    public class DepartamentoDtoRepository : BaseRepository, IDepartamentoDtoRepository
+    public class DepartamentoDtoRepository : BaseRepository<DepartamentoDto>, IDepartamentoDtoRepository
     {
-        private readonly string QUERY_SELECT_ALL = "SELECT * FROM Departamento order by orden";
-        private readonly string QUERY_UPDATE = "UPDATE Departamento SET name = @name, id_complejo = @id_complejo, tipo_departamento = @tipo_departamento, descripcion = @descripcion, orden = @orden, trabajadores = @trabajadores WHERE id = @Id";
-        private readonly string QUERY_INSERT = "INSERT INTO Departamento (id, name, id_complejo, tipo_departamento, descripcion, orden, trabajadores) VALUES ( @Id, @name, @id_complejo, @tipo_departamento, @descripcion, @orden, @trabajadores)"; 
-        private List<DepartamentoDto> departamentoDtos;      
-        private readonly IMapper departamentoMapper;
+        private static readonly string QUERY_SELECT_ALL = "SELECT * FROM Departamento order by orden";
+        private static readonly string QUERY_UPDATE = "UPDATE Departamento SET name = @name, id_complejo = @id_complejo, tipo_departamento = @tipo_departamento, descripcion = @descripcion, orden = @orden, trabajadores = @trabajadores WHERE id = @Id";
+        private static readonly string QUERY_INSERT = "INSERT INTO Departamento (id, name, id_complejo, tipo_departamento, descripcion, orden, trabajadores) VALUES ( @Id, @name, @id_complejo, @tipo_departamento, @descripcion, @orden, @trabajadores)";
+        private static readonly string QUERY_DELETE = "Delete FROM Departamento WHERE id = @Id";
 
-        public DepartamentoDtoRepository(IMapper departamentoMapper) :base(AplicationConfig.ConnectionString, "Departamento")
+        private readonly IDepartamentoGrupoDocumentacionDtoRepository departamentoGrupoDocumentacionDtoRepository;
+
+        public DepartamentoDtoRepository(IMapper departamentoMapper, IDepartamentoGrupoDocumentacionDtoRepository departamentoGrupoDocumentacionDtoRepository) :base(departamentoMapper, QUERY_DELETE, QUERY_SELECT_ALL) 
         {
-            this.departamentoMapper = departamentoMapper;  
-            updateListApp();
+            this.departamentoGrupoDocumentacionDtoRepository = departamentoGrupoDocumentacionDtoRepository;
         }
 
-        protected void updateListApp()
+        public override ActionResult DeleteById(Guid id)
         {
-            departamentoDtos = getAll();
+           base.DeleteById(id);
+           return departamentoGrupoDocumentacionDtoRepository.DeleteForDepartamento(id);
         }
 
-        public List<DepartamentoDto> getAll()
+        public ActionResult SaveOrUpdate(Departamento departamento)
         {
-            List<DepartamentoDto> apps = new List<DepartamentoDto>();
-            using (var reader = EjecutarConsulta(QUERY_SELECT_ALL))
+            DepartamentoDto departamentoDto = (DepartamentoDto)mapper.Map(departamento);
+            ActionResult actionResult =  saveOrUpdate(QUERY_INSERT, QUERY_UPDATE, departamentoDto);
+
+            List<DepartamentoGrupoDocumentacionDto> gruposAntiguos = departamentoGrupoDocumentacionDtoRepository.getAllByIdDepartamento(departamento.Id);
+            List<TipoGrupoDocumentacion> gruposNuevos = departamento.TipoGrupoDocumentacion;
+
+            List<DepartamentoGrupoDocumentacionDto> gruposParaEliminar = gruposAntiguos
+                 .Where(antiguo => !gruposNuevos.Any(nuevo => nuevo.Id == antiguo.idTipoGrupoDocumentacion))
+                 .ToList();
+
+            List<TipoGrupoDocumentacion> gruposParaGuardar = gruposNuevos
+                .Where(nuevo => !gruposAntiguos.Any(antiguo => antiguo.idTipoGrupoDocumentacion == nuevo.Id))
+                .ToList();
+
+            foreach (var grupoEliminar in gruposParaEliminar)
             {
-                if (reader != null)
+                departamentoGrupoDocumentacionDtoRepository.Delete(grupoEliminar);
+            }
+
+            foreach (var grupoGuardar in gruposParaGuardar)
+            {
+                var grupoNuevo = new DepartamentoGrupoDocumentacionDto()
                 {
-                    while (reader.Read())
-                    {
-                        apps.Add((DepartamentoDto)departamentoMapper.Map(reader));
-                    }
-                }
+                    idDepartamento = departamento.Id,
+                    idTipoGrupoDocumentacion = grupoGuardar.Id
+                };
+                departamentoGrupoDocumentacionDtoRepository.Save(grupoNuevo);
             }
-            return apps;
-        }      
 
-        public DepartamentoDto getById(Guid id)
-        {
-            return departamentoDtos.FirstOrDefault(persona => persona.id == id);
+            return actionResult;
         }
 
-        private int getIndexById(Guid id)
-        {
-            return departamentoDtos.FindIndex(doc => doc.id == id);
-        }
-
-        public ActionResult saveOrUpdate(Departamento departamento)
-        {
-            DepartamentoDto departamentoDto = (DepartamentoDto)departamentoMapper.Map(departamento);
-
-            Dictionary<string, object> parametros = buildParametros(departamentoDto);
-            int index = getIndexById(departamentoDto.id);
-            if (index != -1)
-            {
-                departamentoDtos[index] = departamentoDto;
-                ExecuteWriteOperation(QUERY_UPDATE, parametros);
-                return ActionResult.UPDATED;
-
-            }
-            else
-            {
-                bool result = ExecuteWriteOperation(QUERY_INSERT, parametros);
-                departamentoDtos.Add(departamentoDto);
-                return ActionResult.CREATED;
-            }
-        }
-
-        private Dictionary<string, object> buildParametros(DepartamentoDto departamentoDto)
+        protected override Dictionary<string, object> buildParametros(DepartamentoDto departamentoDto)
         {
             Dictionary<string, object> parametros = new Dictionary<string, object>
             {
@@ -87,7 +74,7 @@ namespace BRapp.Repositorios.Repos.ReposDto
                 { "@orden", departamentoDto.Orden },
                 { "@trabajadores", departamentoDto.CantidadTrabajadores },
                 { "@Id", departamentoDto.id.ToString() }
-            };          
+            };
             return parametros;
         }
     }
