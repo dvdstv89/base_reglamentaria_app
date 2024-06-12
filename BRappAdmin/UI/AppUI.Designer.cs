@@ -45,6 +45,7 @@
             this.tbValoresCompartidos = new RichTextBoxEx.RichTextBoxEx();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tbBienvenida = new RichTextBoxEx.RichTextBoxEx();
+            this.btnRepararBD = new FontAwesome.Sharp.IconButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -259,12 +260,28 @@
             this.tbBienvenida.Size = new System.Drawing.Size(1099, 289);
             this.tbBienvenida.TabIndex = 18;
             // 
+            // btnRepararBD
+            // 
+            this.btnRepararBD.IconChar = FontAwesome.Sharp.IconChar.Database;
+            this.btnRepararBD.IconColor = System.Drawing.Color.Black;
+            this.btnRepararBD.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnRepararBD.IconSize = 24;
+            this.btnRepararBD.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRepararBD.Location = new System.Drawing.Point(963, 9);
+            this.btnRepararBD.Name = "btnRepararBD";
+            this.btnRepararBD.Size = new System.Drawing.Size(157, 32);
+            this.btnRepararBD.TabIndex = 20;
+            this.btnRepararBD.Text = "Repara Base de Datos";
+            this.btnRepararBD.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRepararBD.UseVisualStyleBackColor = true;
+            // 
             // AppUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1132, 761);
+            this.Controls.Add(this.btnRepararBD);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -311,5 +328,6 @@
         public RichTextBoxEx.RichTextBoxEx tbValoresCompartidos;
         private System.Windows.Forms.GroupBox groupBox5;
         public RichTextBoxEx.RichTextBoxEx tbBienvenida;
+        public FontAwesome.Sharp.IconButton btnRepararBD;
     }
 }

@@ -21,6 +21,11 @@ namespace BRappAdmin.Services.Services
         public ActionResult updateApp(App app)
         {
            return appRepository.UpdateApp(app);
-        }       
+        }
+
+        public ActionResult vacumm()
+        {
+            return appRepository.vacumm();
+        }
     }
 }

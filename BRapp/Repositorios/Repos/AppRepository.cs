@@ -10,7 +10,8 @@ using BRapp.Utiles;
 namespace BRapp.Repositorios.Repos
 {
     public class AppRepository : BaseRepository<App>, IAppRepository
-    {      
+    {
+        private static readonly string QUERY_VACUUM = "VACUUM";
         private static readonly string QUERY_SELECT = "SELECT * FROM App WHERE id = @Id";
         private static readonly string QUERY_EDIT = "UPDATE App SET fecha_actualizacion = @fechaActualizacion, copyright = @copyright, empresa =@empresa, mision=@mision, vision=@vision, objeto_social=@objeto_social, valores_compartidos =@valores_compartidos, bienvenida = @bienvenida WHERE id = @Id";
         private int AppId;    
@@ -67,6 +68,12 @@ namespace BRapp.Repositorios.Repos
                 { "@bienvenida", app.Bienvenida }
             };
             return parametros;
+        }
+
+        public ActionResult vacumm()
+        {
+            ExecuteWriteOperation(QUERY_VACUUM, new Dictionary<string, object>());
+            return ActionResult.UPDATED;
         }
     }
 }

@@ -6,6 +6,7 @@ namespace BRapp.Repositorios.Interfaces
     public interface IAppRepository
     {
         ActionResult UpdateApp(App app);
+        ActionResult vacumm();
         App GetApp();
     }
 }

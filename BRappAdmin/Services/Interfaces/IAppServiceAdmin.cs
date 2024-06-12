@@ -8,5 +8,6 @@ namespace BRappAdmin.Services.Interfaces
     {
         App getApp();
         ActionResult updateApp(App app);
+        ActionResult vacumm();
     }
 }

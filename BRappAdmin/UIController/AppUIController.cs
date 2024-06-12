@@ -21,8 +21,9 @@ namespace BRappAdmin.UIControlers
         }       
 
         public override AppUI ejecutar()
-        {          
+        {
             forma.btnActualizar.Click += new EventHandler(btnActualizar_Click);
+            forma.btnRepararBD.Click += new EventHandler(btnRepararBD_Click);
             return base.ejecutar();
         }
 
@@ -51,6 +52,11 @@ namespace BRappAdmin.UIControlers
             app.Bienvenida = forma.tbBienvenida.Rtf;         
             appServiceAdmin.updateApp(app);
             indexAdminUIController.updateFooter();
+            DialogUtil.INFORMATION(Mensajes.APP_UPDATED_OK);
+        }
+        private void btnRepararBD_Click(object sender, EventArgs e)
+        {
+            appServiceAdmin.vacumm();
             DialogUtil.INFORMATION(Mensajes.APP_UPDATED_OK);
         }
     }
